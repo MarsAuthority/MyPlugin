@@ -1,0 +1,30 @@
+caption: 今日活动
+title: $:/dailynotes-activities
+
+\define tiddlers-created-today()
+[all[tiddlers]!is[system]!has[draft.of]sameday:created<now YYYY0MM0DD>]
+\end
+
+\define tiddlers-modified-today()
+[all[tiddlers]!is[system]!has[draft.of]sameday<now YYYY0MM0DD>]
+\end
+
+<$macrocall
+  $name="table-dynamic"
+  caption="Created tiddlers"
+  filter=<<tiddlers-created-today>>
+  fields="tbl-expand title tags"
+  class="w-100"
+  editButton=no
+  emptyMessage=" "
+/>
+
+<$macrocall
+  $name="table-dynamic"
+  caption="Modified tiddlers"
+  filter="[subfilter<tiddlers-modified-today>] -[subfilter<tiddlers-created-today>]"
+  fields="tbl-expand title tags"
+  class="w-100"
+  editButton=no
+  emptyMessage=" "
+/>

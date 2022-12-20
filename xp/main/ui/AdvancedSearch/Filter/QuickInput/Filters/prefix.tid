@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 标题前缀为……
+filter: [prefix[…]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/prefix
+
+{{!!filter}}

@@ -1,0 +1,35 @@
+caption: {{$:/xp/images/code-viewer}} {{$:/language/Buttons/ViewCode/Caption}}
+description: {{$:/language/Buttons/ViewCode/Hint}}
+tags: $:/tags/ViewToolbar
+title: $:/xp/ui/Buttons/view-code
+
+\whitespace trim
+\define viewCodeState()
+$:/state/view-code/$(currentTiddler)$
+\end
+<$reveal type="nomatch" stateTitle=<<viewCodeState>> text="show" default="hide">
+<$button set=<<viewCodeState>> setTo="show" tooltip="Show code" aria-label="show code" class=<<tv-config-toolbar-class>>>
+<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>/>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]" variable="listItem">
+{{$:/xp/images/code-viewer}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+show code
+</span>
+</$list>
+</$button>
+</$reveal>
+<$reveal type="match" stateTitle=<<viewCodeState>> text="show" default="hide">
+<$button set=<<viewCodeState>> setTo="hide" tooltip="Hide code" aria-label="hide code" class=<<tv-config-toolbar-class>>>
+<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>/>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]" variable="listItem">
+{{$:/xp/images/code-viewer}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+hide code
+</span>
+</$list>
+</$button>
+</$reveal>

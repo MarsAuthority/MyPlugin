@@ -1,0 +1,12 @@
+tags: $:/tags/AboveStory
+title: $:/plugins/souk21/commandpalette/View
+
+<$list filter="[[$:/plugins/souk21/commandpalette]!is[missing]has[plugin-type]type[application/json]]" variable="ignore">
+<$reveal state="$:/config/Plugins/Disabled/$:/plugins/souk21/commandpalette" type="nomatch" text="yes">
+<div style="margin-top: -5px">
+
+<$commandpalettewidget/>
+
+</div>
+</$reveal>
+</$list>

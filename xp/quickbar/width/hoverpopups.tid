@@ -1,0 +1,17 @@
+tags: $:/tags/QuickBar/Width
+title: $:/xp/quickbar/width/hoverpopups
+
+\define usageTag() $:/tags/QuickBar/HoverPopupButtons
+\define config-base() $:/config/xp/quickbar/HoverPopupButtons/Visibility/
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/hoverpopups" type="nomatch" text="hide">
+<$vars
+	buttonWidth={{{ [all[tiddlers+shadows]!has[draft.of]tag<usageTag>remove<usageTag>] +[count[]multiply[28]addsuffix[px]] }}}
+	hiddenbuttonWidth={{{ [all[tiddlers+shadows]!has[draft.of]prefix<config-base>get[text]else[show]match[hide]] +[count[]multiply[28]addsuffix[px]] }}}
+	excessDividerWidth={{{ [[28]subtract[13]addsuffix[px]] }}}>
++ <<buttonWidth>> - <<hiddenbuttonWidth>>
+<$reveal state="$:/config/xp/quickbar/HoverPopupButtons/Visibility/$:/xp/quickbar/Buttons/divider/hoverpopups" type="nomatch" text="hide">
+- <<excessDividerWidth>>
+</$reveal>
+</$vars>
+</$reveal>

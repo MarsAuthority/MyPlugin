@@ -1,0 +1,61 @@
+caption: {{$:/language/Buttons/annotate/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+description: {{$:/language/Buttons/annotate/Hint}}
+icon: $:/xp/images/annotation
+shortcuts: ((annotate))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/annotate
+
+<$vars timestamp=<<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">>>
+<$vars annotTitle={{{ [[$:/annotation/]addsuffix<timestamp>] }}}>
+<$action-createtiddler
+	$basetitle=<<annotTitle>>
+	annotate-tiddler={{{ [<targetTiddler>get[draft.title]] }}}
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="save-selection"
+	tiddler=<<annotTitle>>
+	field="annotate-text"
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{ [[<<annotate """]] }}}
+	suffix={{{ [[""" "]addsuffix[$:/annotation/]addsuffix<timestamp>addsuffix[">>]] }}}
+/>
+<!-- EDIT TIDDLER -->
+<$list filter="[[$:/plugins/sq/Stories]is[missing]]" variable="ignore">
+<$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertafter<annotTitle>,<targetTiddler>]" />
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<annotTitle>> />
+</$list>
+<!-- xp -->
+<!-- EDIT TIDDLER IN THE RIGHT COLUMN -->
+<$list filter="[[$:/plugins/sq/Stories]plugin-type[plugin]]" variable="ignore">
+<$reveal state="$:/config/Plugins/Disabled/$:/plugins/sq/Stories" type="nomatch" text="yes">
+<!-- adjust layout -->
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fluid-fixed"/>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+<$action-setfield $tiddler="$:/temp/sidebarlayout/fixedstory" text="yes"/>
+</$list>
+<!-- show right column -->
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="no" default="no">
+<$action-setfield $tiddler="$:/config/_sq/Stories/story2" text="yes"/>
+</$reveal>
+<!-- edit tiddler -->
+<$navigator story="$:/_sq/Stories/Story2StoryList" history="$:/_sq/Stories/Story2HistoryList">
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<annotTitle>> />
+</$navigator>
+<$action-navigate $to=<<targetTiddler>> $scroll="yes" />
+</$reveal>
+<$reveal state="$:/config/Plugins/Disabled/$:/plugins/sq/Stories" type="match" text="yes">
+<$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertafter<annotTitle>,<targetTiddler>]" />
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<annotTitle>> />
+</$reveal>
+</$list>
+<!-- /xp -->
+</$vars>
+</$vars>

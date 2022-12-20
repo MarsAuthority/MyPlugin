@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Apostrophe
+
+<$button tag="a" tooltip="Apostrophe">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&apos;"
+/>
+
+<span class="tc-html-chooser-text">&apos;</span>
+
+</$button>

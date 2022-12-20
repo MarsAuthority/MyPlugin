@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/unfold-all!!caption}}
+description: {{$:/core/ui/Buttons/unfold-all!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/unfold-all
+
+{{$:/core/ui/Buttons/unfold-all}}

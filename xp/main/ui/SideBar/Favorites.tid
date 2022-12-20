@@ -1,0 +1,6 @@
+caption: {{$:/plugins/kookma/favorites/images/heart}}
+description: Favorites
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/Favorites
+
+{{$:/plugins/kookma/favorites/ui/sidebar/active-tab}}

@@ -1,0 +1,4 @@
+list: tbl-expand title tags
+title: $:/config/xp/aggregation-view/TableFields
+
+tbl-expand title tags

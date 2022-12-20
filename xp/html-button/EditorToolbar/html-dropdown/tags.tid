@@ -1,0 +1,43 @@
+title: $:/xp/html-button/html-dropdown/tags
+
+<i>Section Divisions:</i>
+
+<div class="tc-html-chooser">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/HTMLTags]tag[Section Divisions]!has[draft.of]sort[]]">
+<$transclude mode="inline-block"/></$list>
+</div>
+
+<i>Text Formatting:</i>
+
+<div class="tc-html-chooser">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/HTMLTags]tag[Text Formatting]!has[draft.of]sort[]]">
+<$transclude mode="inline-block"/></$list>
+</div>
+
+<i>Miscellaneous Tags:</i>
+
+<div class="tc-html-chooser">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/HTMLTags]tag[Miscellaneous Tags]!has[draft.of]sort[]]">
+<$transclude mode="inline-block"/></$list>
+</div>
+
+
+----
+
+<$button tag="a">
+
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	tags="$:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]"
+	text={{$:/language/Buttons/HTMLTags/New/Text}}
+/>
+
+<$action-deletetiddler $filter=<<dropdown-state>> />
+
+<em>
+
+<$text text={{$:/language/Buttons/Stamp/Caption/New}}/>
+
+</em>
+
+</$button>

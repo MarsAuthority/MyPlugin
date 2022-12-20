@@ -1,0 +1,14 @@
+caption: sad
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/sad
+
+<$button tag="a" tooltip="Sad">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji sad 0.5>>"
+/>
+
+{{$:/css3-emoji-sad}}
+</$button>

@@ -1,0 +1,7 @@
+caption: 最近添加
+title: $:/whys-recently-added
+
+\import $:/whys-macros
+\define configTiddler() $:/temp/whys/limitparam
+
+{{$:/aggregation-recently-added}}

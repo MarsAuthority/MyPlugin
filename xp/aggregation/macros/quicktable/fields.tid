@@ -1,0 +1,71 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/quicktable/fields
+
+\define tableFieldsButton()
+\whitespace trim
+<$reveal state=<<fieldsState>> default="no" type="nomatch" text="yes">
+<$button tooltip="Select table fields" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<fieldsState>> text="yes"/>
+<!-- Reset fields -->
+<$reveal default={{{ [prefix<aggregationPrefix>fields[]] -[enlist{$:/config/xp/aggregation/excluded-fields/dtable}] +[count[]] }}} type="nomatch" text={{{ [list<fieldsTiddler>remove[tbl-expand]count[]] }}}>
+<<resetFieldsActions>>
+</$reveal>
+{{$:/xp/images/dtable}}
+</$button>
+</$reveal>
+<$reveal state=<<fieldsState>> type="match" text="yes">
+<$button tooltip="Close selection panel" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<fieldsState>> text="no"/>
+{{$:/xp/images/dtable-panel}}
+</$button>
+</$reveal>
+\end
+
+\define resetFieldsActions()
+<$action-deletefield $tiddler=<<fieldsTiddler>> list/>
+<$action-setfield $tiddler=<<fieldsTiddler>> list={{{ [<fieldsTiddler>get[text]] }}}/>
+<$list filter="[prefix<aggregationPrefix>fields[]sort[]] -[enlist{$:/config/xp/aggregation/excluded-fields/dtable}] +[format:titlelist[]]" variable="listField">
+<$action-listops $tiddler=<<fieldsTiddler>> $subfilter="+[append<listField>]"/>
+</$list>
+\end
+
+\define resetFieldsButton()
+\whitespace trim
+<$wikify name="presetFieldsCount" text="""<$count filter="[<fieldsTiddler>get[text]enlist-input[]]"/>""">
+<$vars presetFields={{{ [<fieldsTiddler>get[text]enlist-input[]] :filter[lookup<config-base>match[show]] +[count[]!match<presetFieldsCount>] +[then[reset]] }}}
+    otherFields={{{ [prefix<aggregationPrefix>fields[]] -[<fieldsTiddler>get[text]enlist-input[]] :filter[lookup<config-base>match[show]] +[then[reset]] }}}>
+<$list filter="[<presetFields>] [<otherFields>] +[match[reset]limit[1]]" variable="ignore">
+&emsp;<$button class="xp-aggrfilter-dynamic-btn">
+<!-- Delete config tiddlers -->
+<$action-deletetiddler $filter="[all[shadows+tiddlers]regexp[TableFields/Visibility]prefix<fieldsTiddler>prefix<config-base>]"/>
+<$list filter="[<fieldsTiddler>get[text]enlist-input[]]" variable="listField">
+<$set name="stateCode" filter="[<field-config-title>is[shadow]]" value="1" emptyValue="0">
+<$reveal default=<<stateCode>> type="match" text="0">
+<$action-setfield $tiddler=<<field-config-title>> text="show"/>
+</$reveal>
+</$set>
+</$list>
+<!-- Reset fields -->
+<<resetFieldsActions>>
+reset
+</$button>
+</$list>
+</$vars>
+</$wikify>
+\end
+
+\define updateFieldsButton()
+\whitespace trim
+<$vars presetFields="[<fieldsTiddler>get[text]enlist-input[]]">
+<$reveal default={{{ [prefix<aggregationPrefix>fields[]] -[subfilter<presetFields>] -[enlist{$:/config/xp/aggregation/excluded-fields/dtable}] +[count[]] }}} type="nomatch" text={{{ [list<fieldsTiddler>] -[subfilter<presetFields>] +[count[]] }}} animate="yes">
+&nbsp;<$button class="xp-aggrfilter-dynamic-btn">
+<!-- Reset fields -->
+<<resetFieldsActions>>
+update
+</$button>
+</$reveal>
+</$vars>
+\end
+
+
+<pre><$view field="text"/></pre>

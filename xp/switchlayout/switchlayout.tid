@@ -1,0 +1,59 @@
+caption: {{$:/xp/switchlayout/images/left-arrow}} switchlayout
+description: Switch sidebar layout
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/switchlayout
+
+\whitespace trim
+\define layoutTiddler() $:/themes/tiddlywiki/vanilla/options/sidebarlayout
+\define paddingleftTiddler() $:/xp/themetweaks/metrics/sidebarpaddingleft
+
+<$list filter="[<layoutTiddler>get[text]] +[else[fluid-fixed]!match[fixed-fluid]]" variable="ignore">
+<$button set=<<layoutTiddler>> setTo="fixed-fluid" tooltip="Fixed story" aria-label="Fixed story" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/xp/switchlayout/images/left-arrow}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="switch layout"/>
+</span>
+</$list>
+<!-- xp -->
+<$list filter="[<paddingleftTiddler>is[shadow]]">
+<$action-setfield $tiddler=<<paddingleftTiddler>> text="42px"/>
+</$list>
+<!-- Interaction with $:/plugins/sq/Stories -->
+<$list filter="[[$:/plugins/sq/Stories]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/sq/Stories}!match[yes]]" variable="ignore">
+<$action-setfield $tiddler="$:/temp/sidebarlayout/fixedstory" text="yes"/>
+<$list filter="[[$:/_sq/Stories/Story2StoryList]has[list]]" variable="ignore">
+<$action-setfield $tiddler="$:/config/_sq/Stories/story2" text="no"/>
+</$list>
+</$list>
+<!-- /xp -->
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]match[no]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+</$button>
+</$list>
+
+<$list filter="[<layoutTiddler>get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+<$button set=<<layoutTiddler>> setTo="fluid-fixed" tooltip="Fixed sidebar" aria-label="Fixed sidebar" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/xp/switchlayout/images/right-arrow}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="switch layout"/>
+</span>
+</$list>
+<!-- xp -->
+<$list filter="[<paddingleftTiddler>is[shadow]]">
+<$action-setfield $tiddler=<<paddingleftTiddler>> text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+<!-- Interaction with $:/plugins/sq/Stories -->
+<$action-deletetiddler $tiddler="$:/temp/sidebarlayout/fixedstory"/>
+<!-- /xp -->
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]match[no]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+</$button>
+</$list>

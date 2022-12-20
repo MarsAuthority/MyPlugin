@@ -1,0 +1,60 @@
+title: $:/xp/aggregation-gtd/ui/AddTodo
+
+\define lingo-base() $:/language/projectify/
+
+\define newItemTags()
+[[$(currentList)$]] GTD
+\end
+
+\define add-todo-actions()
+<$list filter="[<stateTiddler>get[todo-name]trim[]!is[blank]]" variable="ignore">
+  <$action-createtiddler
+    $basetitle={{{ [[$:/gtd/]addsuffix<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">] }}}
+    $savetitle="$:/temp/projectify/new-todo"
+    tags=<<newItemTags>>
+    caption={{{ [<stateTiddler>get[todo-name]] }}}
+  />
+
+  <$action-setfield $tiddler={{$:/temp/projectify/new-todo}} due={{{ [<stateTiddler>get[due]] }}}/>
+  <$reveal state="$:/config/xp/aggregation-gtd/ContentType" type="match" text="text/x-markdown">
+  <$action-setfield $tiddler={{$:/temp/projectify/new-todo}} type="text/x-markdown"/>
+  </$reveal>
+  <$action-listops $tiddler=<<currentList>> $subfilter={{$:/temp/projectify/new-todo}}/>
+  <$action-deletefield $tiddler=<<stateTiddler>> todo-name due />
+
+  <$action-sendmessage $message="tm-auto-save-wiki"/>
+</$list>
+\end
+
+\define cancel-input-actions() <$action-deletefield $tiddler=<<stateTiddler>> todo-name />
+
+<$vars stateTiddler={{{ [[$:/temp/gtd/add-todo/]addsuffix<currentList>] }}}>
+  <div class="xp-gtd-addtodo">
+  <div class="xp-gtd-addtodo-textbox">
+    <$keyboard key="escape" actions=<<cancel-input-actions>>>
+    <$keyboard key="enter" actions=<<add-todo-actions>>>
+      <$edit-text
+  class="xp-gtd-addtodo-textbox-input"
+  tiddler=<<stateTiddler>>
+  field="todo-name"
+  />
+    </$keyboard>
+    </$keyboard>
+  </div>
+
+  <$list filter="[<stateTiddler>get[todo-name]trim[]!is[blank]]" variable="ignore" storyview="pop">
+  <$button
+    class="tc-btn-invisible tc-tiny-gap-left"
+    actions=<<add-todo-actions>>
+    tooltip="Add new item"
+    aria-label="new item"
+  >
+    {{$:/core/images/new-button}}
+  </$button>
+  <i class="tc-tiny-gap"/>
+    <$vars currentTiddler=<<stateTiddler>>>
+  <$transclude tiddler="$:/xp/aggregation-gtd/ui/buttons/DueDate" mode="inline"/>
+    </$vars>
+  </$list>
+  </div>
+</$vars>

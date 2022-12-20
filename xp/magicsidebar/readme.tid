@@ -1,0 +1,29 @@
+title: $:/plugins/xp/magicsidebar/readme
+
+\define dropdown-sidebar-animation()
+<$select tiddler="$:/config/MagicSidebar/animation">
+<option value="<<fadeInRight>>">从右到左</option>
+<option value="<<toShow>>">逐渐显示</option>
+</$select>
+\end
+
+当侧边栏处于隐藏状态时，您可以将鼠标指针移到右侧热点区以显示侧边栏。
+
+: <$checkbox tiddler="$:/config/MagicSidebar/display" field="text" checked="block" unchecked="none" checkactions="<$action-deletetiddler $tiddler='$:/config/MagicSidebar/display'/>"> [[Turn on Magic Sidebar|$:/config/MagicSidebar/display]]</$checkbox>
+
+<div style="margin-left:2em">
+
+设置右侧顶部热区的宽度和高度：
+
+| ''Width''|^<$edit-text tiddler="$:/xp/magicsidebar/metrics/width" default="25px" tag="input" size=6/> <$button set="$:/xp/magicsidebar/metrics/width" setTo="25px" tooltip="Reset to default">Reset</$button> |
+| ''Height''|^<$edit-text tiddler="$:/xp/magicsidebar/metrics/height" default="350px" tag="input" size=6/> <$button set="$:/xp/magicsidebar/metrics/height" setTo="350px" tooltip="Reset to default">Reset</$button> |
+
+设置显示动画：<<dropdown-sidebar-animation>>
+
+在原有基础上增加边栏显示宽度：
+
+| Increase width|^<$edit-text tiddler="$:/xp/magicsidebar/metrics/increasewidth" default="50px" tag="input" size=6/> <$button set="$:/xp/magicsidebar/metrics/increasewidth" setTo="50px" tooltip="Reset to default">Reset</$button> |
+
+</div>
+
+See also: [[Whitespace Theme|http://j.d.whitespace.tiddlyspot.com/]]

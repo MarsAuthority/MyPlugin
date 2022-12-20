@@ -1,0 +1,16 @@
+caption: 列表视图
+title: $:/plugins-currently-installed/ListView
+
+<$vars pluginFilter="[plugin-type[plugin]] [plugin-type[theme]] [plugin-type[language]] +[!has[draft.of]sort[]search:-text,*<userInput>]">
+
+<div style="margin:15px 0;padding:0 0 0 24px;">
+<ol class="tc-toc tc-muted">
+  <$list filter=<<pluginFilter>>>
+    <li>
+    <$link><$view field='title'/></$link><$reveal state=<<versionTid>> default="show" type="match" text="show" tag="span">&emsp;<i><$view field='version'/></i></$reveal>
+    </li>
+  </$list>
+</ol>
+</div>
+
+</$vars>

@@ -1,0 +1,68 @@
+tags: $:/tags/Stylesheet
+title: $:/aphorism-styles
+
+.xp-aphorism {
+    width: 100%;
+}
+
+.xp-aphorism table,
+.xp-aphorism tr,
+.xp-aphorism td {
+    border: none;
+    padding: 5px;
+}
+
+.xp-aphorism-item .xp-aphorism-star tr {
+    border-left: 2px inset <<colour primary>>;
+}
+
+.xp-aphorism>tbody>.xp-aphorism-item:nth-child(odd) {
+    background: <<colour code-background>>;
+}
+
+.xp-aphorism>tbody>.xp-aphorism-item:nth-child(even) {
+    background-color: <<colour background>>;
+}
+
+.xp-aphorism-controls {
+    display: none;
+    padding-right: .5em;
+    transition: opacity .5s ease-in-out;
+}
+
+.xp-aphorism-item:hover .xp-aphorism-controls {
+    display: block;
+}
+
+
+/*
+** 弃用样式
+
+[data-tiddler-title="APHORISM"],
+[data-tiddler-title="APHORISM"] .tc-titlebar {
+    background: <<colour page-background>>;
+}
+
+[data-tiddler-title="APHORISM"] {
+    border: 1px solid <<colour page-background>>;
+    border-radius: 8px;
+    <<box-shadow "none">>
+}
+
+.xp-aphorism > tbody > .xp-aphorism-item:first-child {
+    border-top: 1px solid <<colour table-border>>;
+}
+
+.xp-aphorism > tbody > .xp-aphorism-item:last-child {
+    border-bottom: 1px solid <<colour table-border>>;
+}
+
+.xp-aphorism-item {
+    line-height: 1.2;
+}
+
+.xp-aphorism-item p {
+    text-indent: 2em;
+}
+
+*/

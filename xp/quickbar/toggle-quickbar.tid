@@ -1,0 +1,33 @@
+caption: {{$:/xp/images/quickbar}} toggle quickbar
+description: Toggle quickbar
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/toggle-quickbar
+
+\whitespace trim
+<$list filter="[[$:/xp/ui/PageTemplate/quickbar]tag[$:/tags/PageTemplate]]">
+<$button tooltip="Hide quickbar" aria-label="hide quickbar" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/quickbar}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="hide quickbar"/>
+</span>
+</$list>
+<$action-listops $tags="-$:/tags/PageTemplate"/>
+</$button>
+</$list>
+
+<$list filter="[[$:/xp/ui/PageTemplate/quickbar]!tag[$:/tags/PageTemplate]]">
+<$button tooltip="Show quickbar" aria-label="show quickbar" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/quickbar}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="show quickbar"/>
+</span>
+</$list>
+<$action-deletetiddler $filter=<<currentTiddler>>/>
+</$button>
+</$list>

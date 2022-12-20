@@ -1,0 +1,50 @@
+caption: {{$:/xp/images/more}} {{$:/language/Buttons/More/Caption}}
+description: {{$:/language/Buttons/More/Hint}} from community plugins
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/more-page-actions-cp
+
+\whitespace trim
+\define config-title()
+$:/config/PageControlButtons/Visibility/$(listItem)$
+\end
+<$button popup=<<qualify "$:/state/popup/more-cp">> tooltip="More actions from community plugins" aria-label={{$:/language/Buttons/More/Caption}} class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/more}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text={{$:/language/Buttons/More/Caption}}/></span>
+</$list>
+</$button>
+<$reveal state=<<qualify "$:/state/popup/more-cp">> type="popup" position="below" animate="yes">
+
+<div class="tc-drop-down">
+
+<$set name="tv-config-toolbar-icons" value="yes">
+
+<$set name="tv-config-toolbar-text" value="yes">
+
+<$set name="tv-config-toolbar-class" value="tc-btn-invisible">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageControls]!has[draft.of]] -[all[shadows+tiddlers]tag[$:/tags/PageControls]remove{$:/config/PageControlButtons/from-community-plugins}]" variable="listItem">
+
+<$reveal type="match" state=<<config-title>> text="hide">
+
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$set>
+
+</$reveal>
+
+</$list>
+
+</$set>
+
+</$set>
+
+</$set>
+
+</div>
+
+</$reveal>

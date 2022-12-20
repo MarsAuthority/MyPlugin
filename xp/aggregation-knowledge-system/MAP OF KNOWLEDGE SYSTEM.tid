@@ -1,0 +1,7 @@
+caption: {{$:/xp/images/intelligence}} 知识体系图
+color: #bbb
+icon: $:/xp/images/intelligence
+title: MAP OF KNOWLEDGE SYSTEM
+tmap.id: aadefc95-046c-45ee-86f2-bf6d58cdfaff
+
+<$tmap view="Knowledge System" editor="advanced" height="600px" ></$tmap>

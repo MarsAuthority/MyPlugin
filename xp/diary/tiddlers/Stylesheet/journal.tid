@@ -1,0 +1,71 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/diary/Stylesheet/journal
+
+/* 自定义日志条目的样式 */
+
+[data-tags*="Journal"],
+[data-tiddler-title="Diary"] {
+  border-radius: 8px;
+}
+
+[data-tags*="Private"] {
+  border: 1px solid rgba(94, 54, 191, 0.39);
+}
+
+@media print {
+  .journal .tc-tiddler-body {
+    padding-left: 60px;
+    margin-top: 25px;
+  }
+  .journal .tc-tiddler-title,
+  .journal .tc-subtitle,
+  .journal .tc-tags-wrapper {
+    padding-left: 60px;
+  }
+}
+
+@media screen {
+  .journal .tc-tiddler-title,
+  .journal .tc-subtitle,
+  .journal .tc-tags-wrapper,
+  .journal .tc-tiddler-body {
+    padding-left: 20px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .journal .tc-tiddler-title,
+  .journal .tc-subtitle,
+  .journal .tc-tags-wrapper,
+  .journal .tc-tiddler-body {
+    padding-left: 30px;
+  }
+}
+
+.journal:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  width: 37px;
+  background: radial-gradient(<<colour muted-foreground>> 4px, transparent 5px) repeat-y;
+  background-size: 30.4px 30.4px;
+  z-index: 1010;
+}
+
+.journal .tc-tiddler-body {
+  padding-top: 6px;
+  font-family: "Handlee", cursive;
+  font-weight: 300;
+  line-height: 2em;
+  color: <<colour foreground>>;
+}
+
+/* Setting font for other elements */
+.journal .tc-tiddler-body pre,
+.journal .tc-tiddler-body code,
+.journal .tc-tiddler-body pre code {
+  font-family: "Handlee", cursive;
+  font-weight: 300;
+}

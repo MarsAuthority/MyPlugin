@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/emsp
+
+<$button tag="a" tooltip="Em space">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&emsp;"
+/>
+
+<span class="tc-html-chooser-text">emsp</span>
+
+</$button>

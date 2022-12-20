@@ -1,0 +1,15 @@
+title: $:/BatchCreation/macrocall/quick-table
+type: text/plain
+
+<$vars aggregationPrefix="""BASETITLE""" config-base="$:/config/quicktable/STATE/TableFields/Visibility/">
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/quicktable/STATE/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall 
+  $name="quick-table"
+  filter="[prefix[BASETITLE]!suffix[quicktable]]"
+  fields=<<dtableFields>>
+  class="w-100"
+  stateTiddler="STATE"
+  caption=""
+/>
+</$wikify>
+</$vars>

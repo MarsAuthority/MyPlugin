@@ -1,0 +1,13 @@
+{
+	"title": "$:/plugins/xp/theme-changer",
+	"name": "Theme Changer",
+	"description": "A button to switch custom themes",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"dependents": "$:/themes/tiddlywiki/vanilla",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210409145728327",
+	"modified": "20220810131842881"
+}

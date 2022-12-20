@@ -1,0 +1,8 @@
+tags: $:/tags/PageTemplate
+title: $:/xp/ui/PageTemplate/fix-commandpalette
+
+<$list filter="[[$:/plugins/souk21/commandpalette]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/souk21/commandpalette}!match[yes]]" variable="ignore">
+
+<$commandpalettewidget/>
+
+</$list>

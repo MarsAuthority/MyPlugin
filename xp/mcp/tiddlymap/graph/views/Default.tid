@@ -1,0 +1,4 @@
+config.physics_mode: false
+config.raster: 50
+isview: true
+title: $:/plugins/felixhayashi/tiddlymap/graph/views/Default

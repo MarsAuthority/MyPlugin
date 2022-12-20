@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/close-all!!caption}}
+description: {{$:/core/ui/Buttons/close-all!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/close-all
+
+{{$:/core/ui/Buttons/close-all}}

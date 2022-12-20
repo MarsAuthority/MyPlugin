@@ -1,0 +1,13 @@
+caption: Tabs with template
+tags: $:/tags/TextEditor/Snippet
+title: $:/language/Snippets/TabsWithTemplate
+
+<$list filter="[tag[TableOfContents]sort[]limit[1]]">
+<$macrocall
+  $name="tabs"
+  tabsList="[tag[TableOfContents]sort[]]"
+  default={{!!title}}
+  class="tc-vertical"
+  template="$:/templates/tabs"
+/>
+</$list>

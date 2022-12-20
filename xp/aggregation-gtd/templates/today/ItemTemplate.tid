@@ -1,0 +1,26 @@
+title: $:/xp/aggregation-gtd/today/ItemTemplate
+
+\whitespace trim
+\define save-actions()
+<$action-sendmessage $message="tm-auto-save-wiki"/>
+\end
+
+<div class={{{ [all[current]tag[done]then[py-todo py-completed]else[py-todo]] }}}>
+  <$checkbox tag="done" actions=<<save-actions>>>
+    {{||$:/plugins/nico/projectify/ui/buttons/Checkbox}}
+    <b class="tc-tiny-gap-right"><$view field=created format=date template="0hh:0mm"/></b>
+    <$link to={{!!title}}>
+      {{||$:/xp/aggregation-gtd/ui/TodoCaption}}
+      <$vars td-baseName={{{ [<currentTiddler>removeprefix[$:/]] }}}>
+      <$list filter="[<td-baseName>addprefix[$:/todolist/data/status/]is[tiddler]!text[{}]]" variable="ignore">
+  {{||$:/xp/images/pie-todolist}}
+      </$list>
+      </$vars>
+      <$list filter="[all[current]!text[]]">
+  <span class="py-todo-text-icon">
+    {{$:/plugins/nico/projectify/images/file}}
+  </span>
+      </$list>
+    </$link>
+  </$checkbox>
+</div>

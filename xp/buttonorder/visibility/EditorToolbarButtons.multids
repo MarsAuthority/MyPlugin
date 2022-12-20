@@ -1,0 +1,8 @@
+title: $:/config/EditorToolbarButtons/Visibility/$:/
+
+core/ui/EditorToolbar/note: hide
+core/ui/EditorToolbar/timestamp: hide
+plugins/tiddlywiki/markdown/EditorToolbar/heading-5: hide
+plugins/tiddlywiki/markdown/EditorToolbar/heading-6: hide
+plugins/tiddlywiki/katex/ui/EditorToolbar/katex: hide
+xp/ui/EditorToolbar/columns: hide

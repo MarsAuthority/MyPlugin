@@ -1,0 +1,12 @@
+{
+	"title": "$:/xp",
+	"name": "XP",
+	"description": "TiddlyWiki XP main files",
+	"version": "0.2.3",
+	"core-version": ">=5.2.3",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210408050746660",
+	"modified": "20220810131842881"
+}

@@ -1,0 +1,8 @@
+caption: {{$:/language/Buttons/HTML/Caption}}
+condition: [<targetTiddler>type[]] [<targetTiddler>get[type]prefix[text/]remove[text/plain]] +[first[]]
+description: {{$:/language/Buttons/HTML/Hint}}
+dropdown: $:/xp/ui/EditorToolbar/html-dropdown
+icon: $:/xp/images/html
+shortcuts: ((html))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/html

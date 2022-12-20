@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Copyright
+
+<$button tag="a" tooltip="Copyright">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&copy;"
+/>
+
+<span class="tc-html-chooser-text">&copy;</span>
+
+</$button>

@@ -1,0 +1,9 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/whys-macros
+
+\define aggregationTag() Why
+\define systemCTag()     $:/tags/WhyCategories
+\define categoryPrefix() $:/config/xp/aggregation-whys/category/
+\define config-base()    $:/config/xp/aggregation-whys/Tabs/Visibility/
+
+<pre><$view field="text"/></pre>

@@ -1,0 +1,40 @@
+caption: Page Control Button
+description: Create a page control button
+title: $:/xp/quickbar/create/new-pagecontrol-button
+
+\define et-quickbar-pagecontrol(size)
+|<$link to="$:/config/new-pagecontrol-button/Title">Title</$link> |<$edit-text tiddler="$:/config/new-pagecontrol-button/Title" default="" tag="input" size="$size$"/> |
+|<$link to="$:/config/new-pagecontrol-button/Caption">Caption</$link> |<$edit-text tiddler="$:/config/new-pagecontrol-button/Caption" default="" tag="input" size="$size$"/> |
+|<$link to="$:/config/new-pagecontrol-button/Description">Description</$link> |<$edit-text tiddler="$:/config/new-pagecontrol-button/Description" default="" tag="input" size="$size$"/> |
+|<$link to="$:/config/new-pagecontrol-button/Text">Text</$link> |<$edit tiddler="$:/config/new-pagecontrol-button/Text" tag="textarea" class="tc-edit-texteditor" default=""/> |
+|>| {{$:/xp/quickbar/create/Buttons/new-pagecontrol-button}} |
+\end
+
+\define select-pagecontrols()
+<$select tiddler='$:/config/new-pagecontrol-button/From'>
+<$list filter='[all[shadows+tiddlers]tag[$:/tags/PageControls]sort[]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+\end
+
+
+!!! Select a button to start imitating:
+
+<<select-pagecontrols>> {{$:/xp/quickbar/create/Buttons/imitate-pagecontrol-button}}
+
+<span class="xp-quickbar-on-pc">
+
+<<et-quickbar-pagecontrol size:"52">>
+
+</span>
+<span class="xp-quickbar-on-phone">
+
+<<et-quickbar-pagecontrol>>
+
+</span>
+
+
+!!! Fast conversion:
+
+<<select-pagecontrols>> {{$:/xp/quickbar/create/Buttons/convert-pagecontrol-button}}

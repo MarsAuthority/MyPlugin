@@ -1,0 +1,12 @@
+caption: 全部
+tags: $:/tags/HowtoCategories
+title: $:/listing-howtos-all
+
+\import $:/howtos-macros
+
+<$macrocall
+  $name="aggregation-list-links"
+  storeTitle="$:/temp/search/howtos/links"
+  searchClass="xp-search-howtos"
+  promptTiddler="$:/howtos-prompt"
+/>

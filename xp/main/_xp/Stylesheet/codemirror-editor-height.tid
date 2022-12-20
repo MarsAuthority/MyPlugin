@@ -1,0 +1,6 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/codemirror-editor-height
+
+.CodeMirror {
+	min-height: 66.6px;
+}

@@ -1,0 +1,12 @@
+{
+	"title": "$:/plugins/xp/emoji-button",
+	"name": "Emoji Button",
+	"description": "Insert an emoji",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210410045035022",
+	"modified": "20220810131842881"
+}

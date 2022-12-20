@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Text Formatting]]
+title: $:/language/HTMLTags/strong
+
+<$button tag="a" tooltip="Strong">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<strong>"
+	suffix="</strong>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<strong>"></span>
+
+</$button>

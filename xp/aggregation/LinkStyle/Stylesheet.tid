@@ -1,0 +1,32 @@
+created: 20160609120738579
+creator: twMat
+demo_comment: This little Stylesheet addition allows the ``linkstyle`` field to contain specifications for link colors and other aids to visual clarity.
+modified: 20220630000550729
+modifier: espringer kl
+tags: $:/tags/Stylesheet
+title: $:/LinkStyle/Stylesheet
+type: text/vnd.tiddlywiki
+
+\define linkstyle()
+<$set name="uri" value=<<makedatauri """$(tid)$""" "text/plain">> >
+<$list variable="urititle" filter="""[<uri>removeprefix[data:text/plain,]]""">
+<style>
+a[href='#<<urititle>>'] { color:$(color)$; <<style>> }
+.tc-sidebar-lists a[href='#<<urititle>>'] { color:$(color)$; <<style>> }
+a[href="#<<urititle>>"]:before { <<style-before>> }
+a[href="#<<urititle>>"]:after { <<style-after>> }
+</style>
+</$list>
+</$set>
+\end
+
+<$list filter="""[all[shadows+tiddlers]has[linkcolor]] [all[shadows+tiddlers]has[linkstyle]] [all[shadows+tiddlers]has[linkstyle-before]] [all[shadows+tiddlers]has[linkstyle-after]]""">
+<$vars tid={{!!title}}
+            color={{!!linkcolor}}
+            style={{!!linkstyle}}
+            style-before={{!!linkstyle-before}}
+            style-after={{!!linkstyle-after}}
+>
+<<linkstyle>>
+</$vars>
+</$list>

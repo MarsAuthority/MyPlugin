@@ -1,0 +1,81 @@
+caption: 颜色对比
+title: $:/xp/ColorContrast
+
+\define cc-setting-dropdown()
+<$select tiddler='$:/xp/ColorContrast/radius' default='10px'>
+	<option value='10px'>Square</option>
+	<option value='50%'>Circle</option>
+</$select>
+\end
+
+<style>
+.cc-container {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.cc-wrapper {
+  max-width: 900px;
+  overflow: auto;
+  zoom: 1;
+}
+
+.cc-box {
+  box-sizing: border-box;
+  float: left;
+}
+
+.cc-color {
+  position: relative;
+  width: 200px;
+	height: 200px;
+	margin: 0 0 5px 0;
+  border-radius: {{$:/xp/ColorContrast/radius}};
+  text-align: left;
+}
+
+.cc-one {
+  background-color: {{$:/xp/ColorContrast/color1/text}};
+}
+
+.cc-two {
+  background-color: {{$:/xp/ColorContrast/color2/text}};
+}
+
+.cc-three {
+  background-color: {{$:/xp/ColorContrast/color3/text}};
+}
+</style>
+
+
+<div class="cc-container">
+  <div class="cc-wrapper">
+    <div class="cc-box">
+      <figure class="cc-color cc-one">
+				{{$:/xp/ColorContrast/color1/text}}
+      </figure>
+    </div>
+    <div class="cc-box">
+      <figure class="cc-color cc-two">
+				{{$:/xp/ColorContrast/color2/text}}
+      </figure>
+    </div>
+    <div class="cc-box">
+      <figure class="cc-color cc-three">
+				{{$:/xp/ColorContrast/color3/text}}
+      </figure>
+    </div>
+  </div>
+</div>
+
+
+<div class="cc-wrapper">
+
+|Color1 |<$edit-text tiddler="$:/xp/ColorContrast/color1/text" default="" tag="input"/>|
+|Color2 |<$edit-text tiddler="$:/xp/ColorContrast/color2/text" default="" tag="input"/>|
+|Color3 |<$edit-text tiddler="$:/xp/ColorContrast/color3/text" default="" tag="input"/>|
+
+</div>
+
+
+选择背景形状：<<cc-setting-dropdown>>

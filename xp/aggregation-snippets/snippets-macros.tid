@@ -1,0 +1,6 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/snippets-macros
+
+\define aggregationTag() Snippet
+
+<pre><$view field="text"/></pre>

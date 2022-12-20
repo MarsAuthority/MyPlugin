@@ -1,0 +1,19 @@
+caption: {{$:/language/Manager/Item/Tools}}
+title: $:/xp/aggregation-checklist/SidebarTools
+
+<p>
+<$button to=<<currentTiddler>> class="tc-btn-invisible">{{$:/core/images/link}} open</$button>
+<$button message="tm-new-tiddler" param=<<currentTiddler>> class="tc-btn-invisible">{{$:/core/images/clone-button}} clone</$button>
+<$button message="tm-edit-tiddler" class="tc-btn-invisible">{{$:/core/images/edit-button}} edit</$button>
+<$button actions=<<cancel-delete-tiddler-actions "delete">> class="tc-btn-invisible">{{$:/core/images/delete-button}} delete
+<$list filter="[<tv-story-list>contains<currentTiddler>]" variable="ignore">
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$button>
+<$list filter="[all[current]!tag[done]]">
+<$button actions="<$action-listops $tags='done'/>" class="tc-btn-invisible">{{$:/core/images/done-button}} done</$button>
+</$list>
+<$list filter="[all[current]tag[done]]">
+<$button actions="<$action-listops $tags='-done'/>" class="tc-btn-invisible">{{$:/core/images/close-button}} undone</$button>
+</$list>
+</p>

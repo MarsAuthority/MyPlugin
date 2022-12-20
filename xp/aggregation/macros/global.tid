@@ -1,0 +1,39 @@
+tags: $:/tags/Macro $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/global
+
+\define aggregationCount()
+<small class="tc-sidebar-header">(<i><$count filter='[tag<aggregationTag>!has[draft.of]]'/> tiddlers</i>)</small>
+\end
+
+
+\define help-actions(tabsList,stateTiddler)
+<$action-setfield $tiddler="$:/config/ShowHelp/tabsList" text=<<__tabsList__>>/>
+<$action-setfield $tiddler="$:/config/ShowHelp" text=<<__stateTiddler__>>/>
+\end
+
+\define help-button(tabsList,stateTiddler)
+\whitespace trim
+<$vars stateTiddler="$:/state/view-subtiddler/help">
+<$reveal state=<<stateTiddler>> type="match" text="yes" default="no">
+<$button set=<<stateTiddler>> setTo="no" tooltip="Help" aria-label={{$:/language/Buttons/Help/Caption}} class="tc-btn-invisible tc-btn-mini fb-btn-invisible">
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$button>
+</$reveal>
+<$reveal state=<<stateTiddler>> type="nomatch" text="yes" default="no">
+<$button set=<<stateTiddler>> setTo="yes" tooltip="Help" aria-label={{$:/language/Buttons/Help/Caption}} class="tc-btn-invisible tc-btn-mini fb-btn-invisible">
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+<$macrocall
+  $name="help-actions"
+  tabsList=<<__tabsList__>>
+  stateTiddler=<<stateTiddler>>
+/>
+</$button>
+</$reveal>
+</$vars>
+\end
+
+\define help-button-to(tiddler,tooltip:"Help")
+<$button to=<<__tiddler__>> tooltip=<<__tooltip__>> class="tc-btn-invisible tc-btn-mini fb-btn-invisible">
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$button>
+\end

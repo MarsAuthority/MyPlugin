@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: （正则表达式）精准匹配，标题中带有……
+filter: [regexp[…]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/regexp
+
+{{!!filter}}

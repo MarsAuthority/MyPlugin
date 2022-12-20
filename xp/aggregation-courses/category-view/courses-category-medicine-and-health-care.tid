@@ -1,0 +1,6 @@
+caption: 医药卫生
+ctag: Medicine and health care
+tags: $:/tags/CourseCategories
+title: $:/courses-category-medicine-and-health-care
+
+<<list-courses "Medicine and health care">>

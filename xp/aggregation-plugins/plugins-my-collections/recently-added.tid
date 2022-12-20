@@ -1,0 +1,7 @@
+caption: 最近添加
+title: $:/plugins-my-collections/recently-added
+
+\import $:/plugins-macros
+\define configTiddler() $:/temp/plugins/limitparam
+
+{{$:/aggregation-recently-added}}

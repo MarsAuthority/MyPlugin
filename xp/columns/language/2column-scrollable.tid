@@ -1,0 +1,21 @@
+caption: 2column-scrollable
+tags: $:/tags/TextEditor/columns
+title: $:/language/columns/2column-scrollable
+
+<div class="left-column">
+<$scrollable class='tc-scrollable-demo'>
+
+{{$:/xp/columns/Examples/text2}}
+
+</$scrollable>
+</div>
+
+
+<div class="right-column">
+<$scrollable class='tc-scrollable-demo'>
+
+{{$:/xp/columns/Examples/text1}}
+
+</$scrollable>
+
+</div>

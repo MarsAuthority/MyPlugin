@@ -1,0 +1,4 @@
+ list: $:/core/ui/SideBar/Open TableOfContents $:/core/ui/SideBar/Recent $:/core/ui/SideBar/Tools $:/core/ui/SideBar/More $:/xp/ui/SideBar/AdvancedSearch $:/xp/ui/SideBar/Aggregation $:/xp/ui/SideBar/BatchOperation $:/Commander $:/xp/ui/SideBar/Diary $:/xp/ui/SideBar/Favorites $:/plugins/felixhayashi/tiddlymap/hook/liveTab $:/plugins/felixhayashi/tiddlymap/hook/editor $:/xp/ui/SideBar/Note $:/xp/ui/SideBar/Subtiddler $:/xp/ui/SideBar/Things $:/xp/ui/SideBar/Todolist $:/core/ui/ControlPanel/Toolbars $:/xp/ui/SideBar/Trashbin $:/xp/ui/SideBar/XpSettings
+title: $:/tags/SideBar
+
+<<list-links filter:"[all[shadows+tiddlers]tag[$:/tags/SideBar]]" type:"ol">>

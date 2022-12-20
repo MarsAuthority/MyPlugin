@@ -1,0 +1,16 @@
+caption: {{$:/core/images/new-button}} new why
+description: Create a new why
+title: $:/xp/ui/Buttons/new-why
+
+\whitespace trim
+\define newwhyButton()
+<$button actions={{$:/xp/ui/Actions/new-why}} tooltip="Create a new why" aria-label="new why" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/new-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text="new why"/></span>
+</$list>
+</$button>
+\end
+<<newwhyButton>>

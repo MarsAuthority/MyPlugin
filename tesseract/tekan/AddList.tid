@@ -1,0 +1,69 @@
+tags: $:/Tekan
+title: $:/Tekan/AddList
+
+\define boardandlist()
+$(currentBoard)$/$(listname)$
+\end
+
+\define boardnametag()
+[[$(currentBoard)$]]
+\end
+
+\define AddList()
+<$action-createtiddler $basetitle=<<boardandlist>> tags=<<boardnametag>> caption=<<listname>>/>
+<$action-listops $tiddler=<<currentBoard>> $subfilter="[<boardandlist>]"/>
+<$action-setfield $tiddler="$:/state/newlisttemp" text=""/>
+<$action-setfield $tiddler="$:/state/addnewlist" text=""/>
+\end
+
+\define CancelList()
+<$action-setfield $tiddler="$:/state/newlisttemp" text=""/>
+<$action-setfield $tiddler="$:/state/addnewlist" text=""/>
+\end
+
+<style>
+.list-wrapper-add {
+	height: auto;
+	min-height: 30px;
+	padding: 4px;
+	background-color: #E2E4E6;
+	-webkit-transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+	transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+}
+.list-name-input {
+	background: rgba(0,0,0,.05) !important;
+	box-shadow: inset 0 1px 8px rgba(0,0,0,.15);
+    border: 1px solid #aaa;
+	display: block;
+	margin: 0;
+	-webkit-transition: margin 85ms ease-in,background 85ms ease-in;
+	transition: margin 85ms ease-in,background 85ms ease-in;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 7px;
+}
+</style>
+
+<$reveal state="$:/state/addnewlist" type="nomatch" text="list">
+ <div class="list">
+		<div class="semitransparent"> 
+        <$button class="semitransparentborderless" style="width:100%;text-align:left;" set="$:/state/addnewlist" setTo="list">     
+        Add a list...
+        </$button>
+		</div>
+</div>
+</$reveal>
+
+<$reveal state="$:/state/addnewlist" type="match" text="list">
+<div class="list list-wrapper-add">
+    
+    
+	<$edit-text default="New list" class="list-name-input" tiddler="$:/state/newlisttemp" placeholder="Add a list…" tag="input"/>
+    <$set name="listname" value={{$:/state/newlisttemp}}>
+	<$button class="smallgreenbutton" actions=<<AddList>>>Add list</$button>
+    <$button class="tc-btn-invisible" style="padding: 5px;fill: #999;" actions=<<CancelList>>>{{$:/core/images/close-button}}</$button>
+    </$set>
+    
+    
+</div>
+</$reveal>

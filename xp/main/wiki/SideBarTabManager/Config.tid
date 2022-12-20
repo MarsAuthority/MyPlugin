@@ -1,0 +1,10 @@
+caption: {{$:/core/images/options-button}}
+title: $:/SideBarTabManager/Config
+
+\import $:/SideBarTabManager/Macros
+\define configTitle() $:/core/ui/SideBarSegments/tabs
+
+!! ~TabLauncher
+
+<$checkbox tiddler=<<configTitle>> field="text" checked="{{$:/xp/ui/SideBarSegments/tab-launcher}}" uncheckactions="<$action-deletetiddler $tiddler=<<configTitle>>/>"> Show tab launcher?</$checkbox><br>
+<$checkbox tiddler=<<styleTitle>> field="text" checked="oval" uncheckactions="<$action-deletetiddler $tiddler=<<styleTitle>>/>"> Change style?</$checkbox>

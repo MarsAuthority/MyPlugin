@@ -1,0 +1,9 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/howtos-macros
+
+\define aggregationTag() Howto
+\define systemCTag()     $:/tags/HowtoCategories
+\define categoryPrefix() $:/config/xp/aggregation-software/category/
+\define config-base()    $:/config/xp/aggregation-howtos/Tabs/Visibility/
+
+<pre><$view field="text"/></pre>

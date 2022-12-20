@@ -1,0 +1,2 @@
+list: $:/listing-consumer-all $:/consumer-starred-items $:/consumer-category-售后服务 $:/consumer-category-合同 $:/consumer-category-质量 $:/consumer-category-价格 $:/consumer-category-虚假宣传 $:/consumer-category-安全 $:/consumer-category-假冒 $:/consumer-category-人格尊严 $:/consumer-category-计量 $:/consumer-category-others $:/consumer-newcategory $:/consumer-managetabs
+title: $:/tags/ConsumerCategories

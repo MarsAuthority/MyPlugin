@@ -1,0 +1,14 @@
+caption: 全部
+tags: $:/tags/CourseCategories
+title: $:/listing-courses-all
+
+\import $:/courses-macros
+
+<$macrocall
+  $name="aggregation-list-thumbnails"
+  width="220"
+  height="123"
+  storeTitle="$:/temp/search/courses/thumbnails"
+  searchClass="xp-search-courses"
+  promptTiddler="$:/courses-prompt"
+/>

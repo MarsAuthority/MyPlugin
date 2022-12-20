@@ -1,0 +1,197 @@
+caption: XP
+description: Xp settings
+tags: $:/tags/SideBar $:/tags/XP $:/tags/ControlPanel/SettingsTab
+title: $:/xp/ui/SideBar/XpSettings
+
+\define lingo-base() $:/language/ThemeTweaks/
+
+\define checkactions() <$action-deletetiddler $tiddler=<<__tiddler__>>/>
+\define uncheckactions() <$action-deletetiddler $tiddler=<<__tiddler__>>/>
+
+\define checkboxTMode(text,tiddler,tag:"$:/tags/Stylesheet",checkactions,uncheckactions)
+<$checkbox tiddler=<<__tiddler__>> tag=<<__tag__>> checkactions=<<__checkactions__>> uncheckactions=<<__uncheckactions__>>>
+<$link to=<<__tiddler__>>><$text text=<<__text__>>/></$link>
+</$checkbox>
+\end
+
+\define checkboxFMode(text,tiddler,field:"text",checked,unchecked,default,checkactions,uncheckactions)
+<$checkbox tiddler=<<__tiddler__>> field=<<__field__>> checked=<<__checked__>> unchecked=<<__unchecked__>> default=<<__default__>> checkactions=<<__checkactions__>> uncheckactions=<<__uncheckactions__>>>
+<$link to=<<__tiddler__>>><$text text=<<__text__>>/></$link>
+</$checkbox>
+\end
+
+\define annotation-background()
+<$select tiddler="$:/config/annotation/background" default="lightcyan">
+<option value="lightcyan">LightCyan</option>
+<option value="lightgray">LightGray</option>
+<option value="lightgreen">LightGreen</option>
+<option value="magenta">Magenta</option>
+</$select>
+\end
+
+\define DefaultMoreSidebarTab()
+<$select tiddler="$:/config/DefaultMoreSidebarTab">
+<option value="$:/core/ui/MoreSideBar/Recent">Recent</option>
+<option value="$:/core/ui/MoreSideBar/Tags">Tags</option>
+<option value="$:/core/ui/MoreSideBar/Types">Types</option>
+<option value="$:/core/ui/MoreSideBar/Plugins">Plugins</option>
+</$select>
+\end
+
+\define SideBarAdvancedSearchDefaultTab()
+<$select tiddler="$:/config/SideBarAdvancedSearchDefaultTab">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBar/AdvancedSearch]!has[draft.of]] -[[$:/tags/SideBar/AdvancedSearch]]">
+<option value=<<currentTiddler>>><$transclude field="caption"><$view field="title"/></$transclude></option>
+</$list>
+</$select>
+\end
+
+\define change-dropdown-color()
+<$select tiddler="$:/_xp/Settings/dropdown-color">
+<option value="#9932CC">DarkOrchid</option>
+<option value="#00CED1">DarkTurquoise</option>
+<option value="#4caf50">Green</option>
+<option value="#B0C4DE">LightSteelBlue</option>
+<option value="#DA70D6">Orchid</option>
+<option value="#cc0000">Red</option>
+<option value="#C0C0C0">Silver</option>
+<option value="#FF6347">Tomato</option>
+<option value="#00a9c7">XP</option>
+</$select>
+\end
+
+\define openCpTiddlyWiki()
+<$button class="tc-btn-invisible tc-btn-mini">
+~TiddlerOpeningBehaviour
+<$action-setfield $tiddler="$:/state/tab-1749438307" $value="$:/core/ui/ControlPanel/Settings"/>
+<$action-setfield $tiddler="$:/state/tab--20210420061617891" $value="$:/core/ui/ControlPanel/Settings/TiddlyWiki"/>
+<$action-navigate $to="$:/ControlPanel"/>
+</$button>
+\end
+
+\define vstHelpButton()
+&ensp;<$macrocall
+  $name="help-button"
+  tabsList="$:/language/view-subtiddler/TagDropdown"
+  stateTiddler="$:/state/view-subtiddler/help"
+/>
+\end
+
+
+!! Annotation
+
+<<checkboxFMode "Show annotation icon" "$:/config/annotation/display" "text" "inherit" uncheckactions:"<<uncheckactions>>">>
+
+|<$link to="$:/config/annotation/background"> Background color </$link> |<<annotation-background>> |
+
+
+!! Buttons
+
+<$checkbox tiddler="$:/core/ui/Buttons/delete" field="text" checked={{$:/_xp/Settings/Buttons/trashbin}} uncheckactions="""<$action-deletetiddler $tiddler="$:/core/ui/Buttons/delete"/>""">
+ Replace [[delete button|$:/core/ui/Buttons/delete]] with [[trashbin|$:/plugins/kookma/trashbin/ui/toolbar-button]]
+</$checkbox><br>
+<<checkboxTMode "Show encryption button" "$:/plugins/danielo515/encryptTiddler/crypt-button" "$:/tags/ViewToolbar" uncheckactions:"<<uncheckactions>>">>
+
+
+!! Layout tweaks
+
+<$button> Normal View
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" text="350px"/>
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft/text" text="32px"/>
+<$action-setfield $tiddler="$:/xp/leftopentab/metrics/width" text="350px"/>
+<$action-setfield $tiddler="$:/xp/leftopentab/metrics/paddingright" text="30px"/>
+</$button>
+<$button> Wide View
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" text="302px"/>
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft/text" text="22px"/>
+<$action-setfield $tiddler="$:/xp/leftopentab/metrics/width" text="256px"/>
+<$action-setfield $tiddler="$:/xp/leftopentab/metrics/paddingright" text="22px"/>
+</$button>
+
+<$reveal state="$:/config/LeftOpenTab/Status" type="nomatch" text="show">
+
+|<$link to="$:/themes/tiddlywiki/vanilla/metrics/storytop">Story top</$link>|^<$edit-text tiddler="$:/themes/tiddlywiki/vanilla/metrics/storytop" default="0px" tag="input" size=4/> |
+|<$link to="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth">Sidebar width</$link> |^<$edit-text tiddler="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" default="350px" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/sidebarpaddingleft/text">Sidebar padding-left</$link> |^<$edit-text tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft/text" default="42px" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/sidebarpaddingtop">Sidebar padding-top</$link> |^<$edit-text tiddler="$:/xp/themetweaks/metrics/sidebarpaddingtop" default="71px" tag="input" size=4/> |
+
+</$reveal>
+<$reveal state="$:/config/LeftOpenTab/Status" type="match" text="show">
+
+|<$link to="$:/themes/tiddlywiki/vanilla/metrics/storytop">Story top</$link>|^<$edit-text tiddler="$:/themes/tiddlywiki/vanilla/metrics/storytop" default="0px" tag="input" size=4/> |
+|<$link to="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth">Sidebar width</$link> |^<$edit-text tiddler="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" default="350px" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/sidebarpaddingleft/text">Sidebar padding-left</$link> |^<$edit-text tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft/text" default="42px" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/sidebarpaddingtop">Sidebar padding-top</$link> |^<$edit-text tiddler="$:/xp/themetweaks/metrics/sidebarpaddingtop" default="71px" tag="input" size=4/> |
+|<$link to="$:/xp/leftopentab/metrics/width">Leftbar width</$link> |^<$edit-text tiddler="$:/xp/leftopentab/metrics/width" tag="input" size=4/> |
+|<$link to="$:/xp/leftopentab/metrics/paddingright">Leftbar padding-right</$link> |^<$edit-text tiddler="$:/xp/leftopentab/metrics/paddingright" tag="input" size=4/> |
+|<$link to="$:/xp/leftopentab/metrics/paddingtop">Leftbar padding-top</$link> |^<$edit-text tiddler="$:/xp/leftopentab/metrics/paddingtop" tag="input" size=4/> |
+
+</$reveal>
+
+<<checkboxFMode "Sticky titles" "$:/themes/tiddlywiki/vanilla/options/stickytitles" "text" "yes" "no" checkactions:"<<checkactions>>">><br>
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/stickytitles]get[text]match[yes]]" variable="ignore">
+<div style="padding:1px 4px 1px 16px; border-radius:4px; font-size:0.9em; line-height:1.35em;">
+<<checkboxTMode "Blur background" "$:/_xp/Stylesheet/sticky-blur-background" uncheckactions:"<<uncheckactions>>">>
+</div>
+<<checkboxTMode "Sticky editor-toolbar" "$:/_xp/Stylesheet/sticky-editor-toolbar" checkactions:"<<checkactions>>">><br>
+</$list>
+<<checkboxTMode "Show box-shadow" "$:/_xp/Stylesheet/box-shadow" uncheckactions:"<<uncheckactions>>">><br>
+<<checkboxFMode "Turn on Magic Sidebar" "$:/config/MagicSidebar/display" "text" "block" "none" checkactions:"<<checkactions>>">><br>
+<<checkboxTMode "Multi-column Dropdown" "$:/_xp/Stylesheet/multi-column-dropdown" checkactions:"<<checkactions>>">>
+
+
+!! ~MoreSideBar
+
+<<checkboxTMode "Show SystemTags" "$:/xp/ui/MoreSideBar/SystemTags" "$:/tags/MoreSideBar" checkactions:"<<checkactions>>">><br>
+<<checkboxTMode "Show Macros" "$:/xp/ui/MoreSideBar/Macros" "$:/tags/MoreSideBar" checkactions:"<<checkactions>>">><br>
+<<checkboxTMode "Show IconGallery" "$:/xp/ui/MoreSideBar/IconGallery" "$:/tags/MoreSideBar" checkactions:"<<checkactions>>">>
+
+|<$link to="$:/config/DefaultMoreSidebarTab">~DefaultMoreSidebarTab</$link> |<<DefaultMoreSidebarTab>> |
+
+
+!! ~SideBar
+
+|<<checkboxTMode "title" "$:/core/ui/SideBarSegments/site-title" "$:/tags/SideBarSegment" checkactions:"<<checkactions>>">> |<<checkboxTMode "subtitle" "$:/core/ui/SideBarSegments/site-subtitle" "$:/tags/SideBarSegment" checkactions:"<<checkactions>>">> |<<checkboxTMode "search" "$:/core/ui/SideBarSegments/search" "$:/tags/SideBarSegment" checkactions:"<<checkactions>>">> |[[tabs|$:/SideBarTabManager]] |
+
+<<checkboxTMode "Change the timeline of Recent tab" "$:/_xp/Stylesheet/recent-tab-date" uncheckactions:"<<uncheckactions>>">><br>
+<$list filter="[[$:/_xp/Stylesheet/recent-tab-date]tags[]search[$:/tags/Stylesheet]]" variable="ignore">
+<div style="padding:1px 4px 1px 16px; border-radius:4px; font-size:0.9em; line-height:1.35em;">
+<<checkboxFMode "Bold dates" "$:/config/RecentTab/FontWeight" "text" "bold" uncheckactions:"<<uncheckactions>>">><br>
+<<checkboxFMode "Show color" "$:/config/RecentTab/Color" "text" "rgba(0, 150, 136, 0.45)" checkactions:"<<checkactions>>">>
+</div>
+</$list>
+<<checkboxTMode "Hide description in Tools tab" "$:/_xp/Stylesheet/hide-tools-description" uncheckactions:"<<uncheckactions>>">>
+
+|<$link to="$:/config/SideBarAdvancedSearchDefaultTab">~DefaultAdvancedSearch</$link> |<<SideBarAdvancedSearchDefaultTab>> |
+
+
+<$list filter="[[$:/plugins/xp/aggregation]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/xp/aggregation}!match[yes]]" variable="ignore">
+
+!! Subtiddler
+
+<<checkboxTMode "Show ViewToolbar button" "$:/xp/ui/Buttons/view-subtiddler" "$:/tags/ViewToolbar" checkactions:"<<checkactions>>">><br>
+<<checkboxFMode "Show TagDropdown button" "$:/config/view-subtiddler/TagDropdown" "text" "yes" "no" checkactions:"<<checkactions>>">> <<vstHelpButton>><br>
+<$list filter="[[$:/config/view-subtiddler/TagDropdown]get[text]] +[else[no]match[yes]]" variable="ignore">
+
+|<$link to="$:/config/view-subtiddler/Threshold">Threshold</$link>|^<$edit-text tiddler="$:/config/view-subtiddler/Threshold" default="10" tag="input" size=4/> |
+
+</$list>
+
+</$list>
+
+
+!! Tiddler
+
+|<$link to="$:/xp/themetweaks/metrics/tiddlerborderradius">border-radius</$link>|^<$edit-text tiddler="$:/xp/themetweaks/metrics/tiddlerborderradius" default="2px" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/tiddlertitlebarsize">~TitlebarFontSize</$link>|^<$edit-text tiddler="$:/xp/themetweaks/metrics/tiddlertitlebarsize" default="2.35em" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/tiddlercontrolsdropdown">~TiddlerControlsDropdown</$link>|^<$edit-text tiddler="$:/xp/themetweaks/metrics/tiddlercontrolsdropdown" default="0.6em" tag="input" size=4/> |
+|<$link to="$:/xp/themetweaks/metrics/tiddlerbuttonheight">Button height</$link>|^<$edit-text tiddler="$:/xp/themetweaks/metrics/tiddlerbuttonheight" default="0.75em" tag="input" size=4/> |
+
+<<checkboxTMode "Edit buttons as traffic lights" "$:/_xp/Stylesheet/highlight-edit-buttons" uncheckactions:"<<uncheckactions>>">><br>
+<<checkboxTMode "Highlight the edit and close buttons" "$:/_xp/Stylesheet/highlight-other-buttons" uncheckactions:"<<uncheckactions>>">><br>
+<<checkboxTMode "Show tiddlymap hzone-focus" "$:/_xp/Stylesheet/tiddlymap" uncheckactions:"<<uncheckactions>>">><br>
+<<checkboxTMode "Change dropdown color" "$:/_xp/Stylesheet/dropdown-color" uncheckactions:"<<uncheckactions>>">> <<change-dropdown-color>><br>
+
+<div style="padding: 4px 16px;">
+Also set up <<openCpTiddlyWiki>>
+</div>

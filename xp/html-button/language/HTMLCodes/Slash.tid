@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Slash
+
+<$button tag="a" tooltip="Slash">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&#47;"
+/>
+
+<span class="tc-html-chooser-text">&#47;</span>
+
+</$button>

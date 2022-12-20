@@ -1,0 +1,26 @@
+caption: Default
+description: create a new board
+tags: $:/tags/Actions $:/tags/KanbanTemplate
+title: $:/Tekan/Actions/Default
+
+<$wikify name="newboardTitle" text={{{ [[$:/kanbanboard/]addsuffix<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">] }}}>
+<$vars
+	stateTitle="$:/state/NewKanbanBoard/Caption"
+	newboardCaption={{$:/state/NewKanbanBoard/Caption}}
+	newboardTags="$:/tags/Tekanboard"
+	newboardText={{$:/config/TekanNewBoard/Text}}
+>
+
+<$reveal type="match" state=<<stateTitle>> text="">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/BoardName"/>
+</$reveal>
+<$reveal type="nomatch" state=<<stateTitle>> text="">
+<$list filter="[<newboardTitle>!is[tiddler]]" variable="ignore">
+<$action-createtiddler $basetitle=<<newboardTitle>> caption=<<newboardCaption>> tags=<<newboardTags>> text=<<newboardText>>/>
+<$action-setfield $tiddler="$:/Tekan/CurrentBoard" $value=<<newboardTitle>>/>
+<$action-setfield $tiddler="$:/state/NewKanbanBoard/Caption" text=""/>
+</$list>
+</$reveal>
+
+</$vars>
+</$wikify>

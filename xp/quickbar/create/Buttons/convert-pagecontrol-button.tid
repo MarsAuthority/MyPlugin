@@ -1,0 +1,19 @@
+caption: {{$:/core/images/right-arrow}} convert pagecontrol button
+description: Create a pagecontrol button
+title: $:/xp/quickbar/create/Buttons/convert-pagecontrol-button
+
+\whitespace trim
+<$button tooltip="convert this pagecontrol button" aria-label="convert this pagecontrol button" class="">
+Convert
+<$vars convertFromTitle={{{ [[$:/config/new-pagecontrol-button/From]get[text]] }}} textFieldTags={{$:/config/new-pagecontrol-button/Tags}}>
+<$vars newTitle={{{ [<convertFromTitle>split[/]last[1]] +[addprefix[$:/xp/quickbar/Buttons/]] }}}>
+<$reveal type="nomatch" state=<<newTitle>> text="">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/tiddlerExists"/>
+</$reveal>
+<$reveal type="match" state=<<newTitle>> text="">
+<$action-createtiddler $basetitle=<<newTitle>> tags=<<textFieldTags>> text={{{ [<convertFromTitle>addprefix[{{]addsuffix[}}]] }}} caption={{{ [<convertFromTitle>addprefix[{{]addsuffix[!!caption}}]] }}} description={{{ [<convertFromTitle>addprefix[{{]addsuffix[!!description}}]] }}}/>
+<$action-navigate $to=<<newTitle>>/>
+</$reveal>
+</$vars>
+</$vars>
+</$button>

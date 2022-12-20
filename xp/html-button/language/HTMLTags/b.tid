@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Text Formatting]]
+title: $:/language/HTMLTags/b
+
+<$button tag="a" tooltip="Bring Attention To">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<b>"
+	suffix="</b>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<b>"></span>
+
+</$button>

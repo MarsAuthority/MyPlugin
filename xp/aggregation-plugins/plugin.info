@@ -1,0 +1,11 @@
+{
+	"title": "$:/plugins/xp/aggregation-plugins",
+	"name": "Plugins",
+	"description": "Manage your TiddlyWiki plugins",
+	"version": "0.3.0",
+	"plugin-type": "plugin",
+	"parent-plugin": "$:/plugins/xp/aggregation",
+	"dependents": "$:/plugins/xp/aggregation",
+	"type": "application/json",
+	"author": "kl"
+}

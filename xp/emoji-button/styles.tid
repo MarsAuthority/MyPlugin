@@ -1,0 +1,39 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/emoji-button/styles
+
+.tc-emoji-chooser {
+	white-space: normal;
+}
+
+.tc-emoji-chooser a {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	position: relative;
+	padding: 4px 3px 2px;
+	margin: 1px 3px 1px 1px;
+	width: 3em;
+	height: 3em;
+}
+
+.tc-emoji-chooser a:hover {
+	background: <<colour tiddler-controls-foreground>>;
+	padding: 0px;
+	border: 3px solid <<colour tiddler-controls-foreground>>;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.tc-emoji-chooser-text,
+.tc-emoji-chooser-text-recent {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	max-width: 2.5em;
+	max-height: 2.5em;
+	font-size: 2em;
+}
+
+.tc-emoji-chooser-text {
+	margin-top: 0.3em;
+}

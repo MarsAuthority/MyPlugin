@@ -1,0 +1,8 @@
+caption: {{!!filter}}
+dependents: $:/plugins/bimlas/kin-filter
+description: 递归过滤出根标签下所有子条目
+filter: [kin::to[rootTag]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/kin
+
+{{!!filter}}

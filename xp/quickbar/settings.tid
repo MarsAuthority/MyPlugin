@@ -1,0 +1,106 @@
+caption: Quick Bar
+tags: $:/tags/ControlPanel/Toolbars
+title: $:/plugins/xp/quickbar/settings
+
+\define config-base() $:/config/xp/quickbar/Items/Visibility/
+
+\define config-title()
+$(config-base)$$(currentTiddler)$
+\end
+
+\define sidebarSearchboxButton()
+\whitespace trim
+<$tiddler tiddler="$:/core/ui/SideBarSegments/search">
+<$list filter="[<currentTiddler>!tag[$:/tags/SideBarSegment]]">
+<$button> show sidebar search box
+<$action-deletetiddler $filter=<<currentTiddler>>/>
+</$button>
+</$list>
+<$list filter="[<currentTiddler>tag[$:/tags/SideBarSegment]]">
+<$button> hide sidebar search box
+<$action-listops $tags="-$:/tags/SideBarSegment"/>
+</$button>
+</$list>
+</$tiddler>
+\end
+
+!! Items
+
+Select which items will be shown.
+
+<$tiddler tiddler="$:/state/xp/quickbar/SelectItems">
+<$radio default="pc" value="pc"> PC</$radio>&ensp;
+<$radio value="phone"> Phone</$radio>
+</$tiddler>
+
+<$vars tv-config-toolbar-icons="yes" tv-config-toolbar-text="yes">
+<$reveal state="$:/state/xp/quickbar/SelectItems" type="match" text="pc" default="pc" animate="yes">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar]!has[draft.of]]">
+<div>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="show"/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <i class="tc-muted">-- <$transclude field="description"/></i></span>
+<$list filter="[<currentTiddler>has[dependents]]">&emsp;<$transclude field="dependents"/> <i class="tc-muted">(Dependents)</i></$list>
+</div>
+</$list>
+<blockquote>[[Set the visibility of the buttons (includes divider)|$:/xp/quickbar/settings/button-visibility]]</blockquote>
+</$reveal>
+<$reveal state="$:/state/xp/quickbar/SelectItems" type="match" text="phone" animate="yes">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/Phone]!has[draft.of]]">
+<div>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="show"/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <i class="tc-muted">-- <$transclude field="description"/></i></span>
+<$list filter="[<currentTiddler>has[dependents]]">&emsp;<$transclude field="dependents"/> <i class="tc-muted">(Dependents)</i></$list>
+</div>
+</$list>
+</$reveal>
+</$vars>
+
+!! Contents Tag
+
+The tag for the ~TableOfContents used in the Contents
+
+<$edit-text tiddler="$:/config/xp/quickbar/TableOfContents/Tag" default="" tag="input"/>
+
+!! Auto Hide
+
+<$tiddler tiddler="$:/config/xp/quickbar/AutoHide">
+<$radio actions="<$action-deletetiddler $filter='$:/config/xp/quickbar/AutoHide'/>"> Off</$radio>&ensp;
+<$radio value="semi"> Semi-hidden</$radio>&ensp;
+<$radio value="fully"> Fully-hidden</$radio>
+</$tiddler>
+
+<$reveal state="$:/config/xp/quickbar/AutoHide" type="match" text="fully">
+//When the search box contains characters, it will automatically switch to semi-hidden mode.//
+</$reveal>
+
+!! Frosted Glass Effect
+
+<$tiddler tiddler="$:/config/xp/quickbar/FrostedGlass">
+<$button>
+<$reveal state=<<currentTiddler>> type="match" text="on">
+turn off
+<$action-deletetiddler $filter=<<currentTiddler>>/>
+</$reveal>
+<$reveal state=<<currentTiddler>> type="nomatch" text="on">
+turn on
+<$action-setfield text="on"/>
+</$reveal>
+</$button>
+</$tiddler>
+
+!! Search ~AutoFocus
+
+Focus on search box when first open tiddlywiki: <$select tiddler='$:/config/xp/quickbar/Search/AutoFocus'>
+<option> true</option>
+<option> false</option>
+</$select>
+
+<<<
+By default the Sidebar Search Box will get the focus, so you need to hide it:
+
+<<sidebarSearchboxButton>>
+<<<
+
+!! ~QuickBar Colours 
+
+To change the colour of the quickbar, define the colours `quickbar-foreground` and `quickbar-background` in the currently selected palette (<<tag $:/tags/Palette>>)
+
+* {{$:/palette}}

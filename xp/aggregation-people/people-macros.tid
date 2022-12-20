@@ -1,0 +1,7 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/people-macros
+
+\define aggregationTag() People
+\define categoryPrefix() $:/config/xp/aggregation-people/category/
+
+<pre><$view field="text"/></pre>

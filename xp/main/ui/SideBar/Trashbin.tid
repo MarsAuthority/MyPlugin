@@ -1,0 +1,6 @@
+caption: <span class="active-recycle">{{$:/plugins/kookma/trashbin/images/recycle}}</span>
+description: Trashbin
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/Trashbin
+
+{{$:/plugins/kookma/trashbin/ui/sidebar}}

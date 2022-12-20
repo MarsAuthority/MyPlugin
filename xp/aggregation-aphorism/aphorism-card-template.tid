@@ -1,0 +1,31 @@
+title: $:/aphorism-card-template
+
+<$list filter="[all[current]!tag[Star]]">
+
+<div class="xp-snippets-info">
+
+! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link><i class="tc-small-gap"/><span class="tc-tiddler-controls">
+<$list filter="$:/core/ui/Buttons/clone $:/core/ui/Buttons/delete $:/core/ui/Buttons/edit" storyview="pop" variable="listItem"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler=<<listItem>>/></$set></$list><$list filter="[all[current]!tag<aggregationTag>]" storyview="pop" variable="ignore"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [[$:/core/ui/Buttons/close]encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler="$:/core/ui/Buttons/close"/></$set></$list></span>
+
+<div class="tc-tags-wrapper" style="font-size:0.85em;"><$list filter="[all[current]tags[]sort[]] -[<aggregationTag>]" template="$:/core/ui/TagTemplate" storyview="pop"/></div>
+
+<$transclude/>
+
+</div>
+
+</$list>
+
+<$list filter="[all[current]tag[Star]]">
+
+<div class="xp-snippets-info-star">
+
+! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link><i class="tc-small-gap"/><span class="tc-tiddler-controls">
+<$list filter="$:/core/ui/Buttons/clone $:/core/ui/Buttons/delete $:/core/ui/Buttons/edit" storyview="pop" variable="listItem"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler=<<listItem>>/></$set></$list><$list filter="[all[current]!tag<aggregationTag>]" storyview="pop" variable="ignore"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [[$:/core/ui/Buttons/close]encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler="$:/core/ui/Buttons/close"/></$set></$list></span>
+
+<div class="tc-tags-wrapper" style="font-size:0.85em;"><$list filter="[all[current]tags[]sort[]] -[<aggregationTag>]" template="$:/core/ui/TagTemplate" storyview="pop"/></div>
+
+<$transclude/>
+
+</div>
+
+</$list>

@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: （正则表达式）标题中带有……（忽略大小写）；排除……
+filter: [all[shadows]regexp[(?i)…]] -[regexp[]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/regexp-ignore
+
+{{!!filter}}

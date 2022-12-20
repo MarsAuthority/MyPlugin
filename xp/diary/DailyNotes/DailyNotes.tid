@@ -1,0 +1,24 @@
+color: #bbb
+icon: $:/xp/images/daily
+title: $:/DailyNotes
+
+\define today()
+<b style="color:green;"><<now "YYYY-0MM-0DD DDD Day ddddd">></b>
+\end
+
+\define today-chinese()
+<b style="color:green;"><<now "YYYY年0MM月0DD日 DDD 第ddddd天">></b>
+\end
+
+<div class="tc-sidebar-lists xp-float-right">
+<$list filter="[{$:/language}match[$:/languages/zh-Hans]]" emptyMessage=<<today>> variable="ignore">
+<<today-chinese>>
+</$list>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/dailynotes-editing $:/dailynotes-journallist $:/dailynotes-things $:/dailynotes-activities"
+  default="$:/dailynotes-editing"
+  state="$:/state/tab/dailynotes"
+/>

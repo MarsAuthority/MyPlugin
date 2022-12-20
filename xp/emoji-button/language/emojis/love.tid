@@ -1,0 +1,14 @@
+caption: love
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/love
+
+<$button tag="a" tooltip="Love">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji love 0.5>>"
+/>
+
+{{$:/css3-emoji-love}}
+</$button>

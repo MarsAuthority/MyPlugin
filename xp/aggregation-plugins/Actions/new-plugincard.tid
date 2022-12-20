@@ -1,0 +1,18 @@
+description: create a plugincard
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-plugincard
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-plugincard/Tags}} textField={{$:/config/new-plugincard/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "plugin/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	caption="a plugincard"
+	linkcolor=""
+	moscow="M"
+	url=""
+/>
+</$vars>

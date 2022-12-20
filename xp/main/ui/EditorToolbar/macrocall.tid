@@ -1,0 +1,15 @@
+caption: {{$:/language/Buttons/macrocall/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+description: {{$:/language/Buttons/macrocall/Hint}}
+icon: $:/xp/images/macrocall
+list-before: $:/core/ui/EditorToolbar/mono-block
+shortcuts: ((macrocall))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/macrocall
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<<"
+	suffix=">>"
+/>

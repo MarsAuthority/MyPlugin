@@ -1,0 +1,8 @@
+caption: Starred
+ctag: Star
+tags: $:/tags/EnterpriseCategories
+title: $:/enterprises-starred-items
+
+\import $:/enterprises-macros
+
+{{$:/aggregation-starred-items}}

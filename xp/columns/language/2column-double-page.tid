@@ -1,0 +1,18 @@
+caption: 2column-double-page
+tags: $:/tags/TextEditor/columns
+title: $:/language/columns/2column-double-page
+
+<div class="colmask doublepage">
+	<div class="colleft">
+		<div class="col1">
+
+		{{$:/xp/columns/Examples/text1}}
+
+		</div>
+		<div class="col2">
+
+		{{$:/xp/columns/Examples/text2}}
+
+		</div>
+	</div>
+</div>

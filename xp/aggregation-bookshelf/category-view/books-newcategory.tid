@@ -1,0 +1,42 @@
+caption: {{$:/core/images/new-button}}
+tags: $:/tags/BookCategories
+title: $:/books-newcategory
+
+\define titleStoreTiddler() $:/config/new-bookcategory/Title
+\define captionStoreTiddler() $:/config/new-bookcategory/Caption
+\define ctagStoreTiddler() $:/config/new-bookcategory/Ctag
+\define storeTiddler() $:/config/new-bookcategory/Title/input
+\define newButton() {{$:/xp/ui/Buttons/new-bookcategory}}
+
+\define deleteButton()
+\whitespace trim
+<$vars newcategoryTitle={{$:/config/new-bookcategory/Title}}>
+<$list filter="[<storeTiddler>get[text]match<newcategoryTitle>]" variable="ignore">
+<$button tooltip="Delete existing tiddler" class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
+{{$:/core/images/delete-button}}
+<$action-confirm $message="Are you sure you wish to delete this tiddler?">
+<$action-deletetiddler $filter="[<newcategoryTitle>] [<storeTiddler>]" />
+</$action-confirm>
+</$button>
+</$list>
+</$vars>
+\end
+
+\define promptText()
+<$vars newcategoryTitle={{$:/config/new-bookcategory/Title}}>
+<$list filter="[<storeTiddler>get[text]match<newcategoryTitle>]" variable="ignore">
+{{$:/aggregation/ErrorText}}
+</$list>
+</$vars>
+\end
+
+! 新建分类
+
+|<$link to=<<titleStoreTiddler>>>Title</$link> |<$edit-text tiddler=<<titleStoreTiddler>> default="" tag="input"/> <<deleteButton>> |
+|<$link to=<<captionStoreTiddler>>>Caption</$link> |<$edit-text tiddler=<<captionStoreTiddler>> default="" tag="input"/> |
+|<$link to=<<ctagStoreTiddler>>>Ctag</$link> |<$edit-text tiddler=<<ctagStoreTiddler>> default="" tag="input"/> |
+|>| <<newButton>> |
+
+<<promptText>>
+
+{{$:/language/xp/aggregation/NewCategoryTips}}

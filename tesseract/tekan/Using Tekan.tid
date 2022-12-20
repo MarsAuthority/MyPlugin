@@ -1,0 +1,12 @@
+title: $:/Using Tekan
+
+这是 Tekan，一个基于 ~TiddlyWiki 的看板（Kanban）。认识 Tekan 最简单的方法就是使用它。那么让我们开始吧。
+
+* 点击页面按钮 {{$:/Tekan/Switch}} 进入看板。
+* 点击右上角 <<.icon $:/core/images/new-button>> 按钮，创建一个新的面板。
+* 点击「Add a list」新建一个列表。
+* 点击列表中的「Add a card」可以创建任务卡片。
+* 编辑卡片，在内容框中可以添加任务说明；其下方可以添加该任务卡片的 Todolist。点击 <$button>Save & Close</$button> 保存并关闭卡片。
+* 通过拖拽，将卡片在不同列表之间转移。
+* 左上角的 <button>Board</button> 按钮，可切换其他面板。
+* 右上角那排按钮分别可以重新排列列表、删除当前面板、新建面板、返回 ~TiddlyWiki。{{$:/Tekan/NavboardButtons}}（鼠标悬浮其上会有提示）

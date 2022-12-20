@@ -1,0 +1,12 @@
+{
+	"title": "$:/xp/mcp",
+	"name": "MCP",
+	"description": "Modifications to the community plugin",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210410192413385",
+	"modified": "20220810131842881"
+}

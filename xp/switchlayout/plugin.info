@@ -1,0 +1,12 @@
+{
+	"title": "$:/plugins/xp/switchlayout",
+	"name": "Switch Layout",
+	"description": "Switch sidebar layout",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20200817101613158",
+	"modified": "20220810131842881"
+}

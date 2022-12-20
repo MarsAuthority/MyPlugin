@@ -1,0 +1,6 @@
+caption: {{$:/xp/images/gotop}} {{$:/language/Buttons/GoTop/Caption}}
+description: {{$:/language/Buttons/GoTop/Hint}}
+tags: $:/tags/ViewToolbar
+title: $:/xp/ui/Buttons/gotop
+
+<!-- This dummy toolbar button is here to allow visibility of the gotop to be controlled as if it were a toolbar button -->

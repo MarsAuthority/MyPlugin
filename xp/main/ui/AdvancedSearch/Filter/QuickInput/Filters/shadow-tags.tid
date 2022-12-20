@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 默认条目：搜索标签
+filter: [all[shadows]tags[]search[]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/shadow-tags
+
+{{!!filter}}

@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Check
+
+<$button tag="a" tooltip="Check">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&#10003;"
+/>
+
+<span class="tc-html-chooser-text">&#10003;</span>
+
+</$button>

@@ -1,0 +1,15 @@
+caption: 2column
+tags: $:/tags/TextEditor/columns
+title: $:/language/columns/2column
+
+<div class="left-column">
+
+{{$:/xp/columns/Examples/text2}}
+
+</div>
+
+<div class="right-column">
+
+{{$:/xp/columns/Examples/text1}}
+
+</div>

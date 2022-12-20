@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/new-image!!caption}}
+description: {{$:/core/ui/Buttons/new-image!!description}}
+tags: $:/tags/QuickBar/NewButtons
+title: $:/xp/quickbar/Buttons/new-image
+
+{{$:/core/ui/Buttons/new-image}}

@@ -1,0 +1,7 @@
+caption: 最近添加
+title: $:/enterprises-recently-added
+
+\import $:/enterprises-macros
+\define configTiddler() $:/temp/enterprises/limitparam
+
+{{$:/aggregation-recently-added}}

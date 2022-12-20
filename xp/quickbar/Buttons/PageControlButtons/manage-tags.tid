@@ -1,0 +1,20 @@
+caption: {{$:/xp/ui/Buttons/manage-tags!!caption}}
+dependents: $:/plugins/xp/managetags
+description: {{$:/xp/ui/Buttons/manage-tags!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/manage-tags
+
+\whitespace trim
+<$list filter="[[$:/xp/managetags/tagging]!tag[$:/tags/ViewTemplate]]">
+<$button tooltip="Manage tags in view mode" class=<<tv-config-toolbar-class>> style="padding-bottom:7px;">
+{{$:/xp/images/tag}}
+<$action-listops $tags="$:/tags/ViewTemplate"/>
+</$button>
+</$list>
+
+<$list filter="[[$:/xp/managetags/tagging]tag[$:/tags/ViewTemplate]]">
+<$button tooltip="Exit manage tags" class="tc-btn-invisible quickbar-active-indicator" style="padding-bottom:7px;">
+{{$:/xp/images/tag}}
+<$action-deletetiddler $filter=<<currentTiddler>>/>
+</$button>
+</$list>

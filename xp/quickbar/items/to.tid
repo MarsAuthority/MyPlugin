@@ -1,0 +1,33 @@
+caption: To
+description: Navigation buttons
+icon: $:/core/images/right-arrow
+is-dropup: yes
+tags: $:/tags/QuickBar
+title: $:/xp/quickbar/items/to
+
+\whitespace trim
+\define config-title() $:/config/xp/quickbar/ToButtons/Visibility/$(listItem)$
+
+<$set name="tv-config-toolbar-icons" value="yes">
+<$set name="tv-config-toolbar-text" value="yes">
+<$set name="tv-config-toolbar-class" value="tc-btn-invisible">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/ToButtons]!has[draft.of]] -[[$:/tags/QuickBar/ToButtons]]" variable="listItem">
+
+<$set name="hidden" value=<<config-title>>>
+
+<$list filter="[<hidden>!text[hide]]" storyview="pop" variable="ignore">
+
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$set>
+
+</$list>
+
+</$set>
+
+</$list>
+</$set>
+</$set>
+</$set>

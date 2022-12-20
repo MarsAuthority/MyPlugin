@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Text Formatting]]
+title: $:/language/HTMLTags/small
+
+<$button tag="a" tooltip="Smaller text">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<small>"
+	suffix="</small>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<small>"></span>
+
+</$button>

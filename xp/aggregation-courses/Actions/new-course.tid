@@ -1,0 +1,26 @@
+description: create a new course
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-course
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-course/Tags}} textField={{$:/config/new-course/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "course/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	background-color="#fff"
+	caption="a course"
+	color="red"
+	icon="{{$:/core/images/video}}"
+	image="$:/heiban.png"
+	importance=""
+	link=""
+	linkcolor=""
+/>
+<!-- tidgraph view requires 3 tiddlers -->
+<$list filter="[enlist[Planning Ongoing Completed]!has[title]]"> 
+<$action-createtiddler $basetitle=<<currentTiddler>>/>
+</$list>
+</$vars>

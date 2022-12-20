@@ -1,0 +1,8 @@
+tags: $:/tags/Macro
+title: $:/xp/emoji-button/macros/emoji
+
+\define emoji(name,zoom:"0.5")
+<div style="zoom:$zoom$;">
+{{$:/css3-emoji-$name$}}
+</div>
+\end

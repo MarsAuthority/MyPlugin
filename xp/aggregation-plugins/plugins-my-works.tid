@@ -1,0 +1,14 @@
+caption: 我的作品
+title: $:/plugins-my-works
+
+\import $:/plugins-macros
+
+<$wikify name="tabsList" text="""<$list filter="[all[shadows+tiddlers]tag<systemCTag>!has[draft.of]] :filter[lookup<config-base>!match[hide]]" variable="listItem"> <$text text={{{ [<listItem>format:titlelist[]] }}}/> </$list>""">
+<$macrocall
+  $name="tabs"
+  tabsList=<<tabsList>>
+  default={{$:/config/plugins-my-works/DefaultTab}}
+  state="$:/state/tab/plugins-my-works"
+  class="" <!-- tc-vertical -->
+/>
+</$wikify>

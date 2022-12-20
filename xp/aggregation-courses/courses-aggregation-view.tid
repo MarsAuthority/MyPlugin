@@ -1,0 +1,17 @@
+caption: 聚合视图
+title: $:/courses-aggregation-view
+
+\import $:/courses-macros
+\define config-base() $:/config/xp/aggregation-courses/TableFields/Visibility/
+
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/xp/aggregation-courses/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall
+  $name="aggregation-filtersearch"
+  fields=<<dtableFields>>
+  state="aggregation-courses"
+  class=""
+  cardTemplate="$:/courses-card-template"
+  searchClass="xp-search-courses"
+  promptTiddler="$:/courses-prompt"
+/>
+</$wikify>

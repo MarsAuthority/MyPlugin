@@ -1,0 +1,16 @@
+title: $:/xp/columns/Examples/2column-leftmenu
+
+<div class="colmask leftmenu">
+	<div class="colright">
+		<div class="col1">
+
+		{{$:/xp/columns/Examples/text2}}
+
+		</div>
+		<div class="col2">
+
+		{{$:/xp/columns/Examples/text1}}
+
+		</div>
+	</div>
+</div>

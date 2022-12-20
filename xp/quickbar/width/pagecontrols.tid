@@ -1,0 +1,27 @@
+tags: $:/tags/QuickBar/Width
+title: $:/xp/quickbar/width/pagecontrols
+
+\define usageTag() $:/tags/QuickBar/PageControlButtons
+\define config-base() $:/config/xp/quickbar/PageControlButtons/Visibility/
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/pagecontrols" type="nomatch" text="hide">
+<$vars
+	buttonWidth={{{ [all[tiddlers+shadows]!has[draft.of]tag<usageTag>remove<usageTag>] +[count[]multiply[28]addsuffix[px]] }}}
+	hiddenbuttonWidth={{{ [all[tiddlers+shadows]!has[draft.of]prefix<config-base>get[text]else[show]match[hide]] +[count[]multiply[28]addsuffix[px]] }}}
+	excessDividerWidth={{{ [[28]subtract[13]addsuffix[px]] }}}
+	fontbuttonWidth={{{ [[81.5]subtract[28]addsuffix[px]] }}}
+	2storyWidth="28px">
++ <<buttonWidth>> - <<hiddenbuttonWidth>>
+<$reveal state="$:/config/xp/quickbar/PageControlButtons/Visibility/$:/xp/quickbar/Buttons/divider/pagecontrols" type="nomatch" text="hide">
+- <<excessDividerWidth>>
+</$reveal>
+<$reveal state="$:/config/xp/quickbar/PageControlButtons/Visibility/$:/xp/quickbar/Buttons/big-font" type="nomatch" text="hide">
++ <<fontbuttonWidth>>
+</$reveal>
+<$reveal state="$:/config/xp/quickbar/PageControlButtons/Visibility/$:/xp/quickbar/Buttons/2story" type="nomatch" text="hide">
+<$reveal stateTitle="$:/_sq/Stories/Story2StoryList" stateField="list" type="match" text="">
+- <<2storyWidth>>
+</$reveal>
+</$reveal>
+</$vars>
+</$reveal>

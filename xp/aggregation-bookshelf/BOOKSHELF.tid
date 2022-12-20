@@ -1,0 +1,20 @@
+caption: {{$:/xp/images/bookshelf}} BOOKSHELF
+color: #bbb
+icon: $:/xp/images/bookshelf
+title: BOOKSHELF
+tmap.id: 93d01e94-a531-49f6-8c11-ea4caf5ace56
+
+\import $:/bookshelf-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-book}} tooltip="Create a new book" aria-label="new book" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new book
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/bookshelf-help" "Bookshelf Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/bookshelf-aggregation-view $:/bookshelf-category-view $:/bookshelf-tidgraph-view"
+  default="$:/bookshelf-aggregation-view"
+  state="$:/state/tab/bookshelf"
+/>

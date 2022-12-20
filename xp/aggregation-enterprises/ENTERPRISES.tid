@@ -1,0 +1,20 @@
+caption: {{$:/xp/images/enterprises}} ENTERPRISES
+color: #bbb
+icon: $:/xp/images/enterprises
+title: ENTERPRISES
+tmap.id: ca70a35b-1755-4e0f-ae60-25777277dc0f
+
+\import $:/enterprises-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-enterprise}} tooltip="Create a new enterprise" aria-label="new enterprise" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new enterprise
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/enterprises-help" "Enterprises Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/enterprises-aggregation-view $:/enterprises-category-view $:/enterprises-recently-added"
+  default="$:/enterprises-aggregation-view"
+  state="$:/state/tab/enterprise"
+/>

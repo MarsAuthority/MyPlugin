@@ -1,0 +1,24 @@
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/gtd-todolist
+
+\whitespace trim
+
+\define easyedit-state()
+$:/state/gtd-easyedit/$(currentTiddler)$
+\end
+
+\define gtdTodolist()
+\whitespace trim
+<$list filter="[all[current]tag[GTD]tag[Todolist]!has[draft.of]]" variable="ignore">
+<$vars td-baseName={{{ [<currentTiddler>removeprefix[$:/]] }}}>
+<<gtd-todolist-ui caption:"Todolist {{||$:/xp/images/pie-todolist}}">>
+</$vars>
+</$list>
+\end
+
+<$reveal tag="div" type="nomatch" stateTitle=<<folded-state>> text="hide" retain="yes">
+<<gtdTodolist>>
+</$reveal>
+<$reveal tag="div" type="match" stateTitle=<<easyedit-state>> text="yes" retain="yes">
+<<gtdTodolist>>
+</$reveal>

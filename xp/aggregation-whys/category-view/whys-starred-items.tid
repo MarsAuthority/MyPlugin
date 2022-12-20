@@ -1,0 +1,8 @@
+caption: Starred
+ctag: Star
+tags: $:/tags/WhyCategories
+title: $:/whys-starred-items
+
+\import $:/whys-macros
+
+{{$:/aggregation-starred-items}}

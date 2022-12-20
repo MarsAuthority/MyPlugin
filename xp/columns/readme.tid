@@ -1,0 +1,5 @@
+title: $:/plugins/xp/columns/readme
+
+多栏（{{$:/xp/images/columns}} Columns）是一个编辑器工具栏按钮，提供的 CSS 代码可以将文本内容显示为多栏。请查看[[示例|$:/xp/columns/preview]]。
+
+Assigned shortcut: {{$:/config/shortcuts/columns}}

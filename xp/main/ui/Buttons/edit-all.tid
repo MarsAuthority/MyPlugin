@@ -1,0 +1,45 @@
+caption: {{$:/core/images/edit-button}} {{$:/language/Buttons/EditAll/Caption}}
+description: {{$:/language/Buttons/EditAll/Hint}}
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/edit-all
+
+\whitespace trim
+\define stateTid() $:/state/edit-all-tiddlers
+
+\define toFirstTiddler()
+<$list filter="[list<tv-story-list>first[]]">
+<$action-navigate $scroll="yes"/>
+</$list>
+\end
+
+\define icon-text()
+\whitespace trim
+<$list filter="[<tv-config-toolbar-icons>match[yes]]" variable="listItem">
+{{$:/core/images/edit-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/EditAll/Caption}}/>
+</span>
+</$list>
+\end
+
+\define edit-all-button()
+\whitespace trim
+<$vars editState={{{ [<stateTid>!is[missing]get[text]] ~hide }}}>
+<$list filter="[<editState>match[hide]]" variable="ignore">
+<$button set=<<stateTid>> setTo="show" tooltip={{$:/language/Buttons/EditAll/Hint}} aria-label={{$:/language/Buttons/EditAll/Caption}} class=<<tv-config-toolbar-class>>>
+<$action-sendmessage $message="tm-fold-all-tiddlers" $param=<<currentTiddler>> foldedStatePrefix="$:/state/folded/"/>
+<<toFirstTiddler>><<icon-text>>
+</$button>
+</$list>
+<$list filter="[<editState>match[show]]" variable="ignore">
+<$button set=<<stateTid>> setTo="hide" tooltip="Exit edit" aria-label={{$:/language/Buttons/EditAll/Caption}} class="""$(tv-config-toolbar-class)$ tc-selected""">
+<$action-sendmessage $message="tm-unfold-all-tiddlers" $param=<<currentTiddler>> foldedStatePrefix="$:/state/folded/"/>
+<<toFirstTiddler>><<icon-text>>
+</$button>
+</$list>
+</$vars>
+\end
+
+<<edit-all-button>>

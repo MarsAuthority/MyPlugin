@@ -1,0 +1,6 @@
+caption: 图片
+ctag: Pictures
+tags: $:/tags/HowtoCategories
+title: $:/howtos-category-pictures
+
+<<list-howtos "Pictures">>

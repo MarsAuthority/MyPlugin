@@ -1,0 +1,6 @@
+title: $:/plugins/test/getplugins/readme
+
+A button ({{$:/plugins/test/getplugins/icon}}) in the sidebar page control toolbar for quick access to the online plugins.<br>
+
+* Code: https://github.com/test/tw5-getplugins
+* Demo: https://test.github.io/tw5-getplugins/

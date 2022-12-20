@@ -1,0 +1,23 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/Tables
+
+<$button tag="a" tooltip="Tables">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="""<table>
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr align="left">
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+</table>"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<table>"></span>
+
+</$button>

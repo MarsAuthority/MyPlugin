@@ -1,0 +1,8 @@
+caption: 个人独资企业
+ctag: 个人独资企业
+tags: $:/tags/EnterpriseCategories
+title: $:/enterprises-category-个人独资企业
+
+//<small>（由一个自然人投资设立）它下设分支机构性质为“个人独资企业分支机构”。</small>//
+
+<<list-enterprises 个人独资企业>>

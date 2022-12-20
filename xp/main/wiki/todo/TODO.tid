@@ -1,0 +1,47 @@
+caption: {{$:/xp/images/todo}} TODO
+color: #bbb
+icon: $:/xp/images/todo
+linkcolor: #FF8C29
+title: TODO
+tmap.id: b1bd5439-68f3-43cd-9ce3-c27b50b828e3
+
+\whitespace trim
+\define leftDelimiter() <<TODO 
+
+<$list filter="[all[tiddlers]remove[TODO]!has[plugin-type]!prefix[$:/temp/]!prefix[$:/state/]search:text:literal,casesensitive<leftDelimiter>limit[1]]" emptyMessage="<p class='tc-muted'>No pending tasks!<p>" variable="ignore">
+
+<div class="tc-edit-fields">
+<table>
+<tbody>
+<$list filter="[all[tiddlers]remove[TODO]!has[plugin-type]!prefix[$:/temp/]!prefix[$:/state/]search:text:literal,casesensitive<leftDelimiter>!sort[modified]]" variable="listItem">
+<tr class="tc-edit-field">
+<td class="tc-edit-field-value" style="width:8.2rem;">
+<$view tiddler=<<listItem>> field="modified" format="date" template="YYYY-0MM-0DD 0hh:0mm"/>
+</td>
+<td class="tc-edit-field-remove">
+<span class="poh-container">
+<$link to=<<listItem>>/>
+<$let dataBlockStartDelimiter ={{{ [[<<TODO """]] }}}
+      dataBlockEndDelimiter   ={{{ [[""">>]] }}}>
+<$let dblock0 = {{{ [<listItem>get[text]splitregexp<dataBlockStartDelimiter>butfirst[1]] }}}
+      dblock  = {{{ [<dblock0>splitregexp<dataBlockEndDelimiter>butlast[1]] }}}>
+<$list filter="[<dblock>trim[]!is[blank]]" variable="ignore">
+<$wikify text=<<dblock>> output="html" name="todoText">
+<span class="poh-content"><<todoText>></span>
+</$wikify>
+</$list>
+</$let>
+</$let>
+</span>
+<$button class="tc-btn-invisible tc-small-gap-left" tooltip={{$:/language/Buttons/Edit/Hint}} aria-label={{$:/language/Buttons/Edit/Caption}}>
+{{$:/core/images/edit-button}}
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<listItem>>/>
+</$button>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+
+</$list>

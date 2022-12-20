@@ -1,0 +1,13 @@
+title: $:/language/Buttons/HTMLCodes/New/Text
+
+<$button tag="a" tooltip="Non-Breaking Space">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&nbsp;"
+/>
+
+<span class="tc-html-chooser-text">nbsp</span>
+
+</$button>

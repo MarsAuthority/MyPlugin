@@ -1,0 +1,9 @@
+title: $:/xp/diary/Buttons/card-view
+
+\whitespace trim
+<$button to="$:/DiaryCard" tooltip="Card view" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/diarycard}}
+</$list>
+<span class="tc-btn-text"><$text text="card view"/></span>
+</$button>

@@ -1,0 +1,16 @@
+caption: {{$:/core/images/new-button}} new course
+description: Create a new course
+title: $:/xp/ui/Buttons/new-course
+
+\whitespace trim
+\define newcourseButton()
+<$button actions={{$:/xp/ui/Actions/new-course}} tooltip="Create a new course" aria-label="new course" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/new-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text="new course"/></span>
+</$list>
+</$button>
+\end
+<<newcourseButton>>

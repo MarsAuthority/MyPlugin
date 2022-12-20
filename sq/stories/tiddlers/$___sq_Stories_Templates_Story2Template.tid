@@ -1,0 +1,41 @@
+list-after: $:/core/ui/PageTemplate/story
+tags: $:/tags/PageTemplate
+title: $:/_sq/Stories/Templates/Story2Template
+
+\whitespace trim
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="yes" default="no" retain="yes" animate="no" tag="section" class="tc-story-river tc-storytwo-river sq-story-rivertwo">
+
+<$navigator story="$:/_sq/Stories/Story2StoryList" history="$:/_sq/Stories/Story2HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$scrollable class="sq-story-rivertwo-scrollable"  fallthrough="no">
+<section class="story-backdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+<$list filter="[list[$:/_sq/Stories/Story2StoryList]]" history="$:/_sq/Stories/Story2HistoryList" template={{{[[$:/config/sq/Stories/story2/ViewTemplate]get[text]!is[blank]] ~[[$:/config/ui/ViewTemplate]get[text]]}}} editTemplate={{{[[$:/config/sq/Stories/story2/EditTemplate]get[text]!is[blank]] ~[[$:/config/ui/EditTemplate]get[text]]}}}  storyview={{$:/_sq/Stories/config/Story2-storyview}}>
+
+<div>
+<$transclude/>
+</div>
+
+</$list>
+
+<section class="story-frontdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+</$scrollable>
+</$navigator>
+
+</$reveal>

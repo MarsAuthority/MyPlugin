@@ -1,0 +1,21 @@
+caption: Search
+description: filter the input by searching tiddler content
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/Search
+
+<td class="fb-item-name"><$link to=<<configTid>>><<getCaption>></$link></td>
+<td class="fb-item-input">
+<$tiddler tiddler=<<editTid>>>
+  <$select field="filter" class="fb-select">
+    <$list filter="[<configTid>indexes[]]" variable="listItem">
+    <option value={{{ [<configTid>getindex<listItem>] }}}> <$text text=<<listItem>>/> </option>
+    </$list>
+  </$select>
+</$tiddler>
+<span class="fb-item-input-textbox">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTid>> field="text"
+    type="search" tag="input" focus="no" placeholder="search" class="tc-edit-texteditor"
+    inputCancelActions=<<fb-cancel-input-actions>> inputAcceptActions=<<search-input-accept-actions>>/>
+</span>
+</td>
+<td class="fb-item-add"></td>

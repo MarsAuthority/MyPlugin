@@ -1,0 +1,4 @@
+tags: $:/tags/StoryTiddlerTemplateFilter
+title: $:/config/StoryTiddlerTemplateFilters/gtd
+
+[prefix[$:/gtd/]then{$:/config/ui/ViewTemplate/gtd}]

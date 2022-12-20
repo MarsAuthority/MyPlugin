@@ -1,0 +1,34 @@
+title: $:/xp/quickbar/Buttons/toggle-sidebar
+
+\whitespace trim
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]!match[no]]" variable="ignore">
+<$button set="$:/state/sidebar" setTo="no" tooltip={{$:/language/Buttons/HideSideBar/Hint}} aria-label={{$:/language/Buttons/HideSideBar/Caption}} class="tc-btn-invisible tc-hide-sidebar-btn">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/chevron-up}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/HideSideBar/Caption}}/>
+</span>
+</$list>
+</$button>
+</$list>
+<$vars firstTid={{{ [list[$:/StoryList]first[]] }}}>
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]match[no]]" variable="ignore">
+<$button tooltip={{$:/language/Buttons/ShowSideBar/Hint}} aria-label={{$:/language/Buttons/ShowSideBar/Caption}} class="tc-btn-invisible tc-show-sidebar-btn">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/chevron-down}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/ShowSideBar/Caption}}/>
+</span>
+</$list>
+<$list filter="[<firstTid>!match{$:/temp/tmap/currentTiddler}]" variable="ignore">
+<$action-navigate $to=<<firstTid>>/>
+<$action-setfield $tiddler="$:/state/procrastinate" text="give me some time"/>
+</$list>
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$button>
+</$list>
+</$vars>

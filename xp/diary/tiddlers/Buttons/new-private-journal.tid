@@ -1,0 +1,13 @@
+caption: {{$:/xp/images/newprivate}} New private journal
+description: New private journal
+title: $:/xp/ui/Buttons/new-private-journal
+
+\whitespace trim
+<$button tooltip="Create a new private journal" aria-label="new private journal" class=<<tv-config-toolbar-class>> actions={{$:/xp/ui/Actions/new-private-journal}}>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/newprivate}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text="new private journal"/></span>
+</$list>
+</$button>

@@ -1,0 +1,10 @@
+title: $:/xp/ui/TiddlerFieldTemplate/people
+
+<tr class="xp-people-info">
+<td class="xp-people-field-name" style="text-align:right;font-style:italic;">
+<$text text=<<listItem>>/>
+</td>
+<td class="xp-people-field-value">
+<$transclude field=<<listItem>>/>
+</td>
+</tr>

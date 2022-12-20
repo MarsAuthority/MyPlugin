@@ -1,0 +1,8 @@
+caption: {{$:/core/images/new-button}} new board
+description: Create a new board
+title: $:/Tekan/Buttons/newboard
+
+\whitespace trim
+<$button actions={{$:/config/NewKanbanBoard/Actions}} tooltip="Create a new board" aria-label="new board">
+Create
+</$button>

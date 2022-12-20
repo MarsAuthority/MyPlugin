@@ -1,0 +1,37 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/gotop
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+<pre>@media (min-width: <<sidebarbreakpoint>>) {
+
+  .xp-gotop-banner {
+    margin-left: 0;
+    right: 4px;
+  }
+
+  .xp-gotop-banner:hover {
+    opacity: 0.6;
+  }
+
+  .xp-gotop-icon {
+    display: none;
+  }
+
+}
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+  .xp-gotop-banner {
+    margin-left: 0;
+    right: -3px;
+  }
+
+  xp-gotop-icon {
+    display: inline;
+  }
+
+}
+</pre>

@@ -1,0 +1,14 @@
+caption: {{$:/xp/images/private}} encrypt private journals
+description: Encrypt private journals
+title: $:/xp/ui/Buttons/encrypt-private-journals
+
+\whitespace trim
+<$button tooltip="Encrypt private journals" aria-label="encrypt private journals" class=<<tv-config-toolbar-class>>>
+<$action-navigate $to="$:/EncryptPrivateJournals"/>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/private}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text="encrypt private journals"/></span>
+</$list>
+</$button>

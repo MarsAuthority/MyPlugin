@@ -1,0 +1,21 @@
+title: $:/xp/aggregation-gtd/ui/DoneButton
+
+\whitespace trim
+\define save-actions()
+<$action-sendmessage $message="tm-auto-save-wiki"/>
+\end
+
+<$list filter="[all[current]tag[GTD]!tag[done]]">
+<$button class="py-btn tc-tiny-gap-left" tooltip="完成" aria-label="done item">
+<span style="line-height:1em;opacity:0.55;">{{$:/core/images/done-button}}</span>
+<$action-listops $tags="done"/>
+<<save-actions>>
+</$button>
+</$list>
+<$list filter="[all[current]tag[GTD]tag[done]]">
+<$button class="py-btn tc-tiny-gap-left" tooltip="取消完成" aria-label="undone item">
+<span style="fill:#2da562;">{{$:/core/images/done-button}}</span>
+<$action-listops $tags="-done"/>
+<<save-actions>>
+</$button>
+</$list>

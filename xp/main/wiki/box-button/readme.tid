@@ -1,0 +1,4 @@
+title: $:/xp/box-button/readme
+
+A button ({{$:/xp/images/box}}) for inserting boxes.<br>
+Assigned shortcut: {{$:/config/shortcuts/box}}

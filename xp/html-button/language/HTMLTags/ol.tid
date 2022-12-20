@@ -1,0 +1,19 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/ol
+
+<$button tag="a" tooltip="Ordered List">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="""<ol>
+	<li>List item 1</li>
+	<li>List item 2</li>
+	<li>List item 3</li>
+	<li>List item 4</li>
+</ol>"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<ol>"></span>
+
+</$button>

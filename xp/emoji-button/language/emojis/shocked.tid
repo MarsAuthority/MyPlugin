@@ -1,0 +1,14 @@
+caption: shocked
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/shocked
+
+<$button tag="a" tooltip="Shocked">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji shocked 0.5>>"
+/>
+
+{{$:/css3-emoji-shocked}}
+</$button>

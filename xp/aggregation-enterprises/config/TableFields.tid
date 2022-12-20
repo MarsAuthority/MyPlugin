@@ -1,0 +1,4 @@
+list: tbl-expand title country fdate
+title: $:/config/xp/aggregation-enterprises/TableFields
+
+tbl-expand title country fdate

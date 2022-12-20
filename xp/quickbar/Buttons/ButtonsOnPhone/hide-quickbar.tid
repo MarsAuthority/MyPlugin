@@ -1,0 +1,17 @@
+title: $:/xp/ui/Buttons/hide-quickbar
+
+\whitespace trim
+<$button tooltip="Hide quickbar" aria-label="hide quickbar" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/quickbar}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="hide quickbar"/>
+</span>
+</$list>
+<$action-listops $tiddler="$:/xp/ui/PageTemplate/quickbar" $tags="-$:/tags/PageTemplate"/>
+<$list filter="[[$:/state/sidebar]is[tiddler]get[text]match[no]]">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+</$button>

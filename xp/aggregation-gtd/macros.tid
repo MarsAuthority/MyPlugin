@@ -1,0 +1,172 @@
+title: $:/xp/aggregation-gtd/macros
+
+\define aggregationTag() GTD
+
+\define gtd-quadrant()
+$:/q1 $:/q2 $:/q3 $:/q4
+\end
+
+\define gtdEditActions()
+<$action-setfield $tiddler="$:/state/gtd/edit" text=<<currentTiddler>>/>
+<$action-setfield $tiddler="$:/state/gtd/edit-caption" text={{{ [<currentTiddler>get[caption]] }}}/>
+<$action-setfield $tiddler="$:/xp/aggregation-gtd/ui/EditTemplate" subtitle={{{ [<currentList>get[caption]] }}}/>
+<!-- footer=<<gtdModalFooter>> -->
+<$action-sendmessage $message="tm-modal" $param="$:/xp/aggregation-gtd/ui/EditTemplate" currentList=<<currentList>> currentItem=<<currentTiddler>>/>
+\end
+
+\define gtdModalFooter()
+<span class="tc-muted" style="float:left;text-align:left;padding:.5em 0 0 1em;font-size:.9em;">
+Status:
+<$list filter="[<currentItem>!tag[done]]"><span style="color:#cc3333;">undone</span></$list>
+<$list filter="[<currentItem>removeprefix[$:/]addprefix[$:/todolist/data/status/]search:text[undone]]">
+<$list filter="[<currentItem>!tag[done]]"> / </$list>
+<span style="color:#cc3333;">todolist</span>
+</$list>
+<$list filter="[<currentItem>tag[done]]">
+<$list filter="[<currentItem>removeprefix[$:/]addprefix[$:/todolist/data/status/]!search:text[undone]]">
+<span style="color:#00a565;">completed</span>
+</$list></$list>
+</span>
+<span class="py-todo-actions">
+<$button tooltip="Delete all information about this item" class="py-btn">
+<span style="opacity:.8;">{{$:/core/images/delete-button}}</span>
+<$action-deletetiddler $tiddler=<<currentItem>>/>
+<$action-deletetiddler $filter="[prefix[$:/todolist/data]suffix<td-baseName>]"/>
+<$action-sendmessage $message="tm-close-tiddler"/>
+<$action-listops $tiddler=<<currentList>> $subfilter="+[remove<currentItem>]"/>
+</$button>
+<$button tooltip="Confirm changes to this item.  ctrl-Enter" class="py-btn" style="margin:0 1em 0 .8em;">
+{{$:/core/images/done-button}}
+<$list filter="[<currentItem>get[caption]!match{$:/state/gtd/edit-caption}]">
+<$action-setfield $tiddler=<<currentItem>> $field="caption" $value={{$:/state/gtd/edit-caption}}/>
+</$list>
+<$action-sendmessage $message="tm-close-tiddler"/>
+</$button>
+</span>
+\end
+
+
+\define py-has-todos-due-today-or-overdue()
+[all[tiddlers]days:due[0]] [all[tiddlers]!days:due[-1]] +[!has[draft.of]!tag[done]limit[1]]
+\end
+
+\define py-todos-due-today-or-overdue()
+[all[tiddlers]days:due[0]] [all[tiddlers]!days:due[-1]] +[!has[draft.of]!tag[done]sort[due]]
+\end
+
+
+\define py-has-overdue-todos()
+[tag[GTD]!tag[done]!has[draft.of]!days:due[-1]limit[1]]
+\end
+
+\define py-todos-overdue()
+[tag[GTD]!tag[done]!has[draft.of]!days:due[-1]sort[due]]
+\end
+
+\define py-schedule-overdue()
+  <$list
+    filter=<<py-todos-overdue>>
+    template="$:/xp/aggregation-gtd/SideBar/ItemTemplate"
+  />
+\end
+
+
+\define py-has-today-todos()
+[tag[GTD]!tag[done]!has[draft.of]days:due[0]limit[1]]
+\end
+
+\define py-todos-due-today()
+[tag[GTD]!tag[done]!has[draft.of]days:due[0]!sort[created]]
+\end
+
+\define py-schedule-today()
+  <$list
+    filter=<<py-todos-due-today>>
+    template="$:/xp/aggregation-gtd/today/ItemTemplate"
+    emptyMessage="🌞 {{$:/language/projectify/AllClear}}"
+  />
+\end
+
+\define thingsDoneToday(filter:"[tag[GTD]tag[done]sameday{!!created}]",itemTemplate:"$:/xp/aggregation-gtd/today/ItemTemplate",caption:"今日毕")
+<$list filter="[subfilter<__filter__>limit[1]]" variable="ignore">
+<$vars showProjectLinks="yes">
+<dl>
+  <dt>$caption$</dt>
+  <dd class="xp-gtd-dd">
+  <$list
+    filter=<<__filter__>>
+    template="""$itemTemplate$"""
+  />
+  </dd>
+</dl>
+</$vars>
+</$list>
+\end
+
+
+\define py-has-tomorrow-todos()
+[tag[GTD]!tag[done]!has[draft.of]!days:due[1]limit[1]]
+\end
+
+\define py-todos-due-tomorrow()
+[tag[GTD]!tag[done]!has[draft.of]days:due[1]!sort[created]]
+\end
+
+\define py-schedule-tomorrow()
+  <$list
+    filter=<<py-todos-due-tomorrow>>
+    template="$:/xp/aggregation-gtd/today/ItemTemplate"
+  />
+\end
+
+
+\define py-has-upcoming-todos()
+[tag[GTD]!tag[done]!has[draft.of]!days:due[1]limit[1]]
+\end
+
+\define py-todos-due-upcoming()
+[tag[GTD]!tag[done]!has[draft.of]!days:due[1]sort[due]]
+\end
+
+\define py-schedule-upcoming()
+<$list filter=<<py-has-upcoming-todos>>>
+  <$list
+    filter=<<py-todos-due-upcoming>>
+    template="$:/xp/aggregation-gtd/SideBar/ItemTemplate"
+  />
+</$list>
+\end
+
+
+\define scheduleTodoList()
+<$vars showProjectLinks="yes">
+<$list filter=<<py-has-overdue-todos>>>
+  <dl>
+  <dt><<lingo Overdue>></dt>
+  <dd class="xp-gtd-dd"><<py-schedule-overdue>></dd>
+  </dl>
+</$list>
+
+<dl>
+  <dt>
+  <<lingo Today>>
+  <$list filter=<<py-has-today-todos>>>
+    <span style="color:#df3f3f;border:1px dotted #df3f3f;border-radius:1em;padding:0 4px;">
+      <$count filter=<<py-todos-due-today>>/>
+    </span>
+  </$list>
+  </dt>
+  <dd class="xp-gtd-dd"><<py-schedule-today>></dd>
+</dl>
+
+<$list filter=<<py-has-upcoming-todos>>>
+  <dl>
+    <dt><<lingo Upcoming>></dt>
+    <dd class="xp-gtd-dd"><<py-schedule-upcoming>></dd>
+  </dl>
+</$list>
+</$vars>
+\end
+
+
+<pre><$view field="text"/></pre>

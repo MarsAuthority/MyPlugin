@@ -1,0 +1,26 @@
+title: $:/xp/html-button/html-dropdown/codes
+
+<div class="tc-html-chooser">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/HTMLCodes]!has[draft.of]]">
+<$transclude mode="inline-block"/></$list>
+</div>
+
+----
+
+<$button tag="a">
+
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	tags="$:/tags/TextEditor/HTMLCodes"
+	text={{$:/language/Buttons/HTMLCodes/New/Text}}
+/>
+
+<$action-deletetiddler $filter=<<dropdown-state>> />
+
+<em>
+
+<$text text={{$:/language/Buttons/Stamp/Caption/New}}/>
+
+</em>
+
+</$button>

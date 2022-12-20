@@ -1,0 +1,41 @@
+caption: Macros
+list-after: $:/xp/ui/MoreSideBar/SystemTags
+tags: $:/tags/MoreSideBar
+title: $:/xp/ui/MoreSideBar/Macros
+
+\define lingo-base() $:/language/Search/
+\define storeTitle() $:/temp/search/macros/moresidebar
+\define cancel-search-actions() <$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=""".search-macros-moresidebar input"""/>
+\whitespace trim
+
+<$wikify name="macroTiddlerCount" text="""//<small><$count filter="[all[shadows+tiddlers]tag[$:/tags/Macro]]"/> tiddlers</small>//""">
+<span class="search-macros-moresidebar">
+<$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus={{$:/config/Search/AutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>
+    placeholder=<<macroTiddlerCount>>/>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible tc-btn-dropdown tc-small-gap">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+</$wikify>
+<$vars userInput={{{ [<storeTitle>get[text]] }}} 
+    searchFilter="[all[shadows+tiddlers]tag[$:/tags/Macro]search<userInput>]" 
+    resultCount="<$count filter=<<searchFilter>>/>">
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<span class="tc-search-results"><<lingo System/Matches>></span>
+</$reveal>
+
+<$macrocall
+  $name="list-links"
+  filter=<<searchFilter>>
+  type="ol"
+  subtype=""
+  class=""
+  emptyMessage=""
+/>
+
+</$vars>

@@ -1,0 +1,14 @@
+caption: 全部
+tags: $:/tags/EnterpriseCategories
+title: $:/listing-enterprises-all
+
+\import $:/enterprises-macros
+
+<$macrocall
+  $name="aggregation-list-thumbnails"
+  width="220"
+  height="123"
+  storeTitle="$:/temp/search/enterprises/thumbnails"
+  searchClass="xp-search-enterprises"
+  promptTiddler="$:/enterprises-prompt"
+/>

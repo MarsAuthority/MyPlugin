@@ -1,0 +1,14 @@
+caption: grin
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/grin
+
+<$button tag="a" tooltip="Grin">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji grin 0.5>>"
+/>
+
+{{$:/css3-emoji-grin}}
+</$button>

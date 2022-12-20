@@ -1,0 +1,23 @@
+title: $:/xp/columns/Examples/2column-scrollable
+
+! 将内容封装在可滚动的框架中
+
+> 使用 [[ScrollableWidget|https://tiddlywiki.com/static/ScrollableWidget.html]]，根据需要自定义 class。
+
+<div class="left-column">
+<$scrollable class='tc-scrollable-demo'>
+
+{{$:/xp/columns/Examples/text2}}
+
+</$scrollable>
+</div>
+
+
+<div class="right-column">
+<$scrollable class='tc-scrollable-demo'>
+
+{{$:/xp/columns/Examples/text1}}
+
+</$scrollable>
+
+</div>

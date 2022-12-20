@@ -1,0 +1,6 @@
+caption: 视频
+ctag: Videos
+tags: $:/tags/HowtoCategories
+title: $:/howtos-category-videos
+
+<<list-howtos "Videos">>

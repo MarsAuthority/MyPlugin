@@ -1,0 +1,42 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/html-button/styles
+
+.tc-html-chooser {
+	white-space: normal;
+	max-width: 469px;
+}
+
+.tc-html-chooser a {
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	position: relative;
+	border: 1px solid <<colour muted-foreground>>;
+	border-radius: 3px;
+	padding: 2px;
+	margin: 1px;
+	width: 8em;
+	height: 2em;
+}
+
+.tc-html-chooser a:hover {
+	background: <<colour primary>>;
+	padding: 0px;
+	border: 3px solid <<colour primary>>;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.tc-html-chooser-text {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	max-width: 7em;
+	max-height: 1.5em;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}

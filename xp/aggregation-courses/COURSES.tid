@@ -1,0 +1,20 @@
+caption: {{$:/xp/images/courses}} COURSES
+color: #bbb
+icon: $:/xp/images/courses
+title: COURSES
+tmap.id: 351b7e22-b595-4a14-98da-3aacb204a64d
+
+\import $:/courses-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-course}} tooltip="Create a new course" aria-label="new course" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new course
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/courses-help" "Courses Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/courses-aggregation-view $:/courses-category-view $:/courses-tidgraph-view"
+  default="$:/courses-aggregation-view"
+  state="$:/state/tab/course"
+/>

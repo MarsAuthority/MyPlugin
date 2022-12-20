@@ -1,0 +1,31 @@
+description: create a new category tab
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-howtocategory
+
+\define get-tags() $(textFieldTags)$ $(tagsFieldTags)$
+\define prefixText() <$text text={{{ [[<<list-howtos "]] }}}/>
+\define suffixText() <$text text={{{ [[">>]] }}}/>
+
+<$vars newcategoryTitle={{$:/config/new-howtocategory/Title}}
+  newcategoryCaption={{$:/config/new-howtocategory/Caption}}
+  textFieldTags={{$:/config/new-howtocategory/Tags}}
+  tagsFieldTags={{$:/config/new-howtocategory/Tags!!tags}}
+  newcategoryCtag={{$:/config/new-howtocategory/Ctag}}
+  ctagStoreTiddler="$:/config/new-howtocategory/Ctag"
+  storeTiddler="$:/config/new-howtocategory/Title/input"
+  listopsTiddler="$:/howtos-category-others"
+  >
+<$reveal type="nomatch" state=<<newcategoryTitle>> text="">
+  <$action-setfield $tiddler=<<storeTiddler>> text=<<newcategoryTitle>>/>
+</$reveal>
+<$wikify name="newcategoryText" text={{{ [<newcategoryCtag>addprefix<prefixText>addsuffix<suffixText>] }}}>
+<$reveal type="match" state=<<newcategoryTitle>> text="">
+  <$reveal type="nomatch" state=<<ctagStoreTiddler>> text="">
+    <$action-createtiddler $basetitle=<<newcategoryTitle>> caption=<<newcategoryCaption>> tags=<<get-tags>> ctag=<<newcategoryCtag>> text=<<newcategoryText>> list-before=<<listopsTiddler>>/>
+  </$reveal>
+  <$reveal type="match" state=<<ctagStoreTiddler>> text="">
+    <$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/ctagEmpty"/>
+  </$reveal>
+</$reveal>
+</$wikify>
+</$vars>

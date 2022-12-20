@@ -1,0 +1,7 @@
+title: $:/templates/transclusion-caption
+
+<h4><$link to=<<currentTiddler>>><$transclude field="caption"><$view field="title"/></$transclude></$link>：</h4>
+
+<div class="transclusion-text-in-box">
+<$transclude mode="block"/>
+</div>

@@ -1,0 +1,10 @@
+key: ((toggle-quickbar))
+list-after: $:/core/ui/KeyboardShortcuts/toggle-sidebar
+tags: $:/tags/KeyboardShortcut
+title: $:/xp/ui/KeyboardShortcuts/toggle-quickbar
+
+<$list filter="[[$:/xp/ui/PageTemplate/quickbar]tag[$:/tags/PageTemplate]]" emptyMessage="""
+<$action-deletetiddler $filter="$:/xp/ui/PageTemplate/quickbar"/>
+""">
+<$action-listops $tags="-$:/tags/PageTemplate"/>
+</$list>

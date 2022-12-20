@@ -1,0 +1,8 @@
+caption: divider
+description: Navigation buttons divider
+tags: $:/tags/QuickBar/NavigationButtons
+title: $:/xp/quickbar/Buttons/divider/navigation-buttons
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/navigation-buttons" type="nomatch" text="hide">
+<span class="xp-quickbar-divider" />
+</$reveal>

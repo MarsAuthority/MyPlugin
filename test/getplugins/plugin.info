@@ -1,0 +1,17 @@
+{
+	"title": "$:/plugins/test/getplugins",
+	"name": "GetPlugins",
+	"description": "Quick access to the online plugins",
+	"list": "readme license history",
+	"source": "https://github.com/test/tw5-getplugins",
+	"version": "0.0.1",
+	"core-version": "",
+	"plugin-type": "plugin",
+	"plugin-priority": "5",
+	"parent-plugin": "",
+	"dependents": "",
+	"type": "application/json",
+	"author": "test",
+	"created": "20210513025549939",
+	"modified": "20210514142402474"
+}

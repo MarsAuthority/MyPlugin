@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Degree
+
+<$button tag="a" tooltip="Degree">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&deg;"
+/>
+
+<span class="tc-html-chooser-text">&deg;</span>
+
+</$button>

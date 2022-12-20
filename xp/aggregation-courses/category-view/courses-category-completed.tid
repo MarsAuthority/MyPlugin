@@ -1,0 +1,6 @@
+caption: 已完成
+ctag: Completed
+tags: $:/tags/CourseCategories
+title: $:/courses-category-completed
+
+<<list-courses Completed>>

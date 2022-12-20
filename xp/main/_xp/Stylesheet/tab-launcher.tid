@@ -1,0 +1,68 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/tab-launcher
+
+\import $:/SideBarTabManager/Macros
+
+.xp-tab-launcher {
+  font-size: 0.85em;
+  padding-top: 0.6em;
+}
+
+.xp-tab-launcher button {
+  color: <<colour sidebar-tab-foreground>>;
+  fill: <<colour sidebar-tab-foreground>>;
+  background-color: <<colour sidebar-tab-background>>;
+  border: 1px solid <<colour sidebar-tab-border>>;
+  border-bottom: 1px solid transparent;
+  border-radius: 2px;
+  padding: 2.5px 5px;
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]match[fixed-fluid]]" variable="ignore">
+  padding: 3px 5px;
+</$list>
+  margin: 1px 0 0 0;
+  cursor: default;
+  vertical-align: middle;	
+}
+
+.xp-tab-launcher-selected button {
+  background-color: <<colour sidebar-tab-background-selected>>;
+  border-bottom: 1px solid transparent;
+}
+
+<$reveal state=<<styleTitle>> type="match" text="oval">
+
+.xp-tab-launcher {
+  padding-bottom: 0.5em;
+}
+
+.xp-tab-launcher button,
+.xp-tab-launcher-selected button {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 2.5px 5px;
+  margin: 1px 2px 0 0;
+  background-color: transparent;
+  box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.17);
+}
+
+.xp-tab-launcher button:hover{
+  background-color: <<colour sidebar-tab-background>>;
+  color: <<colour tiddler-controls-foreground-selected>>;
+  fill: <<colour tiddler-controls-foreground-selected>>;
+}
+
+.xp-tab-launcher-selected button,
+.xp-tab-launcher-selected button:hover {
+  background-color: <<colour sidebar-tab-background>>;
+  color: <<colour tiddler-controls-foreground-selected>>;
+  fill: <<colour tiddler-controls-foreground-selected>>;
+  border: 1px solid <<colour sidebar-tab-border>>;
+}
+
+</$reveal>
+
+.xp-tab-launcher-divider {
+  border-top: 1px solid <<colour primary>>;
+  border-image: linear-gradient(to right,rgba(0, 0, 0, 0) 0%, <<colour primary>> 3%, <<colour primary>> 97%, rgba(0, 0, 0, 0) 100%) 1;
+  opacity: 0.41;
+}

@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/DownArrow
+
+<$button tag="a" tooltip="Down Arrow">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&darr;"
+/>
+
+<span class="tc-html-chooser-text">&darr;</span>
+
+</$button>

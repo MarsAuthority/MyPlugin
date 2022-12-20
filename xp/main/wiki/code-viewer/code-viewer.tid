@@ -1,0 +1,23 @@
+caption: {{$:/xp/images/code-viewer}} code viewer
+description: View tiddler text field
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/code-viewer
+
+\whitespace trim
+\define code-viewer-button(class)
+\whitespace trim
+<$button to="$:/CodeViewer" tooltip="Open code viewer" aria-label="code viewer" class="""$(tv-config-toolbar-class)$ $class$""">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/code-viewer}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+code viewer
+</span>
+</$list>
+</$button>
+\end
+
+<$list filter="[list[$:/StoryList]] +[field:title[$:/CodeViewer]]" emptyMessage=<<code-viewer-button>>>
+<<code-viewer-button "tc-selected">>
+</$list>

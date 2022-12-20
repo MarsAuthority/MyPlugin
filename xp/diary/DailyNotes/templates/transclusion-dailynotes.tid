@@ -1,0 +1,13 @@
+title: $:/templates/transclusion-dailynotes
+
+<div class="tc-link-info-item">
+
+! <$link><$view field="title"/></$link><$list filter="[all[current]has[encrypted]]"><span class="pc-listItem-lock tc-tiny-gap-left">{{$:/core/images/locked-padlock}}</span></$list>
+
+<div class="tc-subtitle">Modified <$view field="modified" format="relativedate"/></div>
+<div style="max-height:93.5px;overflow:hidden;margin:0;">
+
+<$transclude/>
+
+</div>
+</div>

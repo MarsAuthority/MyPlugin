@@ -1,0 +1,26 @@
+title: $:/xp/aggregation-gtd/ui/EasyEditButton
+
+\whitespace trim
+<$let edit-preview-state={{{ [{$:/config/ShowEditPreview/PerTiddler}!match[yes]then[$:/state/showeditpreview]] :else[<qualify "$:/state/showeditpreview">] }}}>
+<$reveal state=<<easyedit-state>> type="nomatch" text="yes">
+<$button class="py-btn tc-tiny-gap-left" tooltip="Easy edit" aria-label="edit item">
+<span style="opacity:0.6;">{{$:/xp/images/edit}}</span>
+<$action-navigate $to=<<currentTiddler>> $scroll="yes"/>
+<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>/>
+<$action-setfield $tiddler=<<easyedit-state>> text="yes"/>
+<$reveal state="$:/config/xp/aggregation-gtd/AutoPreview" type="match" text="yes">
+<$action-setfield $tiddler=<<edit-preview-state>> $value="yes"/>
+</$reveal>
+</$button>
+</$reveal>
+<$reveal state=<<easyedit-state>> type="match" text="yes">
+<$button class="py-btn tc-tiny-gap-left" tooltip="Exit edit" aria-label="edit item">
+<span style="fill:#4772fa;">{{$:/xp/images/edit}}</span>
+<$reveal state="$:/config/xp/aggregation-gtd/AutoPreview" type="match" text="yes">
+<$action-setfield $tiddler=<<edit-preview-state>> $value="no"/>
+</$reveal>
+<$action-setfield $tiddler=<<easyedit-state>> text="no"/>
+<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>/>
+</$button>
+</$reveal>
+</$let>

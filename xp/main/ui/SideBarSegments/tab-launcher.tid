@@ -1,0 +1,48 @@
+title: $:/xp/ui/SideBarSegments/tab-launcher
+
+\define sidebar-tab-button(class)
+\whitespace trim
+<span class="$class$">
+<$button>
+<$transclude tiddler=<<curentTiddler>> field="caption" mode="inline"/>
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<currentTiddler>>/>
+</$button>
+</span>
+\end
+
+<div class="tc-sidebar-lists tc-sidebar-tabs">
+
+<div class="xp-tab-launcher">
+
+<$vars selectedTab={{{ [[$:/state/tab/sidebar--595412856]!is[missing]get[text]] ~TableOfContents }}}>
+
+<span class="only-on-pc">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]]">
+<$list filter="[<selectedTab>match<currentTiddler>] " emptyMessage=<<sidebar-tab-button>> variable="ignore">
+<<sidebar-tab-button "xp-tab-launcher-selected">>
+</$list>
+</$list>
+
+</span>
+<span class="only-on-phone">
+
+<$list filter="$:/core/ui/SideBar/Open [all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]]">
+<$list filter="[<selectedTab>match<currentTiddler>] " emptyMessage=<<sidebar-tab-button>> variable="ignore">
+<<sidebar-tab-button "xp-tab-launcher-selected">>
+</$list>
+</$list>
+
+</span>
+
+</$vars>
+
+</div>
+
+<div class="tc-tab-divider" style="margin-top:-4px;"/>
+<div class="tc-tab-content">
+
+<$transclude tiddler={{{ [[$:/state/tab/sidebar--595412856]get[text]!is[blank]] ~TableOfContents }}} mode="block" />
+
+</div>
+</div>

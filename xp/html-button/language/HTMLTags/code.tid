@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/code
+
+<$button tag="a" tooltip="Code">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<code>"
+	suffix="</code>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<code>"></span>
+
+</$button>

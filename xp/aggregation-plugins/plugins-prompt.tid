@@ -1,0 +1,6 @@
+title: $:/plugins-prompt
+
+<div class="tc-muted" style="text-align:center;margin:50px 0 25px;">
+<div class="xp-image-big-muted">{{$:/core/images/plugin-generic-plugin}}</div>
+New plugincard will appear here
+</div>

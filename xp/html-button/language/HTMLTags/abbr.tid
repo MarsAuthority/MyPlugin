@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/abbr
+
+<$button tag="a" tooltip="Abbreviation">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="""<abbr title="">"""
+	suffix="</abbr>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<abbr>"></span>
+
+</$button>

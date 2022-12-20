@@ -1,0 +1,12 @@
+{
+	"title": "$:/plugins/xp/mark-button",
+	"name": "Mark Button",
+	"description": "Mark selected text",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210415051416996",
+	"modified": "20220810131842881"
+}

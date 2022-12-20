@@ -1,0 +1,19 @@
+description: create a new enterprise
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-enterprise
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-enterprise/Tags}} textField={{$:/config/new-enterprise/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "enterprise/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	caption="an enterprise"
+	country=""
+	fdate=""
+	image="$:/enterprise.png"
+	link=""
+/>
+</$vars>

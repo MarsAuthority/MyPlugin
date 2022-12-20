@@ -1,0 +1,7 @@
+caption: 搜索图标库
+description: 搜索图标库
+filter: [all[shadows+tiddlers]tag[$:/tags/Image]search[]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/Image
+
+{{!!filter}}

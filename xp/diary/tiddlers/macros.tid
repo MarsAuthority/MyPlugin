@@ -1,0 +1,26 @@
+title: $:/xp/diary/macros
+
+\define journalFilter()
+[tag<journalTag>!is[system]!has[draft.of]!sort[created]]
+\end
+
+\define privateJournalFilter()
+[tag<journalTag>tag[Private]!is[system]!has[draft.of]!sort[created]]
+\end
+
+\define journalSearchFilter()
+[tag<journalTag>!is[system]!sort[created]search{$:/temp/journalsearch}]
+\end
+
+\define commonFilters(name)
+\whitespace trim
+<$button tooltip={{!!description}} aria-label={{!!description}} class="tc-tiny-gap-right">
+<$action-deletetiddler $filter="$:/config/journalsearch/searchmode"/>
+<$action-setfield $tiddler="$:/temp/journalsearch" text={{!!filter}}/>
+<$action-setfield $tiddler="$:/temp/journalsearch/input" text={{!!filter}}/>
+<$action-setfield $tiddler="$:/temp/journalsearch/refresh" text="yes"/>
+$name$
+</$button>
+\end
+
+<pre><$view field="text"/></pre>

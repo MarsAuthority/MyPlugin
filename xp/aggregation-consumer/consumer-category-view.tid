@@ -1,0 +1,13 @@
+caption: 分类视图
+title: $:/consumer-category-view
+
+\import $:/consumer-macros
+
+<$wikify name="tabsList" text="""<$list filter="[all[shadows+tiddlers]tag<systemCTag>!has[draft.of]] :filter[lookup<config-base>!match[hide]]" variable="listItem"> <$text text={{{ [<listItem>format:titlelist[]] }}}/> </$list>""">
+<$macrocall
+  $name="tabs"
+  tabsList=<<tabsList>>
+  default={{$:/config/xp/aggregation-consumer/category-view/DefaultTab}}
+  class="" <!-- tc-vertical -->
+/>
+</$wikify>

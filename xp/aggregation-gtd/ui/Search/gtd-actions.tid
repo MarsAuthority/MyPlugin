@@ -1,0 +1,14 @@
+title: $:/xp/aggregation-gtd/ui/Search/gtd-actions
+
+\import $:/xp/ui/ViewTemplate/gtd-actions
+\whitespace trim
+
+<div class="py-todo-heading">
+{{||$:/xp/aggregation-gtd/ui/buttons/TodoDueDate}}
+{{||$:/xp/aggregation-gtd/ui/buttons/TodoQuadrant}}
+{{||$:/xp/aggregation-gtd/ui/DeleteButton}}
+{{||$:/xp/aggregation-gtd/ui/DoneButton}}
+{{||$:/xp/aggregation-gtd/ui/TodolistButton}}
+<$button message="tm-edit-tiddler" tooltip={{$:/language/Buttons/Edit/Hint}} aria-label={{$:/language/Buttons/Edit/Caption}} class="py-btn py-pie tc-tiny-gap-left">{{$:/core/images/edit-button}}</$button>
+<$button to=<<currentTiddler>> tooltip="Open this tiddler" class="py-btn py-pie tc-tiny-gap-left">{{$:/core/images/link}}</$button>
+</div>

@@ -1,0 +1,6 @@
+caption: 历史
+ctag: History
+tags: $:/tags/CourseCategories
+title: $:/courses-category-history
+
+<<list-courses History>>

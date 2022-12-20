@@ -1,0 +1,15 @@
+title: $:/xp/columns/Examples/2column-border-adjust-width
+
+! 调整两列的宽度
+
+<div class="left-column-border-adjust">
+
+{{$:/xp/columns/Examples/text2}}
+
+</div>
+
+<div class="right-column-border-adjust">
+
+{{$:/xp/columns/Examples/text1}}
+
+</div>

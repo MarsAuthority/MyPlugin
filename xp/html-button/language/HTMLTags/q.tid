@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Text Formatting]]
+title: $:/language/HTMLTags/q
+
+<$button tag="a" tooltip="Quotation">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<q>"
+	suffix="</q>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<q>"></span>
+
+</$button>

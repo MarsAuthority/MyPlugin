@@ -1,0 +1,45 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/people-help
+
+<div class="blue-box">
+
+PEOPLE - 读万卷书不如行万里路，行万里路不如阅人无数……
+
+</div>
+
+! 如何使用？
+
+!!! 点击 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new people 创建一个人物。
+
+* 常用字段。<div class="gray-box">
+
+|!Field |!Description |
+|`caption` |显示名称，通常是对 `title` 的简化。 |
+|`description` |一句话描述人物。 |
+|`color` |标记卡片颜色。（卡片视图） |
+|`education` |人物的最高学历。（表格视图） |
+|`lifetime` |人物寿命。（表格视图） |
+|^`linkcolor` |//(optional)// 用于修改条目的链接颜色。你可以选择一个颜色，或者手动输入 `red` 或者 `<<colour primary>>`。<br>该功能由 $:/LinkStyle/Stylesheet 提供。 |
+
+</div>
+
+* 预设归类标签。<div class="gray-box">
+
+可以对这个大主题，预先设置一些归类标签。
+
+这里默认提供三个类别的「分类标签」：职业（PROFESSION）、国籍（NATIONALITY）、功过格（正面还是反面人物）。
+
+这些分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式分别存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-people/category/]]" type:"ol">>
+
+> 在过滤面板，点击分类标题就可以查看配置文件。
+
+创建条目时打上归类标签，查阅时就可以用该标签快速过滤出这个类别的条目。
+
+你可以修改配置文件中的分类标签，或者新建配置文件 `$:/config/xp/aggregation-people/category/<你的新分类>`，添加一个新类别。
+
+</div>
+
+* 参考其他帮助说明：[[Aggregation Readme|$:/plugins/xp/aggregation]] / [[Bookshelf Help|$:/bookshelf-help]]

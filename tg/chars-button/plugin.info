@@ -1,0 +1,16 @@
+{
+	"version": "0.0.10",
+	"type": "application/json",
+	"title": "$:/plugins/tg/chars-button",
+	"source": "http://www.tongerner.nl/TW5/TW5_index.html",
+	"plugin-type": "plugin",
+	"name": "Chars button",
+	"modifier": "TonGerner",
+	"modified": "20210103204230136",
+	"list": "readme license",
+	"description": "Chars button",
+	"creator": "TonGerner",
+	"created": "20181106114516621",
+	"core-version": ">=5.1.17",
+	"author": "TonGerner"
+}

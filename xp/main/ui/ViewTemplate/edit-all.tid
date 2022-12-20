@@ -1,0 +1,10 @@
+list-after: $:/xp/ui/ViewTemplate/view-code
+description: {{$:/language/Buttons/EditAll/Hint}}
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/edit-all
+
+<$reveal state="$:/state/edit-all-tiddlers" default="hide" type="match" text="show">
+
+<$transclude tiddler={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/EditTemplateBodyFilter]!is[draft]get[text]] :and[!is[blank]else[$:/core/ui/EditTemplate/body/default]] }}} />
+
+</$reveal>

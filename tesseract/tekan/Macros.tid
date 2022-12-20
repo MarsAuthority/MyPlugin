@@ -1,0 +1,15 @@
+title: $:/Tekan/Macros
+
+\define currentBoard()
+<$text text={{$:/Tekan/CurrentBoard}}/>
+\end
+
+\define selectKanbanTemplate()
+<$select tiddler='$:/config/NewKanbanBoard/Actions'>
+<$list filter='[all[shadows+tiddlers]tag[$:/tags/KanbanTemplate]]'>
+<option value={{{ [<currentTiddler>addprefix[{{]addsuffix[}}]] }}}><$view field='caption'/></option>
+</$list>
+</$select>
+\end
+
+<pre><$view field="text"/></pre>

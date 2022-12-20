@@ -1,0 +1,11 @@
+caption: Filter
+title: $:/xp/quickbar/Search/Filter
+
+<$reveal default=<<stateCode>> type="match" text="1">
+
+//<small>Filter matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter=<<userInput>> />
+</$list>
+</$reveal>

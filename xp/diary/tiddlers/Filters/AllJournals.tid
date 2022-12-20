@@ -1,0 +1,6 @@
+description: All journals
+filter: [tag<journalTag>!is[system]!sort[created]]
+tags: $:/tags/JournalFilter
+title: $:/xp/diary/Filters/AllJournals
+
+<<commonFilters "All">>

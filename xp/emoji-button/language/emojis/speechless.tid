@@ -1,0 +1,14 @@
+caption: speechless
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/speechless
+
+<$button tag="a" tooltip="Speechless">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji speechless 0.5>>"
+/>
+
+{{$:/css3-emoji-speechless}}
+</$button>

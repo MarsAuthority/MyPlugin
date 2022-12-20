@@ -1,0 +1,9 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/enterprises-macros
+
+\define aggregationTag() Enterprise
+\define systemCTag()     $:/tags/EnterpriseCategories
+\define categoryPrefix() $:/config/xp/aggregation-enterprises/category/
+\define config-base()    $:/config/xp/aggregation-enterprises/Tabs/Visibility/
+
+<pre><$view field="text"/></pre>

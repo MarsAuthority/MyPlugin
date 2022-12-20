@@ -1,0 +1,28 @@
+title: $:/bookshelf-examples-sleep
+
+\define exText()
+!! Sleep: Redefine Your Rest, for Success in Work, Sport and Life
+
+@@.list-tree
+* [[引言　不要浪费宝贵的时间睡觉|sleep/引言/不要浪费宝贵的时间睡觉]]
+* [[第一部分　睡眠修复的关键指标|sleep/chapter01/睡眠修复的关键指标]]
+** [[01 时钟在嘀嗒——昼夜节律|sleep/chapter01/01 时钟在嘀嗒——昼夜节律]]
+** [[02 走慢与走快——睡眠类型|sleep/chapter01/02 走慢与走快——睡眠类型]]
+** [[03 90分钟睡眠法——睡眠周期|sleep/chapter01/03 90分钟睡眠法——睡眠周期]]
+** [[04 热身与舒缓——睡眠前后的例行程序|sleep/chapter01/04 热身与舒缓——睡眠前后的例行程序]]
+** [[05 暂停片刻，该休息了！——日间小睡|sleep/chapter01/05 暂停片刻，该休息了！——日间小睡]]
+** [[06 改造你的床铺——寝具套装|sleep/chapter01/06 改造你的床铺——寝具套装]]
+** [[07 修复室——睡眠环境|sleep/chapter01/07 修复室——睡眠环境]]
+* [[第二部分　R90在行动|sleep/chapter02/R90在行动]]
+** [[08 把握先机——利用R90方案|sleep/chapter02/08 把握先机——利用R90方案]]
+** [[09 与敌同眠——各种睡眠问题|sleep/chapter02/09 与敌同眠——各种睡眠问题]]
+** [[10 主队——性，伴侣和现代家庭|sleep/chapter02/10 主队——性，伴侣和现代家庭]]
+* [[你个人的最佳状态|sleep/你个人的最佳状态]]
+@@
+\end
+
+<$codeblock code=<<exText>> />
+
+That renders as:
+
+<<exText>>

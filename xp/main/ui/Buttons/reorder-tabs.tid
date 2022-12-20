@@ -1,0 +1,39 @@
+description: Reordering sidebar tabs
+title: $:/xp/ui/Buttons/reorder-tabs
+
+\whitespace trim
+\define beforeTitle() $:/xp/ui/SideBar/AdvancedSearch
+<$button tooltip="Double-click to reordering" aria-label="reorder sidebar tabs">
+Reorder
+<!-- 取得排序列表 -->
+<$action-deletefield $tiddler="$:/temp/sidebar-tabs-orderlist" list />
+<!-- The caption string starts with a word character ([a-zA-Z0-9_]) -->
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]regexp:caption[^\w]]">
+<$vars sortPrefix={{{ [<currentTiddler>get[caption]addsuffix[@]] }}}>
+<$vars sortTitle={{{ [<currentTiddler>addprefix<sortPrefix>] }}}>
+<$action-listops $tiddler="$:/temp/sidebar-tabs-orderlist" $subfilter=<<sortTitle>>/>
+</$vars>
+</$vars>
+</$list>
+<!-- The caption string does not start with a word character -->
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]!regexp:caption[^\w]]">
+<$vars sortPrefix={{{ [<currentTiddler>split[/]last[1]addsuffix[@]] }}}>
+<$set name="sortTitle" filter="[<currentTiddler>match[TableOfContents]]" value={{{ [<currentTiddler>addprefix[Contents@]] }}} emptyValue={{{ [<currentTiddler>addprefix<sortPrefix>] }}}>
+<$action-listops $tiddler="$:/temp/sidebar-tabs-orderlist" $subfilter=<<sortTitle>>/>
+</$set>
+</$vars>
+</$list>
+
+<!-- 排序标题列表 -->
+<$action-deletefield $tiddler="$:/tags/SideBar" list />
+<$list filter="[list[$:/temp/sidebar-tabs-orderlist]sort[]]">
+<$vars sidebarTab={{{ [<currentTiddler>split[@]last[1]] }}}>
+<$action-listops $tiddler="$:/tags/SideBar" $subfilter=<<sidebarTab>>/>
+</$vars>
+</$list>
+<!-- Move frequently used tabs to the front -->
+<$action-listops $tiddler="$:/tags/SideBar" $subfilter="+[move:-99<beforeTitle>]"/>
+<$list filter="$:/core/ui/SideBar/Open TableOfContents $:/core/ui/SideBar/Recent $:/core/ui/SideBar/Tools $:/core/ui/SideBar/More">
+<$action-listops $tiddler="$:/tags/SideBar" $subfilter="+[insertbefore:beforeTitle<currentTiddler>]"/>
+</$list>
+</$button>

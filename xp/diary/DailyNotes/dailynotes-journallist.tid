@@ -1,0 +1,235 @@
+caption: 日记列表
+title: $:/dailynotes-journallist
+
+\whitespace trim
+
+\define lingo-base() $:/language/Search/
+\define storeTitle() $:/temp/search/journals
+\define cancel-search-actions() <$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<encryptStatus>] [<privateStatus>] [<starStatus>] [<dateStatus>]"/>
+
+\define defaultView() $:/config/xp/DailyNotes/DefaultView
+
+\define filterState() $:/state/filter/dailynotes
+\define encryptStatus() $:/temp/filter/dailynotes/Encrypted
+\define privateStatus() $:/temp/filter/dailynotes/Private
+\define starStatus() $:/temp/filter/dailynotes/Starred
+\define dateStatus() $:/temp/filter/dailynotes/Date
+\define input-accept-actions-date() <$action-setfield $tiddler=<<filterState>> filter={{{ [<dateStatus>get[text]addprefix<pt>addsuffix<st>] }}}/>
+\define cancel-datefilter-actions() <$action-deletefield $tiddler=<<dateStatus>> text/>
+
+\define toggleViewButton()
+\whitespace trim
+<$reveal state=<<defaultView>> default="list" type="nomatch" text="card">
+<$button tooltip="Switching to card view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="card"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+<$reveal state=<<defaultView>> type="match" text="card">
+<$button tooltip="Switching to list view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="list"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+\end
+
+\define resetConditionButton()
+\whitespace trim
+<$list filter="[<encryptStatus>has[text]] [<privateStatus>has[text]] [<starStatus>has[text]] [<dateStatus>is[tiddler]] [<filterState>has[filter]] +[limit[1]]">
+&emsp;<$button class="xp-aggrfilter-dynamic-btn">
+<$action-deletetiddler $filter="[<encryptStatus>] [<privateStatus>] [<starStatus>] [<dateStatus>]"/>
+<$action-deletefield $tiddler=<<filterState>> filter/>
+reset
+</$button>
+</$list>
+\end
+
+\define dnTiddlerControls()
+\whitespace trim
+<$list filter="[all[current]has[text]]">
+<span class="tc-tiddler-controls" style="font-size:1.3em;">
+<$button to=<<currentTiddler>> tooltip="Open this tiddler" class="tc-btn-invisible">{{$:/core/images/link}}</$button>
+<$list filter="[all[current]!tag[Star]]">
+<$button actions="<$action-listops $tags='Star'/>" tooltip="Star this tiddler" class="tc-btn-invisible">{{$:/xp/images/star}}</$button>
+</$list>
+<$list filter="[all[current]tag[Star]]">
+<$button actions="<$action-listops $tags='-Star'/>" tooltip="Unstar this tiddler" class="tc-btn-invisible">{{$:/core/images/star-filled}}</$button>
+</$list>
+<$list filter="$:/core/ui/Buttons/edit" storyview="pop" variable="listItem">
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+<$transclude tiddler=<<listItem>>/>
+</$set>
+</$list>
+</span>
+</$list>
+\end
+
+<$vars journalTag={{{ [enlist{$:/config/NewJournal/Tags}first[]] }}}>
+<$list filter="[tag<journalTag>limit[1]]" emptyMessage="{{$:/aggregation/prompt}}" variable="ignore">
+
+<span class="xp-search xp-search-journals">
+<$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>> class="py-input input-larger"
+    type="search" tag="input" filterMinLength="1" focus={{$:/config/xp/aggregation/SearchAutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]has[text]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+<$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-journals input"""/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</$set>
+<$reveal state=<<filterState>> type="nomatch" text="yes">
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler=<<filterState>> text="yes"/>
+{{$:/xp/images/filter}}
+</$button>
+</$reveal>
+<<toggleViewButton>>
+</span>
+<$vars userInput={{{ [<storeTitle>get[text]] }}}
+    encryptRun={{{ [<encryptStatus>get[text]] }}}
+    privateRun={{{ [<privateStatus>get[text]] }}}
+    starRun={{{ [<starStatus>get[text]] }}}
+    timeRun={{{ [<filterState>get[filter]] }}}
+    limitRun=" +[limit[250]]"
+    resultCount="<$count filter=<<searchFilter>>/>"
+    journalSearch="[tag<journalTag>!sort[created]search:*<userInput>]">
+<$set name="searchFilter" value={{{ [<journalSearch>addsuffix[ ]addsuffix<encryptRun>addsuffix<privateRun>addsuffix<starRun>addsuffix<timeRun>addsuffix<limitRun>] }}}>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]get[text]trim[]!is[blank]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$reveal state=<<filterState>> type="nomatch" text="yes" animate="yes">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$reveal>
+</$reveal>
+</$set>
+
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<div class="xp-wrapper-aggrfilter">
+
+Filter conditions: <<resetConditionButton>>
+
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<$list filter="[tag<journalTag>has[encrypted]limit[1]]" variable="ignore">
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">Encrypted</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<encryptStatus>>>
+  <$radio field="text" value=" +[has[encrypted]]">&#32; yes </$radio>
+  <$radio field="text" value=" +[!has[encrypted]]">&#32; no </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+</$list>
+<$list filter="[tag<journalTag>tag[Private]limit[1]]" variable="ignore">
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">Private</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<privateStatus>>>
+  <$radio field="text" value=" +[tag[Private]]">&#32; yes </$radio>
+  <$radio field="text" value=" +[!tag[Private]]">&#32; no </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+</$list>
+<$list filter="[tag<journalTag>tag[Star]limit[1]]" variable="ignore">
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">Starred</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<starStatus>>>
+  <$radio field="text" value=" +[tag[Star]]">&#32; yes </$radio>
+  <$radio field="text" value=" +[!tag[Star]]">&#32; no </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+</$list>
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">Time</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$select tiddler=<<filterState>> field="filter" class="xp-aggregation-select" actions="""<$list filter="[<filterState>search:filter[regexp:created]]"><$action-setfield $tiddler=<<dateStatus>> status="show"/></$list>""">
+  <option value=""> All</option>
+  <option value="+[days:created[-1]]"> Past 24 hours</option>
+  <option value="+[days:created[-7]]"> Past week</option>
+  <option value="+[days:created[-30]]"> Past month</option>
+  <option value="+[days:created[-365]]"> Past year</option>
+  <option value="+[regexp:created[]]"> Enter a date</option>
+  </$select>
+  <$vars pt=" +[regexp:created[^" st="]]">
+  <$list filter="[<dateStatus>is[tiddler]]">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<dateStatus>>
+      type="search" tag="input" size=7 focus="no"
+      inputCancelActions=<<cancel-datefilter-actions>> inputAcceptActions=<<input-accept-actions-date>>/>
+  <$button> Enter
+  <<input-accept-actions-date>>
+  </$button>
+  </$list>
+  </$vars>
+  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</$reveal>
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<<lingo System/Matches>>
+</$reveal>
+
+<!-- List View -->
+<$reveal state=<<defaultView>> default="list" type="nomatch" text="card" animate="yes">
+
+<div class="tc-manager-list">
+<$list filter=<<searchFilter>>>
+<$vars transclusion=<<currentTiddler>>>
+  <div class="tc-manager-list-item">
+    <$button popup=<<qualify "$:/state/xp/dailynotes">> class="tc-btn-invisible tc-manager-list-item-heading xp-manager-item-heading" selectedClass="tc-manager-list-item-heading-selected">
+      <$text text=<<currentTiddler>>/>
+          <$list filter="[all[current]has[encrypted]]">
+      <span class="pc-listItem-lock tc-tiny-gap-left">
+        {{$:/core/images/locked-padlock}}
+      </span>
+          </$list>
+    </$button>
+    <$reveal state=<<qualify "$:/state/xp/dailynotes">> type="nomatch" text="" default="" tag="div" class="tc-manager-list-item-content tc-popup-handle">
+      <div class="xp-manager-item-content xp-manager-item-content-tiddler">
+        <<dnTiddlerControls>>
+        <$transclude mode="block"/>
+      </div>
+    </$reveal>
+  </div>
+</$vars>
+</$list>
+</div>
+
+</$reveal>
+
+<!-- Card View -->
+<$reveal state=<<defaultView>> default="list" type="match" text="card" animate="yes">
+
+<p />
+<div class="tc-link-info">
+
+<$list filter=<<searchFilter>> template="$:/templates/transclusion-dailynotes"/>
+
+</div>
+
+</$reveal>
+
+</$set>
+</$vars>
+
+</$list>
+</$vars>

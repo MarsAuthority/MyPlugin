@@ -1,0 +1,18 @@
+caption: {{$:/core/images/new-button}} new pagecontrol button
+description: Create a pagecontrol button
+title: $:/xp/quickbar/create/Buttons/new-pagecontrol-button
+
+\whitespace trim
+<$button aria-label="new pagecontrol button">
+Create
+<$vars newButtonTitle={{$:/config/new-pagecontrol-button/Title}} textFieldTags={{$:/config/new-pagecontrol-button/Tags}} newButtonText={{$:/config/new-pagecontrol-button/Text}} newButtonCaption={{$:/config/new-pagecontrol-button/Caption}} newButtonDescription={{$:/config/new-pagecontrol-button/Description}}>
+<$reveal type="nomatch" state=<<newButtonTitle>> text="">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/tiddlerExists"/>
+</$reveal>
+<$reveal type="match" state=<<newButtonTitle>> text="">
+<$action-createtiddler $basetitle=<<newButtonTitle>> tags=<<textFieldTags>> text=<<newButtonText>> caption=<<newButtonCaption>> description=<<newButtonDescription>>/>
+<$action-navigate $to=<<newButtonTitle>>/>
+<$action-deletetiddler $filter="$:/config/new-pagecontrol-button/Title $:/config/new-pagecontrol-button/Tags $:/config/new-pagecontrol-button/Text $:/config/new-pagecontrol-button/Caption $:/config/new-pagecontrol-button/Description"/>
+</$reveal>
+</$vars>
+</$button>

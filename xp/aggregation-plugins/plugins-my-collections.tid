@@ -1,0 +1,11 @@
+caption: 我的收集
+title: $:/plugins-my-collections
+
+{{$:/plugins-my-collections/notes}}
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/plugins-my-collections/plugin-info $:/plugins-my-collections/must-have $:/plugins-my-collections/editions"
+  default="$:/plugins-my-collections/plugin-info"
+  state="$:/state/tab/plugin-info"
+/>

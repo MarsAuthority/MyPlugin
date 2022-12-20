@@ -1,0 +1,33 @@
+title: $:/xp/aggregation-gtd/ui/buttons/TodoQuadrant
+
+\whitespace trim
+<$list filter="[all[current]tag[$:/q1]] [all[current]tag[$:/q2]] [all[current]tag[$:/q3]] [all[current]tag[$:/q4]] +[limit[1]]">
+<$vars
+  popupTiddler=<<qualify "$:/state/projectify/due-priority-dropdown">>
+>
+  <$button
+    class="py-btn py-priority tc-tiny-gap-left"
+    popup=<<popupTiddler>>
+    tooltip={{$:/language/projectify/Priority/Hint}}
+    aria-label={{$:/language/projectify/Priority/Hint}}
+  >
+    <$list filter="[all[current]tag[$:/q1]]">
+      <span style="fill: #FF5F68;">{{$:/xp/images/q1}}</span>
+    </$list>
+    <$list filter="[all[current]tag[$:/q2]]">
+      <span style="fill: #FFB000;">{{$:/xp/images/q2}}</span>
+    </$list>
+    <$list filter="[all[current]tag[$:/q3]]">
+      <span style="fill: #4772FA;">{{$:/xp/images/q3}}</span>
+    </$list>
+    <$list filter="[all[current]tag[$:/q4]]">
+      <span style="fill: #0CCE9C;">{{$:/xp/images/q4}}</span>
+    </$list>
+  </$button>
+  <$reveal state=<<popupTiddler>> type="popup" position="belowleft" animate="no">
+    <div class="tc-drop-down py-drop-down">
+      {{||$:/xp/aggregation-gtd/ui/TodoQuadrant}}
+    </div>
+  </$reveal>
+</$vars>
+</$list>

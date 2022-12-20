@@ -1,0 +1,6 @@
+caption: 阅读中
+ctag: Ongoing
+tags: $:/tags/BookCategories
+title: $:/books-category-ongoing
+
+<<list-books "Ongoing">>

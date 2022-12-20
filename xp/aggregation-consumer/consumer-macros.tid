@@ -1,0 +1,9 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/consumer-macros
+
+\define aggregationTag() Consumer
+\define systemCTag()     $:/tags/ConsumerCategories
+\define categoryPrefix() $:/config/xp/aggregation-consumer/category/
+\define config-base()    $:/config/xp/aggregation-consumer/Tabs/Visibility/
+
+<pre><$view field="text"/></pre>

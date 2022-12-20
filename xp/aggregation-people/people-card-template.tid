@@ -1,0 +1,28 @@
+title: $:/people-card-template
+
+\define tw-card-template(bordercolor:"")
+<div class="tc-card" style="border-top: 5px solid $bordercolor$; width: 225px;">
+<$link>
+    <$transclude field="image"/>
+<$list filter="[<currentTiddler>!has[image]]" variable="ignore">
+    <div class="tc-card-title">
+    <$transclude field="caption"><$view field="title"/></$transclude>
+    </div>
+    <p style="height:auto;max-height:103px;">
+    <$transclude field="description"/>
+    </p>
+</$list>
+<$list filter="[<currentTiddler>has[image]]" variable="ignore">
+    <div class="tc-card-title" style="text-align:left;">
+    <$transclude field="caption"><$view field="title"/></$transclude>
+    </div>
+    <p style="height:auto;max-height:103px;padding-bottom:0;">
+    <$transclude field="description"/>
+    </p>
+</$list>
+
+</$link>
+</div>
+\end
+
+<$macrocall $name="tw-card-template" bordercolor={{!!color}}/>

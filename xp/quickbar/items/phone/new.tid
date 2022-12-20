@@ -1,0 +1,12 @@
+caption: New
+description: New buttons
+icon: $:/core/images/new-button
+is-dropup: yes
+tags: $:/tags/QuickBar/Phone
+title: $:/xp/quickbar/items/phone/new
+
+<div style="margin-left:16px;">
+
+{{$:/xp/quickbar/items/new}}
+
+</div>

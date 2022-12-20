@@ -1,0 +1,17 @@
+caption: 聚合视图
+title: $:/whys-aggregation-view
+
+\import $:/whys-macros
+\define config-base() $:/config/xp/aggregation-whys/TableFields/Visibility/
+
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/xp/aggregation-whys/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall
+  $name="aggregation-filtersearch"
+  fields=<<dtableFields>>
+  state="aggregation-whys"
+  class=""
+  cardTemplate="$:/aggregation-card-template"
+  searchClass="xp-search-whys"
+  promptTiddler="$:/whys-prompt"
+/>
+</$wikify>

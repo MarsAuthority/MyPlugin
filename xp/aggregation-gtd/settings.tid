@@ -1,0 +1,9 @@
+title: $:/plugins/xp/aggregation-gtd/settings
+
+; Content Type
+: <$checkbox tiddler="$:/config/xp/aggregation-gtd/ContentType" field="text" checked="text/x-markdown" unchecked="" default="" uncheckactions="<$action-deletetiddler $tiddler='$:/config/xp/aggregation-gtd/ContentType'/>"> Use Markdown</$checkbox>
+
+> 勾选该选项，创建的任务将使用 [[Markdown|$:/plugins/tiddlywiki/markdown]] 文本 `text/x-markdown`。
+
+; Auto Preview
+: <$checkbox tiddler="$:/config/xp/aggregation-gtd/AutoPreview" field="text" checked="yes" unchecked="no" default="yes" checkactions="<$action-deletetiddler $tiddler='$:/config/xp/aggregation-gtd/AutoPreview'/>"> Easy Edit automatically enters preview mode</$checkbox>

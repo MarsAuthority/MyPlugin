@@ -1,0 +1,17 @@
+caption: Subtiddlers
+description: See tiddlers tagged with this one
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/subtiddlers
+
+\whitespace trim
+<$vars aggregationTag=<<currentTiddler>> config-base="$:/config/xp/tiddlertail/TableFields/Visibility/">
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/xp/tiddlertail/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall
+  $name="aggregation-filtersearch"
+  fields=<<dtableFields>>
+  state="tiddlertail"
+	promptTiddler="$:/language/Notifications/noSubtiddler"
+	viewButton="no"
+/>
+</$wikify>
+</$vars>

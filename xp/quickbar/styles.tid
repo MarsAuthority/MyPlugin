@@ -1,0 +1,506 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/quickbar/styles
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+\define rotateX0()
+	-webkit-transform: rotateX(0deg);
+	-o-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	-ms-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+\end
+
+\define rotateX180()
+	-webkit-transform: rotateX(180deg);
+	-o-transform: rotateX(180deg);
+	-moz-transform: rotateX(180deg);
+	-ms-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+\end
+
+nav.tc-quickbar {
+	position: fixed;
+	z-index: 850;
+	display: inline-block;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	border-radius: 40px / 50px;
+	width: calc({{$:/xp/quickbar/width}});
+	margin: auto;
+	text-align: center;
+}
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/search" type="nomatch" text="hide">
+@-moz-document url-prefix() {
+	nav.tc-quickbar {
+		width: calc({{$:/xp/quickbar/width}} + 14px);
+	}
+}
+</$reveal>
+
+nav.tc-quickbar:hover {
+	opacity: 1;
+}
+
+nav.tc-quickbar ul.tc-quickbar-list {
+	position: relative;
+	list-style-type: none;
+	margin: 0;
+	padding: 0 12px 0 12px;
+	border-radius: 40px / 50px;
+	background: <<colour background>>;
+	background: <<colour quickbar-background>>;
+	<<box-shadow "1px -1px 5px rgba(0, 0, 0, 0.3)">>
+}
+
+nav.tc-quickbar li.tc-quickbar-item {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a,
+nav.tc-quickbar li.tc-quickbar-item > button {
+	display: inline-block;
+/* text-transform: uppercase; */
+	line-height: 1;
+	font-weight: 700;
+	color: <<colour foreground>>;
+	color: <<colour quickbar-foreground>>;
+	fill: <<colour foreground>>;
+	fill: <<colour quickbar-foreground>>;
+	text-decoration: none;
+	padding: 0.5em;
+	margin: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+	border-radius: 0;
+	text-decoration: none;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a.tc-selected,
+nav.tc-quickbar li.tc-quickbar-item > button.tc-selected {
+	background: <<colour foreground>>;
+	background: <<colour quickbar-foreground>>;
+	color: <<colour background>>;
+	color: <<colour quickbar-background>>;
+	fill: <<colour background>>;
+	fill: <<colour quickbar-background>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item svg {
+	transition: none;
+	width: 1em;
+	height: 1em;
+	fill: <<colour foreground>>;
+	fill: <<colour quickbar-foreground>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item .tc-quickbar-dropup-arrow svg {
+	width: 0.5em;
+	height: 0.5em;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a.tc-selected svg,
+nav.tc-quickbar li.tc-quickbar-item > button.tc-selected svg {
+	fill: <<colour background>>;
+	fill: <<colour quickbar-background>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a:hover,
+nav.tc-quickbar li.tc-quickbar-item > button:hover svg,
+nav.tc-quickbar li.tc-quickbar-item > button:hover {
+	background: <<colour foreground>>;
+	background: <<colour quickbar-foreground>>;
+	color: <<colour background>>;
+	color: <<colour quickbar-background>>;
+	fill: <<colour background>>;
+	fill: <<colour quickbar-background>>;
+	border-radius: 0;
+	text-decoration: none;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a:active,
+nav.tc-quickbar li.tc-quickbar-item > button:active svg,
+nav.tc-quickbar li.tc-quickbar-item > button:active {
+	background: <<colour foreground>>;
+	background: <<colour quickbar-foreground>>;
+	color: <<colour background>>;
+	color: <<colour quickbar-background>>;
+	fill: <<colour background>>;
+	fill: <<colour quickbar-background>>;
+	border-radius: 0;
+	text-decoration: none;
+}
+
+/* Drop-up */
+
+nav.tc-quickbar .xp-drop-up,
+nav.tc-quickbar .xp-block-dropup {
+	max-width: 70vw;
+	max-height: 70vh;
+	overflow: auto;
+	text-align: left;
+}
+
+nav.tc-quickbar .xp-drop-up a {
+	text-decoration: none;
+}
+
+nav.tc-quickbar .xp-drop-up .tc-table-of-contents button {
+	display: inline-block;
+	width: auto;
+}
+
+nav.tc-quickbar .xp-drop-up ol {
+	margin: 0;
+}
+
+/* Hover popup */
+
+.tc-quickbar-tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.tc-quickbar-tooltip .tc-quickbar-tooltiptext {
+	visibility: hidden;
+	background: <<colour background>>;
+	color: <<colour foreground>>;
+	fill: <<colour background>>;
+	text-align: left;
+	border: 1px solid <<colour dropdown-border>>;
+	padding: 8px 24px;
+	min-width: 360px;
+	max-height: 60vh;
+	overflow-y: auto;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 600;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -45px;
+}
+
+.tc-quickbar-tooltip .tc-quickbar-tooltiptext img {
+	width: 1em;
+}
+
+.tc-quickbar-tooltip .tc-quickbar-tooltiptext svg {
+	fill: <<colour sidebar-button-foreground>> !important;
+	transition: none;
+	width: 1em;
+	height: 1em;
+}
+
+.tc-quickbar-tooltip > a,
+.tc-quickbar-tooltip > button {
+	display: inline-block;
+	padding: 0.5em;
+	margin: 0;
+}
+
+.tc-quickbar-tooltip:hover .tc-quickbar-tooltiptext {
+	visibility: visible;
+}
+
+.quickbar-tooltiptext-button button.tc-btn-invisible:hover svg {
+	fill: <<colour primary>> !important;
+}
+
+.quickbar-tooltiptext-button a, .quickbar-tooltiptext-button button {
+	padding-left: 14px;
+	padding-right: 14px;
+}
+
+.quickbar-tooltiptext-button a:hover, .quickbar-tooltiptext-button button:hover {
+	color: <<colour primary>> !important;
+	fill: <<colour primary>> !important;
+	background-color: none !important;
+}
+
+/* Others */
+
+.xp-quickbar-divider {
+	border-right: 1px solid <<colour sidebar-tab-divider>>;
+	border-image: linear-gradient(rgba(0, 0, 0, 0) 14%, <<colour sidebar-tab-divider>> 14%) 1;
+	-moz-border-image: none;
+	padding-left: 4px;
+	margin-right: 8px;
+}
+
+.quickbar-active-indicator {
+	box-shadow: inset 0 -2px <<colour quickbar-foreground>>;
+}
+
+.quickbar-buttonlist {
+	width: 100%;
+	text-align: left;
+	border-bottom: 1px solid <<colour sidebar-tab-divider>>;
+	padding: 3px 0;
+}
+
+.quickbar-search-margin {
+	margin-left: 0.5em;
+}
+
+.quickbar-advanced-search {
+	margin-right: 0.5em !important;
+}
+
+.tc-tab-buttons.quicksearch-tabs {
+padding-top: 0;
+margin-top: -0.5em;
+}
+
+
+<$reveal state="$:/config/xp/quickbar/FrostedGlass" type="match" text="on">
+
+/*
+* Frosted Glass (PC)
+*/
+
+nav.tc-quickbar ul.tc-quickbar-list {
+	background-color: rgba(255, 255, 255, .5);
+	-webkit-backdrop-filter: saturate(150%) contrast(95%) blur(8px);
+	backdrop-filter: saturate(150%) contrast(95%) blur(8px);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+	background: rgba(0, 0, 0, .3);
+	-webkit-backdrop-filter: saturate(150%) contrast(70%) blur(8px);
+	backdrop-filter: saturate(150%) contrast(70%) blur(8px);
+</$list>
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a,
+nav.tc-quickbar li.tc-quickbar-item > button {
+	color: <<colour primary>>;
+	fill: <<colour primary>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a.tc-selected,
+nav.tc-quickbar li.tc-quickbar-item > button.tc-selected {
+	background: <<colour primary>>;
+	color: <<colour tiddler-link-background>>;
+	fill: <<colour tiddler-link-background>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item svg {
+	fill: <<colour primary>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a.tc-selected svg,
+nav.tc-quickbar li.tc-quickbar-item > button.tc-selected svg {
+	fill: <<colour tiddler-link-background>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a:hover,
+nav.tc-quickbar li.tc-quickbar-item > button:hover svg,
+nav.tc-quickbar li.tc-quickbar-item > button:hover {
+	background: <<colour primary>>;
+	color: <<colour tiddler-link-background>>;
+	fill: <<colour tiddler-link-background>>;
+}
+
+nav.tc-quickbar li.tc-quickbar-item > a:active,
+nav.tc-quickbar li.tc-quickbar-item > button:active svg,
+nav.tc-quickbar li.tc-quickbar-item > button:active {
+	background: <<colour primary>>;
+	color: <<colour tiddler-link-background>>;
+	fill: <<colour tiddler-link-background>>;
+}
+
+/* Others */
+
+.quickbar-active-indicator {
+	box-shadow: inset 0 -2px <<colour primary>>;
+}
+
+</$reveal>
+
+
+/* ON PC */
+
+@media (min-width: <<sidebarbreakpoint>>) {
+
+	nav.tc-quickbar {
+		opacity: 0.75;
+	<$reveal state="$:/temp/quicksearch/input" type="nomatch" text="">
+		opacity: 0.875;
+	</$reveal>
+	<$reveal state="$:/config/xp/quickbar/FrostedGlass" type="match" text="on">
+		opacity: 1;
+	</$reveal>
+	}
+
+	nav.tc-quickbar .xp-block-dropup {
+		margin-bottom: 32.02px;
+	}
+
+	.xp-quickbar-searchbox {
+		opacity: 0.67;
+	<$reveal state="$:/temp/quicksearch/input" type="nomatch" text="">
+		opacity: 0.72;
+	</$reveal>
+	}
+
+	.xp-quickbar-searchbox:focus {
+		opacity: 1;
+	}
+
+	.quickbar-search-margin {
+	<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/advanced-search" type="nomatch" text="hide">
+		padding: 0 0.17em 0 0.5em;
+	</$reveal>
+	}
+
+	.xp-quickbar-on-phone {
+		display: none;
+	}
+
+<$list filter="[[$:/config/xp/quickbar/AutoHide]is[tiddler]get[text]!match[off]]" variable="ignore">
+
+	/*
+	* Auto hide
+	* semi-hidden or fully-hidden
+	*/
+
+	nav.tc-quickbar {
+		height: 5px;
+	}
+
+	nav.tc-quickbar:hover {
+		height: auto;
+	}
+
+	<$reveal state="$:/config/xp/quickbar/AutoHide" type="match" text="semi">
+	
+	<$reveal default={{{ [prefix[$:/state/popup/quickbar/dropup]count[]] }}} type="match" text="0">
+	nav.tc-quickbar ul.tc-quickbar-list {
+		<<rotateX180>>
+	}
+	</$reveal>
+
+	nav.tc-quickbar ul.tc-quickbar-list:hover {
+		<<rotateX0>>
+	}
+
+	</$reveal><!-- semi -->
+
+	<$reveal state="$:/config/xp/quickbar/AutoHide" type="match" text="fully">
+	
+	<$reveal default={{{ [prefix[$:/state/popup/quickbar/dropup]count[]] }}} type="match" text="0">
+	nav.tc-quickbar ul.tc-quickbar-list {
+		opacity: 0;
+	}
+	</$reveal>
+
+	nav.tc-quickbar ul.tc-quickbar-list:hover {
+		opacity: 1;
+	}
+
+	<$reveal state="$:/temp/quicksearch/input" type="nomatch" text="">
+	nav.tc-quickbar ul.tc-quickbar-list {
+		opacity: 1;
+		<<rotateX180>>
+	}
+
+	nav.tc-quickbar ul.tc-quickbar-list:hover {
+		opacity: 1;
+		<<rotateX0>>
+	}
+	</$reveal>
+
+	</$reveal><!-- fully -->
+
+</$list><!-- Auto hide -->
+
+<$reveal state="$:/config/xp/quickbar/FrostedGlass" type="match" text="on">
+
+	/*  Frosted Glass: Drop-up */
+
+	nav.tc-quickbar .xp-drop-up,
+	nav.tc-quickbar .xp-block-dropup {
+		background-color: rgba(255, 255, 255, .5);
+		-webkit-backdrop-filter: saturate(150%) contrast(95%) blur(8px);
+		backdrop-filter: saturate(150%) contrast(95%) blur(8px);
+	<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+		background: rgba(0, 0, 0, .3);
+		-webkit-backdrop-filter: saturate(150%) contrast(70%) blur(8px);
+		backdrop-filter: saturate(150%) contrast(70%) blur(8px);
+	</$list>
+	}
+
+	nav.tc-quickbar .xp-block-dropup {
+		background-color: <<colour dropdown-background>>;
+	}
+
+</$reveal>
+
+}
+
+/* ON PHONE */
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+	nav.tc-quickbar {
+		opacity: 0.875;
+	<$list filter="[prefix[$:/state/popup/quickbar/dropup]limit[1]]" variable="ignore">
+		opacity: 1;
+	</$list>
+		width: 100vw;
+		margin-left: 0;
+	}
+
+	nav.tc-quickbar .xp-block-dropup {
+		background-color: <<colour dropdown-background>>;
+	}
+
+	nav.tc-quickbar ul.tc-quickbar-list {
+		padding: 3px 0;
+	}
+
+	nav.tc-quickbar li.tc-quickbar-item > a,
+	nav.tc-quickbar li.tc-quickbar-item > button {
+		padding: 0.35em;
+	}
+
+	nav.tc-quickbar .xp-drop-up {
+		width: 100vw;
+		min-width: 100vw;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 29.59px;
+	}
+
+	.xp-quickbar-on-pc {
+		display: none;
+	}
+
+<$reveal state="$:/config/xp/quickbar/FrostedGlass" type="match" text="on">
+
+	nav.tc-quickbar {
+		opacity: 1;
+	}
+
+	nav.tc-quickbar ul.tc-quickbar-list {
+		background-color: rgba(255, 255, 255, .7);
+	}
+
+</$reveal>
+
+}
+
+@media print {
+
+	nav.tc-quickbar {
+		display: none;
+	}
+
+}

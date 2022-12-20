@@ -1,0 +1,11 @@
+{
+	"title": "$:/plugins/xp/aggregation-consumer",
+	"name": "Consumer",
+	"description": "Consumer issues",
+	"version": "0.3.0",
+	"plugin-type": "plugin",
+	"parent-plugin": "$:/plugins/xp/aggregation",
+	"dependents": "$:/plugins/xp/aggregation",
+	"type": "application/json",
+	"author": "kl"
+}

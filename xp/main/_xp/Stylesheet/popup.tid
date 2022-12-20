@@ -1,0 +1,101 @@
+tags: $:/tags/Stylesheet $:/tags/XP
+title: $:/_xp/Stylesheet/popup
+
+.xp-popup {
+	min-width: 380px;
+	border: 1px solid <<colour dropdown-border>>;
+	border-radius: 6px;
+	background-color: <<colour dropdown-background>>;
+	padding: 7px 0 7px 0;
+	margin: 4px 0 0 0;
+	text-shadow: none;
+	line-height: 1.4;
+}
+
+.xp-popup .tc-drop-down {
+	margin-left: 14px;
+}
+
+.xp-popup button svg, .xp-popup a svg {
+	fill: <<colour foreground>>;
+}
+
+.xp-popup button:disabled svg {
+	fill: <<colour muted-foreground>>;
+}
+
+.xp-popup button.tc-btn-invisible:hover svg {
+	fill: <<colour background>>;
+}
+
+.xp-popup svg {
+	width: 1em;
+	height: 1em;
+}
+
+.xp-popup img {
+	width: 1em;
+}
+
+.xp-popup .tc-file-input-wrapper button {
+	color: <<colour foreground>>;
+}
+
+.xp-popup button:hover, .xp-popup .tc-file-input-wrapper:hover button {
+	color: <<colour tiddler-link-background>>;
+	background-color: <<colour tiddler-link-foreground>>;
+	text-decoration: none;
+}
+
+.xp-popup .tc-tab-buttons button {
+	background-color: <<colour dropdown-tab-background>>;
+	color: <<colour tab-foreground>>;
+}
+
+.xp-popup .tc-tab-buttons button.tc-tab-selected {
+	background-color: <<colour dropdown-tab-background-selected>>;
+	border-bottom: 1px solid <<colour dropdown-tab-background-selected>>;
+}
+
+.xp-popup .tc-tab-buttons button.tc-tab-selected:hover {
+	background: <<colour dropdown-background>>;
+	color: <<colour tab-foreground-selected>>;
+}
+
+.xp-popup .tc-tab-buttons.tc-vertical button.tc-tab-selected {
+	border-bottom: 1px solid <<colour tab-border>>;
+}
+
+.xp-popup .tc-tab-contents a {
+	padding: 0 0.5em 0 0.5em;
+}
+
+.xp-popup .tc-dropdown-item-plain {
+	padding: 4px 14px 4px 7px;
+}
+
+.xp-popup .tc-dropdown-item {
+	padding: 4px 14px 4px 7px;
+	color: <<colour muted-foreground>>;
+}
+
+.xp-popup-title a {
+	display: block;
+	padding: 0 7px;
+	width: 100%;
+	text-align: left;
+	color: <<colour foreground>>;
+	line-height: 1.4;
+}
+
+.xp-popup-title a:hover, .xp-popup-title button:hover, .xp-popup-title .tc-file-input-wrapper:hover button {
+	color: <<colour tiddler-link-background>>;
+	background-color: <<colour tiddler-link-foreground>>;
+	text-decoration: none;
+}
+
+.xp-popup-text {
+	display: block;
+	padding: 0 14px 0 14px;
+	font-size: 0.88em;
+}

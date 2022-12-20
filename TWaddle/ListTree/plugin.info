@@ -1,0 +1,13 @@
+{
+    "version": "1.0.4",
+    "type": "application/json",
+    "title": "$:/plugins/TWaddle/ListTree",
+    "source": "http://listtree.tiddlyspot.com/",
+    "plugin-type": "plugin",
+    "modified": "20210620032729512",
+    "list": "readme",
+    "description": "ListTree - style common bullet lists into list trees",
+    "dependents": "",
+    "created": "20210620032729512",
+    "author": "Mat von TWaddle"
+}

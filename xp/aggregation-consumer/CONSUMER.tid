@@ -1,0 +1,20 @@
+caption: {{$:/xp/images/consumer}} CONSUMER
+color: #bbb
+icon: $:/xp/images/consumer
+title: CONSUMER
+tmap.id: 7f4c680a-a5ff-4248-8927-3ae143f322ff
+
+\import $:/consumer-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-consumer}} tooltip="Create a new consumer" aria-label="new consumer" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new consumer
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/consumer-help" "CONSUMER Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/consumer-aggregation-view $:/consumer-category-view $:/consumer-recently-added"
+  default="$:/consumer-aggregation-view"
+  state="$:/state/tab/consumer"
+/>

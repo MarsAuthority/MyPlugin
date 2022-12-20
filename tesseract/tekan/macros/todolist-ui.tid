@@ -1,0 +1,48 @@
+tags: $:/tags/Macro
+title: $:/Tekan/macros/todolist-ui
+
+\define td-basePath()    $:/todolist/data
+
+\define kanban-todolist-ui(caption:"A plain todolist", width:"100%")
+\import [all[tiddlers+shadows]tag[$:/tags/Todolist/Macro]!has[draft.of]]
+\whitespace trim
+
+<$vars 
+ nameSpace=      """$(td-baseName)$"""
+ stateTiddler=   """$(td-basePath)$/state/$(td-baseName)$"""
+ taskTiddler=    """$(td-basePath)$/tasks/$(td-baseName)$"""
+ doneTiddler=    """$(td-basePath)$/done/$(td-baseName)$"""
+ statusTiddler=  """$(td-basePath)$/status/$(td-baseName)$"""
+ priorityTiddler="""$(td-basePath)$/priority/$(td-baseName)$"""
+ archiveTiddler= """$(td-basePath)$/archive/$(td-baseName)$"""	
+ displayArchivedTiddler="""Todolist - Archived Items - $(td-baseName)$"""
+>	
+<div class="kk-todolist-ui" style="max-width:$width$;">
+
+<h3>$caption$</h3>
+
+<div class="kk-todolist-header-ui">
+<div class="kk-todolist-header-textbox"><<todolist-input-task>></div>
+<div><<todolist-add-task>></div>
+<div><<todolist-toggle-edit-button>></div>
+<div><<todolist-options-button>></div>
+</div>
+<<todolist-options-content>>
+<!--
+<$list filter="[<taskTiddler>indexes[]!sort[]]" variable="item">
+<$transclude tiddler="$:/plugins/kookma/todolist/template/undone-task" field="text" />
+</$list>
+-->
+
+<!-- display undone items -->
+<$list filter="[<stateTiddler>getindex[editview]match[edit]]" variable=ignore 
+   emptyMessage="""<$macrocall $name="draggable-list" targetTiddler=<<taskTiddler>> />""">
+	 <<disp-list-in-edit-mode>>
+</$list>
+<!-- display done items -->
+<$list filter="[<doneTiddler>indexes[]!nsort[]]" variable="item">
+<$transclude tiddler="$:/plugins/kookma/todolist/template/done-task" field="text" />
+</$list>
+</div>
+</$vars>
+\end

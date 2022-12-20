@@ -1,0 +1,30 @@
+caption: Types
+state: types
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/Types
+
+<$reveal state=<<stateTiddler>> type="match" text={{!!state}} animate="yes">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+//<small>Type matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter={{$:/core/Filters/TypedTiddlers!!filter}}>
+<div class="tc-menu-list-item">
+<$reveal default={{{ [type{!!type}!is[system]search:title,type<userInput>] +[count[]] }}} type="nomatch" text="0">
+<$view field="type"/>
+</$reveal>
+<$list filter="[type{!!type}!is[system]sort[title]search:title,type<userInput>]">
+<div class="tc-menu-list-subitem">
+<$link to={{!!title}}><$view field="title"/></$link>
+</div>
+</$list>
+</div>
+</$list>
+</$list>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$reveal>

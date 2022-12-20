@@ -1,0 +1,68 @@
+title: $:/BatchCreation/Record
+
+\define qfilter() [prefix[$(aggregationPrefix)$]!suffix[quicktable]]
+
+\define cleanupButton()
+<$list filter="[tag[$:/tags/BatchCreation/Record]has[deleted]limit[1]]">
+<$button class="fb-btn btn-warning" tooltip="Cleanup record sheet"> Clean up
+<$action-confirm $message="Do you wish to cleanup record sheet?">
+<$list filter="[tag[$:/tags/BatchCreation/Record]has[deleted]]" variable="del">
+<$vars aggregationPrefix={{{ [<del>get[caption]] }}}>
+<$list filter="[!tag[$:/tags/BatchCreation/Record]search:text:literal,casesensitive<qfilter>count[]match[0]]" variable="ignore">
+<$action-deletetiddler $tiddler=<<del>> />
+</$list>
+</$vars>
+</$list>
+</$action-confirm>
+</$button>
+</$list>
+\end
+
+\define deleteButton()
+<$button class="fb-btn btn-danger"> delete table
+<$list filter="[<record>has[id]then[id]] [<record>has[caption]then[caption]] +[count[]match[2]]" variable="ignore">
+<$action-confirm $message="Do you wish to delete this quick table?">
+<$action-deletetiddler
+  $filter="[prefix<configPrefix>] [prefix<statePrefix>] [prefix<aggregationPrefix>!suffix[quicktable]]"
+/>
+<$action-setfield $tiddler=<<record>> deleted="yes" />
+</$action-confirm>
+</$list>
+</$button>
+\end
+
+<<cleanupButton>>
+
+<$list filter="[tag[$:/tags/BatchCreation/Record]limit[1]]" emptyMessage="<p class='tc-muted'>Empty</p>">
+<table class="tc-view-field-table">
+<tbody>
+<$list filter="[tag[$:/tags/BatchCreation/Record]!sort[created]]" variable="record">
+<$vars state={{{ [<record>get[id]] }}} aggregationPrefix={{{ [<record>get[caption]] }}} filter={{{ [<record>get[filter]] }}}>
+<$vars configPrefix={{{ [[$:/config/quicktable/]addsuffix<state>] }}} statePrefix={{{ [[$:/state/quicktable/]addsuffix<state>] }}}>
+<tr class="tc-view-field">
+<td class="tc-view-field-value">
+<p>
+<$list filter="[<record>!has[deleted]]" variable="ignore">
+<$link to=<<record>>><$text text=<<aggregationPrefix>>/></$link>
+&emsp;<span class="tc-tiddler-controls" style="font-size:0.8em !important;">
+<<deleteButton>>
+</span>
+</$list>
+<$list filter="[<record>has[deleted]]" variable="ignore">
+<$link to=<<record>>><s><$text text=<<aggregationPrefix>>/></s></$link>
+</$list>
+</p>
+<$codeblock code={{{ [<record>get[text]] }}}/>
+<ul>
+<$list filter="[!tag[$:/tags/BatchCreation/Record]search:text:literal,casesensitive<qfilter>]" variable="tid">
+<li><$link to=<<tid>>/></li>
+</$list>
+</ul>
+</td>
+</tr>
+</$vars>
+</$vars>
+</$list>
+</tbody>
+</table>
+</$list>

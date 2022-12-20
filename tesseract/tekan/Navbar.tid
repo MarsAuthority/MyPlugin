@@ -1,0 +1,16 @@
+tags: $:/Tekan
+title: $:/Tekan/Navbar
+
+<nav class="navbar app">
+    	<div class="header-user-left">
+    		<span class="header-btn-icon">{{$:/Tekan/BoardSelect}}</span>
+		</div>
+
+		<div class="header-user">
+<span class="header-btn-icon">{{$:/Tekan/NavboardButtons}}</span>
+        <$list filter="[tag[$:/Tekan/BoardbarButton]]">
+			<span class="header-btn-icon"><$transclude/></span>
+        </$list>    
+		</div>
+	</nav>
+<nav class="navbar board"><$set name="currentBoard" filter="[{$:/Tekan/CurrentBoard}minlength[1]]" value={{{ [{$:/Tekan/CurrentBoard}get[caption]] }}} emptyValue="You need to either create a board or switch to an existing one"><<currentBoard>></$set></nav>

@@ -1,0 +1,6 @@
+key: ((advanced-search-sidebartab))
+tags: $:/tags/KeyboardShortcut
+title: $:/xp/ui/KeyboardShortcuts/advanced-search-sidebartab
+
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text="$:/xp/ui/SideBar/AdvancedSearch"/>
+<$action-sendmessage $message="tm-focus-selector" $param="""[data-tiddler-title="$:/xp/ui/SideBar/AdvancedSearch"] .tc-search input""" preventScroll="true"/>

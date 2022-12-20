@@ -1,0 +1,12 @@
+title: $:/css3-emoji-angry
+
+<div class="emoji angry">
+    <figure class="face">
+        <span class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+        </span>
+        <span class="mouth">
+        </span>
+    </figure>
+</div>

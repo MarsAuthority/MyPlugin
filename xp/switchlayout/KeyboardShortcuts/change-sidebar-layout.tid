@@ -1,0 +1,37 @@
+key: ((change-sidebar-layout))
+rewrite: 5.2.3
+tags: $:/tags/KeyboardShortcut
+title: $:/core/ui/KeyboardShortcuts/change-sidebar-layout
+
+\define fixedStoryActions()
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="42px"/>
+</$list>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fixed-fluid"/>
+<$list filter="[[$:/plugins/sq/Stories]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/sq/Stories}!match[yes]]" variable="ignore">
+<$action-setfield $tiddler="$:/temp/sidebarlayout/fixedstory" text="yes"/>
+<$list filter="[[$:/_sq/Stories/Story2StoryList]has[list]]" variable="ignore">
+<$action-setfield $tiddler="$:/config/_sq/Stories/story2" text="no"/>
+</$list>
+</$list>
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]match[no]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+\end
+
+\define fixedSidebarActions()
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fluid-fixed"/>
+<$action-deletetiddler $tiddler="$:/temp/sidebarlayout/fixedstory"/>
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]match[no]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+\end
+
+\whitespace trim
+<$list filter="[{$:/themes/tiddlywiki/vanilla/options/sidebarlayout}match[fixed-fluid]]" 
+emptyMessage=<<fixedStoryActions>>>
+<<fixedSidebarActions>>
+</$list>

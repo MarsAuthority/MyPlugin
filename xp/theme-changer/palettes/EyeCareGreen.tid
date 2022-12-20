@@ -1,0 +1,141 @@
+caption: Eye Care Green
+color-scheme: light
+css: $:/xp/theme-changer/styles/EyeCareGreen
+description: 护眼绿
+name: Eye Care Green
+tags: $:/tags/Palette
+title: $:/xp/theme-changer/palettes/EyeCareGreen
+type: application/x-tiddler-dictionary
+
+alert-background: #ffe476
+alert-border: #b99e2f
+alert-highlight: #881122
+alert-muted-foreground: #b99e2f
+background: #C3D1B8
+blockquote-bar: <<colour muted-foreground>>
+button-background: <<colour background>>
+button-foreground: #4E4341
+button-border: #4E4341
+code-background: #d5decd
+code-border: #d5decd
+code-foreground: #dd1144
+diff-delete-background: #ffc9c9
+diff-delete-foreground: <<colour foreground>>
+diff-equal-background: 
+diff-equal-foreground: <<colour foreground>>
+diff-insert-background: #aaefad
+diff-insert-foreground: <<colour foreground>>
+diff-invisible-background: 
+diff-invisible-foreground: <<colour muted-foreground>>
+dirty-indicator: #ff0000
+download-background: #34c734
+download-foreground: <<colour background>>
+dragger-background: <<colour foreground>>
+dragger-foreground: <<colour background>>
+dropdown-background: #d4dfce
+dropdown-border: <<colour muted-foreground>>
+dropdown-tab-background-selected: <<colour dropdown-background>>
+dropdown-tab-background: #b2bfa8
+dropzone-background: rgba(0,200,0,0.7)
+external-link-background-hover: inherit
+external-link-background-visited: inherit
+external-link-background: inherit
+external-link-foreground-hover: inherit
+external-link-foreground-visited: #0000aa
+external-link-foreground: #0000ee
+foreground: #000
+message-background: rgba(219, 227, 212, 0.9)
+message-border: #cad0c5
+message-foreground: #547599
+modal-backdrop: <<colour foreground>>
+modal-background: <<colour background>>
+modal-border: #999999
+modal-footer-background: #b7c2ae
+modal-footer-border: #b7c2ae
+modal-header-border: #dbe3d4
+muted-foreground: #a5a793
+notification-background: #ffffdd
+notification-border: #999999
+page-background: #b8c6ad
+pre-background: #cfdac6
+pre-border: #cfdac6
+primary: #008080
+select-tag-background:
+select-tag-foreground:
+sidebar-button-foreground: <<colour foreground>>
+sidebar-controls-foreground-hover: #342220
+sidebar-controls-foreground: rgba(0, 0, 0, 0.26)
+sidebar-foreground-shadow: rgba(255,255,255, 0.8)
+sidebar-foreground: rgba(0, 0, 0, 0.3)
+sidebar-muted-foreground-hover: #444444
+sidebar-muted-foreground: <<colour tiddler-subtitle-foreground>>
+sidebar-tab-background-selected: <<colour page-background>>
+sidebar-tab-background: #aab7a1
+sidebar-tab-border-selected: <<colour sidebar-tab-border>>
+sidebar-tab-border: #a0af95
+sidebar-tab-divider: <<colour sidebar-tab-background>>
+sidebar-tab-foreground-selected:
+sidebar-tab-foreground: <<colour tab-foreground>>
+sidebar-tiddler-link-foreground-hover: #444444
+sidebar-tiddler-link-foreground: rgba(0, 0, 0, 0.4)
+site-title-foreground: <<colour tiddler-title-foreground>>
+static-alert-foreground: #aaaaaa
+tab-background-selected: <<colour background>>
+tab-background: rgba(183, 194, 174, 1)
+tab-border-selected: <<colour tab-background>>
+tab-border: <<colour tab-background>>
+tab-divider: <<colour tab-background>>
+tab-foreground-selected: <<colour primary>>
+tab-foreground: #3b302e
+table-border: rgba(165, 178, 155, 0.8)
+table-footer-background: #a3a995
+table-header-background: rgba(175, 188, 165, 0.5)
+tag-background: rgba(241, 214, 132, 0.7)
+tag-foreground: #ffffff
+tiddler-background: <<colour background>>
+tiddler-border: <<colour background>>
+tiddler-controls-foreground-hover: #4E4341
+tiddler-controls-foreground-selected: #4E4341
+tiddler-controls-foreground: #dddecd
+tiddler-editor-background: #dbe3d4
+tiddler-editor-border-image: #ffffff
+tiddler-editor-border: rgba(0, 0, 0, 0.15)
+tiddler-editor-fields-even: rgba(191, 201, 183, 0.5)
+tiddler-editor-fields-odd: rgba(255, 255, 255, 0.2)
+tiddler-info-background: <<colour tiddler-editor-background>>
+tiddler-info-border: #dddddd
+tiddler-info-tab-background: <<colour tiddler-editor-background>>
+tiddler-link-background: #EEE
+tiddler-link-foreground: <<colour primary>>
+tiddler-subtitle-foreground: rgba(0, 0, 0, 0.26)
+tiddler-title-foreground: #182955
+toolbar-new-button:
+toolbar-options-button:
+toolbar-save-button:
+toolbar-info-button:
+toolbar-edit-button:
+toolbar-close-button:
+toolbar-delete-button:
+toolbar-cancel-button:
+toolbar-done-button:
+untagged-background: #999999
+very-muted-foreground: #888888
+wikilist-background: #e5e5e5
+wikilist-item: #fff
+wikilist-info: #000
+wikilist-title: #666
+wikilist-title-svg: <<colour wikilist-title>>
+wikilist-url: #aaa
+wikilist-button-open: #4fb82b
+wikilist-button-open-hover: green
+wikilist-button-reveal: #5778d8
+wikilist-button-reveal-hover: blue
+wikilist-button-remove: #d85778
+wikilist-button-remove-hover: red
+wikilist-toolbar-background: #d3d3d3
+wikilist-toolbar-foreground: #888
+wikilist-droplink-dragover: rgba(255,192,192,0.5)
+wikilist-button-background: #948e8d
+wikilist-button-foreground: #000
+quickbar-foreground: <<colour foreground>>
+quickbar-background: <<colour tiddler-controls-foreground>>

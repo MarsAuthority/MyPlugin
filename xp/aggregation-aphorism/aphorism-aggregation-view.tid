@@ -1,0 +1,167 @@
+caption: 聚合视图
+title: $:/aphorism-aggregation-view
+
+\import $:/aggregation/macros/general $:/aphorism-macros
+
+\define storeTitle() $:/temp/search/aggregation-aphorism
+
+\define cancel-search-actions()
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]]"/>
+<$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<dateTiddler>]"/>
+<$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-aphorism input"""/>
+\end
+
+\define defaultView() $:/config/xp/aggregation-aphorism/DefaultView
+\define filterState() $:/state/filter/aggregation-aphorism
+\define dateTiddler() $:/temp/filter/aggregation-aphorism/Date
+\define allState() $:/state/xp/aggregation-aphorism/ShowAll
+
+\define alltagsfilter()
+<$vars L="tag[" R="]" lb="[" rb={{{ [<configTiddler>get[text]removeprefix[[]] }}}>
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addsuffix<rb>addsuffix<sortRun>addsuffix<timeRun>addsuffix<limitResults>]" name="alltags" select=0>
+<$text text=<<alltags>>/>
+</$set>
+</$vars>
+\end
+
+\define toggleViewButton()
+\whitespace trim
+<$reveal state=<<defaultView>> default="read" type="nomatch" text="read">
+<$button tooltip="Switching to reading view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="read"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+<$reveal state=<<defaultView>> type="match" text="read">
+<$button tooltip="Switching to management view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="manage"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+\end
+
+\define allButton()
+\whitespace trim
+<$reveal state=<<allState>> default="50" type="nomatch" text="all">
+<$button tooltip="Show all results" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<allState>> text="all"/>
+{{$:/xp/images/all}}
+</$button>
+</$reveal>
+\end
+
+\whitespace trim
+
+<$list filter=<<aggr-has-tids>> emptyMessage="{{$:/aggregation/prompt}}" variable="ignore">
+
+<span class="xp-search xp-search-aphorism">
+Search &#32; <<selectSearchScope>> <i class="tc-small-gap-right"/> <$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus={{$:/config/xp/aggregation/SearchAutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<$reveal state=<<filterState>> type="nomatch" text="yes">
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler=<<filterState>> text="yes"/>
+{{$:/xp/images/filter}}
+</$button>
+</$reveal>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]has[text]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</$set>
+<<toggleViewButton>>
+<<allButton>>
+</span>
+<$vars userInput={{{ [<storeTitle>get[text]] }}}
+    timeRun={{{ [<filterState>get[filter]] }}}
+    sortRun="+[!sort[created]]"
+    limitRun="+[limit[50]]"
+    resultCount="""<$count filter="[subfilter<searchFilter>!is[draft]]"/>""">
+<$wikify text=<<alltagsfilter>> name="alltagsfilterwikified">
+<$set name="limitResults" filter="[<allState>has[text]]" value="" emptyValue=<<limitRun>>>
+<$set name="searchFilter" filter="[<filterState>has[list]]" value=<<alltagsfilterwikified>> emptyValue={{{ [<configTiddler>get[text]addsuffix[ ]addsuffix<sortRun>addsuffix<timeRun>addsuffix<limitResults>] }}}>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]get[text]!is[blank]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$reveal state=<<filterState>> type="nomatch" text="yes" animate="yes">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$reveal>
+</$reveal>
+</$set>
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<div class="xp-wrapper-aggrfilter">
+
+<<filtered-by-tag>>
+
+Filtered by Time: <<resetFieldButton>>
+
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<tr>
+<<filtered-by-time>>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</$reveal>
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<<lingo System/Matches>>
+<<unsortButton>>
+</$reveal>
+
+
+<!-- Reading View -->
+<$reveal state=<<defaultView>> type="match" text="read" default="read" animate="yes">
+
+<div class="xp-aphorism">
+<table class="xp-aphorism">
+<tbody>
+<$list filter=<<searchFilter>>>
+<tr class="xp-aphorism-item">
+<td class="xp-aphorism-content">
+<div class="tc-tiddler-controls xp-aphorism-controls">
+<<openTiddlerButton>>
+{{||$:/core/ui/Buttons/edit}}
+</div>
+<$transclude mode="block" tiddler=<<aphorismTemplate>>>
+<$transclude mode="block"><p>Missing tiddler.</p></$transclude>
+</$transclude>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+
+</$reveal>
+
+<!-- Management View -->
+<$navigator story=<<SubStoryList>> history=<<SubHistoryList>> openLinkFromInsideRiver="above">
+
+<$reveal state=<<defaultView>> type="match" text="manage" animate="yes">
+<$set name="listFilter" filter="[<storeTitle>has[text]] [<filterState>has[list]] +[limit[1]]"
+	value="[subfilter<searchFilter>] -[subfilter<searchFilter>has[draft.of]get[draft.title]]"
+	emptyValue="[list<SubStoryList>] [subfilter<searchFilter>] -[subfilter<searchFilter>has[draft.of]get[draft.title]]">
+<p />
+<div class="tc-link-info">
+
+<$list filter=<<listFilter>> history=<<SubHistoryList>> template="$:/aphorism-card-template" editTemplate={{$:/config/ui/EditTemplate}} storyview="pop" />
+
+</div>
+</$set>
+</$reveal>
+
+</$navigator>
+
+</$set>
+</$set>
+</$wikify>
+</$vars>
+
+</$list>

@@ -1,0 +1,15 @@
+caption: 2column-adjust-width
+tags: $:/tags/TextEditor/columns
+title: $:/language/columns/2column-adjust-width
+
+<div class="left-column-adjust">
+
+{{$:/xp/columns/Examples/text2}}
+
+</div>
+
+<div class="right-column-adjust">
+
+{{$:/xp/columns/Examples/text1}}
+
+</div>

@@ -1,0 +1,82 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/software-help
+
+<div class="blue-box">
+
+SOFTWARE - Gathering the software I need.
+
+</div>
+
+! 如何使用？
+
+!!! 点击 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new software 创建软件条目。
+
+* 常用字段。<div class="gray-box">
+
+|!Field |!Description |
+|`caption` |显示名称，通常是对 `title` 的简化。 |
+|`description` |描述软件的功能。 |
+|`color` |标记卡片颜色。（卡片视图） |
+|`purpose` |描述个人的主要用途。（表格视图） |
+|^`moscow` |根据 [[MoSCoW Method|https://en.wikipedia.org/wiki/MoSCoW_method]] 对软件进行需求评级。（表格视图）<br>''M'' -- //Must have//，''S'' -- //Should have//，''C'' -- //Could have//，''W'' -- //Won’t have//。 |
+
+</div>
+
+* 预设归类标签。<div class="gray-box">
+
+可以对这个大主题，预先设置一些归类标签。
+
+这里默认提供了三个类别的「分类标签」：软件需求评级（~MoSCoW）、操作系统（OS）、应用分类（CATEGORY）。
+
+分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式分别存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-software/category/]]" type:"ol">>
+
+> 在过滤面板，点击分类标题就可以查看配置文件。
+
+创建条目时打上归类标签，查阅时就可以用该标签快速过滤出这个类别的条目。
+
+你可以修改配置文件中的分类标签，或者新建配置文件 `$:/config/xp/aggregation-software/category/<你的新分类>`，添加一个新类别。
+
+</div>
+
+* 查看最近添加的条目，只需点击 <<.icon $:/xp/images/sorting>> 排序按钮，选择下拉菜单中的 `created↑` 将结果按创建时间降序排列。<br><br>
+
+* 可以到下面两个网站寻找软件：<div class="gray-box">
+
+* https://alternativeto.net/
+* https://www.producthunt.com/
+
+</div>
+
+* 参考其他帮助说明：[[Aggregation Readme|$:/plugins/xp/aggregation]] / [[Bookshelf Help|$:/bookshelf-help]]
+
+
+! ~MoSCoW of Applications
+
+A [[MoSCoW|https://en.wikipedia.org/wiki/MoSCoW_method]] is a technique to make plans, focusing on priorities and requirements. It would be good to make a list of applications, ranked by their importance to you.
+
+~MoSCoW stands for //must have//, //should have//, //could have// and //will not have// -- the o's were added to make the acronym more pronounceable.
+
+!! Must have
+These applications are essential. You’ll not be able to keep a job, maintain a healthy social live, or finish an education without these applications.
+
+Common examples would be Adobe Photoshop for graphic designers, SolidWorks for industrial engineers, Microsoft Office for accountants, the LockDown Browser for students, or Docker for software developers.
+
+!! Should have
+You use these applications daily, for things like browsing the internet, watching series, or gaming with friends. These applications can be very important, but missing out on one will not have ill consequences.
+
+Common examples would be Google Chrome, video-games like Fortnite, Minecraft or Counter Strike, Zoom, or VS Code.
+
+!! Could have
+These applications would be nice to have, but they are in no way important. You could do without for a long period of time, or you could easily compromise.
+
+Common examples would be a music player, a simple text editor for your Christmas letters, or a utility to rip YouTube videos.
+
+!! Won’t have
+What will you never miss? What applications do you have installed, but never touched? You don’t have to care about Fedora Linux’ compatibility if you don’t use them anyway.
+
+Common examples include that touchpad-configuration utility, or the Help tools generously provided by your computer manufacturer.
+
+See also: [[Migrating to Fedora 35|https://fedoramagazine.org/migrating-to-fedora-35/]]

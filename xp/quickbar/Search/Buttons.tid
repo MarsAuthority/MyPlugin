@@ -1,0 +1,19 @@
+caption: Buttons
+state: button
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/Buttons
+
+<$reveal state=<<stateTiddler>> type="match" text={{!!state}} animate="yes">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+//<small>Button matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/EditToolbar]] [all[shadows+tiddlers]tag[$:/tags/EditorToolbar]] [all[shadows+tiddlers]tag[$:/tags/PageControls]] [all[shadows+tiddlers]tag[$:/tags/ViewToolbar]] [all[shadows+tiddlers]tag[$:/tags/TopRightBar]] [all[shadows+tiddlers]tag[$:/tags/TopLeftBar]] [all[shadows+tiddlers]prefix[$:/xp/quickbar/Buttons/]] +[sort[]search:-text,*<userInput>]" />
+</$list>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$reveal>

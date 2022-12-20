@@ -1,0 +1,9 @@
+title: $:/config/FilterBuilder/Start
+
+all[shadows+tiddlers]search:*:literal,casesensitive[]
+all[shadows+tiddlers]prefix[]search:*:literal,casesensitive[]
+all[shadows+tiddlers]suffix[]search:*:literal,casesensitive[]
+[]plugintiddlers[]search:*:literal,casesensitive[]
+[]plugintiddlers[]is[tiddler]search:*:literal,casesensitive[]
+all[shadows+tiddlers]tag[$:/tags/PageControls]
+all[shadows+tiddlers]tag[]search-replace[<search-term>],[<replacement>]

@@ -1,0 +1,6 @@
+caption: 理学
+ctag: Science
+tags: $:/tags/CourseCategories
+title: $:/courses-category-science
+
+<<list-courses Science>>

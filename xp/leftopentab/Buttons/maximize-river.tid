@@ -1,0 +1,9 @@
+caption: {{$:/xp/images/maximize}} maximize river
+description: Maximize the story river
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/maximize-river
+
+\import $:/xp/leftopentab/macros
+\whitespace trim
+
+<<maximize-river-button>>

@@ -1,0 +1,9 @@
+title: $:/xp/quickbar/width
+
+\define buttonsWidth()
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/Width]remove[$:/tags/QuickBar/Width]!has[draft.of]]">
+<$transclude />
+</$list>
+\end
+
+20px <<buttonsWidth>> + 20px

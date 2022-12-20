@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Text Formatting]]
+title: $:/language/HTMLTags/u
+
+<$button tag="a" tooltip="Underlined">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<u>"
+	suffix="</u>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<u>"></span>
+
+</$button>

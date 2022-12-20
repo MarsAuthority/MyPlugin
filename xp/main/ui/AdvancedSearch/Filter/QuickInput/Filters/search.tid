@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 搜索普通条目除文本外的所有字段……
+filter: [!is[system]search:-text,*[]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/search
+
+{{!!filter}}

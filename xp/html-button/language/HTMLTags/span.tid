@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Section Divisions]]
+title: $:/language/HTMLTags/span
+
+<$button tag="a" tooltip="Span">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="""<span class="" style="">"""
+	suffix="</span>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<span>"></span>
+
+</$button>

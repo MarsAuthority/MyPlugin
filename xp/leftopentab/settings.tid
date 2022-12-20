@@ -1,0 +1,39 @@
+caption: ~LeftOpenTab Settings
+title: $:/plugins/xp/leftopentab/settings
+
+\define dropdown-leftopentab-titlebar()
+<$select tiddler="$:/config/LeftOpenTab/Titlebar">
+<option value="leftopentab-titlebar-line">Line</option>
+<option value="leftopentab-titlebar-semicircle">Semi Circle</option>
+<option value="leftopentab-titlebar-square">Square</option>
+<option value="leftopentab-titlebar-word">Word</option>
+</$select>
+\end
+
+\define dropdown-tiddler-title-color()
+<$select tiddler="$:/config/LeftOpenTab/Color">
+<option value="<<color tiddler-link-foreground>>"> tiddler-link-foreground </option>
+<option value="<<color tiddler-title-foreground>>"> tiddler-title-foreground </option>
+</$select>
+\end
+
+\define dropdown-tiddler-title-wrap()
+<$select tiddler="$:/config/LeftOpenTab/Wrap">
+<option value="nowrap">No wrap, overflow display ellipsis</option>
+<option value="nowrap-scrollable">No wrap, overflow display scrollbar</option>
+<option value="wrap">Forced line break</option>
+</$select>
+\end
+
+
+| ''Width'' of ~LeftSideBar|^<$edit-text tiddler="$:/xp/leftopentab/metrics/width" tag="input" size=6/> <$button set="$:/xp/leftopentab/metrics/width" setTo="256px" tooltip="Reset to default" aria-label="reset to default">Reset</$button> |
+| ''padding-right'' of ~LeftSideBar|^<$edit-text tiddler="$:/xp/leftopentab/metrics/paddingright" tag="input" size=6/> <$button set="$:/xp/leftopentab/metrics/paddingright" setTo="22px" tooltip="Reset to default" aria-label="reset to default">Reset</$button> |
+| ''padding-top'' of ~LeftSideBar|^<$edit-text tiddler="$:/xp/leftopentab/metrics/paddingtop" tag="input" size=6/> <$button set="$:/xp/leftopentab/metrics/paddingtop" setTo="56px" tooltip="Reset to default" aria-label="reset to default">Reset</$button> |
+| ''Style'' of Titlebar|^<<dropdown-leftopentab-titlebar>> |
+| Set [[storyleft default value|$:/themes/tiddlywiki/vanilla/metrics/storyleft]]|^<$edit-text tiddler="$:/xp/leftopentab/metrics/storyleft" tag="input" size=6/> <$button set="$:/xp/leftopentab/metrics/storyleft" setTo="0px" tooltip="Reset to default" aria-label="reset to default">Reset</$button> |
+| Set [[storyright default value |$:/themes/tiddlywiki/vanilla/metrics/storyright]]|^<$edit-text tiddler="$:/xp/leftopentab/metrics/storyright" tag="input" size=6/> <$button set="$:/xp/leftopentab/metrics/storyright" setTo="770px" tooltip="Reset to default" aria-label="reset to default">Reset</$button> |
+
+Tiddler title:
+
+| Focussed tiddler|Highlight with <<dropdown-tiddler-title-color>> |
+| [[word-wrap|$:/config/LeftOpenTab/Wrap]]|<<dropdown-tiddler-title-wrap>> |

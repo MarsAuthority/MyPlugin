@@ -1,0 +1,14 @@
+tags: $:/tags/XP
+title: $:/_xp/Stylesheet/sticky-blur-background
+
+<$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
+.tc-tiddler-title {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.tc-editor-toolbar {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+}
+</$reveal>

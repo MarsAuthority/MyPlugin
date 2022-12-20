@@ -1,0 +1,17 @@
+title: $:/plugins/xp/managetags/readme
+
+; Manage Tags
+: Add or Delete tags in view mode
+
+!! Settings
+
+<div style="margin-left: 25px;">
+
+<$checkbox tiddler="$:/xp/ui/Buttons/manage-tags" tag="$:/tags/ViewToolbar">
+ [[Show in View Toolbar|$:/xp/ui/Buttons/manage-tags]]
+</$checkbox><br>
+<$checkbox tiddler="$:/xp/ui/Buttons/manage-tags" tag="$:/tags/PageControls">
+ [[Show in Page Toolbar|$:/xp/ui/Buttons/manage-tags]]
+</$checkbox>
+
+</div>

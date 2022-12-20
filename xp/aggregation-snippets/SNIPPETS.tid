@@ -1,0 +1,164 @@
+caption: {{$:/xp/images/wikitext}} SNIPPETS
+color: #bbb
+icon: $:/xp/images/wikitext
+title: SNIPPETS
+tmap.id: 814ad6af-a396-4dba-9da4-27d8eead4a7f
+
+\import $:/aggregation/macros/general $:/snippets-macros
+\whitespace trim
+
+\define storeTitle() $:/temp/search/snippets
+\define filterState() $:/state/filter/aggregation-snippets
+\define readingMode() $:/config/xp/aggregation-snippets/ReadingMode
+\define SubStoryList() $:/temp/xp/aggregation-snippets/SubStoryList
+\define SubHistoryList() $:/temp/xp/aggregation-snippets/SubHistoryList
+
+\define filterPanel(filterState)
+<$wikify text=<<listTagsInUse>> name="tagsInUse">
+<$list filter="[enlist<tagsInUse>limit[1]]" variable="ignore">
+<div class="xp-wrapper-aggrfilter">
+<div class="xp-aggrfilter-category" style="font-size:1em;padding:10px 0;">
+<span class="xp-aggrfilter-category-item">
+<$list filter="[enlist<tagsInUse>sort[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+<$macrocall $name="deselectButton" filterState=<<filterState>>/>
+</span>
+</div>
+</div>
+</$list>
+</$wikify>
+\end
+
+\define alltagsfilter()
+<$vars L="tag[" R="]" lb="[" rb={{{ [<configTiddler>get[text]removeprefix[[]] }}}>
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addsuffix<rb>addsuffix<sortRun>]" name="alltags" select=0>
+<$text text=<<alltags>>/>
+</$set>
+</$vars>
+\end
+
+\define cancel-search-actions() <$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]]"/><$action-deletetiddler $filter="[<storeTitle>] [<filterState>]"/><$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-snippets input"""/>
+
+\define newSnippetButton()
+<$button actions={{$:/xp/ui/Actions/new-snippet}} tooltip="Create a new snippet" aria-label="new snippet" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new snippet
+</$button>
+\end
+
+\define navigatorNewSnippet()
+\whitespace trim
+<$list filter="[<storeTitle>has[text]] [<filterState>has[list]] [<readingMode>get[text]match[on]] +[limit[1]]" emptyMessage="""<$navigator story=<<SubStoryList>> history=<<SubHistoryList>> openLinkFromInsideRiver="above"><<newSnippetButton>></$navigator>""">
+<<newSnippetButton>>
+</$list>
+\end
+
+
+<div class="tc-sidebar-lists xp-float-right">
+<<navigatorNewSnippet>>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/snippets-help" "SNIPPETS Help">>
+</div>
+
+<$list filter="[tag<aggregationTag>limit[1]]" emptyMessage="{{$:/snippets-prompt}}" variable="ignore">
+
+<$navigator story=<<SubStoryList>> history=<<SubHistoryList>> openLinkFromInsideRiver="above">
+
+<!-- Search Box -->
+<span class="xp-search xp-search-snippets">
+Search &#32; <$macrocall $name="selectSearchScope" actions=<<snippets-select-actions>>/>  <i class="tc-small-gap-right"/> <$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus="true" inputCancelActions=<<cancel-search-actions>>/>
+</span>
+<i class="tc-tiny-gap-right"/>
+<$vars userInput={{{ [<storeTitle>get[text]] }}}
+	resultCount="""<$count filter="[subfilter<searchFilter>!has[draft.of]]"/>"""
+	sortRun="+[!sort[created]]">
+<$wikify text="""<$macrocall $name="alltagsfilter" filterState=<<filterState>>/>""" name="alltagsfilterwikified">
+<$set name="searchFilter" filter="[<filterState>has[list]]"
+	value=<<alltagsfilterwikified>>
+	emptyValue={{{ [<configTiddler>get[text]addsuffix<sortRun>] }}}>
+<span class="tc-search">
+<$list filter="[<storeTitle>!is[missing]get[text]!is[blank]] [<filterState>!is[missing]has[list]] +[limit[1]]" variable="ignore">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$list>
+<$macrocall $name="toggleReadingMode" readingMode=<<readingMode>>/>
+<$reveal state=<<readingMode>> type="match" text="on" animate="yes">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$reveal>
+</span>
+
+<!-- Filter Panel -->
+<$macrocall $name="filterPanel" filterState=<<filterState>> />
+
+<$reveal state=<<readingMode>> type="nomatch" text="on" animate="yes">
+
+<!-- Recent List -->
+<$reveal state=<<storeTitle>> type="match" text="">
+<$reveal stateTitle=<<filterState>> stateField="list" type="match" text="">
+
+<div class="xp-search-results">{{$:/language/ColourPicker/Recent}}</div>
+
+<div class="tc-link-info">
+
+<$list
+	filter="[list<SubStoryList>!tag<aggregationTag>] [tag<aggregationTag>!sort[created]limit[5]] -[tag<aggregationTag>is[draft]get[draft.title]]"
+	history=<<SubHistoryList>>
+	template="$:/templates/transclusion-snippet"
+	editTemplate={{$:/config/ui/EditTemplate}} 
+	storyview="pop"
+/>
+
+</div>
+</$reveal>
+</$reveal>
+
+<!-- Result List -->
+<$list filter="[<storeTitle>has[text]] [<filterState>has[list]] +[limit[1]]" variable="ignore">
+<$set name="listFilter" filter="[<storeTitle>has[text]] [<filterState>has[list]] +[limit[1]]"
+	value="[subfilter<searchFilter>] -[subfilter<searchFilter>is[draft]get[draft.title]]"
+	emptyValue="[list<SubStoryList>] [subfilter<searchFilter>] -[subfilter<searchFilter>is[draft]get[draft.title]]">
+
+<div class="xp-search-results"><<lingo System/Matches>></div>
+
+<div class="tc-link-info">
+
+<$list
+	filter=<<listFilter>>
+	history=<<SubHistoryList>>
+	template="$:/templates/transclusion-snippet"
+	editTemplate={{$:/config/ui/EditTemplate}}
+	storyview="pop"
+/>
+
+</div>
+
+</$set>
+</$list><!-- Result List -->
+</$reveal><!-- Reading Mode -->
+
+</$set></$wikify></$vars>
+</$navigator>
+
+<!-- Reading Mode -->
+<$vars userInput={{{ [<storeTitle>get[text]] }}}
+	resultCount="""<$count filter="[subfilter<searchFilter>!has[draft.of]]"/>"""
+	sortRun="+[!sort[created]]">
+<$wikify text="""<$macrocall $name="alltagsfilter" filterState=<<filterState>>/>""" name="alltagsfilterwikified">
+<$set name="searchFilter" filter="[<filterState>has[list]]"
+	value=<<alltagsfilterwikified>>
+	emptyValue={{{ [<configTiddler>get[text]addsuffix<sortRun>] }}}>
+<$reveal state=<<readingMode>> type="match" text="on" animate="yes">
+<$list filter="[subfilter<searchFilter>limit[1]]" variable="ignore">
+
+<$macrocall
+	$name="aggregation-toc"
+	filter="[subfilter<searchFilter>!has[draft.of]]"
+	selectedTiddler="$:/temp/toc/selectedTiddler/aggregation-snippets"
+/>
+
+</$list>
+</$reveal>
+</$set></$wikify></$vars>
+
+</$list>

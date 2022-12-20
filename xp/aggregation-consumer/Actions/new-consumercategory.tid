@@ -1,0 +1,31 @@
+description: create a new category
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-consumercategory
+
+\define get-tags() $(textFieldTags)$ $(tagsFieldTags)$
+\define prefixText() <$text text={{{ [[<<list-consumer "]] }}}/>
+\define suffixText() <$text text={{{ [[">>]] }}}/>
+
+<$vars newcategoryTitle={{$:/config/new-consumercategory/Title}}
+  newcategoryCaption={{$:/config/new-consumercategory/Caption}}
+  textFieldTags={{$:/config/new-consumercategory/Tags}}
+  tagsFieldTags={{$:/config/new-consumercategory/Tags!!tags}}
+  newcategoryCtag={{$:/config/new-consumercategory/Ctag}}
+  ctagStoreTiddler="$:/config/new-consumercategory/Ctag"
+  storeTiddler="$:/config/new-consumercategory/Title/input"
+  listopsTiddler="$:/consumer-category-others"
+  >
+<$reveal type="nomatch" state=<<newcategoryTitle>> text="">
+  <$action-setfield $tiddler=<<storeTiddler>> text=<<newcategoryTitle>>/>
+</$reveal>
+<$wikify name="newcategoryText" text={{{ [<newcategoryCtag>addprefix<prefixText>addsuffix<suffixText>] }}}>
+<$reveal type="match" state=<<newcategoryTitle>> text="">
+  <$reveal type="nomatch" state=<<ctagStoreTiddler>> text="">
+    <$action-createtiddler $basetitle=<<newcategoryTitle>> caption=<<newcategoryCaption>> tags=<<get-tags>> ctag=<<newcategoryCtag>> text=<<newcategoryText>> list-before=<<listopsTiddler>>/>
+  </$reveal>
+  <$reveal type="match" state=<<ctagStoreTiddler>> text="">
+    <$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/ctagEmpty"/>
+  </$reveal>
+</$reveal>
+</$wikify>
+</$vars>

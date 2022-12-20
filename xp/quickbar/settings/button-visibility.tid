@@ -1,0 +1,45 @@
+title: $:/xp/quickbar/settings/button-visibility
+
+\define lingo-base() $:/language/TiddlerInfo/
+\define config-base() $:/config/xp/quickbar/Items/Visibility/
+\define promptMessage() <i class="tc-muted">This item has been disabled</i>
+\define quickbar-button-visibility(buttonType)
+<$vars config-base="$:/config/xp/quickbar/$buttonType$/Visibility/"
+	tv-config-toolbar-icons="yes" tv-config-toolbar-text="yes">
+
+<$macrocall $name="list-tagged-draggable" tag="$:/tags/QuickBar/$buttonType$" itemTemplate="$:/xp/quickbar/ItemTemplate"/>
+
+</$vars>
+\end
+
+Choose which buttons are displayed on the quickbar. Drag and drop to change the ordering
+
+''New Buttons'':
+
+<$list filter="[<config-base>addsuffix[$:/xp/quickbar/items/new]!text[hide]]" emptyMessage=<<promptMessage>> variable="ignore">
+<<quickbar-button-visibility "NewButtons">>
+</$list>
+
+''To Buttons'':
+
+<$list filter="[<config-base>addsuffix[$:/xp/quickbar/items/to]!text[hide]]" emptyMessage=<<promptMessage>> variable="ignore">
+<<quickbar-button-visibility "ToButtons">>
+</$list>
+
+''Hover Popup Buttons'':
+
+<$list filter="[<config-base>addsuffix[$:/xp/quickbar/items/hoverpopups]!text[hide]]" emptyMessage=<<promptMessage>> variable="ignore">
+<<quickbar-button-visibility "HoverPopupButtons">>
+</$list>
+
+''Page Control Buttons'':
+
+<$list filter="[<config-base>addsuffix[$:/xp/quickbar/items/pagecontrols]!text[hide]]" emptyMessage=<<promptMessage>> variable="ignore">
+<<quickbar-button-visibility "PageControlButtons">>
+</$list>
+
+''Setting Buttons'':
+
+<$list filter="[<config-base>addsuffix[$:/xp/quickbar/items/setting-buttons]!text[hide]]" emptyMessage=<<promptMessage>> variable="ignore">
+<<quickbar-button-visibility "SettingButtons">>
+</$list>

@@ -1,0 +1,8 @@
+caption: 合伙企业
+ctag: 合伙企业
+tags: $:/tags/EnterpriseCategories
+title: $:/enterprises-category-合伙企业
+
+//<small>（合伙人可以是两个以上自然人，也可以是有限公司、企业法人、事业法人、社团法人等）它分为普通合伙和有限合伙。如下设分支机构，性质为“合伙企业分支机构”。</small>//
+
+<<list-enterprises 合伙企业>>

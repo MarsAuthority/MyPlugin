@@ -1,0 +1,8 @@
+caption: divider
+description: PageControls divider
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/divider/pagecontrols
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/pagecontrols" type="nomatch" text="hide">
+<span class="xp-quickbar-divider" />
+</$reveal>

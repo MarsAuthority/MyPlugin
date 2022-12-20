@@ -1,0 +1,11 @@
+caption: Tabs
+tags: $:/tags/TextEditor/Snippet
+title: $:/language/Snippets/Tabs
+
+<$macrocall
+  $name="tabs"
+  tabsList=""
+  default=""
+  state="$:/state/tab5"
+  class="tc-vertical"
+/>

@@ -1,0 +1,14 @@
+caption: angry
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/angry
+
+<$button tag="a" tooltip="Angry">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji angry 0.5>>"
+/>
+
+{{$:/css3-emoji-angry}}
+</$button>

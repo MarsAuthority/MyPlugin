@@ -1,0 +1,19 @@
+title: $:/plugins/danielo515/encryptTiddler/openPopup
+
+<$reveal state="$:/state/encrypt" type="nomatch" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo={{!!title}} class="tc-btn-invisible">{{$:/plugins/danielo515/encryptTiddler/unlocked}}
+
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+	<span class="tc-btn-text">
+		<$text text="encrypt tiddler"/>
+	</span>
+</$list>
+
+</$button></$reveal><$reveal state="$:/state/encrypt" type="match" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo="" class="tc-btn-invisible">{{$:/plugins/danielo515/encryptTiddler/unlocked}}
+
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+	<span class="tc-btn-text">
+		<$text text="encrypt tiddler"/>
+	</span>
+</$list>
+
+</$button></$reveal>

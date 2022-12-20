@@ -1,0 +1,6 @@
+caption: 其他
+ctag: Others
+tags: $:/tags/CourseCategories
+title: $:/courses-category-others
+
+<<list-courses Others>>

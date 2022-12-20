@@ -1,0 +1,18 @@
+tags: $:/tags/PageTemplate
+title: $:/xp/ui/PageTemplate/leftsidebar
+
+\import $:/xp/leftopentab/macros
+
+<$reveal state="$:/config/LeftOpenTab/Status" type="match" text="show" animate="yes">
+
+<$scrollable fallthrough="no" class="leftopentab-scrollable">
+
+<div class="leftopentab-content">
+
+<$transclude tiddler="$:/xp/leftopentab/content" mode="block"/>
+
+</div>
+
+</$scrollable>
+
+</$reveal>

@@ -1,0 +1,6 @@
+title: $:/config/EditToolbarButtons/Visibility/$:/
+
+_sq/Stories/divertTiddlerEditMacro: hide
+plugins/telmiger/EditButtons/Buttons/cancel-and-close: hide
+plugins/telmiger/EditButtons/Buttons/save-and-close: hide
+plugins/telmiger/EditButtons/Buttons/save-open: hide

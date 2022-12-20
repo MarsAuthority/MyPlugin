@@ -1,0 +1,8 @@
+caption: {{$:/language/projectify/Upcoming}}
+list-before: $:/plugins/nico/projectify/NotebookSidebar/Projects
+tags: $:/themes/nico/notebook/tags/SidebarSection
+title: $:/plugins/nico/projectify/ui/sidebar/Upcoming
+
+<div class="py-sidebar-section">
+  {{$:/plugins/nico/projectify/ui/dashbaord/Upcoming}}
+</div>

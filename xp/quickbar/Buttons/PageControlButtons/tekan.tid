@@ -1,0 +1,7 @@
+caption: {{$:/Tekan/Switch!!caption}}
+dependents: $:/plugins/tesseract/tekan
+description: {{$:/Tekan/Switch!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/tekan
+
+{{$:/Tekan/Switch}}

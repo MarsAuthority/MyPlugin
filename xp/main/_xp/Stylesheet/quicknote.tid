@@ -1,0 +1,31 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/quicknote
+
+.quicknote-edit,
+.quicknote-edit-texteditor {
+	width: 100%;
+	margin: 4px 0;
+	padding: 3px;
+	font-size: 11.5px; 
+	line-height: 1em;
+	outline: none;
+}
+
+.quicknote-edit .CodeMirror-lines {
+	font-size: 11.5px; 
+	line-height: 1em;
+}
+
+.quicknote-edit .CodeMirror-gutter {
+	width: 20px !important;
+}
+
+.quicknote-edit .CodeMirror-linenumber {
+	font-size: 10.5px; 
+	padding: 0 3px 0 0;
+	width: 18px !important;
+}
+
+.quicknote-edit .CodeMirror-gutter-elt {
+	min-width: 15px;
+}

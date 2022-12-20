@@ -1,0 +1,166 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/quickbar/styles/dropup
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+.xp-drop-up-wrapper {
+	position: relative;
+}
+
+.xp-drop-up,
+.xp-drop-up-scope {
+	min-width: 380px;
+	border: 1px solid <<colour dropdown-border>>;
+	background-color: <<colour dropdown-background>>;
+	padding: 7px 0 7px 0;
+	margin: 4px 0 0 0;
+	white-space: nowrap;
+	text-shadow: none;
+	line-height: 1.4;
+
+	position: absolute;
+	z-index: 600;
+	bottom: 100%;
+	margin-bottom: 2px;
+	text-align: left;
+}
+
+.xp-drop-up .xp-drop-up,
+.xp-drop-up-scope {
+	margin-left: 14px;
+}
+
+.xp-drop-up button svg, .xp-drop-up a svg,
+.xp-drop-up-scope button svg, .xp-drop-up-scope a svg {
+	fill: <<colour foreground>>;
+}
+
+.xp-drop-up button:disabled svg {
+	fill: <<colour muted-foreground>>;
+}
+
+.xp-drop-up button.tc-btn-invisible:hover svg,
+.xp-drop-up-scope button.tc-btn-invisible:hover svg {
+	fill: <<colour background>>;
+}
+
+.xp-drop-up .xp-drop-up-info {
+	padding-left: 14px;
+}
+
+.xp-drop-up p,
+.xp-drop-up-scope p {
+	padding: 0 14px 0 14px;
+}
+
+.xp-drop-up svg,
+.xp-drop-up-scope svg {
+	width: 1em;
+	height: 1em;
+}
+
+.xp-drop-up img,
+.xp-drop-up-scope img {
+	width: 1em;
+}
+
+.xp-drop-up a, .xp-drop-up button,
+.xp-drop-up-scope a, .xp-drop-up-scope button {
+	display: block;
+	padding: 0 14px 0 14px;
+	width: 100%;
+	text-align: left;
+	color: <<colour foreground>>;
+	line-height: 1.4;
+}
+
+.xp-drop-up .tc-tab-set .tc-tab-buttons button {
+	display: inline-block;
+	width: auto;
+	margin-bottom: 0px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.xp-drop-up .tc-prompt {
+	padding: 0 14px;
+}
+
+.xp-drop-up .tc-chooser {
+	border: none;
+}
+
+.xp-drop-up .tc-chooser .tc-swatches-horiz {
+	font-size: 0.4em;
+	padding-left: 1.2em;
+}
+
+.xp-drop-up .tc-file-input-wrapper {
+	width: 100%;
+}
+
+.xp-drop-up .tc-file-input-wrapper button {
+	color: <<colour foreground>>;
+}
+
+.xp-drop-up a:hover, .xp-drop-up button:hover, .xp-drop-up .tc-file-input-wrapper:hover button,
+.xp-drop-up-scope a:hover, .xp-drop-up-scope button:hover, .xp-drop-up-scope .tc-file-input-wrapper:hover button {
+	color: <<colour tiddler-link-background>>;
+	background-color: <<colour tiddler-link-foreground>>;
+	text-decoration: none;
+}
+
+.xp-drop-up .tc-tab-buttons button {
+	background-color: <<colour dropdown-tab-background>>;
+}
+
+.xp-drop-up .tc-tab-buttons button.tc-tab-selected {
+	background-color: <<colour dropdown-tab-background-selected>>;
+	border-bottom: 1px solid <<colour dropdown-tab-background-selected>>;
+}
+
+.xp-drop-up-bullet {
+	display: inline-block;
+	width: 0.5em;
+}
+
+.xp-drop-up .tc-tab-contents a {
+	padding: 0 0.5em 0 0.5em;
+}
+
+.xp-block-dropup {
+	position: absolute;
+	min-width: 220px;
+	border: 1px solid <<colour dropdown-border>>;
+	background-color: <<colour dropdown-background>>;
+	padding: 7px 0;
+	margin: 4px 0 0 0;
+	white-space: nowrap;
+	z-index: 1000;
+	text-shadow: none;
+
+	bottom: 100% !important;
+	margin-bottom: 28px;
+	text-align: left;
+}
+
+/* ON PHONE */
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+	.xp-drop-up a, .xp-drop-up button,
+	.xp-drop-up-scope a, .xp-drop-up-scope button {
+		line-height: 1.6;
+	}
+
+	.xp-drop-up .tc-sidebar-tab-open a, .xp-drop-up .tc-sidebar-tab-open button {
+		line-height: 1.5;
+	}
+
+	.xp-drop-up .tc-table-of-contents a, .xp-drop-up .tc-table-of-contents button {
+		line-height: 1.4;
+	}
+
+}

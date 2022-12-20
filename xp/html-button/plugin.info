@@ -1,0 +1,12 @@
+{
+	"title": "$:/plugins/xp/html-button",
+	"name": "HTML Button",
+	"description": "Insert a html code",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20220130024229104",
+	"modified": "20220810131842881"
+}

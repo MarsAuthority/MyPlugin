@@ -1,0 +1,45 @@
+caption: All Tabs
+title: $:/SideBarTabManager/AllTabs
+
+\define lingo-base() $:/language/TiddlerInfo/
+
+\define sidebarTabs() 
+$:/core/ui/SideBar/Open TableOfContents $:/core/ui/SideBar/Recent $:/core/ui/SideBar/Tools $:/core/ui/SideBar/More $:/xp/ui/SideBar/AdvancedSearch $:/xp/ui/SideBar/Aggregation $:/xp/ui/SideBar/BatchOperation $:/Commander $:/xp/ui/SideBar/Diary $:/xp/ui/SideBar/Favorites $:/plugins/felixhayashi/tiddlymap/hook/liveTab $:/plugins/felixhayashi/tiddlymap/hook/editor $:/xp/ui/SideBar/Note $:/xp/ui/SideBar/Subtiddler $:/xp/ui/SideBar/Things $:/xp/ui/SideBar/Todolist $:/core/ui/ControlPanel/Toolbars $:/xp/ui/SideBar/Trashbin $:/xp/ui/SideBar/XpSettings
+\end
+
+Select which tabs will be shown.
+
+<$list filter="[enlist<sidebarTabs>]">
+<$reveal state=<<currentTiddler>> type="nomatch" text="">
+<div>
+<$checkbox tiddler=<<currentTiddler>> tag="$:/tags/SideBar" actions="""<$action-listops $tiddler="$:/config/SideBarTabManager/History" $subfilter="[append<currentTiddler>]"/>"""/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <i class="tc-muted">-- <$transclude field="description"/></i></span>
+</div>
+</$reveal>
+</$list>
+
+<$button tooltip="Reset sidebar tabs" aria-label="reset sidebar tabs">
+Reset
+<$action-confirm $message="Are you sure you wish to delete all sidebar tabs?">
+<$action-deletetiddler $filter="[tag[$:/tags/SideBar]]"/>
+</$action-confirm>
+</$button>
+
+<$list filter="[list[$:/config/SideBarTabManager/History]!tag[$:/tags/SideBar]limit[1]]" variable="ignore">
+
+''History''
+<span class="tc-muted tc-sidebar-lists">
+ · <$button tooltip="Clear history" aria-label="clear history" class="tc-btn-invisible tc-btn-mini">
+clear
+<$action-confirm $message="Are you sure you wish to clear the history?">
+<$action-deletetiddler $filter="$:/config/SideBarTabManager/History"/>
+</$action-confirm>
+</$button>
+</span>
+
+<$list filter="[list[$:/config/SideBarTabManager/History]!tag[$:/tags/SideBar]]">
+<div>
+~~<$link to=<<currentTiddler>>><$view field="title"/></$link>~~
+</div>
+</$list>
+
+</$list>

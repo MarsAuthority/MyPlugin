@@ -1,0 +1,136 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/leftopentab/styles
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+@media (min-width: <<sidebarbreakpoint>>) {
+
+  .leftopentab-scrollable {
+    position: fixed;
+    top: {{$:/themes/tiddlywiki/vanilla/metrics/storytop}};
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: {{$:/xp/leftopentab/metrics/width}};
+    padding: {{$:/xp/leftopentab/metrics/paddingtop}} {{$:/xp/leftopentab/metrics/paddingright}} 28px 10px;
+
+    /* 不换行，溢出显示省略号 > 减小右内边距 */
+    <$reveal state="$:/config/LeftOpenTab/Wrap" type="match" text="nowrap">
+    padding-right: calc({{$:/xp/leftopentab/metrics/paddingright}} - 4px);
+    </$reveal>
+
+    background: none;
+    text-shadow: none;
+
+    /* 不换行，溢出显示滚动条 */
+    <$reveal state="$:/config/LeftOpenTab/Wrap" type="match" text="nowrap-scrollable">
+    white-space: nowrap !important;
+    /* max-width: calc({{$:/xp/leftopentab/metrics/width}} - {{$:/xp/leftopentab/metrics/paddingright}}); */
+    </$reveal>
+  }
+
+  /* 隐藏滚动条 */
+  <$reveal state="$:/config/LeftOpenTab/Wrap" type="nomatch" text="nowrap-scrollable">
+  /* firefox */
+  .leftopentab-scrollable {
+    scrollbar-width: none;
+  }
+
+  /* chrome */
+  .leftopentab-scrollable::-webkit-scrollbar {
+    display: none;
+  }
+  </$reveal>
+
+  .leftopentab-phone {
+    display: none;
+  }
+
+  .leftopentab-overflow {
+    /* 不换行，溢出显示省略号 */
+    <$reveal state="$:/config/LeftOpenTab/Wrap" type="match" text="nowrap">
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    </$reveal>
+
+    /* 强制换行 */
+    <$reveal state="$:/config/LeftOpenTab/Wrap" type="match" text="wrap">
+    word-break: break-all;
+    </$reveal>
+  }
+
+}
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+  .leftopentab-scrollable {
+    display: none;
+  }
+
+  .leftopentab-phone {
+    position: absolute;
+    top: 25vh;
+    left: 0;
+  }
+
+  /* HIDE ON PHONE */
+  .only-on-pc {
+    display: none;
+  }
+
+}
+
+/* Titlebar style */
+
+.leftopentab-titlebar-line,
+.leftopentab-titlebar-semicircle,
+.leftopentab-titlebar-square {
+  padding: 3px 0 0 0;
+  text-align: center;
+  width: 230px;
+  color: <<colour sidebar-tab-foreground>>;
+}
+
+.leftopentab-titlebar-line {
+  padding: 3px 0 1px 0;
+  border-bottom: 1px solid <<colour sidebar-muted-foreground>>;
+}
+
+.leftopentab-titlebar-semicircle {
+  border-radius: 15px 15px 100px 100px;
+  background-color: #eee;
+}
+
+.leftopentab-titlebar-square {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.leftopentab-titlebar-word {
+  padding: 6px 0 0 0;
+  text-align: left;
+  margin-left: 0.3em;
+  color: <<colour sidebar-tab-foreground>>;
+  font-size: 1em;
+}
+
+/* Tiddler title style */
+
+.leftopentab-highlight,
+.leftopentab-highlight svg {
+  color: {{$:/config/LeftOpenTab/Color}} !important;
+  fill: {{$:/config/LeftOpenTab/Color}} !important;
+}
+
+/* Horizontal-rule style */
+
+.leftopentab-hr-style {
+  max-width: calc({{$:/xp/leftopentab/metrics/width}} - {{$:/xp/leftopentab/metrics/storyriverpaddingleft}} / 2);
+  margin: 1px 0 4px;
+  border-top: 1px solid <<colour sidebar-muted-foreground>>;
+}

@@ -1,0 +1,34 @@
+title: $:/xp/aggregation-gtd/ui/SideBar/TodoQuadrant
+
+\whitespace trim
+<$vars
+  popupTiddler=<<qualify "$:/state/projectify/due-priority-dropdown">>
+  cssClass={{{ [{$:/config/xp/aggregation-gtd/QuadrantTag}removeprefix[$:/]addprefix[tc-btn-invisible py-priority xp-gtd-]] }}}
+>
+  <$button
+    class=<<cssClass>>
+    popup=<<popupTiddler>>
+    tooltip={{$:/language/projectify/Priority/Hint}}
+    aria-label={{$:/language/projectify/Priority/Hint}}
+  >
+    <$transclude tiddler={{$:/config/xp/aggregation-gtd/QuadrantIcon}} mode="inline"/>
+  </$button>
+  
+  <$reveal state=<<popupTiddler>> type="popup" position="belowleft" animate="no">
+    <div class="tc-drop-down py-drop-down">			
+      <div class="py-priorities">
+  <$list filter="q1 q2 q3 q4" variable="quadrant">
+    <$button class={{{ [[tc-btn-invisible xp-gtd-filter xp-gtd-]addsuffix<quadrant>] }}}>
+      <$vars qTag={{{ [[$:/]addsuffix<quadrant>] }}} qIcon={{{ [[$:/xp/images/]addsuffix<quadrant>] }}}>
+    <$transclude tiddler={{{ [[$:/xp/images/]addsuffix<quadrant>] }}} mode="inline"/>
+    <$action-setfield $tiddler="$:/config/xp/aggregation-gtd/QuadrantIcon" text=<<qIcon>>/>
+    <$action-setfield $tiddler="$:/config/xp/aggregation-gtd/QuadrantTag" text=<<qTag>>/>
+    <$action-setfield qtag=<<qTag>>/>
+    <$action-sendmessage $message="tm-auto-save-wiki"/>
+      </$vars>
+    </$button>
+  </$list>
+      </div>
+    </div>
+  </$reveal>
+</$vars>

@@ -1,0 +1,15 @@
+{
+	"version": "0.5.13.3",
+	"type": "application/json",
+	"title": "$:/plugins/tesseract/tekan",
+	"plugin-type": "plugin",
+	"name": "Tekan",
+	"modified": "20220403144748040",
+	"list": "readme",
+	"description": "Use Kanban in TW",
+	"creator": "Riz",
+	"created": "20170919234019968",
+	"core-version": ">=5.1.14",
+	"author": "Riz",
+	"modifier": "kl"
+}

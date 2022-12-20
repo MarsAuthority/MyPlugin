@@ -1,0 +1,6 @@
+caption: 计算机
+ctag: IT
+tags: $:/tags/CourseCategories
+title: $:/courses-category-it
+
+<<list-courses IT>>

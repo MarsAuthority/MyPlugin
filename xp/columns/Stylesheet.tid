@@ -1,0 +1,268 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/columns/Stylesheet
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+<pre>/**  SHOW ON PC  **/
+
+@media (min-width: <<sidebarbreakpoint>>) {
+
+    /** Split Text to Columns
+    * https://blog.kritikapattalam.com/how-to-display-content-in-multiple-columns-using-css
+    */
+
+    .split-2-columns {
+        columns: 2 auto;
+        -moz-columns: 2 auto;
+        -webkit-columns: 2 auto;
+        column-gap: 2em;
+        orphans: 1;
+        display: block;
+        padding: 12px;
+        background: <<colour page-background>>;
+        margin: 10px;
+        overflow: hidden;
+    }
+
+    .split-3-columns {
+        columns: 3 auto;
+        -moz-columns: 3 auto;
+        -webkit-columns: 3 auto;
+        column-gap: 2em;
+        orphans: 1;
+        display: block;
+        padding: 12px;
+        background: <<colour page-background>>;
+        margin: 10px;
+        overflow: hidden;
+    }
+
+    /** The Perfect 2 Column Liquid Layout
+    * https://matthewjamestaylor.com/blog/perfect-2-column-right-menu.htm
+    */
+
+    /* column container */
+    .colmask {
+        position: relative;
+        /* This fixes the IE7 overflow hidden bug */
+        clear: both;
+        float: left;
+        width: 100%;
+        /* width of whole page */
+        overflow: hidden;
+        /* This chops off any overhanging divs */
+    }
+
+    /* common column settings */
+    .colright,
+    .colmid,
+    .colleft {
+        float: left;
+        width: 100%;
+        position: relative;
+    }
+
+    .col1,
+    .col2,
+    .col3 {
+        float: left;
+        position: relative;
+        padding: 0 0 1em 0;
+        overflow: hidden;
+    }
+
+    /**  2 Column (double page) settings  **/
+
+    .doublepage {
+        background: <<colour page-background>>;
+        /* right column background colour */
+    }
+
+    .doublepage .colleft {
+        right: 50%;
+        /* right column width */
+        background: <<colour background>>;
+        /* left column background colour */
+    }
+
+    .doublepage .col1 {
+        width: 46%;
+        /* left column content width (column width minus left and right padding) */
+        left: 52%;
+        /* right column width plus left column left padding */
+    }
+
+    .doublepage .col2 {
+        width: 46%;
+        /* right column content width (column width minus left and right padding) */
+        left: 56%;
+        /* (right column width) plus (left column left and right padding) plus (right column left padding) */
+    }
+
+    /**  2 Column (left menu) settings  **/
+
+    .leftmenu {
+        background: <<colour page-background>>;
+    }
+
+    .leftmenu .colright {
+        left: 25%;
+        background: <<colour background>>;
+    }
+
+    .leftmenu .col1 {
+        width: 21%;
+        right: 23%;
+    }
+
+    .leftmenu .col2 {
+        width: 71%;
+        right: 19%;
+    }
+
+    /**  2 Column (right menu) settings  **/
+
+    .rightmenu {
+        background: <<colour page-background>>;
+    }
+
+    .rightmenu .colleft {
+        right: 25%;
+        background: <<colour background>>;
+    }
+
+    .rightmenu .col1 {
+        width: 71%;
+        left: 27%;
+    }
+
+    .rightmenu .col2 {
+        width: 21%;
+        left: 31%;
+    }
+
+    
+    /**
+    * Two column box style
+    */
+
+    .left-column,
+    .right-column {
+        width: calc(50% - 10px);
+        padding: 1px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left-column {
+        float: left;
+    }
+
+    .right-column {
+        margin-left: calc(50% + 10px);
+    }
+
+    /* Adjust width */
+
+    .left-column-adjust,
+    .right-column-adjust {
+        padding: 1px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left-column-adjust {
+        float: left;
+        width: 25%;
+    }
+
+    .right-column-adjust {
+        width: 73%;
+        margin-left: calc(100% - 73%);
+    }
+
+    /**  Show border  **/
+
+    .left-column-border,
+    .right-column-border {
+        width: calc(50% - 10px);
+        padding: 5px 16px;
+        border: 1px solid <<colour tiddler-editor-border>>;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left-column-border {
+        float: left;
+        background: <<colour page-background>>;
+    }
+
+    .right-column-border {
+        margin-left: calc(50% + 10px);
+        background: <<colour background>>;
+    }
+    
+    /* Adjust width */
+
+    .left-column-border-adjust,
+    .right-column-border-adjust {
+        padding: 5px 16px;
+        border: 1px solid <<colour tiddler-editor-border>>;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left-column-border-adjust {
+        float: left;
+        width: 25%;
+        background: <<colour page-background>>;
+    }
+
+    .right-column-border-adjust {
+        width: 73%;
+        margin-left: calc(100% - 73%);
+        background: <<colour background>>;
+    }
+}
+
+
+/**  SHOW ON PHONE  **/
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+    .left-column,
+    .left-column-adjust,
+    .col1 {
+        padding-bottom: 28px;
+        border-bottom: 1px solid <<colour tiddler-editor-border>>;
+        margin-bottom: 1em;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left-column-border,
+    .right-column-border,
+    .left-column-border-adjust,
+    .right-column-border-adjust {
+        padding: 5px 16px;
+        border: 1px solid <<colour tiddler-editor-border>>;
+        border-radius: 10px;
+        margin-bottom: 1em;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+
+/**  OTHERS  **/
+
+.transclusion-text-in-box {
+    background-color: <<colour code-background>>;
+    border-radius: 10px;
+    padding: 10px;
+}
+</pre>

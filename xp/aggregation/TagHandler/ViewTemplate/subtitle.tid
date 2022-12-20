@@ -1,0 +1,152 @@
+rewrite: 5.2.3
+tags: $:/tags/ViewTemplate
+title: $:/core/ui/ViewTemplate/subtitle
+
+\import $:/aggregation/macros/general
+
+\define tagHandlerState()
+$:/state/tag-handler/$(currentTiddler)$
+\end
+
+\define taghandler()
+<div style="position:relative;">
+<div class="tc-tiddler-controls" style="position:absolute;right:0;margin-top:-8px;">
+<$reveal state="$:/config/TagHandler/Mode" type="match" text="sticky">
+<$button set=<<tagHandlerState>> setTo="" tooltip="Close" aria-label="close tag handler" class="tc-btn-invisible">
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</div>
+</div>
+
+<<tag-panel $:/bookshelf-macros>>
+<<tag-panel $:/consumer-macros>>
+<<tag-panel $:/courses-macros>>
+<<tag-panel $:/enterprises-macros>>
+<<tag-panel $:/howtos-macros>>
+<<tag-panel $:/people-macros>>
+<<tag-panel $:/software-macros>>
+<<tag-panel $:/whys-macros>>
+\end
+
+\define tag-panel(macros,state)
+\import $macros$
+<$list filter="[all[current]tag<aggregationTag>]">
+<$wikify text=<<listPresetCtags>> name="presetCtags">
+<$wikify text=<<listTagsInUse>> name="tagsInUse">
+<div class="xp-tag-handler">
+<table class="tc-view-field-table">
+<tbody>
+<$list filter="[all[current]tag[Planning]] [all[current]tag[Ongoing]] [all[current]tag[Completed]] +[limit[1]]" variable="ignore">
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted">Status</td>
+<td class="tc-view-field-value"><span class="xp-aggrfilter-category-item">
+<$checkbox tiddler=<<currentTiddler>> tag="Planning" checkactions="""<$action-listops $tags="-Ongoing -Completed"/>"""> <span class="xp-indicator-purple">Planning</span></$checkbox>
+<$checkbox tiddler=<<currentTiddler>> tag="Ongoing" checkactions="""<$action-listops $tags="-Planning -Completed"/>"""> <span class="xp-indicator-orange">Ongoing</span></$checkbox>
+<$checkbox tiddler=<<currentTiddler>> tag="Completed" checkactions="""<$action-listops $tags="-Planning -Ongoing"/>"""> <span class="xp-indicator-green">Completed</span></$checkbox>
+</span></td>
+</tr>
+</$list>
+<$list filter=<<aggr-category>> variable="listItem">
+<$macrocall $name="aggrFilterCategory" title={{{ [<listItem>split[/]last[1]sentencecase[]] }}} configTiddler=<<listItem>>/>
+</$list>
+<$list filter="[enlist<tagsInUse>] -[enlist<presetCtags>] -[enlist<statusTag>] +[limit[1]]" variable="ignore">
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted">Tags</td>
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item">
+<$list filter="[enlist<tagsInUse>sort[]] -[enlist<presetCtags>] -[enlist<statusTag>]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list>
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted">Add</td>
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item"><<taghandler-new-tag>></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</$wikify>
+</$wikify>
+</$list>
+\end
+
+\define aggrFilterCategory(title,configTiddler)
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted"><$link to=<<__configTiddler__>> overrideClass="tc-muted">$title$</$link></td>
+<td class="tc-view-field-value"><span class="xp-aggrfilter-category-item"><$macrocall $name="aggrfilteritemlist" configTiddler=<<__configTiddler__>>/></span></td>
+</tr>
+\end
+
+\define aggrfilteritemlist(configTiddler)
+<$list filter="[enlist{$configTiddler$}] -[enlist<statusTag>]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+\end
+
+\define statusTag()
+Planning Ongoing Completed
+\end
+
+\define aggrfilteritem(item:"")
+<$checkbox tiddler=<<currentTiddler>> tag=<<__item__>>> <$text text=<<__item__>>/></$checkbox>
+\end
+
+\define taghandler-new-tag(tagField:"tags")
+\whitespace trim
+<$vars saveTiddler=<<currentTiddler>>>
+<$set name="newTagNameTiddler" value=<<qualify "$:/temp/NewTagName">>>
+<$vars newTagNameInputTiddlerQualified=<<qualify "$:/temp/NewTagName/input">>>
+<$vars storeTitle={{{ [<newTagNameInputTiddler>!match[]] ~[<newTagNameInputTiddlerQualified>] }}} refreshTitle=<<qualify "$:/temp/NewTagName/refresh">>>
+<div class="tc-edit-add-tag">
+<div>
+<span class="tc-add-tag-name tc-small-gap-right">
+<$macrocall $name="keyboard-driven-input"
+    tiddler=<<newTagNameTiddler>> storeTitle=<<storeTitle>> refreshTitle=<<refreshTitle>>
+    tag="input" inputAcceptActions=<<add-tag-actions>> inputCancelActions=<<clear-tags-actions>>
+    placeholder={{$:/language/EditTemplate/Tags/Add/Placeholder}}
+    class="tc-edit-texteditor tc-popup-handle" tabindex=<<tabIndex>> focus="false" />
+<span class="tc-add-tag-button tc-small-gap-left">
+<$set name="tag" value={{{ [<newTagNameTiddler>get[text]] }}}>
+<$button set=<<newTagNameTiddler>> setTo="" class="">
+<$action-listops $tiddler=<<saveTiddler>> $field="tags" $subfilter="[<tag>trim[]]"/>
+<$set name="currentTiddlerCSSEscaped" value={{{ [<saveTiddler>escapecss[]] }}}>
+<<delete-tag-state-tiddlers>><$action-sendmessage $message="tm-focus-selector" $param=<<get-tagpicker-focus-selector>>/>
+</$set>
+{{$:/language/EditTemplate/Tags/Add/Button}}
+</$button>
+</$set>
+</span>
+</span>
+</div>
+</div>
+</$vars>
+</$vars>
+</$set>
+</$vars>
+\end
+
+\whitespace trim
+<$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" tag="div" retain="yes" animate="yes">
+<div class="tc-subtitle">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate/Subtitle]!has[draft.of]]" variable="subtitleTiddler" counter="indexSubtitleTiddler">
+<$list filter="[<indexSubtitleTiddler-first>match[no]]" variable="ignore">
+&nbsp;
+</$list>
+<$transclude tiddler=<<subtitleTiddler>> mode="inline"/>
+</$list>
+</div>
+
+<$reveal state="$:/config/TagHandler/Switch" type="match" text="on" default="on">
+<$reveal state=<<tagHandlerState>> type="nomatch" text="" default="" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+
+<<taghandler>>
+
+</$reveal>
+</$reveal>
+</$reveal>

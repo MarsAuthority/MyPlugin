@@ -1,0 +1,5 @@
+list: $:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/xp/ui/Buttons/reading-list $:/plugins/kookma/favorites/ui/buttons/add-remove $:/xp/ui/Buttons/view-code $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/plugins/kookma/trashbin/ui/toolbar-button $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/_sq/Stories/divertTiddlerMacro $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/fold $:/core/ui/Buttons/fold-bar $:/xp/ui/Buttons/gotop $:/xp/ui/Buttons/view-subtiddler $:/xp/ui/Buttons/aggregation-view $:/plugins/danielo515/encryptTiddler/crypt-button $:/plugins/felixhayashi/tiddlymap/misc/quickConnectButton $:/plugins/nico/projectify/ui/buttons/ToggleTodo
+title: $:/tags/ViewToolbar
+
+<<list-links filter:"[all[shadows+tiddlers]tag[$:/tags/ViewToolbar]]" type:"ol">>
+ 

@@ -1,0 +1,14 @@
+caption: 全部
+tags: $:/tags/BookCategories
+title: $:/listing-books-all
+
+\import $:/bookshelf-macros
+
+<$macrocall
+  $name="aggregation-list-thumbnails"
+  width="139"
+  height="200"
+  storeTitle="$:/temp/search/bookshelf/thumbnails"
+  searchClass="xp-search-bookshelf"
+  promptTiddler="$:/bookshelf-prompt"
+/>

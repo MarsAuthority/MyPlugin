@@ -1,0 +1,8 @@
+caption: divider
+description: HoverPopups divider
+tags: $:/tags/QuickBar/HoverPopupButtons
+title: $:/xp/quickbar/Buttons/divider/hoverpopups
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/hoverpopups" type="nomatch" text="hide">
+<span class="xp-quickbar-divider" />
+</$reveal>

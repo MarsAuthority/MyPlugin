@@ -1,0 +1,8 @@
+title: $:/xp/quickbar/create
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/xp/quickbar/create/new-pagecontrol-button $:/xp/quickbar/create/new-button $:/xp/quickbar/create/new-navigation-button"
+  default="$:/xp/quickbar/create/new-pagecontrol-button"
+  state="$:/state/tab/quickbar-create"
+/>

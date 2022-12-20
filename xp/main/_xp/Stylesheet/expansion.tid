@@ -1,0 +1,90 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/expansion
+
+.xp-expansion {
+    line-height: 1.2em;
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: 9px 0;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    text-transform: capitalize;
+    border-top: 1px solid #ececec;
+<$reveal state="$:/palette"type="nomatch"text="$:/palettes/Vanilla">
+    border-top: 1px solid <<colour sidebar-tab-divider>>;
+</$reveal>
+}
+
+.xp-expansion-text {
+    padding: 0 0 9px;
+    vertical-align: middle;
+    max-height: 60vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.xp-expansion-chevron {
+    float: right;
+}
+
+.xp-expansion-chevron svg {
+    width: 0.7em;
+    height: 0.7em;
+    vertical-align: middle;
+    color: <<colour sidebar-foreground>>;
+    fill: <<colour sidebar-foreground>>;
+}
+
+.xp-chevron-up svg {
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg)
+}
+
+.xp-chevron-down svg {
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.xp-expansion-line {
+    border-top: 1px solid #ececec;
+<$reveal state="$:/palette"type="nomatch"text="$:/palettes/Vanilla">
+    border-top: 1px solid <<colour sidebar-tab-divider>>;
+</$reveal>
+}
+
+.xp-expansion-prompt {
+    color: #00809d;
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 9px 0;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.xp-expansion-item-content {
+    padding: 0 0.5em 0 0.5em;
+    border-bottom: 1px solid <<colour muted-foreground>>;
+}
+
+.xp-expansion-item-content>pre {
+    margin: 0.5em 0 0.5em 0;
+    border: none;
+    background: inherit;
+}
+
+.xp-expansion-item-content>table {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.xp-expansion-item-content>table td {
+    border: none;
+}

@@ -1,0 +1,105 @@
+caption: 每日一记
+title: $:/dailynotes-editing
+
+\define config-visibility-title()
+$:/config/EditorToolbarButtons/Visibility/$(currentTiddler)$
+\end
+
+\define importFileActions()
+<$action-popup $state=<<importState>> $coords="(0,0,0,0)" $floating="yes"/>
+\end
+
+\define inputAcceptActions()
+<$list filter="[<journalTitle>!tag<journalTag>]" variable="ignore">
+<$action-listops $tiddler=<<journalTitle>> $tags=<<journalTag>>/>
+</$list>
+<$list filter="[<journalTitle>!class[journal]]" variable="ignore">
+<$action-setfield $tiddler=<<journalTitle>> class="journal"/>
+</$list>
+\end
+
+\define excludeEditorButtons()
+$:/core/ui/EditorToolbar/transcludify
+$:/xp/ui/EditorToolbar/inc
+$:/core/ui/EditorToolbar/excise
+$:/core/ui/EditorToolbar/editor-height
+$:/xp/ui/EditorToolbar/annotate
+\end
+
+<$set name="edit-preview-state" value={{{ [{$:/config/ShowEditPreview/PerTiddler}!match[yes]then[$:/state/showeditpreview]] :else[<qualify "$:/state/showeditpreview">] }}}>
+<$vars importTitle=<<qualify $:/ImportImage>> importState=<<qualify $:/state/ImportImage>> journalTitleTemplate={{$:/config/NewJournal/Title}} journalTag={{{ [enlist{$:/config/NewJournal/Tags}first[]] }}}>
+<$wikify name="journalTitle" text="<$macrocall $name='now' format=<<journalTitleTemplate>>/>">
+
+<$link to=<<journalTitle>>/><i class="tc-small-gap"/><$checkbox tiddler=<<journalTitle>> tag="Private"> Private</$checkbox><i class="tc-tiny-gap"/><$checkbox tiddler=<<journalTitle>> tag="Star"> Star</$checkbox>
+
+<$dropzone importTitle=<<importTitle>> autoOpenOnImport="no" contentTypesFilter={{$:/config/Editor/ImportContentTypesFilter}} class="tc-dropzone-editor" enable={{{ [{$:/config/DragAndDrop/Enable}match[no]] :else[subfilter{$:/config/Editor/EnableImportFilter}then[yes]else[no]] }}} filesOnly="yes" actions=<<importFileActions>> ><$reveal stateTitle=<<edit-preview-state>> type="match" text="yes" tag="div"><$tiddler tiddler=<<journalTitle>>>
+<div class="tc-tiddler-preview">
+
+<$transclude tiddler="$:/core/ui/EditTemplate/body/editor" mode="inline"/>
+
+<div class="tc-tiddler-preview-preview">
+
+<$transclude tiddler={{$:/state/editpreviewtype}} mode="inline">
+
+<$transclude tiddler="$:/core/ui/EditTemplate/body/preview/output" mode="inline"/>
+
+</$transclude>
+
+</div>
+
+</div>
+</$tiddler></$reveal>
+
+<$reveal stateTitle=<<edit-preview-state>> type="nomatch" text="yes" tag="div">
+
+<$keyboard key="((input-accept-variant))" actions=<<create-actions>>>
+<span class="tc-editor-toolbar" style="z-index:100 !important;">
+<$edit-text
+  tiddler=<<journalTitle>>
+  field="text"
+  class="tc-edit-texteditor tc-edit-texteditor-body"
+  placeholder="Type the text"
+  tabindex={{$:/config/EditTabIndex}}
+  focus="no"
+  cancelPopups="yes"
+  fileDrop={{{ [{$:/config/DragAndDrop/Enable}match[no]] :else[subfilter{$:/config/Editor/EnableImportFilter}then[yes]else[no]] }}}
+  default=""
+  inputActions=<<inputAcceptActions>>
+>
+<$set
+
+  name="targetTiddler"
+  value=<<journalTitle>>
+
+><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorToolbar]!has[draft.of]remove<excludeEditorButtons>]"
+
+><$reveal
+
+  type="nomatch"
+  state=<<config-visibility-title>>
+  text="hide"
+  class="tc-text-editor-toolbar-item-wrapper"
+
+><$transclude
+
+  tiddler="$:/core/ui/EditTemplate/body/toolbar/button"
+  mode="inline"
+
+/></$reveal></$list><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorTools]!has[draft.of]]"
+
+><$list
+  filter={{!!condition}}
+  variable="list-condition"
+><$transclude/>
+</$list></$list></$set></$edit-text>
+</span></$keyboard>
+
+</$reveal>
+</$dropzone>
+</$wikify>
+</$vars>
+</$set>

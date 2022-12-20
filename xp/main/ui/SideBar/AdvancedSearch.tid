@@ -1,0 +1,10 @@
+caption: {{$:/core/images/advanced-search-button}}
+color: #bbb
+description: Advanced search
+icon: $:/core/images/advanced-search-button
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/AdvancedSearch
+
+<div class="tc-advanced-search">
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/SideBar/AdvancedSearch]!has[draft.of]]" default={{$:/config/SideBarAdvancedSearchDefaultTab}} actions="""<$action-setfield $tiddler="$:/state/advancedsearchinsidebar/currentTab" text=<<currentTab>>/>""" explicitState="$:/state/tab--20210602130115732"/>
+</div>

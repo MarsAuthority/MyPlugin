@@ -1,0 +1,6 @@
+caption: 经管类
+ctag: Economic Management
+tags: $:/tags/BookCategories
+title: $:/books-category-economic-management
+
+<<list-books "Economic Management">>

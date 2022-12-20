@@ -1,0 +1,8 @@
+caption: divider
+description: Setting buttons divider
+tags: $:/tags/QuickBar/SettingButtons
+title: $:/xp/quickbar/Buttons/divider/setting-buttons
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/setting-buttons" type="nomatch" text="hide">
+<span class="xp-quickbar-divider" />
+</$reveal>

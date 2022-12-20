@@ -1,0 +1,8 @@
+caption: 全民所有制企业
+ctag: 全民所有制企业
+tags: $:/tags/EnterpriseCategories
+title: $:/enterprises-category-全民所有制企业
+
+//<small>全民所有制企业，“国有”和“全民”统称为全民所有制。它分为企业法人和营业单位两种。营业单位也可以由企业法人下设成立。</small>//
+
+<<list-enterprises 全民所有制企业>>

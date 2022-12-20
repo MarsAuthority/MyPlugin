@@ -1,0 +1,6 @@
+description: Recently modified
+filter: [tag<journalTag>!is[system]!sort[modified]limit[14]]
+tags: $:/tags/JournalFilter
+title: $:/xp/diary/Filters/RecentJournals
+
+<<commonFilters "Recent">>

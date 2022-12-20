@@ -1,0 +1,20 @@
+title: $:/xp/diary/Buttons/show-timeline
+
+\whitespace trim
+<$list filter="[[$:/config/Diary/timeline]get[text]] +[else[hide]!match[show]]" variable="ignore">
+<$button set="$:/config/Diary/timeline" setTo="show" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/timestamp-on}}
+</$list>
+<span class="tc-btn-text"><$text text="show timeline"/></span>
+</$button>
+</$list>
+<$list filter="[[$:/config/Diary/timeline]get[text]] +[else[hide]match[show]]" variable="ignore">
+<$button class=<<tv-config-toolbar-class>>>
+<$action-deletetiddler $tiddler="$:/config/Diary/timeline"/>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/timestamp-on}}
+</$list>
+<span class="tc-btn-text"><$text text="hide timeline"/></span>
+</$button>
+</$list>

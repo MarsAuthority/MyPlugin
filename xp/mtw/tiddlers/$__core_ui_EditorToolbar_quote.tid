@@ -1,0 +1,16 @@
+caption: {{$:/language/Buttons/Quote/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+description: {{$:/language/Buttons/Quote/Hint}}
+icon: $:/core/images/quote
+rewrite: 5.2.3
+shortcuts: ((quote))
+tags: $:/tags/EditorToolbar
+title: $:/core/ui/EditorToolbar/quote
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-lines"
+	prefix="
+<<<.br"
+	suffix="<<<"
+/>

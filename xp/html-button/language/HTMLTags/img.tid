@@ -1,0 +1,21 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/img
+
+\define prefixCode()
+<img alt="text" src="
+\end
+\define suffixCode()
+" width="200" height="200" style="float:right" loading="lazy">
+\end
+<$button tag="a" tooltip="Image">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix=<<prefixCode>>
+	suffix=<<suffixCode>>
+/>
+
+<span class="tc-html-chooser-text"><$text text="<img>"></span>
+
+</$button>

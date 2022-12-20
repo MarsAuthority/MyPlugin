@@ -1,0 +1,20 @@
+caption: {{$:/core/images/options-button}} to plugins
+description: Open plugins
+tags: $:/tags/QuickBar/ToButtons
+title: $:/xp/quickbar/Buttons/to-plugins
+
+\whitespace trim
+\define openCpPlugins()
+<$action-setfield $tiddler="$:/state/tab-1749438307" $value="$:/core/ui/ControlPanel/Plugins"/>
+<$action-navigate $to="$:/ControlPanel"/>
+\end
+<$button actions=<<openCpPlugins>> tooltip="Open Control Panel Plugins" aria-label="open plugins" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/options-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="openCpPlugins"/>
+</span>
+</$list>
+</$button>

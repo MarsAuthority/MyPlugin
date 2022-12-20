@@ -1,0 +1,27 @@
+caption: Plugin Fields
+list-before: $:/plugins-my-works/newtab
+tags: $:/tags/MyWorks
+title: $:/plugins-my-works/PluginFields
+
+```json
+{
+	"title": "$:/plugins/",
+	"name": "",
+	"description": "",
+	"list": "",
+	"source": "",
+	"version": "0.0.1",
+	"core-version": ">=5.0.0",
+	"plugin-type": "plugin",
+	"plugin-priority": "5",
+	"parent-plugin": "",
+	"dependents": "",
+	"type": "application/json",
+	"author": "",
+	"created": "",
+	"modified": "",
+	"modifier": ""
+}
+```
+
+See also [[PluginMechanism|https://tiddlywiki.com/static/PluginMechanism.html]]

@@ -1,0 +1,38 @@
+caption: {{$:/xp/ui/Buttons/leftopentab!!caption}}
+dependents: $:/plugins/xp/leftopentab
+description: {{$:/xp/ui/Buttons/leftopentab!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/leftopentab
+
+\import $:/xp/leftopentab/macros
+\whitespace trim
+
+<$list filter="[{$:/config/LeftOpenTab/Status}!match[show]]" variable="ignore">
+<$button set="$:/config/LeftOpenTab/Status" setTo="show" tooltip="Left open tab" aria-label="Left open tab" class="tc-btn-invisible">
+{{$:/xp/images/leftopentab}}
+<$action-listops $tiddler="$:/core/ui/SideBar/Open" $tags="-$:/tags/SideBar"/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyleft" text=<<storyleftValue>>/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyright" text=<<storyrightValue>>/>
+<$action-deletetiddler $filter="$:/config/LeftOpenTab/RememberStatus"/>
+<$reveal state="$:/state/tab/sidebar--595412856" type="match" text="$:/core/ui/SideBar/Open">
+<$set name="focusTab" filter="[[TableOfContents]tag[$:/tags/SideBar]]" value="TableOfContents" emptyValue="$:/core/ui/SideBar/More">
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<focusTab>>/>
+</$set>
+</$reveal>
+</$button>
+</$list>
+
+<$list filter="[{$:/config/LeftOpenTab/Status}match[show]]" variable="ignore">
+<$button tooltip="Restore open tab" aria-label="Restore open tab" class="tc-btn-invisible">
+{{$:/xp/images/restoreopentab}}
+<$action-deletetiddler $filter="$:/core/ui/SideBar/Open"/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyleft" text=<<storyleftdefault>>/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyright" text=<<storyrightdefault>>/>
+<$action-deletetiddler $filter="$:/config/LeftOpenTab/Status"/>
+<$reveal state="$:/state/tab/sidebar--595412856" type="match" text="">
+<$set name="focusTab" filter="[[TableOfContents]tag[$:/tags/SideBar]]" value="TableOfContents" emptyValue="$:/core/ui/SideBar/More">
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<focusTab>>/>
+</$set>
+</$reveal>
+</$button>
+</$list>

@@ -1,0 +1,41 @@
+caption: Diary
+color: #bbb
+icon: $:/xp/images/diary
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/Diary
+
+\import $:/xp/diary/macros
+\whitespace trim
+
+\define journal-timeline(limit:"100",format:"DDth MMM YYYY",subfilter:"",dateField:"created")
+<div class="tc-timeline">
+<$list filter="[tag<journalTag>!is[system]!has[draft.of]$subfilter$has[$dateField$]!sort[$dateField$]limit[$limit$]eachday[$dateField$]]">
+<div class="tc-menu-list-item">
+<$reveal state="$:/config/Diary/timeline" type="match" text="show">
+<small><i><$view field="$dateField$" format="date" template="$format$"/></i></small>
+</$reveal>
+<$list filter="[tag<journalTag>sameday:$dateField${!!$dateField$}!is[system]!has[draft.of]$subfilter$!sort[$dateField$]]" template="$:/plugins/danielo515/encryptTiddler/ui/listItemTemplate" />
+</div>
+</$list>
+</div>
+\end
+
+<$set name="tv-config-toolbar-class" value="">
+{{$:/core/ui/Buttons/new-journal}}
+</$set>
+<$button to="$:/EncryptJournals" tooltip="Encrypt journals" class="tc-tiny-gap-left">
+{{$:/core/images/locked-padlock}}
+</$button>
+<$button to="$:/DailyNotes" tooltip="Daily Notes" class="tc-tiny-gap">
+{{$:/xp/images/daily}}
+</$button>
+{{$:/xp/ui/Buttons/more-journal-actions}}
+
+
+<$vars journalTag={{{ [enlist{$:/config/NewJournal/Tags}first[]] }}}>
+<div class="tc-search-results">
+//<small><$count filter=<<journalFilter>>/> &#32; journals</small>//
+</div>
+
+<<journal-timeline>>
+</$vars>

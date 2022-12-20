@@ -1,0 +1,15 @@
+description: create a new howto
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-howto
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-howto/Tags}} textField={{$:/config/new-howto/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "How to YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	linkcolor=""
+/>
+</$vars>

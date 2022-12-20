@@ -1,0 +1,65 @@
+title: $:/aggregation/QuickCreate
+
+\define newAggregation()
+<$button aria-label="new aggregation button">
+Create
+<$vars 
+	tl={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]] }}}
+	ts={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]sentencecase[]] }}}
+	tu={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]uppercase[]] }}}
+	configTid={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]addprefix[$:/config/xp/aggregation-]addsuffix[/category/ctags]] }}}
+	uiTid={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]addprefix[$:/config/xp/aggregation/ui/]] }}}
+	fieldsTiddler={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]addprefix[$:/config/xp/aggregation-]addsuffix[/TableFields]] }}}
+	defaultView={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]addprefix[$:/config/xp/aggregation-]addsuffix[/DefaultView]] }}}
+	readingMode={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]addprefix[$:/config/xp/aggregation-]addsuffix[/ReadingMode]] }}}
+	helpTid={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]lowercase[]split[ ]join[-]addprefix[$:/]addsuffix[-help]] }}}
+	pt="[["
+	st="]]"
+	presetFields={{$:/config/xp/aggregation/TableFields}}
+>
+<$reveal type="nomatch" state=<<tu>> text="">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/topicExists"/>
+</$reveal>
+<$reveal type="match" state=<<tu>> text="">
+<$action-createtiddler $overwrite="no" $basetitle=<<tu>> $template="$:/aggregation-template-english"/>
+<$action-setfield $tiddler=<<tu>> text={{{ [<tu>get[text]search-replace:g[english],<tl>] }}}/>
+<$action-setfield $tiddler=<<tu>> text={{{ [<tu>get[text]search-replace:g[English],<ts>] }}}/>
+<$action-setfield $tiddler=<<tu>> text={{{ [<tu>get[text]search-replace:g[ENGLISH],<tu>] }}}/>
+<$action-setfield $tiddler=<<tu>> caption={{{ [<tu>get[caption]search-replace[ENGLISH],<tu>] }}}/>
+<$action-setfield $tiddler=<<fieldsTiddler>> text=<<presetFields>> list=<<presetFields>>/>
+<$action-setfield $tiddler=<<defaultView>> text="table"/>
+<$action-setfield $tiddler=<<readingMode>> text="off"/>
+<$list filter="[<configTid>!is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<configTid>> text="此处存放预设置的「分类标签」。删除此配置条目则不做设置。"/>
+</$list>
+<$list filter="[<uiTid>!is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<uiTid>> text=<<tu>>/>
+</$list>
+<$list filter="[<helpTid>!is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<helpTid>> text={{{ [[!! 默认条目列表
+
+* ]addsuffix<pt>addsuffix<tu>addsuffix<st>addsuffix[
+* ]addsuffix<helpTid>addsuffix[
+* ]addsuffix<configTid>addsuffix[
+* ]addsuffix<fieldsTiddler>addsuffix[
+* ]addsuffix<defaultView>addsuffix[
+* ]addsuffix<readingMode>addsuffix[
+* ]addsuffix<uiTid>addsuffix[
+
+> 如果要删除该主题，记得删除上面这些条目：将链接全部拷贝，粘贴到高级查找的 Filter 选项卡，点击删除按钮！
+]] }}}/>
+</$list>
+<$action-navigate $to=<<tu>>/>
+<$action-navigate $to=<<configTid>>/>
+<$action-deletetiddler $filter="$:/temp/new-aggregation/Topic"/>
+</$reveal>
+</$vars>
+</$button>
+\end
+
+
+<div style="line-height:1.8;">
+
+|<$link to="$:/temp/new-aggregation/Topic">Topic</$link> |<$edit-text tiddler="$:/temp/new-aggregation/Topic" default="" tag="input"/> <<newAggregation>> |
+
+</div>

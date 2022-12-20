@@ -1,0 +1,191 @@
+tags: $:/tags/Macro $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/table
+
+\define aggr-table(filter, fields:"tbl-expand title description", indexes:"", sortOp:"sort", caption:"", class:"w-100", stateTiddler:"aggrtable", editButton:"yes", paginationButton:"yes", rowsButton:"no", emptyMessage)
+\import [all[shadows+tiddlers]tag[$:/tags/Table/Macro]] $:/aggregation/macros/table/fields
+<!--above commands import utility macros-->
+<$vars
+  fieldsTiddler="""$:/config/xp/$stateTiddler$/TableFields"""
+  fieldsState="""$:/state/xp/$stateTiddler$/ModifyTableFields"""
+  pageTiddler="""$:/config/xp/$stateTiddler$/Pagination"""
+  rowsTiddler="""$:/config/xp/$stateTiddler$/FooterRows"""
+  rowsState="""$:/state/xp/$stateTiddler$/FooterRows"""
+  footerTiddler="""$:/keepstate/dynamictables/$stateTiddler$/footer"""
+  >
+<$vars
+  inputFilter="[subfilter<__filter__>!has[draft.of]]"
+  sortType=<<__sortOp__>>
+  pagination={{{ [<pageTiddler>is[tiddler]get[text]] ~no }}}
+  footerRows={{{ [<rowsTiddler>is[tiddler]get[text]] ~0 }}}
+  >
+<$set name=currentTable value=<<__stateTiddler__>> emptyValue=<<currentTiddler>> >
+<$reveal state=<<fieldsState>> type="match" text="yes" animate="yes">
+<<aggr-table-fields>>
+</$reveal>
+<!-- check what type of columns are sent, fileds or indexes (data tiddlers as records) -->
+<$set name=fieldOrIndex filter="[<__fields__>!is[blank]]" value="field" emptyValue="index">
+<<check_tiddlers_type_for_table_from_indexes isEditable:"$editButton$">>
+<$set name=columns filter="[<fieldOrIndex>]-index" value=<<__fields__>> emptyValue=<<__indexes__>> >
+<!--check input filter parameter-->
+<$list filter="[subfilter<inputFilter>limit[1]]" emptyMessage=<<__emptyMessage__>> variable=ignore>
+<$set name=sortneg tiddler=<<tempTableSort>> index="negate">
+<!--calculate the number of columns in edit and view mode -->
+<$set name=ncols filter="[<tempTableEdit>getindex[mode]match[edit]]" value={{{ [subfilter<columnFilter>count[]] }}} emptyValue= {{{ [subfilter<columnFilter>count[]subtract[2]] }}}>
+<div class="tbl-container" style="max-width:100%;">
+<table class=<<__class__>> style="caption-side:top">
+<!-- reveal caption and edit button -------------------->
+<caption style="text-align:left;">
+<<aggr-table-controls>>
+</caption>
+
+<!-- create header -------------------->
+<thead>
+<<confirm-delete>>
+<tr>
+<$list filter=<<columnFilter>> variable=currentColumn>
+<$set name="headerLookup" filter="[all[tiddlers+shadows]tag[$:/tags/Table/HeaderTemplate]contains:tbl-column-list<currentColumn>limit[1]get[title]]" value=<<headerLookup>> emptyValue="$:/plugins/kookma/shiraz/templates/header/default">
+ <$transclude tiddler=<<headerLookup>> field="text" mode="inline"/>
+</$set>
+</$list>
+</tr>
+</thead>
+
+<!-- create footer -------------------->
+<$reveal type="gt" default=<<footerRows>> text="0" tag="tfoot" class="shiraz-dtable-footer">
+<tr><td colspan=<<ncols>> style="font-weight:bold;background-color:transparent;">Numerical summary</td></tr>
+<$list filter="[range<footerRows>addprefix[footer-]]" variable=footerRow>
+<tr>
+<$list filter=<<columnFilter>> variable=currentColumn>
+<$set name="footerLookup" filter="[all[tiddlers+shadows]tag[$:/tags/Table/FooterTemplate]contains:tbl-column-list<currentColumn>limit[1]get[title]]" value=<<footerLookup>> emptyValue="$:/plugins/kookma/shiraz/templates/footer/default">
+<$transclude tiddler=<<footerLookup>> field="text" mode="inline"/>
+</$set>
+</$list>
+</tr>
+</$list>
+</$reveal>
+
+<!-- reveal main body of table (generate records) -------------------->
+<tbody>
+<$set name=tableBody filter="[<fieldOrIndex>]-index" value="display_body_fields" emptyValue="display_body_indexes" >
+<!-- setup pagination variables -->
+<$vars total-entries={{{[subfilter<inputFilter>count[]] }}}
+			 page-number={{{[<pageStateTiddler>get[text]] ~[[1]]}}} 
+			 entries-per-page={{{ [<entryPerPageStateTiddler>get[text]] ~[[25]]   }}}  >
+<$vars low={{{ [<page-number>subtract[1]multiply<entries-per-page>] }}}  
+       high={{{[<page-number>multiply<entries-per-page>]            }}} >	 
+<$macrocall $name=<<tableBody>> />
+<!--on demand display the pagination row-->
+<$reveal type="match" default=<<pagination>> text="yes" tag="tr" class="shiraz-dtable-page-footer">
+<td colspan=<<ncols>> >
+<<prev-button>>
+Displaying <$text text={{{[<low>add[1]]}}}/> through <$text text={{{ [<high>compare:number:lt<total-entries>then<high>else<total-entries>] }}}/> of <<total-entries>> Results | <<limit-entries>>
+<<next-button>>
+</td>
+</$reveal><!-- end of pagination ui -->
+</$vars>
+</$vars>
+</$set>
+</tbody>
+</table>
+</div><!-- container-->
+</$set>
+</$set>
+</$list><!--check input filter parameter-->
+</$set>
+</$set>
+</$set>
+</$vars>
+</$vars>
+\end
+
+\define aggr-table-controls()
+\whitespace trim
+<$list filter="[<__editButton__>match[yes]]" variable=ignore>
+<span style="padding-right:5px;padding-left:3px;">
+<<toggle-edit-view-trim>>
+<span class="xp-controls" style="padding-left:.25em;">
+<<tableFieldsButton>>
+<$list filter="[<__paginationButton__>match[yes]]" variable=ignore>
+<<toggle-pagination>>
+</$list>
+<$list filter="[<__rowsButton__>match[yes]]" variable=ignore>
+<<footer-rows-button>>
+</$list>
+</span>
+<<select-footer-rows>>
+</span>
+</$list>
+<$reveal state=<<rowsState>> type="nomatch" text="yes">
+<$text text=<<__caption__>>/>
+</$reveal>
+\end
+
+\define aggr-table-fields()
+<div class="xp-wrapper-aggrfilter">
+
+<div style="position:relative;">
+<div class="tc-tiddler-controls" style="position:absolute;right:0;">
+<$button set=<<fieldsState>> setTo="" tooltip="Close panel" aria-label="select table fields" class="tc-btn-invisible">
+{{$:/core/images/close-button}}
+</$button>
+</div>
+</div>
+
+<$link to=<<fieldsTiddler>> overrideClass="tc-muted">Dynamic table Fields:</$link> <<resetFieldsButton>><<updateFieldsButton>>
+
+<div class="xp-aggrfilter-category">
+<div class="xp-aggrfilter-category-item">
+<$macrocall
+  $name="aggr-fields-draggable"
+  tiddler=<<fieldsTiddler>>
+  itemTemplate="$:/aggregation/fields/ItemTemplate"
+  exclude={{$:/config/xp/aggregation/excluded-fields/dtable}}
+/>
+</div>
+</div>
+
+</div>
+\end
+
+\define aggr-fields-draggable(tiddler,field:"list",exclude,emptyMessage,itemTemplate,elementTag:"div",storyview:"")
+\whitespace trim
+<$vars targetTiddler="""$tiddler$""" targetField="""$field$""">
+<$list filter="[list[$tiddler$!!$field$]] -[enlist<__exclude__>]" emptyMessage=<<__emptyMessage__>> storyview=<<__storyview__>>>
+<$droppable actions=<<list-links-draggable-drop-actions>> enable=<<tv-enable-drag-and-drop>>>
+<$elementTag$ class="tc-droppable-placeholder"/>
+<$elementTag$>
+<$transclude tiddler="""$itemTemplate$""">
+<$link to={{!!title}}>
+<$view field="title"/>
+</$link>
+</$transclude>
+</$elementTag$>
+</$droppable>
+</$list>
+<$tiddler tiddler="">
+<$droppable actions=<<list-links-draggable-drop-actions>> tag="div" enable=<<tv-enable-drag-and-drop>>>
+<$elementTag$ class="tc-droppable-placeholder"/>
+<$elementTag$ style="height:0.5em;">
+</$elementTag$>
+</$droppable>
+</$tiddler>
+</$vars>
+\end
+
+\define aggr-select-importance-inner()
+<optgroup label="Number">
+<$list filter="[range[5]]">
+<option value={{!!title}}><$view field="title"/></option>
+</$list>
+</optgroup>
+<optgroup label="Level">
+<option value='D'>了解</option>
+<option value='C'>理解</option>
+<option value='B'>掌握</option>
+<option value='A'>灵活和综合运用</option>
+<option value=''>empty</option>
+</optgroup>
+\end
+
+\define field-config-title() $(config-base)$$(listField)$
+

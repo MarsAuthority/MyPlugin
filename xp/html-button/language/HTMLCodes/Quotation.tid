@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Quotation
+
+<$button tag="a" tooltip="Quotation">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&quot;"
+/>
+
+<span class="tc-html-chooser-text">&quot;</span>
+
+</$button>

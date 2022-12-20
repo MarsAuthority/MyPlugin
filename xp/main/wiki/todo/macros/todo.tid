@@ -1,0 +1,12 @@
+tags: $:/tags/Macro
+title: $:/xp/macros/todo
+
+\define TODO(text)
+<blockquote style="border-color:rgba(255,140,41,0.4);color:#FF8C29;">
+
+[[TODO]]:
+
+$text$
+
+</blockquote>
+\end

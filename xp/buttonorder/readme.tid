@@ -1,0 +1,13 @@
+title: $:/xp/buttonorder/readme
+
+Adjust the display order of the buttons, comprising:
+
+* <<tag $:/tags/ViewToolbar>>
+* <<tag $:/tags/EditToolbar>>
+* <<tag $:/tags/EditorToolbar>>
+* <<tag $:/tags/PageControls>>
+* <<tag $:/tags/SideBar>>
+* <<tag $:/tags/ViewTemplate>>
+* $:/plugins/xp/quickbar
+
+> 单文件版本，恢复「保存按钮」默认位置：位于「打印按钮」后面。

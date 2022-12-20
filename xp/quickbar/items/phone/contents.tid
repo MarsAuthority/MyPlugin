@@ -1,0 +1,11 @@
+caption: {{$:/language/SideBar/Contents/Caption}}
+description: Table of Contents
+is-dropup: yes
+tags: $:/tags/QuickBar/Phone
+title: $:/xp/quickbar/items/phone/contents
+
+<div class="tc-table-of-contents">
+
+<$macrocall $name="toc-selective-expandable" tag={{$:/config/xp/quickbar/TableOfContents/Tag}}/>
+
+</div>

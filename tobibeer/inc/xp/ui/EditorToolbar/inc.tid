@@ -1,0 +1,9 @@
+caption: {{$:/language/Buttons/Inc/Caption}}
+condition: [<targetTiddler>type[]] [<targetTiddler>type[text/vnd.tiddlywiki]] +[first[]]
+description: {{$:/language/Buttons/Inc/Hint}}
+dropdown: $:/xp/ui/EditorToolbar/inc-dropdown
+icon: $:/xp/images/inc
+list-after: $:/core/ui/EditorToolbar/transcludify
+shortcuts: ((inc))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/inc

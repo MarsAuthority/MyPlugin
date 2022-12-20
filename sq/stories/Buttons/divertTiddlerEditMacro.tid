@@ -1,0 +1,23 @@
+caption: {{$:/_sq/Stories/icons/divert-right.svg}} stories
+description: divert right/left
+tags: $:/tags/EditToolbar
+title: $:/_sq/Stories/divertTiddlerEditMacro
+
+\define divertTiddlerEditButton()
+\whitespace trim
+
+<$set name="original" value={{!!draft.title}}>
+<$set name="otherStoryList"  filter="[enlist{$:/_sq/Stories/StoriesList!!list}] -[<tv-story-list>]" select="0">
+<$set name="otherHistoryList" filter="[enlist{$:/_sq/Stories/HistoriesList!!list}] -[<tv-history-list>]" select="0">
+<$button class=<<tv-config-toolbar-class>> tooltip="Divert this tiddler to the other story for viewing">
+	<$navigator story=<<otherStoryList>> history=<<otherHistoryList>> >
+		<$action-navigate $to=<<original>> />
+	</$navigator>
+	<span class="sq-button-divert-right sq-button-divert">{{$:/_sq/Stories/icons/divert-right.svg}}</span><span class="sq-button-divert-left sq-button-divert">{{$:/_sq/Stories/icons/divert-left.svg}}</span>
+</$button>
+</$set>
+</$set>
+</$set>
+\end
+
+<span class="only-on-pc"><<divertTiddlerEditButton>></span>

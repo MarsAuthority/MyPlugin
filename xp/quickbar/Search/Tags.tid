@@ -1,0 +1,19 @@
+caption: Tags
+state: tags
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/Tags
+
+<$reveal state=<<stateTiddler>> type="match" text={{!!state}} animate="yes">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+//<small>Tag matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[tags[]!is[system]sort[]search<userInput>]" />
+</$list>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$reveal>

@@ -1,0 +1,3 @@
+title: $:/courses-card-template
+
+<$macrocall $name="thumbnail" link={{!!link}} icon={{!!icon}} color={{!!color}} background-color={{!!background-color}} image={{!!image}} caption={{!!caption}} width="220" height="123"/>

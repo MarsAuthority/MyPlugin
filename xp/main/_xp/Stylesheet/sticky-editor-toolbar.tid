@@ -1,0 +1,25 @@
+tags: $:/tags/Stylesheet $:/tags/XP
+title: $:/_xp/Stylesheet/sticky-editor-toolbar
+
+/* $:/themes/tiddlywiki/vanilla/sticky */
+<$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
+``
+/* 编辑器工具栏 */
+
+.tc-editor-toolbar {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -o-sticky;
+    position: -ms-sticky;
+    position: sticky;
+    top: 39px;
+    background: ``<<colour tiddler-background>>``;
+    z-index: 500;
+}
+
+.tc-tiddler-preview {
+    overflow: unset;
+}
+
+``
+</$reveal>

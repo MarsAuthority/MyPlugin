@@ -1,0 +1,14 @@
+caption: {{$:/core/images/new-button}} imitation
+description: Imitate a button
+title: $:/xp/quickbar/create/Buttons/imitate-pagecontrol-button
+
+\whitespace trim
+<$button aria-label="imitate pagecontrol button">
+Confirm
+<$vars imitationTid={{$:/config/new-pagecontrol-button/From}}>
+<$action-setfield $tiddler="$:/config/new-pagecontrol-button/Title" text={{{ [<imitationTid>split[/]last[1]] +[addprefix[$:/xp/quickbar/Buttons/]] }}}/>
+<$action-setfield $tiddler="$:/config/new-pagecontrol-button/Caption" text={{{ [<imitationTid>get[caption]] }}}/>
+<$action-setfield $tiddler="$:/config/new-pagecontrol-button/Description" text={{{ [<imitationTid>get[description]] }}}/>
+<$action-setfield $tiddler="$:/config/new-pagecontrol-button/Text" text={{{ [<imitationTid>get[text]] }}}/>
+</$vars>
+</$button>

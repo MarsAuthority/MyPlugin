@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLTags [[Section Divisions]]
+title: $:/language/HTMLTags/hr
+
+<$button tag="a" tooltip="Horizontal Rule">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="""<hr size="" width="">"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<hr>"></span>
+
+</$button>

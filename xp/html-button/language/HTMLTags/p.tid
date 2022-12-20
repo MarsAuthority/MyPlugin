@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Section Divisions]]
+title: $:/language/HTMLTags/p
+
+<$button tag="a" tooltip="Paragraph">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<p>"
+	suffix="</p>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<p>"></span>
+
+</$button>

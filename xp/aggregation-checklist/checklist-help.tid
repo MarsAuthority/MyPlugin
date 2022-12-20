@@ -1,0 +1,21 @@
+title: $:/checklist-help
+
+你可以选择使用下面三个插件创建检查清单：
+
+# $:/plugins/kookma/kara（默认）
+# $:/plugins/kookma/todolist
+# $:/plugins/tgrosinger/tw5-checklist
+
+!! 为什么默认使用 kara？
+
+检查清单最核心的操作是输入任务、完成任务、查阅任务。
+
+tw5-checklist 不能连贯输入多个任务，所以我个人认为它在第一个环节就输了。
+
+kara 和 todolist 都能完美进行三项核心的操作。但是 todolist 的数据不是直接存储在当前条目里。
+
+!! 其他说明
+
+标记为 done 的检查清单，你只能点击 <<.icon $:/core/images/advanced-search-button>> Search checklist 按钮，在搜索界面中的 done 进行查看。
+
+检查清单条目的标题自动命名，格式见 $:/config/NewChecklist/Title。

@@ -1,0 +1,6 @@
+description: Filter by date (Ex: 20210507)
+filter: [tag<journalTag>regexp:created[^2021]!is[system]!sort[created]]
+tags: $:/tags/JournalFilter
+title: $:/xp/diary/Filters/FilterByDate
+
+<<commonFilters "Date">>

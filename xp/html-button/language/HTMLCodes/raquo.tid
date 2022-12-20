@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/raquo
+
+<$button tag="a" tooltip="Right-pointing double angle">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&raquo;"
+/>
+
+<span class="tc-html-chooser-text">&raquo;</span>
+
+</$button>

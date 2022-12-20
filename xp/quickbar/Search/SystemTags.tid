@@ -1,0 +1,19 @@
+caption: System Tags
+state: systemtags
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/SystemTags
+
+<$reveal state=<<stateTiddler>> type="match" text={{!!state}} animate="yes">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+//<small>System Tag matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[all[shadows+tiddlers]tags[]is[system]sort[]search<userInput>]" />
+</$list>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$reveal>

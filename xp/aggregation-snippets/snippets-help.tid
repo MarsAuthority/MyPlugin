@@ -1,0 +1,59 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/snippets-help
+
+\define hidePrefixText()
+\whitespace trim
+<h2 class="tc-title">
+<$text text={{{ [<currentTiddler>removeprefix[snippet/]] }}}/>
+</h2>
+\end
+
+<div class="blue-box">
+
+''SNIPPETS 的用途：''记录自己常用的维基文本（WikiText）代码片段。
+
+</div>
+
+! 为什么要使用 SNIPPETS？
+
+默认的图章按钮无法管理大量的文本片段，所以 SNIPPETS 试图解决这个问题。SNIPPETS 将代码片段可视化，并通过搜索和标签过滤，进行快速查找。
+
+
+! 如何使用？
+
+# 点击按钮 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new snippet 创建条目。<div class="gray-box">
+
+使用 `codes` 宏生成一个带复制按钮的代码片段，可以高亮代码。比如：`<<codes js src:"""text""">>`。
+
+在阅读模式下可以查阅所有条目。
+
+</div>
+
+# 星标条目。<div class="gray-box">
+
+常用的条目，可以打上标签 `Star`，卡片会有特殊标记。
+
+</div>
+
+# 参考其他帮助说明：[[Aggregation Readme|$:/plugins/xp/aggregation]] / [[Bookshelf Help|$:/bookshelf-help]]
+
+
+! 设置
+
+预设为故事河中优先显示 Caption，见 $:/aggregation/ShowCaption。你可以通过下面按钮切换。
+
+<$vars configTiddler="$:/tags/ViewTemplateTitleFilter" before-title="$:/config/ViewTemplateTitleFilters/default">
+
+<$button>
+<$list filter="[<configTiddler>!contains[$:/config/ViewTemplateTitleFilters/snippet]]" variable="ignore">
+Show caption
+<$action-listops $tiddler=<<configTiddler>> $subfilter="+[insertbefore:before-title[$:/config/ViewTemplateTitleFilters/snippet]]"/>
+</$list>
+<$list filter="[<configTiddler>contains[$:/config/ViewTemplateTitleFilters/snippet]]" variable="ignore">
+Show title
+<$action-listops $tiddler=<<configTiddler>> $subfilter="-$:/config/ViewTemplateTitleFilters/snippet"/>
+</$list>
+</$button>
+
+</$vars>

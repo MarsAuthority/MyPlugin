@@ -1,0 +1,15 @@
+title: $:/xp/aggregation-gtd/PageControls/ItemTemplate
+
+<$link to={{!!title}}>
+	{{||$:/xp/aggregation-gtd/ui/TodoCaption}}
+	<$vars td-baseName={{{ [<currentTiddler>removeprefix[$:/]] }}}>
+	<$list filter="[<td-baseName>addprefix[$:/todolist/data/status/]is[tiddler]!text[{}]]" variable="ignore">
+{{||$:/xp/images/pie-todolist}}
+	</$list>
+	</$vars>
+	<$list filter="[all[current]!text[]]">
+<span class="py-todo-text-icon">
+{{$:/plugins/nico/projectify/images/file}}
+</span>
+	</$list>
+</$link>

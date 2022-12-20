@@ -1,0 +1,11 @@
+title: $:/xp/emoji-button/emoji-dropdown/css3
+
+<div style="zoom: 0.5; overflow: auto;">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/Emojis]!has[draft.of]]">
+<$transclude mode="inline-block"/>
+</$list>
+</div>
+
+<div class="tc-sidebar-lists">
+[[See styles|$:/xp/emoji-button/css3-emoji-animation.css]]
+</div>

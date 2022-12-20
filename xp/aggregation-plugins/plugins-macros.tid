@@ -1,0 +1,26 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/plugins-macros
+
+\define aggregationTag() Plugin Card
+\define systemCTag() $:/tags/MyWorks
+\define config-base() $:/config/xp/aggregation-plugins/Tabs/Visibility/
+\define statusTid() $:/config/xp/aggregation-plugins/installed-plugins/View
+\define versionTid() $:/config/xp/aggregation-plugins/installed-plugins/ShowVersion
+
+\define versionButton()
+\whitespace trim
+<$reveal state=<<versionTid>> default="show" type="match" text="show">
+<$button tooltip="Hide version" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<versionTid>> text="hide"/>
+{{$:/core/images/preview-open}}
+</$button>
+</$reveal>
+<$reveal state=<<versionTid>> type="nomatch" text="show">
+<$button tooltip="Show version" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<versionTid>> text="show"/>
+{{$:/core/images/preview-closed}}
+</$button>
+</$reveal>
+\end
+
+<pre><$view field="text"/></pre>

@@ -1,0 +1,10 @@
+caption: {{$:/core/images/new-button}} new category
+description: Create a new category
+title: $:/xp/ui/Buttons/new-howtocategory
+
+<$button
+	actions={{$:/xp/ui/Actions/new-howtocategory}}
+	tooltip="Create a new category"
+	aria-label="new category">
+Create
+</$button>

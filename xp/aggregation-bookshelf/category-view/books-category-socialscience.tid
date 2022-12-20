@@ -1,0 +1,6 @@
+caption: 社科类
+ctag: Social Science
+tags: $:/tags/BookCategories
+title: $:/books-category-socialscience
+
+<<list-books "Social Science">>

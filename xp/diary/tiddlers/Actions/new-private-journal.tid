@@ -1,0 +1,12 @@
+description: create a new private journal tiddler
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-private-journal
+
+\define get-tags() $(textFieldTags)$ $(tagsFieldTags)$ $(privateTextFieldTags)$ $(privateTagsFieldTags)$
+\whitespace trim
+<$vars textFieldTags={{$:/config/NewJournal/Tags}} tagsFieldTags={{$:/config/NewJournal/Tags!!tags}} privateTextFieldTags={{$:/config/NewPrivateJournal/Tags}} privateTagsFieldTags={{$:/config/NewPrivateJournal/Tags!!tags}} journalText={{$:/config/NewJournal/Text}}>
+<$action-sendmessage $message="tm-new-tiddler" tags=<<get-tags>> text=<<journalText>> class="journal" color="#5e36bf"/>
+<$list filter="[[Private]!has[title]]"> 
+<$action-createtiddler $basetitle="Private" tags="Private" color="#5e36bf"/>
+</$list>
+</$vars>

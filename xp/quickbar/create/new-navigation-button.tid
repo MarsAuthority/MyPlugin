@@ -1,0 +1,32 @@
+caption: Navigation Button
+description: Create a navigation button
+title: $:/xp/quickbar/create/new-navigation-button
+
+\define et-quickbar-navigation(size)
+|<$link to="$:/config/new-navigation-button/Title">Title</$link> |<$edit-text tiddler="$:/config/new-navigation-button/Title" default="" tag="input" size=$size$/> |
+|<$link to="$:/config/new-navigation-button/Caption">Caption</$link> |<$edit-text tiddler="$:/config/new-navigation-button/Caption" default="" tag="input" size=$size$/> |
+|<$link to="$:/config/new-navigation-button/Description">Description</$link> |<$edit-text tiddler="$:/config/new-navigation-button/Description" default="" tag="input" size=$size$/> |
+|<$link to="$:/config/new-navigation-button/Text">Text</$link> |<$edit tiddler="$:/config/new-navigation-button/Text" tag="textarea" class="tc-edit-texteditor" default=""/> |
+|>| {{$:/xp/quickbar/create/Buttons/new-navigation-button}} |
+\end
+
+\define select-navigation-buttons()
+<$select tiddler='$:/config/new-navigation-button/From'>
+<$list filter='[enlist[$:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+\end
+
+Select a button to start imitating: <<select-navigation-buttons>> {{$:/xp/quickbar/create/Buttons/imitate-navigation-button}}
+
+<span class="xp-quickbar-on-pc">
+
+<<et-quickbar-navigation size:"52">>
+
+</span>
+<span class="xp-quickbar-on-phone">
+
+<<et-quickbar-navigation>>
+
+</span>

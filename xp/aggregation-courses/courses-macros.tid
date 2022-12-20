@@ -1,0 +1,9 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/courses-macros
+
+\define aggregationTag() Course
+\define systemCTag()     $:/tags/CourseCategories
+\define categoryPrefix() $:/config/xp/aggregation-courses/category/
+\define config-base()    $:/config/xp/aggregation-courses/Tabs/Visibility/
+
+<pre><$view field="text"/></pre>

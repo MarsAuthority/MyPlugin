@@ -1,0 +1,61 @@
+tags: $:/tags/Stylesheet
+title: $:/themes/xp-j/base
+
+{{$:/themes/tiddlywiki/vanilla/base}}
+
+@media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+    .tc-tiddler-frame { <<box-shadow "0 0.07px 5px rgba(0, 0, 0, 0.07)">> }
+}
+
+.tc-drop-down { border-radius: 6px; }
+
+canvas.tc-edit-bitmapeditor  {
+    border: 1px solid <<colour tiddler-editor-border>>;
+}
+
+
+/* INPUTS */
+
+input[type=search] {
+    border-radius: 3px;
+}
+
+.kk-todolist-input-textbox {
+    line-height: 1.25;
+}
+
+
+/* BUTTONS */
+
+button { outline: none; }
+
+.tc-page-controls button svg, .tc-tiddler-controls button svg, .tc-topbar button svg {
+    <<transition "fill 150ms ease-in-out">>
+}
+
+/* Sidebar tab buttons */
+
+.tc-sidebar-lists .tc-tab-buttons.tc-vertical button.tc-tab-selected {
+    border: 1px solid <<colour tab-border-selected>>;
+    border-right: 1px solid <<colour page-background>>;
+}
+
+/* Tab launcher */
+
+.tc-sidebar-lists .xp-tab-launcher-selected button,
+.tc-sidebar-lists .xp-tab-launcher-selected button:hover {
+    color: rgba(0, 150, 136, 1);
+    fill: rgba(0, 150, 136, 1);
+}
+
+<$reveal state="$:/config/TabLauncher/Style" type="match" text="oval">
+
+.tc-sidebar-lists .xp-tab-launcher-selected button,
+.tc-sidebar-lists .xp-tab-launcher-selected button:hover {
+    font-weight: bold;
+    background: none;
+    border: none;
+    box-shadow: 1px 2px 5px rgba(0, 150, 136, 0.25);
+}
+
+</$reveal>

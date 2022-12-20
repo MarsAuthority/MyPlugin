@@ -1,0 +1,31 @@
+caption: See examples
+title: $:/xp/columns/preview
+
+\define dropdown-columns()
+<$select tiddler="$:/xp/columns/preview/text">
+<option value="{{$:/xp/columns/Examples/split-text-to-columns}}">split-text-to-columns</option>
+<option value="{{$:/xp/columns/Examples/2column}}">2column</option>
+<option value="{{$:/xp/columns/Examples/2column-adjust-width}}">2column-adjust-width</option>
+<option value="{{$:/xp/columns/Examples/2column-scrollable}}">2column-scrollable</option>
+<option value="{{$:/xp/columns/Examples/2column-border}}">2column-border</option>
+<option value="{{$:/xp/columns/Examples/2column-border-adjust-width}}">2column-border-adjust-width</option>
+<option value="{{$:/xp/columns/Examples/2column-double-page}}">2column-double-page</option>
+<option value="{{$:/xp/columns/Examples/2column-leftmenu}}">2column-leftmenu</option>
+<option value="{{$:/xp/columns/Examples/2column-rightmenu}}">2column-rightmenu</option>
+<option value="{{$:/xp/columns/Examples/2column-2tiddler}}">2tiddler</option>
+</$select>
+\end
+
+
+<div style="
+	margin-bottom: 1rem;
+	padding: 10px 28px;
+	border-radius: 5px;
+	box-shadow: 0.5px 1px 17px -8px #A3A5AE;">
+
+预览 <<dropdown-columns>> 的效果：
+
+</div>
+
+
+{{$:/xp/columns/preview/text}}

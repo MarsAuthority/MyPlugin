@@ -1,0 +1,27 @@
+caption: {{$:/plugins/kookma/utility/ui/Buttons/ViewFields!!caption}}
+dependents: $:/plugins/kookma/utility
+description: {{$:/plugins/kookma/utility/ui/Buttons/ViewFields!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/view-fields
+
+\whitespace trim
+\define stateTid() $:/state/utility/view-fields
+\define buttonIcon() {{$:/plugins/kookma/utility/images/view-fields.svg}}
+
+<$list filter="[<stateTid>get[text]else[hide]!match[show]]" variable="ignore">
+  <$button set=<<stateTid>> setTo="show" 
+	         tooltip={{$:/language/Buttons/Utility/Hint}} 
+					 aria-label={{$:/language/Buttons/Utility/Caption}} 
+					 class=<<tv-config-toolbar-class>> style="padding-bottom:7px;">
+    <<buttonIcon>>
+  </$button>
+</$list>
+
+<$list filter="[<stateTid>get[text]else[hide]match[show]]" variable="ignore">
+  <$button set=<<stateTid>> setTo="hide" 
+           tooltip={{$:/language/Buttons/Utility/Hint}} 
+				   aria-label={{$:/language/Buttons/Utility/Caption}} 
+				   class="tc-btn-invisible quickbar-active-indicator" style="padding-bottom:7px;">
+     <<buttonIcon>>
+  </$button>
+</$list>

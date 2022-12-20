@@ -1,0 +1,221 @@
+caption: {{$:/xp/images/checklist}} CHECKLIST
+color: #bbb
+icon: $:/xp/images/checklist
+title: CHECKLIST
+tmap.id: 3b983820-1f44-4b29-b861-3ccfddf0750b
+
+\import $:/aggregation/macros/general
+\define aggregationTag() Checklist
+
+\whitespace trim
+\define lingo-base() $:/language/Search/
+\define storeTitle() $:/temp/search/checklist
+\define cancel-search-actions() <$action-deletetiddler $filter="[<storeTitle>] [<modeTiddler>]"/><$action-sendmessage $message="tm-focus-selector" $param=".xp-gtd-addtodo-textbox input"/>
+\define radioActions() <$action-sendmessage $message="tm-focus-selector" $param=".xp-search-checklist input"/>
+
+\define checklistCount()
+<small class="tc-sidebar-header"><b><$count filter='[tag<aggregationTag>!tag[done]!has[draft.of]]'/></b> + <$count filter='[tag<aggregationTag>tag[done]!has[draft.of]]'/> = <$count filter='[tag<aggregationTag>!has[draft.of]]'/> tiddlers</small>
+\end
+
+\define newChecklist()
+<$vars storeTiddler="$:/temp/new-checklist/input">
+  <div class="xp-gtd-addtodo">
+  <div class="xp-gtd-addtodo-textbox">
+    <$keyboard key="escape" actions=<<cancel-input-actions>>>
+    <$keyboard key="enter" actions=<<new-checklist-actions>>>
+      <$edit-text
+  tiddler=<<storeTiddler>>
+  tag="input"
+  class="xp-gtd-addtodo-textbox-input"
+  placeholder="new checklist..."
+  default=""
+  minHeight="1em"
+  />
+    </$keyboard>
+    </$keyboard>
+  </div>
+
+  <$list filter="[<storeTiddler>get[text]trim[]!is[blank]]" variable="ignore" storyview="pop">
+  <$button
+    class="tc-btn-invisible tc-tiny-gap-left"
+    actions=<<new-checklist-actions>>
+    tooltip="Add new checklist"
+    aria-label="new checklist"
+  >
+    {{$:/core/images/new-button}}
+  </$button>
+  </$list>
+  </div>
+</$vars>
+\end
+
+\define get-tags() $(textFieldTags)$ $(tagsFieldTags)$
+
+\define new-checklist-actions()
+<$vars
+  checklistTitleTemplate={{$:/config/NewChecklist/Title}}
+  textFieldTags={{$:/config/NewChecklist/Tags}}
+  tagsFieldTags={{$:/config/NewChecklist/Tags!!tags}}
+  checklistText={{$:/config/NewChecklist/Text}}>
+<$wikify name="checklistTitle" text="<$macrocall $name='now' format=<<checklistTitleTemplate>>/>">
+<$list filter="[<storeTiddler>get[text]trim[]!is[blank]]" variable="ignore">
+  <$action-createtiddler
+    $basetitle=<<checklistTitle>>
+    $savetitle="$:/temp/new-checklist/title"
+    tags=<<get-tags>>
+    text=<<checklistText>>
+    caption={{{ [<storeTiddler>get[text]] }}}
+  />
+  <$action-setfield $tiddler="$:/temp/toc/selectedTiddler/checklist" text={{$:/temp/new-checklist/title}}/>
+  <$action-deletefield $tiddler=<<storeTiddler>> text />
+  <$action-sendmessage $message="tm-auto-save-wiki"/>
+</$list>
+</$wikify>
+</$vars>
+\end
+
+\define cancel-input-actions() <$action-deletefield $tiddler=<<storeTiddler>> text />
+
+\define defaultView() $:/config/xp/aggregation-checklist/DefaultView
+\define checklistViewButton()
+\whitespace trim
+<$reveal state=<<defaultView>> default="toc" type="nomatch" text="list">
+<$button tooltip="Switching to list view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="list"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+<$reveal state=<<defaultView>> type="match" text="list">
+<$button tooltip="Switching to toc view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="toc"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+\end
+
+\define modeTiddler() $:/state/xp/aggregation-checklist/Mode
+\define searchButton()
+\whitespace trim
+<$reveal state=<<modeTiddler>> type="match" text="add" default="add">
+<$button set=<<modeTiddler>> setTo="search" tooltip="Search checklist" aria-label="search checklist" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/advanced-search-button}}</span>
+</$button>
+</$reveal>
+<$reveal state=<<modeTiddler>> type="match" text="search" default="add">
+<$set name="stateTiddler" filter="[<storeTitle>has[text]]" value=<<storeTitle>> emptyValue=<<doneTiddler>>>
+<$button set=<<modeTiddler>> setTo="add" tooltip="Cancel search" aria-label="cancel search" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/advanced-search-button}}</span>
+<<cancel-search-actions>>
+</$button>
+</$set>
+</$reveal>
+\end
+
+\define checklistManagerView()
+<div class="xp-checklist-wrapper">
+<div class="tc-manager-list">
+  <$list filter=<<searchFilter>>>
+    <$vars transclusion=<<currentTiddler>>>
+      <div style="tc-manager-list-item">
+  <$button popup=<<qualify "$:/state/xp/aggregation-checklist">> class="tc-btn-invisible tc-manager-list-item-heading xp-manager-item-heading" selectedClass="tc-manager-list-item-heading-selected">
+    {{||$:/xp/aggregation-checklist/Caption}}
+      <$list filter="[<currentTiddler>search:text:literal,casesensitive[<<checklist>>]]" variable="ignore">
+    {{||$:/xp/images/pie-kara}}
+      </$list>
+  </$button>
+  <$reveal state=<<qualify "$:/state/xp/aggregation-checklist">> type="nomatch" text="" default="" tag="div" class="tc-manager-list-item-content tc-popup-handle">
+    <div class="xp-manager-item-content xp-manager-item-content-tiddler">
+      <$transclude mode="block"/>
+    </div>
+    <div class="xp-manager-item-content-sidebar">
+      <div class="xp-manager-item-tools xp-checklist-item-tools">
+        <$transclude tiddler="$:/xp/aggregation-checklist/SidebarTools"/>
+      </div>
+    </div>
+  </$reveal>
+      </div>
+    </$vars>
+  </$list>
+</div>
+</div>
+\end
+
+<div class="xp-search xp-float-right">
+<i class="tc-small-gap"/>
+<$reveal state=<<modeTiddler>> type="nomatch" text="search">
+<<checklistViewButton>>
+</$reveal>
+<<searchButton>>
+<<help-button-to "$:/checklist-help" "Checklist Help">>
+</div>
+
+<$reveal state=<<modeTiddler>> type="match" text="add" default="add">
+
+<i class="tc-small-gap"/><<checklistCount>>
+
+<<newChecklist>>
+
+<$list filter="[tag<aggregationTag>!has[draft.of]limit[1]]" emptyMessage="{{$:/aggregation/prompt}}" variable="ignore">
+<$vars searchFilter="[tag<aggregationTag>!tag[done]!has[draft.of]!sort[created]]">
+
+<!-- toc view -->
+<$reveal state=<<defaultView>> default="toc" type="match" text="toc" animate="yes">
+<$macrocall
+  $name="aggregation-toc"
+  filter=<<searchFilter>>
+  template="$:/templates/checklist"
+  selectedTiddler="$:/temp/toc/selectedTiddler/checklist"
+  unselectedText="<p>Select a checklist.</p>"
+  missingText="<p>Missing tiddler.</p>"
+/>
+</$reveal>
+
+<!-- manager view -->
+<$reveal state=<<defaultView>> default="toc" type="nomatch" text="toc" animate="yes">
+<<checklistManagerView>>
+</$reveal>
+
+</$vars>
+</$list>
+
+</$reveal>
+
+<$reveal state=<<modeTiddler>> type="match" text="search" default="add">
+<$list filter="[tag<aggregationTag>!has[draft.of]limit[1]]" emptyMessage="{{$:/aggregation/prompt}}" variable="ignore">
+
+Search <i class="tc-small-gap"/>
+<$tiddler tiddler="$:/config/xp/aggregation-checklist/scope">
+<$radio value="[all[current]]" actions=<<radioActions>>> &#32; all </$radio><i class="tc-tiny-gap"/>
+<$radio value="[!tag[done]]" actions=<<radioActions>>> &#32; undone </$radio><i class="tc-tiny-gap"/>
+<$radio value="[tag[done]]" actions=<<radioActions>>> &#32; done </$radio>
+</$tiddler>
+
+<span class="xp-search xp-search-checklist">
+<$keyboard key="escape" actions="<$action-deletetiddler $filter=<<storeTitle>>/>">
+<$edit-text tiddler=<<storeTitle>> tag="input" focus="true" placeholder="" default=""/>
+</$keyboard>
+<i class="tc-tiny-gap-left"/>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]has[text]]" value=<<storeTitle>> emptyValue=<<doneTiddler>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="" animate="yes">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</$set>
+</span>
+<$vars userInput={{{ [<storeTitle>get[text]] }}} searchFilter="[tag<aggregationTag>!has[draft.of]!sort[created]search:title,caption,text,tags<userInput>] :filter[subfilter{$:/config/xp/aggregation-checklist/scope}]">
+<$wikify name="resultCount" text="<$count filter=<<searchFilter>>/>">
+<$reveal state=<<storeTitle>> type="nomatch" text="" animate="yes">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$reveal>
+
+<div style="padding:1em 0;">
+<<checklistManagerView>>
+</div>
+
+</$wikify>
+</$vars>
+
+</$list>
+</$reveal>

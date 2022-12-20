@@ -1,0 +1,69 @@
+title: $:/plugins/xp/quickbar/readme
+
+\define statusTid() $:/config/xp/quickbar/readme/language
+\define lingo-base() $:/language/Search/
+
+<$tiddler tiddler=<<statusTid>>>
+<$radio value="en"> English </$radio>&ensp;
+<$radio value="zh"> Chinese </$radio>
+</$tiddler>
+
+<$reveal state=<<statusTid>> type="match" text="en" default="en" animate="yes">
+
+QuickBar is a shortcut toolbar at the bottom, on which you can place frequently used buttons. It is like the [[Menu Bar|$:/plugins/tiddlywiki/menubar]] at the bottom, or more like a Dock bar.
+
+Why build a QuickBar instead of using Menu Bar directly? The main reason is that the Menu Bar occupies the top space. I personally think it would be better to put it at the bottom.
+
+!!! User Guide
+
+* Turn on or hide QuickBar via page control button {{$:/xp/ui/Buttons/toggle-quickbar}}. Keyboard shortcut <kbd>shift-alt-Q</kbd>.
+* Quickly create a new button via {{$:/xp/quickbar/Buttons/create}}.
+*> If the spacing is unusual, try replacing the [[RevealWidget|https://tiddlywiki.com/static/RevealWidget.html]] in the button with [[ListWidget|https://tiddlywiki.com/static/ListWidget.html]].
+* If the width calculated by QuickBar is not enough, the button will be displayed in two rows. You can adjust the [[width|$:/xp/quickbar/width]] yourself.
+
+!!! Search shortcuts
+
+|Shortcut |Function |h
+|<kbd>ctrl-shift-F</kbd> |Select the quickbar search field |
+|<kbd>ctrl-shift-Right</kbd> |Select the next Tab |
+|<kbd>ctrl-shift-Left</kbd> |Select the previous Tab |
+|<kbd>Home</kbd> |Go to left |
+|<kbd>End</kbd> |Go to right |
+|<kbd>Escape</kbd> |Clear the input field |
+|<kbd>shift-alt-D</kbd> |Select the default search scope |
+|<kbd>alt-Enter</kbd> |Open the ~AdvancedSearch panel |
+|<kbd>Enter</kbd> |Accept the selected item |
+
+> Note: The search box allow "<<lingo Filter/Hint>>"
+
+</$reveal>
+
+<$reveal state=<<statusTid>> type="match" text="zh" animate="yes">
+
+QuickBar 是一个常驻底部的快捷工具栏，您可以在上面放置一些常用按钮。它像是位于底部的 [[Menu Bar|$:/plugins/tiddlywiki/menubar]]，或者更像一个 Dock 栏。
+
+为什么要造一个 QuickBar，而不直接用 Menu Bar？主要是 Menu Bar 占用了顶部空间，个人觉得将其放到底部会好一点。
+
+!! 使用指南
+
+* 通过页面控制按钮 {{$:/xp/ui/Buttons/toggle-quickbar}} 开启或隐藏 QuickBar。键盘快捷键 <kbd>shift-alt-Q</kbd>。
+* 通过 {{$:/xp/quickbar/Buttons/create}} 快速创建一个新按钮。
+*> 如果间距异常，试试将按钮中的 [[RevealWidget|https://tiddlywiki.com/static/RevealWidget.html]] 替换为 [[ListWidget|https://tiddlywiki.com/static/ListWidget.html]]。
+* 如果 QuickBar 计算的宽度不够，会导致按钮显示为两行。您可以自己调整 [[width|$:/xp/quickbar/width]]。
+
+!!! 搜索快捷键
+
+|快捷键 |功能 |h
+|<kbd>ctrl-shift-F</kbd> |搜索框中查找 |
+|<kbd>ctrl-shift-Right</kbd> |切换到下一个页签 |
+|<kbd>ctrl-shift-Left</kbd> |切换到上一个页签 |
+|<kbd>Home</kbd> |将光标移至文本开头 |
+|<kbd>End</kbd> |将光标移至文本末尾 |
+|<kbd>Escape</kbd> |清空输入框 |
+|<kbd>shift-alt-D</kbd> |切回默认搜索范围 |
+|<kbd>alt-Enter</kbd> |在高级查找中查看结果 |
+|<kbd>Enter</kbd> |打开给定条目 |
+
+> 备注：搜索框允许「<<lingo Filter/Hint>>」
+
+</$reveal>

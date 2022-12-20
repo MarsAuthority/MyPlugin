@@ -1,0 +1,31 @@
+description: create a new category
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-bookcategory
+
+\define get-tags() $(textFieldTags)$ $(tagsFieldTags)$
+\define prefixText() <$text text={{{ [[<<list-books "]] }}}/>
+\define suffixText() <$text text={{{ [[">>]] }}}/>
+
+<$vars newcategoryTitle={{$:/config/new-bookcategory/Title}}
+  newcategoryCaption={{$:/config/new-bookcategory/Caption}}
+  textFieldTags={{$:/config/new-bookcategory/Tags}}
+  tagsFieldTags={{$:/config/new-bookcategory/Tags!!tags}}
+  newcategoryCtag={{$:/config/new-bookcategory/Ctag}}
+  ctagStoreTiddler="$:/config/new-bookcategory/Ctag"
+  storeTiddler="$:/config/new-bookcategory/Title/input"
+  listopsTiddler="$:/books-category-others"
+  >
+<$reveal type="nomatch" state=<<newcategoryTitle>> text="">
+  <$action-setfield $tiddler=<<storeTiddler>> text=<<newcategoryTitle>>/>
+</$reveal>
+<$wikify name="newcategoryText" text={{{ [<newcategoryCtag>addprefix<prefixText>addsuffix<suffixText>] }}}>
+<$reveal type="match" state=<<newcategoryTitle>> text="">
+  <$reveal type="nomatch" state=<<ctagStoreTiddler>> text="">
+    <$action-createtiddler $basetitle=<<newcategoryTitle>> caption=<<newcategoryCaption>> tags=<<get-tags>> ctag=<<newcategoryCtag>> text=<<newcategoryText>> list-before=<<listopsTiddler>>/>
+  </$reveal>
+  <$reveal type="match" state=<<ctagStoreTiddler>> text="">
+    <$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/ctagEmpty"/>
+  </$reveal>
+</$reveal>
+</$wikify>
+</$vars>

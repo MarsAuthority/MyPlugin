@@ -1,0 +1,53 @@
+tags: $:/tags/Macro
+title: $:/xp/emoji-button/macros/unicode-emoji-picker
+
+\define copyEmojiActions() <$action-sendmessage $message="tm-copy-to-clipboard" $param=<<emoji-picker-value>>/>
+\define insertEmojiActions() <$action-sendmessage $message="tm-edit-text-operation" $param="replace-selection" text=<<emoji-picker-value>>/>
+
+\define unicode-emoji-picker-thumbnail(actions)
+<$button tag="a" tooltip="""$(emoji-picker-value)$""">
+$(unicode-emoji-picker-update-recent)$
+$actions$
+
+<span class="tc-emoji-chooser-text">$(emoji-picker-value)$</span>
+</$button>
+\end
+
+\define unicode-emoji-picker-list(filter,actions)
+\whitespace trim
+<$list filter="""$filter$""" variable="emoji-picker-value">
+<$macrocall $name="unicode-emoji-picker-thumbnail" actions="""$actions$"""/>
+</$list>
+\end
+
+\define unicode-emoji-picker-thumbnail-recent(actions)
+<$button tag="a" tooltip="""$(emoji-picker-value)$""">
+$(unicode-emoji-picker-update-recent)$
+$actions$
+
+<span class="tc-emoji-chooser-text-recent">$(emoji-picker-value)$</span>
+</$button>
+\end
+
+\define unicode-emoji-picker-update-recent()
+<$action-listops
+	$tiddler="$:/config/UnicodeEmojiPicker/Recent"
+	$subfilter="$(emoji-picker-value)$ [list[$:/config/UnicodeEmojiPicker/Recent]remove[$(emoji-picker-value)$]] +[limit[36]]"
+/>
+\end
+
+\define unicode-emoji-picker-recent-inner(actions)
+\whitespace trim
+<$set name="emoji-picker-value" value="$(recentEmoji)$">
+<$macrocall $name="unicode-emoji-picker-thumbnail-recent" actions="""$actions$"""/>
+</$set>
+\end
+
+\define unicode-emoji-picker-recent(actions)
+\whitespace trim
+<div style="padding:2px 0 8px;">Recent:</div>
+<div class="tc-emoji-chooser">
+<$list filter="[list[$:/config/UnicodeEmojiPicker/Recent]]" variable="recentEmoji">
+<$macrocall $name="unicode-emoji-picker-recent-inner" actions="""$actions$"""/></$list>
+</div>
+\end

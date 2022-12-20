@@ -1,0 +1,33 @@
+module-type: startup
+title: $:/_sq/Stories/CorePatch/ButtonDispatchMessage
+type: application/javascript
+
+var ButtonWidget = require("$:/core/modules/widgets/button.js").button;
+
+ButtonWidget.prototype.dispatchMessage = function(event) {
+	this.dispatchEvent({type: this.message, param: this.param, tiddlerTitle: this.getVariable("currentTiddler"), event: event, navigateFromNode: this});
+};
+
+/*
+Invoke the action widgets that are descendents of the current widget.
+*/
+ButtonWidget.prototype.invokeActions = function(triggeringWidget,event) {
+event.navigateFromNode = this;
+	var handled = false;
+	// For each child widget
+	for(var t=0; t<this.children.length; t++) {
+		var child = this.children[t];
+		// Invoke the child if it is an action widget
+		if(child.invokeAction) {
+			child.refreshSelf();
+			if(child.invokeAction(triggeringWidget,event)) {
+				handled = true;
+			}
+		}
+		// Propagate through through the child if it permits it
+		if(child.allowActionPropagation() && child.invokeActions(triggeringWidget,event)) {
+			handled = true;
+		}
+	}
+	return handled;
+};

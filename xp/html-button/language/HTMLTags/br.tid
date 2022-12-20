@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLTags [[Section Divisions]]
+title: $:/language/HTMLTags/br
+
+<$button tag="a" tooltip="Line Break">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<br>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<br>"></span>
+
+</$button>

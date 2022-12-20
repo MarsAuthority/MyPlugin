@@ -1,0 +1,12 @@
+title: $:/css3-emoji-grin
+
+<div class="emoji grin">
+    <figure class="face">
+        <span class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+        </span>
+        <span class="mouth teath tounge">
+        </span>
+    </figure>
+</div>

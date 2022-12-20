@@ -1,0 +1,6 @@
+description: Private journals
+filter: [tag<journalTag>tag[Private]!is[system]!sort[created]]
+tags: $:/tags/JournalFilter
+title: $:/xp/diary/Filters/PrivateJournals
+
+<<commonFilters "Private">>

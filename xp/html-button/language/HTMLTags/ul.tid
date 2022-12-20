@@ -1,0 +1,19 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/ul
+
+<$button tag="a" tooltip="Unordered List">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="""<ul>
+	<li>List item 1</li>
+	<li>List item 2</li>
+	<li>List item 3</li>
+	<li>List item 4</li>
+</ul>"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<ul>"></span>
+
+</$button>

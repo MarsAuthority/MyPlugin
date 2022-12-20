@@ -1,0 +1,26 @@
+caption: {{$:/xp/images/programs}} SOFTWARE
+color: #bbb
+icon: $:/xp/images/programs
+title: SOFTWARE
+tmap.id: 3fbb6a21-23c1-43fd-971c-a38e4a019f58
+
+\import $:/software-macros
+\define config-base() $:/config/xp/aggregation-software/TableFields/Visibility/
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-software}} tooltip="Create a new software" aria-label="new software" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new software
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/software-help" "SOFTWARE Help">>
+</div>
+
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/xp/aggregation-software/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall
+  $name="aggregation-filtersearch"
+  fields=<<dtableFields>>
+  state="aggregation-software"
+  class=""
+  cardTemplate="$:/software-card-template"
+  searchClass="xp-search-software"
+  promptTiddler="$:/software-prompt"
+/>
+</$wikify>

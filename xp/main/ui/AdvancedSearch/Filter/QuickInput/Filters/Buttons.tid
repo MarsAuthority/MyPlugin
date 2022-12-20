@@ -1,0 +1,7 @@
+caption: 官方按钮
+description: 所有“官方按钮”
+filter: [all[shadows]prefix[$:/core/ui/Buttons]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/Buttons
+
+{{!!filter}}

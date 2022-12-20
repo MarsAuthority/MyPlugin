@@ -1,0 +1,9 @@
+caption: 默认视图
+title: $:/plugins-currently-installed/DefaultView
+
+<$vars
+    qualified-state=<<qualify "$:/state/plugin-info">>
+    pluginFilter="[plugin-type[plugin]] [plugin-type[theme]] [plugin-type[language]] +[!has[draft.of]sort[]search:-text,*<userInput>]"
+    >
+<$list filter=<<pluginFilter>> emptyMessage=<<lingo "Empty/Hint">> template="$:/core/ui/Components/plugin-info"/>
+</$vars>

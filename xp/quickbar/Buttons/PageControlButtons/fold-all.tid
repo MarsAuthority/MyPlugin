@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/fold-all!!caption}}
+description: {{$:/core/ui/Buttons/fold-all!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/fold-all
+
+{{$:/core/ui/Buttons/fold-all}}

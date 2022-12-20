@@ -1,0 +1,6 @@
+caption: 音乐
+ctag: Music
+tags: $:/tags/HowtoCategories
+title: $:/howtos-category-music
+
+<<list-howtos "Music">>

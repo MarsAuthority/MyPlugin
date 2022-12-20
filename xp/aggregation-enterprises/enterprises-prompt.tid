@@ -1,0 +1,6 @@
+title: $:/enterprises-prompt
+
+<div class="tc-muted" style="text-align:center;margin:50px 0 25px;">
+<div class="xp-image-big-muted">{{$:/xp/images/enterprise}}</div>
+New enterprise will appear here
+</div>

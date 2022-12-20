@@ -1,0 +1,21 @@
+caption: Default
+state: default
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/Default
+
+<$reveal state=<<stateTiddler>> default={{!!state}} type="match" text={{!!state}} animate="yes">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/SearchResults]!has[draft.of]butfirst[]limit[1]]" emptyMessage="""
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SearchResults]!has[draft.of]]">
+<$transclude mode="block"/>
+</$list>
+""">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/QuickBar/SearchResults]!has[draft.of]] -[[$:/tags/QuickBar/SearchResults]]" default={{$:/config/xp/quickbar/SearchResults/Default}} actions="""<$action-setfield $tiddler="$:/state/quicksearch/currentTab" text=<<currentTab>>/><$action-sendmessage $message="tm-focus-selector" $param=".xp-quickbar-search input" preventScroll="true"/>""" explicitState="$:/state/tab/search-results/quickbar" class="quicksearch-tabs"/>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$list>
+</$reveal>

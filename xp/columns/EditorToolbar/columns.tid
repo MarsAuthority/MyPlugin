@@ -1,0 +1,9 @@
+caption: {{$:/language/Buttons/columns/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+description: {{$:/language/Buttons/columns/Hint}}
+dropdown: $:/xp/ui/EditorToolbar/columns-dropdown
+icon: $:/xp/images/columns
+shortcuts: ((columns))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/columns
+

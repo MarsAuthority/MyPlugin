@@ -1,0 +1,82 @@
+caption: Search
+custom-menu-content: {{$:/xp/quickbar/items/search}}
+description: Search
+tags: $:/tags/QuickBar
+title: $:/xp/quickbar/items/search
+
+\import $:/xp/quickbar/SearchResults
+
+\define cancel-search-actions()
+<$set name="userInput" value={{{ [<__storeTitle__>get[text]] }}}>
+<$list filter="[<__tiddler__>get[text]!match<userInput>]" emptyMessage="""<$action-deletetiddler $filter="[<__storeTitle__>] [<__tiddler__>] [<__selectionStateTitle__>]"/>""">
+<$action-setfield $tiddler=<<__tiddler__>> text=<<userInput>>/><$action-setfield $tiddler=<<__refreshTitle__>> text="yes"/>
+</$list>
+</$set>
+\end
+
+\define input-accept-actions() <$list filter="[{$:/config/Search/NavigateOnEnter/enable}match[yes]]" emptyMessage="""<$list filter="[<__tiddler__>get[text]!is[missing]] ~[<__tiddler__>get[text]is[shadow]]"><$action-navigate $to={{{ [<__tiddler__>get[text]] }}}/></$list>"""><$action-navigate $to={{{ [<__tiddler__>get[text]] }}}/></$list>
+
+\define input-accept-variant-actions() <$list filter="[{$:/config/Search/NavigateOnEnter/enable}match[yes]]" emptyMessage="""<$list filter="[<__tiddler__>get[text]!is[missing]] ~[<__tiddler__>get[text]is[shadow]]"><$list filter="[<__tiddler__>get[text]minlength[1]]"><$action-sendmessage $message="tm-edit-tiddler" $param={{{  [<__tiddler__>get[text]] }}}/></$list></$list>"""><$list filter="[<__tiddler__>get[text]minlength[1]]"><$action-sendmessage $message="tm-edit-tiddler" $param={{{  [<__tiddler__>get[text]] }}}/></$list></$list>
+
+\define set-next-input-tab(beforeafter:"after") <$macrocall $name="change-input-tab" stateTitle="$:/state/tab/search-results/quickbar" tag="$:/tags/QuickBar/SearchResults" beforeafter="$beforeafter$" defaultState={{$:/config/xp/quickbar/SearchResults/Default}} actions="""<$action-setfield $tiddler="$:/state/quicksearch/currentTab" text=<<nextTab>>/>"""/>
+
+\define advanced-search-actions() <$action-setfield $tiddler="$:/temp/advancedsearch" text={{$:/temp/quicksearch/input}}/><$action-setfield $tiddler="$:/temp/advancedsearch/input" text={{$:/temp/quicksearch/input}}/><<delete-state-tiddlers>><$action-navigate $to="$:/AdvancedSearch"/><$action-setfield $tiddler="$:/temp/advancedsearch/refresh" text="yes"/><$action-sendmessage $message="tm-focus-selector" $param="""[data-tiddler-title="$:/AdvancedSearch"] .tc-search input""" preventScroll="true"/><$action-deletetiddler $filter="$:/temp/quicksearch $:/temp/quicksearch/input $:/temp/quicksearch/refresh [<searchListState>]"/><$list filter="[[$:/temp/quicksearch/input]get[text]regexp[^\[]]" emptyMessage="""<$action-setfield $tiddler="$:/state/tab--1498284803" text="$:/core/ui/AdvancedSearch/Standard"/><$action-setfield $tiddler="$:/state/advancedsearch/currentTab" text="$:/core/ui/AdvancedSearch/Standard"/>"""><$action-setfield $tiddler="$:/state/tab--1498284803" text="$:/core/ui/AdvancedSearch/Filter"/><$action-setfield $tiddler="$:/state/advancedsearch/currentTab" text="$:/core/ui/AdvancedSearch/Filter"/></$list>
+
+\define search-scope-actions() <$action-deletetiddler $filter="[<stateTiddler>] $:/config/xp/quickbar/SearchPrompt"/>
+
+\define searchboxFocusPrompt()
+<div class="tc-search-results">
+<$reveal state="$:/config/xp/quickbar/SearchPrompt" type="match" text="">
+Type your search terms
+</$reveal>
+<$reveal state="$:/config/xp/quickbar/SearchPrompt" type="nomatch" text="">
+{{$:/config/xp/quickbar/SearchPrompt}}
+</$reveal>
+</div>
+\end
+
+\whitespace trim
+<$vars searchTiddler="$:/temp/quicksearch/input" searchListState=<<qualify "$:/state/quicksearch-list/selected-item">>>
+<span class="tc-search xp-quickbar-search">
+<$keyboard key="((input-tab-right))" actions=<<set-next-input-tab>>>
+<$keyboard key="((input-tab-left))" actions=<<set-next-input-tab "before">>>
+<$keyboard key="((advanced-search-sidebar))" actions=<<advanced-search-actions>>>
+<$keyboard key="shift-alt-D" actions=<<search-scope-actions>>>
+<span class="quickbar-search-margin">
+<$macrocall $name="keyboard-driven-input" tiddler="$:/temp/quicksearch" storeTitle=<<searchTiddler>> selectionStateTitle=<<searchListState>> 
+	refreshTitle="$:/temp/quicksearch/refresh" tag="input" type="search" 
+	focus={{$:/config/xp/quickbar/Search/AutoFocus}} focusPopup="$:/state/popup/quickbar-search-dropdown" cancelPopups="yes" 
+	class="tc-popup-handle tc-menu-show-when-wide xp-quickbar-searchbox" placeholder="Search..." default="" 
+	inputAcceptActions=<<input-accept-actions>> inputAcceptVariantActions=<<input-accept-variant-actions>> inputCancelActions=<<cancel-search-actions>> />
+</span>
+</$keyboard>
+</$keyboard>
+</$keyboard>
+</$keyboard>
+</span>
+{{$:/xp/quickbar/Search/scope}}{{$:/xp/quickbar/Search/advanced-search}}
+<$reveal tag="div" class="tc-block-dropdown-wrapper" state="$:/state/popup/quickbar-search-dropdown" type="nomatch" text="" default="">
+
+<div  class="tc-block-dropdown tc-search-drop-down xp-block-dropup">
+
+<$list filter="[<searchTiddler>get[text]minlength[1]]" emptyMessage=<<searchboxFocusPrompt>> variable="ignore">
+
+<$list filter="[<searchTiddler>get[text]minlength{$:/config/Search/MinLength}limit[1]]" emptyMessage="""<div class="tc-search-results">{{$:/language/Search/Search/TooShort}}</div>""" variable="listItem">
+
+<$vars configTiddler={{{ [[$:/state/quicksearch/currentTab]!is[missing]get[text]] ~[{$:/config/xp/quickbar/SearchResults/Default}] }}} userInput={{{ [<searchTiddler>get[text]] }}} pattern="^\[">
+<$set name="stateCode" filter="[<userInput>regexp<pattern>]" value="1" emptyValue="0"> <!-- AllowFiltering -->
+
+{{$:/xp/quickbar/SearchResults}}
+
+</$set>
+</$vars>
+
+</$list>
+
+</$list>
+
+</div>
+
+</$reveal>
+
+</$vars>

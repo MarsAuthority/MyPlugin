@@ -1,0 +1,112 @@
+description: See also https://kookma.github.io/TW-Favorites/
+title: $:/xp/ui/SideBarSegments/toc-readinglist
+
+\whitespace trim
+\define readinglistTid() $:/xp/readinglist
+\define recentlyAdded()  $:/xp/readinglist/recent
+
+\define readinglist-open-button()
+\whitespace trim
+<$button tooltip="Open all tiddlers and close others" aria-label="open all tiddlers and close others" class="tc-btn-invisible tc-btn-mini">
+open all
+  <$action-sendmessage $message="tm-close-all-tiddlers"/>
+  <$vars destTiddler=<<readinglistTid>> >
+    <$list filter="[list<destTiddler>order[reverse]]">
+      <$action-navigate $to=<<currentTiddler>>/>
+    </$list>
+  </$vars>
+</$button>
+\end
+
+\define readinglist-clear-button()
+\whitespace trim
+<$button tooltip="Clear reading list" aria-label="clear reading list" class="tc-btn-invisible tc-btn-mini">
+clear
+<$action-confirm $message="Are you sure you wish to clear the Reading List?">
+  <$action-deletetiddler $filter=<<readinglistTid>>/>
+  <$list filter="[[$:/xp/toc-readinglist]is[tiddler]]">
+    <$action-deletetiddler $filter=<<currentTiddler>>/>
+  </$list>
+</$action-confirm>
+</$button>
+\end
+
+\define readinglist-count()
+//<small class="tc-big-gap-left"><$count filter="[list<readinglistTid>]"/></small>//
+\end
+
+\define drop-actions()
+<!-- case 1: tiddler is already in list -->
+<$reveal type=match default=<<readinglistTid>> text={{{[<actionTiddler>listed[]match<readinglistTid>]}}} >
+<$vars oldFolder={{{ [<actionTiddler>listed[]]+[subfilter<folders>]-[<destTiddler>]+[limit[1]] }}}>
+<$action-listops $tiddler=<<oldFolder>> $subfilter="-[<actionTiddler>]"/>
+</$vars>
+</$reveal>
+<!-- case 2: tiddler is NOT already in list and dropped from outside -->
+<$reveal type=nomatch default=<<readinglistTid>> text={{{[<actionTiddler>listed[]match<readinglistTid>]}}} >
+<$action-listops $tiddler=<<readinglistTid>> $subfilter="[<actionTiddler>]"/>
+</$reveal>
+<!-- move it to the destination -->
+<$action-listops $tiddler=<<destTiddler>> $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+\end
+
+\define placeholder()
+<div class="tc-droppable-placeholder">&nbsp;</div>
+\end
+
+\define droppable-item()
+\whitespace trim
+<$droppable actions=<<drop-actions>>>
+<<placeholder>>
+<div class="tc-sidebar-tab-open tc-sidebar-lists">
+<$button class="tc-btn-invisible tc-btn-mini" tooltip="Remove this tiddler">
+{{$:/core/images/close-button}}
+<$action-listops $tiddler=<<readinglistTid>> $subfilter="-[<currentTiddler>]"/>
+<$action-listops $tiddler=<<destTiddler>> $subfilter="-[<currentTiddler>]"/>
+<$list filter="[list<readinglistTid>count[]match[1]]" variable="ignore">
+  <$action-deletetiddler $filter="$:/xp/toc-readinglist"/>
+</$list>
+</$button>&nbsp;&nbsp;
+<$link to={{!!title}} tooltip=<<currentTiddler>> >
+<$transclude field="caption">
+<$view field="title" />
+</$transclude>
+</$link><br>
+</div>
+</$droppable>
+\end
+
+\define droppable-item-after-last-item()
+\whitespace trim
+<!--add extra space for drag and drop after last item-->
+<$droppable actions=<<drop-actions>>>
+<<placeholder>><div style="margin-top:-14px;margin-bottom:-6px;">&nbsp;</div>
+</$droppable>
+\end
+
+\define readinglist-recentlyAdded()
+\whitespace trim
+<$vars destTiddler=<<recentlyAdded>>>
+
+<div class="xp-readinglist-titlebar">
+<i><b>Reading list</b></i><span class="tc-tiny-gap">·</span><<readinglist-open-button>><span class="tc-tiny-gap">·</span><<readinglist-clear-button>><<readinglist-count>>
+</div>
+
+<$list filter="[list<destTiddler>]"><!--get all items in readinglistTid-->
+<$list filter="[<readinglistTid>contains<currentTiddler>]" variable="ignore"><!--check if the tiddler is a reading list-->
+<$macrocall $name="droppable-item" />
+</$list>
+</$list>
+<<droppable-item-after-last-item>>
+
+</$vars>
+\end
+
+
+<div class="xp-readinglist-box">
+
+<div class="xp-readinglist">
+<<readinglist-recentlyAdded>>
+</div>
+
+</div>

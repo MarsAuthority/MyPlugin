@@ -1,0 +1,10 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/aphorism-macros
+
+\define aggregationTag() Aphorism
+\define systemCTag()     $:/tags/AphorismCategories
+\define categoryPrefix() $:/config/xp/aggregation-aphorism/category/
+\define SubStoryList()	 $:/temp/xp/aggregation-aphorism/SubStoryList
+\define SubHistoryList() $:/temp/xp/aggregation-aphorism/SubHistoryList
+
+<pre><$view field="text"/></pre>

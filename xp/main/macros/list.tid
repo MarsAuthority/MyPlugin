@@ -1,0 +1,123 @@
+tags: $:/tags/Macro
+title: $:/xp/macros/list
+
+<!-- $:/_xp/Stylesheet/expansion -->
+
+\define list-expandable(tag,sort,prompt)
+<div class="xp-list-expandable-wrapper">
+<$reveal default=<<__prompt__>> type="nomatch" text="">
+<div class="xp-expansion-prompt">$prompt$</div>
+</$reveal>
+<div class="tc-manager-list">
+  <$list filter="[all[shadows+tiddlers]tag[$tag$]!has[draft.of]$sort$]">
+    <$vars transclusion=<<currentTiddler>>>
+      <div style="tc-manager-list-item">
+        <$button popup=<<qualify "$:/state/list-expandable">> class="tc-btn-invisible tc-manager-list-item-heading" selectedClass="tc-manager-list-item-heading-selected">
+          <$text text=<<currentTiddler>>/>
+        </$button>
+        <$reveal state=<<qualify "$:/state/list-expandable">> type="nomatch" text="" default="" tag="div" class="tc-popup-handle">
+          <div class="xp-expansion-item-content">
+            <$transclude mode="block"/>
+          </div>
+        </$reveal>
+      </div>
+    </$vars>
+  </$list>
+</div>
+</div>
+\end
+
+\define list-questions(tag,sort,prompt)
+<$reveal default=<<__prompt__>> type="nomatch" text="">
+<div class="xp-expansion-prompt">$prompt$</div>
+</$reveal>
+<$list filter="[all[shadows+tiddlers]tag[$tag$]!has[draft.of]$sort$]">
+  <$qualify name="question-state" title={{{ [[$:/state/question]addsuffix[-]addsuffix<currentTiddler>] }}}>
+  <$reveal type="nomatch" stateTitle=<<question-state>> text="open">
+    <$button setTitle=<<question-state>> setTo="open" class="tc-btn-invisible tc-popup-keep xp-expansion">
+      <<toc-caption>>
+      <span class="xp-expansion-chevron xp-chevron-down">{{$:/xp/images/chevron}}</span>
+    </$button>
+  </$reveal>
+  <$reveal type="match" stateTitle=<<question-state>> text="open">
+    <$button setTitle=<<question-state>> setTo="close" class="tc-btn-invisible tc-popup-keep xp-expansion" style="font-size:1.5em;">
+      <$link to={{{ [<currentTiddler>get[target]else<currentTiddler>] }}}><$view field='caption'><$view field='title'/></$view></$link>
+      <span class="xp-expansion-chevron xp-chevron-up">{{$:/xp/images/chevron}}</span>
+    </$button>
+  </$reveal>
+  <$reveal type="match" stateTitle=<<question-state>> text="open">
+    <div class="xp-expansion-text">
+    <$transclude mode=block/>
+    </div>
+  </$reveal>
+  </$qualify>
+</$list>
+<div class="xp-expansion-line"></div>
+\end
+
+\define list-questions-autoclose(tag,sort,prompt)
+<$reveal default=<<__prompt__>> type="nomatch" text="">
+<div class="xp-expansion-prompt">$prompt$</div>
+</$reveal>
+<$list filter="[all[shadows+tiddlers]tag[$tag$]!has[draft.of]$sort$]">
+  <$qualify name="question-state" title={{{ [[$:/state/question]addsuffix[-]addsuffix<currentTiddler>] }}}>
+  <$reveal type="nomatch" stateTitle=<<question-state>> text="open">
+    <$button setTitle=<<question-state>> setTo="open" class="tc-btn-invisible tc-popup-keep xp-expansion">
+      <$list filter="[[$:/config/question/first-open]!is[tiddler]]">
+        <$action-setfield $tiddler="$:/config/question/first-open" text=<<question-state>>/>
+      </$list>
+      <$list filter="[[$:/config/question/first-open]is[tiddler]]">
+        <$action-setfield $tiddler={{$:/config/question/first-open}} text="close"/>
+        <$action-setfield $tiddler="$:/config/question/first-open" text=<<question-state>>/>
+      </$list>
+      <<toc-caption>>
+      <span class="xp-expansion-chevron xp-chevron-down">{{$:/xp/images/chevron}}</span>
+    </$button>
+  </$reveal>
+  <$reveal type="match" stateTitle=<<question-state>> text="open">
+    <$button setTitle=<<question-state>> setTo="close" class="tc-btn-invisible tc-popup-keep xp-expansion" style="font-size:1.5em;">
+      <$link to={{{ [<currentTiddler>get[target]else<currentTiddler>] }}}><$view field='caption'><$view field='title'/></$view></$link>
+      <span class="xp-expansion-chevron xp-chevron-up">{{$:/xp/images/chevron}}</span>
+    </$button>
+  </$reveal>
+  <$reveal type="match" stateTitle=<<question-state>> text="open">
+    <div class="xp-expansion-text">
+    <$transclude mode=block/>
+    </div>
+  </$reveal>
+  </$qualify>
+</$list>
+<div class="xp-expansion-line"></div>
+\end
+
+
+\define list-questions-autoclose2(tag,sort,prompt)
+<$reveal default=<<__prompt__>> type="nomatch" text="">
+<div class="xp-expansion-prompt">$prompt$</div>
+</$reveal>
+<$list filter="[all[shadows+tiddlers]tag[$tag$]!has[draft.of]$sort$]">
+  <$vars transclusion=<<currentTiddler>>>
+  <$qualify name="question-state" title={{{ [[$:/state/question]addsuffix[-]addsuffix<currentTiddler>] }}}>
+    <$button popup=<<qualify "$:/state/list-expandable">> class="tc-btn-invisible tc-popup-keep xp-expansion">
+      <$reveal type="nomatch" stateTitle=<<question-state>> text="open">
+        <$action-deletetiddler $filter="[prefix[$:/state/question-]] [prefix[$:/state/list-expandable]]"/>
+        <$action-setfield $tiddler=<<question-state>> text="open"/>
+      <$text text=<<currentTiddler>>/>
+      <span class="xp-expansion-chevron xp-chevron-down">{{$:/xp/images/chevron}}</span>
+      </$reveal>
+      <$reveal type="match" stateTitle=<<question-state>> text="open">
+        <$action-setfield $tiddler=<<question-state>> text="close"/>
+        <$link to={{{ [<currentTiddler>get[target]else<currentTiddler>] }}}><$view field='caption'><$view field='title'/></$view></$link>
+        <span class="xp-expansion-chevron xp-chevron-up">{{$:/xp/images/chevron}}</span>
+      </$reveal>
+    </$button>
+    <$reveal state=<<qualify "$:/state/list-expandable">> type="nomatch" text="" default="" tag="div" class="tc-popup-handle">
+      <div style="padding: 0 0 9px; vertical-align: middle;">
+        <$transclude mode="block"/>
+      </div>
+    </$reveal>
+  </$qualify>
+  </$vars>
+</$list>
+<div class="xp-expansion-line"></div>
+\end

@@ -1,0 +1,5 @@
+caption: list-questions
+tags: $:/tags/TextEditor/Snippet
+title: $:/language/Snippets/list-questions
+
+<<list-questions-autoclose tag:"" sort:"">>

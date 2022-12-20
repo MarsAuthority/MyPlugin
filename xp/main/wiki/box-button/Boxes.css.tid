@@ -1,0 +1,80 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/box-button/Boxes.css
+
+/* Light theme */
+
+.blue-box {
+    background-color: rgba(135, 206, 250, 0.13);
+}
+
+.gray-box {
+    background-color: rgba(238, 238, 238, 0.8);
+}
+
+.green-box {
+    background-color: rgb(230, 238, 224, 0.8);
+}
+
+.pink-box {
+    background-color: rgba(255, 192, 203, 0.23);
+}
+
+.purple-box {
+    background-color: rgba(243, 236, 253, 1);
+}
+
+.yellow-box {
+    background-color: rgba(251, 241, 218, 0.618);
+}
+
+.blue-box,
+.gray-box,
+.green-box,
+.pink-box,
+.purple-box,
+.red-box,
+.yellow-box {
+    padding: 8px 8px 4px 20px;
+    margin-top: 5px;
+    margin-bottom: 1em;
+    width: 95%;
+    color: #000;
+    border-radius: 3px;
+    /* Compatible with $:/plugins/xp/theme-changer */
+<$list filter="[{$:/palette}match[$:/xp/theme-changer/palettes/EyeCareGreen]] [{$:/palette}match[$:/xp/theme-changer/palettes/EyeCareGreen2]] +[limit[1]]" variable="ignore">
+    background-color: <<colour pre-background>>;
+    color: #3b302e;
+</$list>
+}
+
+.red-box {
+    background-color: #fff5f7;
+    border: 1px solid #ff3860;
+    color: #cd0930;
+<$list filter="[{$:/palette}match[$:/xp/theme-changer/palettes/EyeCareGreen]] [{$:/palette}match[$:/xp/theme-changer/palettes/EyeCareGreen2]] +[limit[1]]" variable="ignore">
+    background-color: <<colour pre-background>>;
+    border: 1px solid #CC3333;
+    color: #993333;
+</$list>
+}
+
+
+/* Dark theme */
+
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+.blue-box,
+.gray-box,
+.green-box,
+.pink-box,
+.purple-box,
+.red-box,
+.yellow-box {
+    background-color: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.67);
+}
+
+.red-box {
+    border: 1px solid #993333;
+    color: #CC3333;
+}
+</$list>

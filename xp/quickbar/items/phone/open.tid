@@ -1,0 +1,25 @@
+caption: {{$:/language/SideBar/Open/Caption}}
+description: Open tiddler list
+is-dropup: yes
+tags: $:/tags/QuickBar/Phone
+title: $:/xp/quickbar/items/phone/open
+
+\whitespace trim
+\define lingo-base() $:/language/CloseAll/
+
+<div class="tc-sidebar-tab-open">
+
+<ol class="tc-muted">
+<$list filter="[list<tv-story-list>]" history=<<tv-history-list>>>
+<li><$link to={{!!title}}><$view field="title"/></$link></li>
+</$list>
+</ol>
+<$tiddler tiddler="">
+<div class="tc-sidebar-lists">
+
+<$button message="tm-close-all-tiddlers" class="tc-btn-invisible tc-btn-mini"><<lingo Button>></$button>
+
+</div>
+</$tiddler>
+
+</div>

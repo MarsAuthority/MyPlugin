@@ -1,0 +1,9 @@
+title: $:/templates/transclusion-annotation
+
+<div class="tc-link-info-item">
+
+! <$link><$view field="annotate-text"/></$link>:
+
+<$transclude/>
+
+</div>

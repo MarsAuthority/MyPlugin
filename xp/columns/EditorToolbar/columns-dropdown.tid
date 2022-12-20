@@ -1,0 +1,43 @@
+title: $:/xp/ui/EditorToolbar/columns-dropdown
+
+\define toolbar-button-columns-inner()
+<$button tag="a">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text={{$(snippetTitle)$}}
+/>
+
+<$action-deletetiddler $filter=<<dropdown-state>> />
+
+<$view tiddler=<<snippetTitle>> field="caption" mode="inline">
+
+<$view tiddler=<<snippetTitle>> field="title" mode="inline"/>
+
+</$view>
+
+</$button>
+\end
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/columns]!has[draft.of]sort[caption]]" variable="snippetTitle">
+
+<<toolbar-button-columns-inner>>
+
+</$list>
+
+----
+
+<$button tag="a">
+
+<$action-navigate $to="$:/xp/columns/preview"/>
+
+<$action-deletetiddler $filter=<<dropdown-state>> />
+
+<em>
+
+<$text text={{$:/xp/columns/preview!!caption}}/>
+
+</em>
+
+</$button>

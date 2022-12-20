@@ -1,0 +1,9 @@
+title: $:/aggregation/fields/ItemTemplate
+
+\define config-title()
+$(config-base)$$(currentTiddler)$
+\end
+
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="hide"/> <span class="tc-icon-wrapper"> <$transclude field="title"/></span>
+</$draggable>

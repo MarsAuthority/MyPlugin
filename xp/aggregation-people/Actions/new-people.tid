@@ -1,0 +1,20 @@
+description: create a new people
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-people
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-people/Tags}} textField={{$:/config/new-people/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "people/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	caption="a people"
+	color=""
+	description=""
+	education=""
+	image=""
+	lifetime=""
+/>
+</$vars>

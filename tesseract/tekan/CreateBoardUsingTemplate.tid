@@ -1,0 +1,18 @@
+title: $:/Tekan/CreateBoardUsingTemplate
+
+\import $:/Tekan/Macros
+
+<div style="line-height:29px;">
+
+|!Kanban Template |<<selectKanbanTemplate>> |
+|!Board Name |<$edit-text tiddler="$:/state/NewKanbanBoard/Caption" default="" placeholder="What are you organizing?" tag="input"/> {{$:/Tekan/Buttons/newboard}} |
+
+</div>
+
+
+<small><i class="tc-muted">
+
+使用[[基础模板|$:/Tekan/Actions/Basic]]，会创建三个列表：''Planning''、''Ongoing''、''Completed''。<br>
+根据需要可以自行修改或者添加模板。
+
+</i></small>

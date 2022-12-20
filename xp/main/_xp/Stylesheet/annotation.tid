@@ -1,0 +1,65 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/annotation
+
+\define configTiddler() $:/config/annotation/background
+
+.xp-annotation {
+	border: none;
+	border-radius: 8px;
+	padding: 0 1px;
+	transition: all 250ms linear 0ms;
+
+	/* LightCyan */
+<$reveal state=<<configTiddler>> default="lightcyan" type="match" text="lightcyan">
+	background-color: LightCyan;
+	background-color: rgba(207, 236, 245, 0.5);
+	box-shadow: rgb(207 236 245 / 50%) 2px 0px 0px 0px, rgb(207 236 245 / 50%) -2px 0px 0px 0px;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+	background-color: #17272c;
+	color: rgba(186,212,220,0.7);
+	box-shadow: none;
+</$list>
+</$reveal>
+
+	/* LightGray */
+<$reveal state=<<configTiddler>> type="match" text="lightgray">
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+	background-color: #202020;
+	color: #9a9a9a;
+</$list>
+</$reveal>
+
+	/* LightGreen */
+<$reveal state=<<configTiddler>> type="match" text="lightgreen">
+	background-color: #e4fbe5;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+	background-color: #192d1c;
+	color: #64b471;
+</$list>
+</$reveal>
+
+	/* Magenta */
+<$reveal state=<<configTiddler>> type="match" text="magenta">
+	background-color: rgb(198,106,191,0.35);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+	background-color: #311a2f;
+	color: rgb(198,106,191,0.83);
+</$list>
+</$reveal>
+
+	background-color: <<colour annotation-background>>;
+	color: <<colour annotation-foreground>>;
+}
+
+.xp-image-annotation svg {
+	display: {{$:/config/annotation/display}};
+	margin-left: 0.05em;
+	margin-right: 0.05em;
+	/*
+	-webkit-transform: rotate(25deg);
+	-o-transform: rotate(25deg);
+	-moz-transform: rotate(25deg);
+	-ms-transform: rotate(25deg);
+	transform: rotate(25deg)
+	*/
+}

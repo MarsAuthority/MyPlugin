@@ -1,0 +1,16 @@
+caption: {{$:/language/Buttons/PrettyLink/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20160309031656272
+description: {{$:/language/Buttons/PrettyLink/Hint}}
+icon: $:/core/images/prettylink
+modified: 20171030131328870
+shortcuts: ((prettylink))
+tags: $:/tags/EditorToolbar
+title: $:/core/ui/EditorToolbar/prettylink
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="[["
+	suffix="|]]"
+/>

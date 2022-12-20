@@ -1,0 +1,21 @@
+caption: {{$:/core/images/options-button}} to basics
+description: {{$:/language/ControlPanel/Basics/Caption}}
+tags: $:/tags/QuickBar/ToButtons
+title: $:/xp/quickbar/Buttons/to-basics
+
+\whitespace trim
+\define openCpBasics()
+<$action-setfield $tiddler="$:/state/tab-1749438307" $value="$:/core/ui/ControlPanel/Info"/>
+<$action-setfield $tiddler="$:/state/tab--2112689675" $value="$:/core/ui/ControlPanel/Basics"/>
+<$action-navigate $to="$:/ControlPanel"/>
+\end
+<$button actions=<<openCpBasics>> tooltip="Open Control Panel Basics" aria-label="open basics" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/options-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="openCpBasics"/>
+</span>
+</$list>
+</$button>

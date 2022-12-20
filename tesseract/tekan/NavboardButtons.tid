@@ -1,0 +1,90 @@
+tags: $:/Tekan
+title: $:/Tekan/NavboardButtons
+
+\import $:/Tekan/Macros
+
+\define deleteboard()
+<$set name="currentBoard" value={{$:/Tekan/CurrentBoard}}>
+<$list filter="[tag<currentBoard>]" variable="currentList">
+<$action-deletetiddler $tiddler=<<currentList>>/>
+<$list filter="[tag<currentList>]" variable="currentCard">
+<$action-deletetiddler $tiddler=<<currentCard>>/>
+<$set name="td-baseName" value={{{ [<currentCard>removeprefix[$:/]] }}}>
+<$list filter="[prefix[$:/todolist/data]suffix<td-baseName>]" variable="currentTodolist">
+<$action-deletetiddler $tiddler=<<currentTodolist>>/>
+</$list>
+</$set>
+</$list>
+</$list>
+<$action-deletetiddler $tiddler=<<currentBoard>>/>
+</$set>
+<$action-setfield $tiddler="$:/Tekan/CurrentBoard" text=""/>
+<$action-deletetiddler $tiddler="$:/state/deleteboardpopup"/>
+\end
+
+\define deletePageTemplate()
+$:/core/ui/PageTemplate/topleftbar
+$:/core/ui/PageTemplate/toprightbar
+$:/core/ui/PageTemplate/sidebar
+$:/core/ui/PageTemplate/story
+$:/_sq/Stories/Templates/Story2Template
+$:/core/ui/PageTemplate/alerts
+$:/core/ui/PageTemplate/drafts
+$:/core/ui/PageTemplate/pluginreloadwarning
+$:/xp/ui/PageTemplate/fix-commandpalette
+$:/plugins/tiddlywiki/help/HelpPanel
+$:/xp/ui/PageTemplate/help
+$:/xp/ui/PageTemplate/leftsidebar
+$:/xp/ui/PageTemplate/magicsidebar
+$:/xp/ui/PageTemplate/quickbar
+\end
+
+<$set name="currentBoard" value={{$:/Tekan/CurrentBoard}}>
+<$list filter="[tag[$:/Tekan/Button]]"><$transclude/></$list>
+</$set>
+<$button tooltip="Rearrange lists" set="$:/state/rearrlist" setTo="show">A</$button>
+<$button tooltip="Delete board" popup="$:/state/deleteboardpopup" class="xp-tekan-button">{{$:/core/images/delete-button}}</$button>
+<$reveal type="popup" class="tc-popup-keep" state="$:/state/deleteboardpopup">
+<div class="md-modal md-effect-1 md-show">
+	<div class="md-content" style="border-radius:10px;">
+		<h3>Delete Board<$button tag="span" class="xp-tekan-button" style="right:0;position: absolute;padding: 0 3%;cursor:pointer">{{$:/core/images/close-button}}<$action-deletetiddler $tiddler="$:/state/deleteboardpopup"/></$button></h3>
+		<div>
+			<p style="line-height:25px;">This will delete the board, along with all its lists, its cards, and todolists</p>
+			<p>Are you sure?</p>
+			<div class="mdbuttons">
+			<$button actions=<<deleteboard>> class="md-close">Delete</$button>
+			</div>
+		</div>
+	</div>
+</div>
+</$reveal>
+<$button tooltip="Add new board" popup="$:/state/newboardstate">
++</$button>
+<$reveal state="$:/state/newboardstate" type="popup" class="tc-popup-keep" position="below" text="showthepopup">
+<div class="pop-over">
+	<div>
+		<div class="pop-over-header">
+			<span class="pop-over-header-title">Create Board</span>
+			<a href="#" class="pop-over-header-close-btn icon-sm icon-close"></a>
+		</div>
+
+
+		<div class="pop-over-content" style="max-height: 323px;">
+		<div>
+			<label>Name</label>
+			<$edit-text class="list-name-input" tiddler="$:/state/NewKanbanBoard/Caption" default="" placeholder="What are you organizing?" tag="input"/>
+
+			<div><$button style="background: -webkit-linear-gradient(top,#5AAC44 0,#519839 100%);background: linear-gradient(to bottom,#5AAC44 0,#519839 100%);" set="$:/state/newboardstate" setTo="" actions={{$:/config/NewKanbanBoard/Actions}}>Create New Board</$button></div><br/><br/><br/>
+			<div class="tc-muted">Template: <<selectKanbanTemplate>></div>
+		</div>
+		</div>
+	</div>
+</div>
+</$reveal>
+<$button tooltip="Switch back to TW" class="xp-tekan-button">{{$:/Tekan/images/back-button.svg}}
+<$list filter="[all[shadows+tiddlers]tag[TwelloMode]!has[draft.of]] +[remove<deletePageTemplate>]">
+<$action-listops $tags="$:/tags/PageTemplate -TwelloMode"/>
+</$list>
+<$action-deletetiddler $filter=<<deletePageTemplate>>/>
+<$action-deletetiddler $filter="$:/Tekan/Main $:/Tekan/Substyles $:/Tekan/Stepping-away-from-TW5-styles"/>
+</$button>

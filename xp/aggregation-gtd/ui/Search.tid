@@ -1,0 +1,285 @@
+title: $:/xp/aggregation-gtd/ui/Search
+
+\import $:/xp/aggregation-gtd/macros
+\whitespace trim
+
+\define lingo-base() $:/language/Search/
+\define storeTitle() $:/temp/search/aggregation-gtd
+\define cancel-search-actions() <$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<quadrantStatus>] [<doneStatus>] [<textStatus>] [<todolistStatus>] [<scheduleStatus>] [<fieldTiddler>] [<dateStatus>] [<valueTiddler>]"/>
+
+\define defaultView() $:/config/xp/aggregation-gtd/DefaultView
+
+\define filterState() $:/state/filter/aggregation-gtd
+\define quadrantStatus() $:/temp/filter/aggregation-gtd/Quadrant
+\define doneStatus() $:/temp/filter/aggregation-gtd/Done
+\define textStatus() $:/temp/filter/aggregation-gtd/Text
+\define todolistStatus() $:/temp/filter/aggregation-gtd/Todolist
+\define scheduleStatus() $:/temp/filter/aggregation-gtd/Schedule
+\define fieldTiddler() $:/temp/filter/aggregation-gtd/Field
+\define dateStatus() $:/temp/filter/aggregation-gtd/Date
+\define valueTiddler() $:/temp/filter/aggregation-gtd/FieldValue
+\define input-accept-actions-date() <$action-setfield $tiddler=<<filterState>> filter={{{ [<dateStatus>get[text]addprefix<pt>addsuffix<st>] }}}/>
+\define cancel-datefilter-actions() <$action-deletefield $tiddler=<<dateStatus>> text/>
+
+\define toggleViewButton()
+\whitespace trim
+<$reveal state=<<defaultView>> default="gtd" type="nomatch" text="manager">
+<$button tooltip="Switching to manager view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="manager"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+<$reveal state=<<defaultView>> type="match" text="manager">
+<$button tooltip="Switching to default view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="gtd"/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+\end
+
+\define resetConditionButton()
+\whitespace trim
+<$list filter="[<quadrantStatus>has[text]] [<doneStatus>has[text]] [<textStatus>has[text]] [<todolistStatus>has[text]] [<scheduleStatus>has[text]] [<fieldTiddler>has[text]] [<dateStatus>is[tiddler]] [<filterState>has[filter]] +[limit[1]]">
+&emsp;<$button class="xp-aggrfilter-dynamic-btn">
+<$action-deletetiddler $filter="[<quadrantStatus>] [<doneStatus>] [<textStatus>] [<todolistStatus>] [<scheduleStatus>] [<fieldTiddler>] [<dateStatus>] [<valueTiddler>]"/>
+<$action-deletefield $tiddler=<<filterState>> filter/>
+reset
+</$button>
+</$list>
+\end
+
+<div class="xp-gtd-search">
+
+<span class="xp-search xp-search-aggregation-gtd">
+<$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>> class="py-input input-larger"
+    type="search" tag="input" filterMinLength="1" focus={{$:/config/xp/aggregation/SearchAutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<$reveal state=<<filterState>> type="nomatch" text="yes">
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler=<<filterState>> text="yes"/>
+{{$:/xp/images/filter}}
+</$button>
+</$reveal>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]has[text]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+<$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-aggregation-gtd input"""/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</$set>
+<<toggleViewButton>>
+</span>
+<$vars userInput={{{ [<storeTitle>get[text]] }}}
+    quadrantRun={{{ [<quadrantStatus>get[text]] }}}
+    doneRun={{{ [<doneStatus>get[text]] }}}
+    textRun={{{ [<textStatus>get[text]] }}}
+    todolistRun={{{ [<todolistStatus>get[text]] }}}
+    scheduleRun={{{ [<scheduleStatus>get[text]] }}}
+    timeRun={{{ [<filterState>get[filter]] }}}
+    fieldRun={{{ [<fieldTiddler>has[filter]get[filter]] }}}
+    valueRun={{{ [<valueTiddler>has[filter]get[filter]] }}}
+    limitRun=" +[limit[250]]"
+    aggrSearch="[tag<aggregationTag>!sort[created]search:*<userInput>]"
+    resultCount="<$count filter=<<searchFilter>>/>">
+<$set name="searchFilter" value={{{ [<aggrSearch>addsuffix[ ]addsuffix<quadrantRun>addsuffix<doneRun>addsuffix<textRun>addsuffix<todolistRun>addsuffix<scheduleRun>addsuffix<timeRun>addsuffix<fieldRun>addsuffix<valueRun>addsuffix<limitRun>] }}}>
+<span class="tc-search xp-filtersearch">
+{{$:/xp/aggregation-gtd/ui/FilterButtons/delete}}
+</span>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]get[text]trim[]!is[blank]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$reveal state=<<filterState>> type="nomatch" text="yes" animate="yes">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$reveal>
+</$reveal>
+</$set>
+
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<div class="xp-wrapper-aggrfilter">
+
+Filter conditions: <<resetConditionButton>>
+
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<$list filter="[tag<aggregationTag>limit[1]]" variable="ignore">
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">四象限</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$vars pt=" +[tag[" st="]]">
+  <$tiddler tiddler=<<quadrantStatus>>>
+  <$list filter="$:/q1 $:/q2 $:/q3 $:/q4" variable="qTag">
+  <$radio field="text" value={{{ [<qTag>addprefix<pt>addsuffix<st>] }}}>&#32;<span class={{{ [<qTag>removeprefix[$:/]addprefix[xp-gtd-]addsuffix[ xp-gtd-filter]] }}}><$transclude tiddler=<<qTag>> field="caption"><$view tiddler=<<qTag>> field="title"/></$transclude></span> </$radio>
+  </$list>
+  </$tiddler>
+  </$vars>
+  </span>
+</td>
+</tr>
+</$list>
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">完成状态</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<doneStatus>>>
+  <$radio field="text" value=" +[tag[done]]">&#32; done </$radio>
+  <$radio field="text" value=" +[!tag[done]]">&#32; undone </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">文本</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<textStatus>>>
+  <$radio field="text" value=" +[has[text]]">&#32; text </$radio>
+  <$radio field="text" value=" +[!has[text]]">&#32; blank </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">待办清单</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<todolistStatus>>>
+  <$radio field="text" value=" :filter[removeprefix[$:/]addprefix[$:/todolist/data/status/]is[tiddler]!text[{}]]">&#32; todolist </$radio>
+  <$radio field="text" value=" :filter[removeprefix[$:/]addprefix[$:/todolist/data/status/]indexes[]count[]match[0]]">&#32; none </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">日程安排</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$tiddler tiddler=<<scheduleStatus>>>
+  <$radio field="text" value=" +[has[due]]">&#32; schedule </$radio>
+  <$radio field="text" value=" +[!has[due]]">&#32; none </$radio>
+  </$tiddler>
+  </span>
+</td>
+</tr>
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">时间</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$select tiddler=<<filterState>> field="filter" class="xp-aggregation-select" actions="""<$list filter="[<filterState>search:filter[regexp:created]]"><$action-setfield $tiddler=<<dateStatus>> status="show"/></$list>""">
+  <option value=""> All</option>
+  <option value="+[days:created[-1]]"> Past 24 hours</option>
+  <option value="+[days:created[-7]]"> Past week</option>
+  <option value="+[days:created[-30]]"> Past month</option>
+  <option value="+[days:created[-365]]"> Past year</option>
+  <option value="+[regexp:created[]]"> Enter a date</option>
+  </$select>
+  <$vars pt=" +[regexp:created[^" st="]]">
+  <$list filter="[<dateStatus>is[tiddler]]">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<dateStatus>>
+      type="search" tag="input" size=7 focus="no"
+      inputCancelActions=<<cancel-datefilter-actions>> inputAcceptActions=<<input-accept-actions-date>>/>
+  <$button> Enter
+  <<input-accept-actions-date>>
+  </$button>
+  </$list>
+  </$vars>
+  </span>
+</td>
+</tr>
+<!-- 
+<tr>
+<td align="right"><span class="xp-aggrfilter-category-title tc-muted">字段</span></td>
+<td>
+  <span class="xp-aggrfilter-category-item">
+  <$vars getField={{{ [<fieldTiddler>is[tiddler]get[text]] }}} getValue={{{ [<valueTiddler>is[tiddler]get[text]] }}}
+      pt1="+[has:field[" pt2="+[" st="]]" st2="[">
+  <$select tiddler=<<fieldTiddler>> tooltip="Choosing the Field" class="xp-aggregation-select" actions="""<$action-setfield $tiddler=<<fieldTiddler>> filter={{{ [<fieldTiddler>get[text]addprefix<pt1>addsuffix<st>] }}}/><$action-deletetiddler $tiddler=<<valueTiddler>>/>""">
+  <$list filter="[tag<aggregationTag>] +[fields:exclude{$:/config/xp/aggregation/excluded-fields/filtering-button}]">
+  <option><$view field="title"/></option>
+  </$list>
+  </$select>
+  <$list filter="[tag<aggregationTag>] +[has<getField>limit[1]]" emptyMessage="""<$list filter="[<fieldTiddler>has[text]]"><span class="xp-aggrfilter-category-title tc-muted"> No value for this field </span></$list>""" variable="ignore">
+  :<$select tiddler=<<valueTiddler>> tooltip="Choosing the Value" class="xp-aggregation-select" actions="""<$action-setfield $tiddler=<<valueTiddler>> filter={{{ [<getField>addprefix<pt2>addsuffix<st2>addsuffix{$:/temp/xp/aggregation-gtd/FieldValue}addsuffix<st>] }}}/>""">
+  <$list filter="[tag<aggregationTag>] +[has<getField>each<getField>get<getField>!is[blank]]">
+  <option><$view field="title"/></option>
+  </$list>
+  </$select>
+  </$list>
+  </$vars>
+  </span>
+</td>
+</tr>
+-->
+</tbody>
+</table>
+</div>
+
+</div>
+</$reveal>
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<<lingo System/Matches>>
+</$reveal>
+
+<!-- Normal View -->
+<$reveal state=<<defaultView>> default="gtd" type="match" text="gtd" animate="yes">
+
+<div class="py-todos">
+<$list filter=<<searchFilter>>>
+<$vars currentList={{{ [<currentTiddler>tags[]prefix[$:/q]limit[1]] }}}>
+<$transclude mode="inline" tiddler="$:/xp/aggregation-gtd/quadrant/ItemTemplate" />
+</$vars>
+</$list>
+</div>
+
+</$reveal>
+
+<!-- Manager View -->
+<$reveal state=<<defaultView>> default="gtd" type="nomatch" text="gtd" animate="yes">
+
+<div class="tc-manager-list">
+<$list filter=<<searchFilter>>>
+<$vars transclusion=<<currentTiddler>>>
+  <div class="tc-manager-list-item">
+    <$button popup=<<qualify "$:/state/xp/aggregation-gtd">> class="tc-btn-invisible tc-manager-list-item-heading xp-manager-item-heading" selectedClass="tc-manager-list-item-heading-selected">
+      <$view field='caption'><$view field='title'/></$view>
+          <$vars td-baseName={{{ [<currentTiddler>removeprefix[$:/]] }}}>
+          <$list filter="[<td-baseName>addprefix[$:/todolist/data/status/]is[tiddler]!text[{}]]" variable="ignore">
+      {{||$:/xp/images/pie-todolist}}
+          </$list>
+          </$vars>
+          <$list filter="[all[current]!text[]]">
+      <span class="py-todo-text-icon">
+        {{$:/plugins/nico/projectify/images/file}}
+      </span>
+          </$list>
+          <span style="float:right;">
+            <$list filter=<<py-is-scheduled>>>
+      {{||$:/xp/aggregation-gtd/ui/ManagerView/TodoDueDate}}
+            </$list>
+          </span>
+    </$button>
+    <$reveal state=<<qualify "$:/state/xp/aggregation-gtd">> type="nomatch" text="" default="" tag="div" class="tc-manager-list-item-content tc-popup-handle">
+      <div class="xp-manager-item-content xp-manager-item-content-tiddler">
+      {{||$:/xp/aggregation-gtd/ui/Search/gtd-actions}}
+        <$transclude mode="block"/>
+        <$set name="td-baseName" value={{{ [<currentTiddler>removeprefix[$:/]] }}}>
+          <$list filter="[all[current]tag[Todolist]]">
+        <<gtd-todolist-ui caption:"Todolist">>
+          </$list>
+        </$set>
+      </div>
+    </$reveal>
+  </div>
+</$vars>
+</$list>
+</div>
+
+</$reveal>
+
+</$set>
+</$vars>
+
+</div>

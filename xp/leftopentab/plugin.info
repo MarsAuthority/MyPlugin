@@ -1,0 +1,13 @@
+{
+	"title": "$:/plugins/xp/leftopentab",
+	"name": "LeftOpenTab",
+	"description": "A button to put the open tab to the left",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"dependents": "$:/plugins/sq/Stories $:/plugins/felixhayashi/tiddlymap",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210218055056916",
+	"modified": "20220810131842881"
+}

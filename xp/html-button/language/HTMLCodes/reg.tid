@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/reg
+
+<$button tag="a" tooltip="Registered Trademark">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&reg;"
+/>
+
+<span class="tc-html-chooser-text">&reg;</span>
+
+</$button>

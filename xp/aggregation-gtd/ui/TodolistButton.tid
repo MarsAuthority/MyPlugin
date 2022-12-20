@@ -1,0 +1,28 @@
+title: $:/xp/aggregation-gtd/ui/TodolistButton
+
+\whitespace trim
+\define save-actions()
+<$action-sendmessage $message="tm-auto-save-wiki"/>
+\end
+
+<$list filter="[all[current]tag[GTD]!tag[Todolist]!has[draft.of]]" variable="ignore">
+<$button
+  class="py-btn tc-tiny-gap-left"
+  tooltip="添加待办列表"
+  aria-label="add todolist"
+>
+  <$action-listops $tags="Todolist"/>
+  <<save-actions>>
+  {{$:/core/images/list-bullet}}
+</$button>
+</$list>
+<$list filter="[all[current]tag[GTD]tag[Todolist]!has[draft.of]]" variable="ignore">
+<$button
+  class="py-btn py-pie tc-tiny-gap-left"
+  tooltip="隐藏待办列表"
+  aria-label="hide todolist"
+>
+  <$action-listops $tags="-Todolist"/>
+  <span style="fill:#4772fa;">{{$:/core/images/list-bullet}}</span>
+</$button>
+</$list>

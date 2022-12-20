@@ -1,0 +1,152 @@
+caption: 插件信息
+title: $:/plugins-my-collections/plugin-info
+
+\import $:/aggregation/macros/general $:/plugins-macros
+\whitespace trim
+
+\define storeTitle() $:/temp/search/plugins-my-collections
+\define cancel-search-actions() <$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-collections input"""/>
+\define defaultView() $:/config/xp/aggregation-plugins/collections/DefaultView
+
+\define toggleButton()
+\whitespace trim
+<span class="tc-sidebar-lists">
+<i class="tc-small-gap"/>
+<span class={{{ [<defaultView>get[text]match[popup]] +[then[xp-active-indicator-muted]] }}}>
+<$button tooltip="Popup view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="popup"/>
+popup
+</$button>
+</span>
+<span class="tc-tiny-gap tc-muted">·</span>
+<span class={{{ [<defaultView>get[text]match[table]] +[then[xp-active-indicator-muted]] }}}>
+<$button tooltip="Table view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="table"/>
+table
+</$button>
+</span>
+<span class="tc-tiny-gap tc-muted">·</span>
+<span class={{{ [<defaultView>get[text]match[card]] +[then[xp-active-indicator-muted]] }}}>
+<$button tooltip="Card view" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="card"/>
+card
+</$button>
+</span>
+<i class="tc-big-gap"/>
+<span class={{{ [<defaultView>get[text]match[recent]] +[then[xp-active-indicator-muted]] }}}>
+<$button tooltip="Recently added" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text="recent"/>
+recent
+</$button>
+</span>
+\end
+
+\define mRun() +[moscow[M]]
+\define sRun() +[moscow[S]]
+\define cRun() +[moscow[C]]
+\define wRun() +[moscow[W]]
+\define oRun() +[!has[moscow]]
+
+<$list filter="[tag<aggregationTag>!has[draft.of]limit[1]]" emptyMessage="{{$:/plugins-prompt}}" variable="ignore">
+
+<span class="xp-search xp-search-collections">
+Search &#32; <<selectSearchScope>> <i class="tc-small-gap-right"/> <$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus={{$:/config/xp/aggregation/SearchAutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>/>
+&ensp;
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+<<toggleButton>>
+</span>
+<$vars userInput={{{ [<storeTitle>get[text]] }}}
+    aggrFilter={{{ [<configTiddler>get[text]] }}}
+    mFilter={{{ [<configTiddler>get[text]addsuffix<mRun>] }}}
+    sFilter={{{ [<configTiddler>get[text]addsuffix<sRun>] }}}
+    cFilter={{{ [<configTiddler>get[text]addsuffix<cRun>] }}}
+    wFilter={{{ [<configTiddler>get[text]addsuffix<wRun>] }}}
+    oFilter={{{ [<configTiddler>get[text]addsuffix<oRun>] }}}
+    resultCount="<$count filter=<<aggrFilter>>/>"
+    >
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<p class="xp-search-results"><<lingo System/Matches>></p>
+</$reveal>
+<!-- popup view -->
+<$reveal state=<<defaultView>> type="match" text="popup" default="popup" animate="yes">
+
+<$reveal default=<<resultCount>> type="nomatch" text="0">
+<$reveal state=<<storeTitle>> type="match" text="">
+<p>{{$:/language/xp/aggregation/ClickPopup}}</p>
+</$reveal>
+</$reveal>
+
+<$list filter="[subfilter<mFilter>limit[1]]" variable="ignore">
+<span class="tc-muted">Must have:</span>
+<div class="twocolumns" style="padding:10px 28px;line-height:1.55;">
+<$list filter=<<mFilter>> template="$:/templates/popup-caption-view" />
+</div>
+</$list>
+<$list filter="[subfilter<sFilter>limit[1]]" variable="ignore">
+<span class="tc-muted">Should have:</span>
+<div class="twocolumns" style="padding:10px 28px;line-height:1.55;">
+<$list filter=<<sFilter>> template="$:/templates/popup-caption-view" />
+</div>
+</$list>
+<$list filter="[subfilter<cFilter>limit[1]]" variable="ignore">
+<span class="tc-muted">Could have:</span>
+<div class="twocolumns" style="padding:10px 28px;line-height:1.55;">
+<$list filter=<<cFilter>> template="$:/templates/popup-caption-view" />
+</div>
+</$list>
+<$list filter="[subfilter<wFilter>limit[1]]" variable="ignore">
+<span class="tc-muted">Won’t have:</span>
+<div class="twocolumns" style="padding:10px 28px;line-height:1.55;">
+<$list filter=<<wFilter>> template="$:/templates/popup-caption-view" />
+</div>
+</$list>
+<$list filter="[subfilter<oFilter>limit[1]]" variable="ignore">
+<span class="tc-muted">Others:</span>
+<div class="twocolumns" style="padding:10px 28px;line-height:1.55;">
+<$list filter=<<oFilter>> template="$:/templates/popup-caption-view" />
+</div>
+</$list>
+
+</$reveal>
+
+<!-- table view -->
+<$vars config-base="$:/config/xp/aggregation-plugins/TableFields/Visibility/">
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/xp/aggregation-plugins/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$reveal state=<<defaultView>> type="match" text="table" animate="yes">
+<$macrocall
+  $name="aggr-table"
+  filter=<<aggrFilter>>
+  fields=<<dtableFields>>
+  stateTiddler="aggregation-plugins"
+/>
+</$reveal>
+</$wikify>
+</$vars>
+
+<!-- card view -->
+<$reveal state=<<defaultView>> type="match" text="card" animate="yes">
+<p />
+<div class="tc-link-info">
+
+<$list filter=<<aggrFilter>> template="$:/templates/transclusion-infocard"/>
+
+</div>
+</$reveal>
+
+<!-- recent -->
+<$reveal state=<<defaultView>> type="match" text="recent" animate="yes">
+
+{{$:/plugins-my-collections/recently-added}}
+
+</$reveal>
+
+</$vars>
+
+</$list>

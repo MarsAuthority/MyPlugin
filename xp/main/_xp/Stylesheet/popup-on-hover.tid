@@ -1,0 +1,56 @@
+tags: $:/tags/Stylesheet $:/tags/XP
+title: $:/_xp/Stylesheet/popup-on-hover
+
+< !-- see also: $: /ak/plugins/TWCrossLinks -->
+
+.poh-container {
+  position: relative;
+  display: inline-block;
+}
+
+.poh-container .poh-content {
+  visibility: hidden;
+  overflow: hidden;
+  margin-top: -2em;
+  padding: 0 18px;
+  display: block;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 80;
+
+  float: right;
+  opacity: 0;
+  transition: opacity 0.3s;
+
+  border: 1px solid <<colour tab-border>>;
+  border-radius: 3px;
+  background-color: <<colour page-background>>;
+  white-space: nowrap;
+  text-shadow: none;
+  word-break: normal;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+}
+
+.poh-container .poh-content::after {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 1px;
+}
+
+.poh-content {
+  width: 90vw;
+  max-width: 32em;
+}
+
+.poh-container:hover>.poh-content {
+  margin-top: 3px;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.25s all ease;
+  transition-delay: 0.75s;
+}

@@ -1,0 +1,7 @@
+caption: Templates
+description: 自定义模板
+filter: [all[shadows+tiddlers]prefix[$:/templates/]]
+tags: $:/tags/Filter/QuickInput
+title: $:/QuickInput/Filters/Templates
+
+{{!!filter}}

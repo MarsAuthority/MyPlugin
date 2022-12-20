@@ -1,0 +1,9 @@
+caption: {{$:/xp/images/add}} create
+description: Create a new button
+tags: $:/tags/QuickBar/SettingButtons
+title: $:/xp/quickbar/Buttons/create
+
+\whitespace trim
+<$button to="$:/xp/quickbar/create" tooltip="Create a new button" class="tc-btn-invisible">
+{{$:/xp/images/add}}
+</$button>

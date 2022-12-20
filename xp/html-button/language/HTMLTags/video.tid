@@ -1,0 +1,23 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/video
+
+\define prefixCode()
+<video src="
+\end
+\define suffixCode()
+" preload="none" controls loop>
+  Sorry, your browser doesn't support embedded videos.
+</video>
+\end
+<$button tag="a" tooltip="Video">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix=<<prefixCode>>
+	suffix=<<suffixCode>>
+/>
+
+<span class="tc-html-chooser-text"><$text text="<video>"></span>
+
+</$button>

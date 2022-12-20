@@ -1,0 +1,49 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/search
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+\define sidebarwidth()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth}}/>
+\end
+
+.xp-search a svg {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+}
+
+.xp-search button svg, .xp-search a svg {
+  fill: <<colour tiddler-controls-foreground>>;
+  height: 1.2em;
+  width: 1.2em;
+  margin: 0 0.25em;
+}
+
+.xp-search button:hover svg, .xp-search a:hover svg {
+  fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+.xp-search-results {
+  padding: 0 7px 0 14px;
+  color: <<colour tab-foreground>>;
+  font-size: 0.985rem;
+}
+
+/* Sidebar AdvancedSearch Filter Buttons */
+
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fixed-fluid]match[fluid-fixed]]" variable="ignore">
+@media (min-width: <<sidebarbreakpoint>>) {
+
+  .xp-search-filter button svg, .xp-search-filter a svg {
+    height: 1em !important;
+    width: 1em !important;
+  }
+
+  .xp-search-filter input {
+    width: calc(<<sidebarwidth>> - 42px) !important;
+  }
+
+}
+</$list>

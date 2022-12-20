@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/full-screen!!caption}}
+description: {{$:/core/ui/Buttons/full-screen!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/full-screen
+
+{{$:/core/ui/Buttons/full-screen}}

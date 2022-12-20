@@ -1,0 +1,6 @@
+description: Starred journals
+filter: [tag<journalTag>tag[Star]!is[system]!sort[created]]
+tags: $:/tags/JournalFilter
+title: $:/xp/diary/Filters/StarredJournals
+
+<<commonFilters "Starred">>

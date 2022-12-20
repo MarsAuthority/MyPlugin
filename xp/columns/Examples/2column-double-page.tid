@@ -1,0 +1,18 @@
+title: $:/xp/columns/Examples/2column-double-page
+
+! 双页面
+
+<div class="colmask doublepage">
+	<div class="colleft">
+		<div class="col1">
+
+		{{$:/xp/columns/Examples/text1}}
+
+		</div>
+		<div class="col2">
+
+		{{$:/xp/columns/Examples/text2}}
+
+		</div>
+	</div>
+</div>

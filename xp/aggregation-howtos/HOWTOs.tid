@@ -1,0 +1,20 @@
+caption: {{$:/xp/images/guide}} HOWTOs
+color: #bbb
+icon: $:/xp/images/guide
+title: HOWTOs
+tmap.id: 1a43c1a1-d574-4fc5-bed4-a24e957afe8f
+
+\import $:/howtos-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-howto}} tooltip="Create a new howto" aria-label="new howto" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new howto
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/howtos-help" "HOWTOs Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/howtos-aggregation-view $:/howtos-category-view $:/howtos-recently-added"
+  default="$:/howtos-aggregation-view"
+  state="$:/state/tab/howto"
+/>

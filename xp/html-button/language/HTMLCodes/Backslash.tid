@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Backslash
+
+<$button tag="a" tooltip="Backslash">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&#92;"
+/>
+
+<span class="tc-html-chooser-text">&#92;</span>
+
+</$button>

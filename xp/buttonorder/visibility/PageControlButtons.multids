@@ -1,0 +1,22 @@
+title: $:/config/PageControlButtons/Visibility/$:/
+
+_sq/Stories/Templates/StoryTogglePageControl: hide
+core/ui/Buttons/more-page-actions: show
+plugins/kookma/commander/buttons/pagecontrol: hide
+plugins/kookma/utility/ui/Buttons/ViewFields: hide
+plugins/test/getplugins/button: hide
+plugins/tiddlywiki/markdown/new-markdown-button: hide
+Tekan/Switch: hide
+xp/ui/Buttons/batch-operation: hide
+xp/ui/Buttons/code-viewer: hide
+xp/ui/Buttons/edit-all: hide
+xp/ui/Buttons/filter-builder: hide
+xp/ui/Buttons/filter-search: hide
+xp/ui/Buttons/leftopentab: hide
+xp/ui/Buttons/manage-tags: hide
+xp/ui/Buttons/maximize-river: hide
+xp/ui/Buttons/sidebar-tab-manager: hide
+xp/ui/Buttons/theme-changer: hide
+xp/ui/Buttons/things: hide
+xp/ui/Buttons/toggle-quickbar: hide
+xp/ui/Buttons/view-code-all: hide

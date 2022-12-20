@@ -1,0 +1,7 @@
+caption: 最近添加
+title: $:/consumer-recently-added
+
+\import $:/consumer-macros
+\define configTiddler() $:/temp/consumer/limitparam
+
+{{$:/aggregation-recently-added}}

@@ -1,0 +1,37 @@
+caption: {{$:/xp/images/2column}} 2story
+dependents: $:/plugins/sq/Stories
+description: Two story
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/2story
+
+\whitespace trim
+<$list filter="[[$:/plugins/sq/Stories]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/sq/Stories}!match[yes]]" variable="ignore">
+<$list filter="[[$:/_sq/Stories/Story2StoryList]get[list]!is[blank]]" variable="ignore">
+<$list filter="[{$:/config/_sq/Stories/story2}!match[no]]" variable="ignore">
+<$button set="$:/config/_sq/Stories/story2" setTo="no" tooltip="Hide right column" aria-label="" class="sq-twostoriesonly tc-btn-invisible quickbar-active-indicator">
+{{$:/xp/images/1column}}
+<!-- xp -->
+<$list filter="[[$:/temp/sidebarlayout/fixedstory]is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fixed-fluid"/>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="42px"/>
+</$list>
+</$list>
+<!-- /xp -->
+</$button>
+</$list>
+<$list filter="[{$:/config/_sq/Stories/story2}match[no]]" variable="ignore">
+<$button set="$:/config/_sq/Stories/story2" setTo="yes" tooltip="Show right column" aria-label="" class="tc-btn-invisible quickbar-active-indicator">
+{{$:/xp/images/2column}}
+<!-- xp -->
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fluid-fixed"/>
+</$list>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+<!-- /xp -->
+</$button>
+</$list>
+</$list>
+</$list>

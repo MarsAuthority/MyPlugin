@@ -1,0 +1,33 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/consumer-help
+
+<div class="blue-box">
+
+CONSUMER 是消费者问题的索引界面。使用方法与 BOOKSHELF 基本一致，请参阅 [[Bookshelf Help|$:/bookshelf-help]]。
+
+</div>
+
+! 如何使用？
+
+点击 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new consumer 创建一个消费者问题。发生在别人身上的事，也可能发生在自己身上。
+
+该主题预设分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-consumer/category/]]" type:"ol">>
+
+其他说明：
+
+* 分类是根据「[[全国消协组织受理投诉情况分析|https://cca.org.cn/search.html?keyword=受理投诉情况分析]]」给出的「投诉性质」。<div class="gray-box">
+
+''2021年全国消协组织受理投诉情况分析''
+
+投诉性质分析：售后服务问题占31.54%，合同问题占27.22%，质量问题占20.00%，价格问题占4.42%，虚假宣传问题占4.41%，安全问题占2.93%，假冒问题占1.51%，人格尊严问题占0.72%，计量问题占0.71%，其他问题占6.54%。
+
+</div>
+
+* 3·15。<div class="gray-box">
+
+[[国际消费者权益日|https://baike.baidu.com/item/国际消费者权益日/127966]]（World Consumer Rights Day） ，时间为每年的3月15日，由国际消费者联盟组织于1983年确定，目的在于扩大消费者权益保护的宣传，使消费者权益在世界范围内得到重视，以促进各国和地区消费者组织之间的合作与交往，在国际范围内更好地保护消费者权益。
+
+</div>

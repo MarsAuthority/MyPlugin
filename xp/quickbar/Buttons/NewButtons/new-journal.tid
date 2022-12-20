@@ -1,0 +1,19 @@
+caption: {{$:/core/ui/Buttons/new-journal!!caption}}
+description: {{$:/core/ui/Buttons/new-journal!!description}}
+tags: $:/tags/QuickBar/NewButtons
+title: $:/xp/quickbar/Buttons/new-journal
+
+\whitespace trim
+<$button tooltip={{$:/language/Buttons/NewJournal/Hint}} aria-label={{$:/language/Buttons/NewJournal/Caption}} class=<<tv-config-toolbar-class>> actions={{$:/core/ui/Actions/new-journal}}>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/new-journal-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/NewJournal/Caption}}/>
+</span>
+</$list>
+<$list filter="[[$:/xp/ui/SideBar/Diary]tag[$:/tags/SideBar]]">
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<currentTiddler>>/>
+</$list>
+</$button>

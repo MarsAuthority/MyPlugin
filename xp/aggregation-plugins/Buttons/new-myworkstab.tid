@@ -1,0 +1,10 @@
+caption: {{$:/core/images/new-button}} new myworks tab
+description: Create a new tab
+title: $:/xp/ui/Buttons/new-myworkstab
+
+<$button
+  actions={{$:/xp/ui/Actions/new-myworkstab}}
+  tooltip="Create a new tab"
+  aria-label="new myworks tab">
+Create
+</$button>

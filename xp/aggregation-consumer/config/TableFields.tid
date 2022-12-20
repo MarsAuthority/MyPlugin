@@ -1,0 +1,4 @@
+list: tbl-expand title description
+title: $:/config/xp/aggregation-consumer/TableFields
+
+tbl-expand title description

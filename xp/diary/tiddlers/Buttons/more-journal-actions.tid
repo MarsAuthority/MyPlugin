@@ -1,0 +1,39 @@
+caption: {{$:/core/images/down-arrow}} more journal actions
+description: More actions
+title: $:/xp/ui/Buttons/more-journal-actions
+
+\define config-title()
+$:/config/PageControlButtons/Visibility/$(listItem)$
+\end
+<$button popup=<<qualify "$:/state/popup/more">> tooltip={{$:/language/Buttons/More/Hint}} aria-label={{$:/language/Buttons/More/Caption}} selectedClass="tc-selected">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/down-arrow}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text={{$:/language/Buttons/More/Caption}}/></span>
+</$list>
+</$button><$reveal state=<<qualify "$:/state/popup/more">> type="popup" position="below" animate="yes">
+
+<div class="tc-drop-down">
+
+<$set name="tv-config-toolbar-icons" value="yes">
+
+<$set name="tv-config-toolbar-text" value="yes">
+
+<$list filter="$:/core/ui/Buttons/new-image $:/xp/ui/Buttons/new-private-journal $:/xp/ui/Buttons/encrypt-private-journals $:/xp/diary/Buttons/show-timeline $:/xp/diary/Buttons/card-view" variable="listItem">
+
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$set>
+
+</$list>
+
+</$set>
+
+</$set>
+
+</div>
+
+</$reveal>

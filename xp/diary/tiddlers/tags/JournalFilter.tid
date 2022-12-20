@@ -1,0 +1,2 @@
+list: $:/xp/diary/Filters/CommonFilters $:/xp/diary/Filters/AllJournals $:/xp/diary/Filters/FilterByDate $:/xp/diary/Filters/EncryptedJournals $:/xp/diary/Filters/PrivateJournals $:/xp/diary/Filters/RecentJournals $:/xp/diary/Filters/StarredJournals
+title: $:/tags/JournalFilter

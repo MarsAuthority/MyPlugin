@@ -1,0 +1,20 @@
+caption: {{$:/xp/images/why}} WHYs
+color: #bbb
+icon: $:/xp/images/why
+title: WHYs
+tmap.id: 3849e0b9-3dc4-4be8-aed6-ec8deec6d13c
+
+\import $:/whys-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-why}} tooltip="Create a new why" aria-label="new why" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new why
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/whys-help" "WHYs Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/whys-aggregation-view $:/whys-category-view $:/whys-recently-added"
+  default="$:/whys-aggregation-view"
+  state="$:/state/tab/why"
+/>

@@ -1,0 +1,50 @@
+title: $:/QuickInputManager
+
+\define config-base() $:/config/xp/quicklist/Items/Visibility/
+
+\define quicklistDeleteButton()
+\whitespace trim
+<$button popup=<<qualify "$:/state/quicklist/filterDeleteDropdown">> class="tc-btn-invisible tc-btn-mini tc-tiny-gap" tooltip="Delete this filter">
+{{$:/core/images/delete-button}}
+<$action-setfield $tiddler="$:/temp/filter/quicklist/target" text=<<currentTiddler>>/>
+</$button>
+
+<$reveal state=<<qualify "$:/state/quicklist/filterDeleteDropdown">> type="popup" position="belowleft" animate="yes">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<div class="tc-dropdown-item-plain">
+Are you sure you wish to delete this filter?
+</div>
+<div class="tc-dropdown-item-plain">
+<$button class="tc-btn">
+Delete
+<$action-sendmessage $message="tm-close-tiddler" param={{$:/temp/filter/quicklist/target}}/>
+<$action-deletetiddler $tiddler={{$:/temp/filter/quicklist/target}}/>
+</$button>
+</div>
+</div>
+</div>
+</$reveal>
+\end
+
+\define quicklistCopyButton()
+<$button message="tm-copy-to-clipboard" param={{!!filter}} class="tc-btn-invisible tc-btn-mini tc-small-gap-right" tooltip="Copy this filter">
+{{$:/core/images/copy-clipboard}}
+</$button>
+\end
+
+\whitespace trim
+
+Drag and drop to change the ordering
+
+<i><$count filter="[all[shadows+tiddlers]tag[$:/tags/Filter/QuickInput]!has[draft.of]]"/>&nbsp;filters:</i>
+
+<div class="tc-sidebar-tab-open" style="padding:0 16px;">
+<div class="tc-sidebar-tab-open-item">
+<$macrocall
+	$name="list-tagged-draggable"
+	tag="$:/tags/Filter/QuickInput"
+	itemTemplate="$:/templates/filter-quicklist-item"
+/>
+</div>
+</div>

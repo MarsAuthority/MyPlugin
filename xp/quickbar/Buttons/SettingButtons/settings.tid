@@ -1,0 +1,8 @@
+caption: {{$:/xp/images/setting}} settings
+description: Open the quickbar settings
+tags: $:/tags/QuickBar/SettingButtons
+title: $:/xp/quickbar/Buttons/settings
+
+<$button to="$:/plugins/xp/quickbar/settings" tooltip="Settings" class="tc-btn-invisible">
+{{$:/xp/images/setting}}
+</$button>

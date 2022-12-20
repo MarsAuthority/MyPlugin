@@ -1,0 +1,12 @@
+caption: {{$:/xp/images/top}}
+custom-menu-content: {{$:/xp/quickbar/Buttons/top}}
+description: Top of story river
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/top
+
+\whitespace trim
+<$vars firstTid={{{ [list[$:/StoryList]first[]] }}}>
+<$button to=<<firstTid>> tooltip="Top of story river" aria-label="top of story river" class="tc-btn-invisible" style="outline:none;">
+{{$:/xp/images/top}}
+</$button>
+</$vars>

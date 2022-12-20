@@ -1,0 +1,15 @@
+description: create a new why
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-why
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-why/Tags}} textField={{$:/config/new-why/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "why/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	linkcolor=""
+/>
+</$vars>

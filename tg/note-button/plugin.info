@@ -1,0 +1,16 @@
+{
+	"version": "0.0.7",
+	"type": "application/json",
+	"title": "$:/plugins/tg/note-button",
+	"source": "http://www.tongerner.nl/TW5/TW5_index.html",
+	"plugin-type": "plugin",
+	"name": "Note button",
+	"modifier": "TonGerner",
+	"modified": "20210104200801136",
+	"list": "readme license",
+	"description": "Note button",
+	"creator": "TonGerner",
+	"created": "20170726080405705",
+	"core-version": ">=5.1.14",
+	"author": "TonGerner"
+}

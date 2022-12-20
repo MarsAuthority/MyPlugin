@@ -1,0 +1,9 @@
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/gotop
+
+<$reveal tag="div" type="nomatch" state="$:/config/ViewToolbarButtons/Visibility/$:/xp/ui/Buttons/gotop" text="hide">
+<$button tooltip={{$:/language/Buttons/GoTop/Hint}} aria-label={{$:/language/Buttons/GoTop/Caption}} class="tc-fold-banner xp-gotop-banner">
+<$action-navigate $scroll="yes"/>
+<span class="xp-gotop-icon">{{$:/xp/images/gotop}}</span>
+</$button>
+</$reveal>

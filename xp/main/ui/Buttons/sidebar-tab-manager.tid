@@ -1,0 +1,16 @@
+caption: {{$:/xp/images/tabs}} sidebar tab manager
+description: Open sidebar tab manager
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/sidebar-tab-manager
+
+\whitespace trim
+<$button to="$:/SideBarTabManager" tooltip="Open sidebar tab manager" aria-label="sidebar tab manager" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/tabs}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+sidebar tab manager
+</span>
+</$list>
+</$button>

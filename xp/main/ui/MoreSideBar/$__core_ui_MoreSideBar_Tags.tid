@@ -1,0 +1,59 @@
+caption: {{$:/language/SideBar/Tags/Caption}}
+rewrite: 5.2.3
+tags: $:/tags/MoreSideBar
+title: $:/core/ui/MoreSideBar/Tags
+
+\define lingo-base() $:/language/Search/
+\define storeTitle() $:/temp/search/tags/moresidebar
+\define cancel-search-actions() <$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=""".search-tags-moresidebar input"""/>
+\whitespace trim
+
+<$set name="tv-config-toolbar-icons" value="yes">
+<$set name="tv-config-toolbar-text" value="yes">
+<$set name="tv-config-toolbar-class" value="">
+
+<div style="padding-bottom:1px;">
+
+{{$:/core/ui/Buttons/tag-manager}}
+
+</div>
+
+</$set>
+</$set>
+</$set>
+
+<!-- Add search box -->
+<$wikify name="tagsCount" text="""//<small><$count filter="[tags[]!is[system]]"/> tags</small>//""">
+<span class="search-tags-moresidebar">
+<$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus={{$:/config/Search/AutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>
+    placeholder=<<tagsCount>>/>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible tc-btn-dropdown tc-small-gap">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+<$wikify>
+<$vars userInput={{{ [<storeTitle>get[text]] }}} 
+    searchFilter="[tags[]!is[system]sort[]search:title<userInput>]" 
+    resultCount="<$count filter=<<searchFilter>>/>">
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<span class="tc-search-results"><<lingo System/Matches>></span>
+</$reveal>
+<div style="padding-top:2px;">
+
+<$list filter=<<searchFilter>>>
+
+<$transclude tiddler="$:/core/ui/TagTemplate"/>
+
+</$list>
+
+</div>
+</$vars>
+
+<hr class="tc-untagged-separator">
+
+{{$:/core/ui/UntaggedTemplate}}

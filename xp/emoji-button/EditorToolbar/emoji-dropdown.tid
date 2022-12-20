@@ -1,0 +1,27 @@
+title: $:/xp/ui/EditorToolbar/emoji-dropdown
+
+\define statusTid() $:/config/emoji-button/status
+
+<$tiddler tiddler=<<statusTid>>>
+<$radio value="font"> Font </$radio>&ensp;
+<$radio value="unicode"> Unicode </$radio>&ensp;
+<$radio value="css3"> CSS3 </$radio>
+</$tiddler>
+
+<$reveal state=<<statusTid>> type="match" text="font" default="font" animate="yes">
+
+{{$:/xp/emoji-button/emoji-dropdown/font}}
+
+</$reveal>
+
+<$reveal state=<<statusTid>> type="match" text="unicode" animate="yes">
+
+{{$:/xp/emoji-button/emoji-dropdown/unicode}}
+
+</$reveal>
+
+<$reveal state=<<statusTid>> type="match" text="css3" animate="yes">
+
+{{$:/xp/emoji-button/emoji-dropdown/css3}}
+
+</$reveal>

@@ -1,0 +1,62 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/toc-readinglist
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+<pre>
+.xp-readinglist-box {
+    border-top: 1px solid <<colour sidebar-tab-divider>>;
+    border-bottom: 1px solid <<colour sidebar-tab-divider>>;
+    border-radius: 10px / 20px;
+    margin: 4px 0 0 0;
+    padding: 8px 0 6px 14px;
+}
+
+.xp-readinglist-titlebar {
+    padding-bottom: 2px;
+    margin-left: -3px !important;
+}
+
+.xp-readinglist {
+    font-size: 0.97em;
+}
+
+.xp-readinglist svg {
+    fill: #aaaaaa;
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle !important;
+}
+
+.xp-readinglist button:hover svg {
+    fill: #000000;
+}
+
+
+/* Highlight Button */
+
+.tc-tiddler-controls .notselected .tc-image-readinglist-add {
+    stroke: #000;
+}
+
+.tc-tiddler-controls .selected .tc-image-readinglist-add {
+    stroke: <<colour primary>>;
+    fill: <<colour primary>>;
+}
+
+.tc-tiddler-controls .selected .tc-image-readinglist-add:hover {
+    stroke: #ff0000;
+    fill: #ff0000;
+}
+
+
+@media (min-width: <<sidebarbreakpoint>>) {
+
+    .xp-readinglist {
+        white-space: nowrap;
+    }
+
+}
+</pre>

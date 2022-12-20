@@ -1,0 +1,18 @@
+title: $:/xp/columns/Examples/split-text-to-columns
+
+! 将文本划分为两栏
+
+<div class="split-2-columns">
+
+{{$:/xp/columns/Examples/text1}}
+
+</div>
+
+
+! 将文本划分为三栏
+
+<div class="split-3-columns">
+
+{{$:/xp/columns/Examples/text1}}
+
+</div>

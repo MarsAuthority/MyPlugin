@@ -1,0 +1,187 @@
+caption: 已装插件
+title: $:/plugins-currently-installed
+
+\import $:/plugins-macros
+\whitespace trim
+\define lingo-base() $:/language/ControlPanel/Plugins/
+\define storeTitle() $:/temp/search/plugins-currently-installed
+\define rewriteTid() $:/config/xp/aggregation-plugins/installed-plugins/Rewrite
+
+\define search-tips()
+<$reveal state=<<statusTid>> type="nomatch" text="rewritten" default="table">
+Search all fields except text
+</$reveal>
+<$reveal state=<<statusTid>> type="match" text="rewritten">
+Search title
+</$reveal>
+\end
+
+\define cancel-search-actions()
+<$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-installed-plugins input"""/>
+\end
+
+\define controlButtons()
+\whitespace trim
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+<$reveal state=<<statusTid>> type="match" text="list">
+<<versionButton>>
+</$reveal>
+<$reveal state=<<statusTid>> type="match" text="rewritten">
+<$vars rewriteState=<<qualify "$:/state/popup/rewrite">>>
+<$reveal state=<<rewriteState>> type="match" text="">
+<$button set=<<rewriteState>> setTo=yes tooltip="Help" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$button>
+</$reveal>
+<$reveal state=<<rewriteState>> type="nomatch" text="">
+<$button set=<<rewriteState>> setTo="" tooltip="Help" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$button>
+</$reveal>
+</$vars>
+</$reveal>
+\end
+
+\define helpinfo()
+<$reveal state=<<rewriteState>> type="nomatch" text="" default="" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+
+<div style="position:relative;">
+<div class="tc-tiddler-controls" style="position:absolute;right:0;">
+<$button set=<<rewriteState>> setTo="" tooltip="Close" aria-label="close panel" class="tc-btn-invisible">
+{{$:/core/images/close-button}}
+</$button>
+</div>
+</div>
+
+此处查看被改写的插件条目，通过搜索插件可以对结果进行过滤。
+
+改写有两种情况：
+
+# 用户条目改写默认条目。
+# 默认条目改写默认条目。即根据插件的优先级，一个插件改写了另一个插件中的条目。
+
+''第一种情况：''通过删除按钮（经过确认后）可以删除用户条目，还原为默认条目。
+
+''第二种情况：''这里只能查看哪些插件改写了 $:/core 中的条目。操作方法为：
+
+* 第一步：<<saveButton>>。将核心条目（$:/core 中的插件条目）保存到 $:/core/plugintiddlers 的 list 字段，以提高下一步的运算速度。
+* 第二步：<<runButton>>。将其他插件与「核心条目」进行比对，如果含有「核心条目」则[[显示|$:/noncoreplugin/rewritecoretiddlers]]。''变动插件时需重新生成数据，以确保数据正确。''
+> 对于插件开发者或者自定义玩家这非常有用，因为每次 TW 更新，你都需要检查一下，重写了 $:/core 中的条目是否新增了代码（新增了功能）。<br>我习惯给修改的核心条目（或者参照核心条目新建的条目）添加一个 `rewrite` 字段，比如 `rewrite: 5.2.3`，表示改写自 5.2.3 中的版本。
+</$reveal>
+\end
+
+\define saveButton()
+<$button> 保存核心条目
+<$list filter="[[$:/core]plugintiddlers[]]" variable="coreTiddler">
+<$action-listops $tiddler="$:/core/plugintiddlers" $subfilter="+[append<coreTiddler>]"/>
+</$list>
+</$button>
+\end
+
+\define runButton()
+<$button> 生成数据
+<$list filter="[plugin-type[plugin]] -$:/core" variable="myPlugin">
+<$vars storeTitle={{{ [[$:/config/rewritecoretiddlers/]addsuffix<myPlugin>] }}}>
+<$action-deletefield $tiddler=<<storeTitle>> list />
+<$action-setfield $tiddler=<<storeTitle>> tags="$:/tags/Rewrite" name=<<myPlugin>>/>
+<$list filter="[<myPlugin>plugintiddlers[]format:titlelist[]]" variable="listItem">
+<$list filter="[[$:/core/plugintiddlers]contains<listItem>]" variable="ignore">
+<$action-listops $tiddler=<<storeTitle>> $subfilter="+[append<listItem>]"/>
+</$list>
+</$list>
+</$vars>
+</$list>
+<$action-setfield $tiddler="$:/noncoreplugin/rewritecoretiddlers" text=<<showRewriteData>> />
+<$action-deletetiddler $filter="[tag[$:/tags/Rewrite]] :filter[get[name]!has[title]]"/>
+</$button>
+\end
+
+\define showRewriteData()
+<div class="tc-menu-list-item">
+Rewrite core tiddlers
+<hr>
+<div class="tc-menu-list-subitem">
+  <ol>
+  <$list filter="[tag[$:/tags/Rewrite]has[list]sort[]search:list,name<userInput>]" variable="listItem">
+    <li>
+      <h3><$link to={{{ [<listItem>get[name]] }}}/></h3><div class="gray-box">
+
+      <ul>
+      <$list filter="[list<listItem>sort[]]" variable="rewrite">
+        <li>
+        <$link to=<<rewrite>>/>
+        </li>
+      </$list>
+      </ul>
+
+      </div>
+    </li>
+  </$list>
+  </ol>
+</div>
+</div>
+\end
+
+<$tiddler tiddler=<<statusTid>>>
+<$radio value="table"> &#32; 默认视图 </$radio>&ensp;
+<$radio value="list"> &#32; 列表视图 </$radio>&ensp;
+<$radio value="rewritten"> &#32; 改写条目 </$radio>
+</$tiddler>
+
+<div class="xp-search xp-search-installed-plugins">
+<<search-tips>>&ensp;<$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus={{$:/config/Search/AutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<<controlButtons>>
+</div>
+
+<$vars userInput={{{ [<storeTitle>get[text]] }}} rewriteState=<<qualify "$:/state/popup/rewrite">>>
+
+<!-- 默认视图 -->
+<$reveal state=<<statusTid>> type="match" text="table" default="table" animate="yes">
+{{$:/plugins-currently-installed/DefaultView}}
+</$reveal>
+
+<!-- 列表视图 -->
+<$reveal state=<<statusTid>> type="match" text="list" animate="yes">
+{{$:/plugins-currently-installed/ListView}}
+</$reveal>
+
+<!-- 改写条目 -->
+<$reveal state=<<statusTid>> type="match" text="rewritten" animate="yes">
+
+<<helpinfo>>
+
+<small>
+<$tiddler tiddler=<<rewriteTid>>>
+<$radio value="user"> &#32; 用户条目 </$radio>&ensp;
+<$radio value="shadow"> &#32; 默认条目 </$radio>
+</$tiddler>
+</small>
+
+<$reveal state=<<rewriteTid>> type="match" text="user">
+
+{{$:/plugins-currently-installed/RewrittenTiddlers}}
+
+</$reveal>
+<$reveal state=<<rewriteTid>> type="match" text="shadow">
+<$list filter="[[$:/noncoreplugin/rewritecoretiddlers]is[tiddler]]" variable="ignore">
+
+{{$:/noncoreplugin/rewritecoretiddlers}}
+
+</$list>
+<$list filter="[[$:/noncoreplugin/rewritecoretiddlers]!is[tiddler]]">
+
+请点击 help 按钮，参照第二种情况生成数据。
+
+</$list>
+</$reveal>
+</$reveal>
+
+</$vars>

@@ -1,0 +1,7 @@
+key: ((sidebar-things))
+list-after: $:/core/ui/KeyboardShortcuts/sidebar-search
+tags: $:/tags/KeyboardShortcut
+title: $:/xp/ui/KeyboardShortcuts/sidebar-things
+
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text="$:/xp/ui/SideBar/Things"/>
+<$action-sendmessage $message="tm-focus-selector" $param=".xp-gtd-addtodo input"/>

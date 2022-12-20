@@ -1,0 +1,25 @@
+title: $:/xp/aggregation-gtd/ui/ManagerView/TodoDueDate
+
+\define lingo-base() $:/language/projectify/
+
+<$list filter=<<py-is-overdue>>>
+    <$list
+      filter=<<py-is-due-yesterday>>
+      emptyMessage="""<$view field="due" format="relativedate"/>"""
+    >
+<<lingo Yesterday>>
+    </$list>
+</$list>
+<$list filter=<<py-is-not-overdue>>>
+  <$list filter=<<py-is-due-today>>>
+    <<lingo Today>>
+  </$list>
+  <$list filter=<<py-is-due-later>>>
+<$list
+  filter=<<py-is-due-tomorrow>>
+  emptyMessage="""<$view field="due" format="date" template={{$:/language/xp/aggregation-gtd/DateFormat}}/>"""
+>
+  <<lingo Tomorrow>>
+</$list>
+  </$list>
+</$list>

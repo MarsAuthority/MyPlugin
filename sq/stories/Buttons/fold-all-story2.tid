@@ -1,0 +1,32 @@
+caption: {{$:/core/images/fold-all-button}} {{$:/language/Buttons/FoldAll/Caption}}
+description: {{$:/language/Buttons/FoldAll/Hint}}
+title: $:/xp/ui/Buttons/fold-all-story2
+
+\whitespace trim
+\define folded-state() $:/state/folded/$(currentTiddler)$
+\define stateTitle() $:/state/fold-story2-tiddlers
+
+<$vars tv-config-toolbar-class="tc-btn-invisible tc-btn-mini">
+<$reveal type="nomatch" stateTitle=<<stateTitle>> text="yes" default="no">
+<$button aria-label={{$:/language/Buttons/FoldAll/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[list[$:/_sq/Stories/Story2StoryList]]">
+<$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" default="show">
+<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>/>
+</$reveal>
+</$list>
+<$action-setfield $tiddler=<<stateTitle>> text="yes"/>
+fold all
+</$button>
+</$reveal>
+<$reveal type="match" stateTitle=<<stateTitle>> text="yes" default="no">
+<$button aria-label={{$:/language/Buttons/UnfoldAll/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[list[$:/_sq/Stories/Story2StoryList]]">
+<$reveal type="match" stateTitle=<<folded-state>> text="hide" default="show">
+<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>/>
+</$reveal>
+</$list>
+<$action-setfield $tiddler=<<stateTitle>> text="no"/>
+unfold all
+</$button>
+</$reveal>
+</$vars>

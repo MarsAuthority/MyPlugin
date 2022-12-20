@@ -1,0 +1,11 @@
+caption: Food & Drink
+tags: $:/tags/FontEmojis
+title: $:/font-emojis/food-drink
+
+<div class="tc-emoji-chooser">
+<$macrocall
+	$name="emoji-picker-list"
+	filter="🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍈 🍒 🍑 🍍 🍅 🍆 🌶 🌽 🍠 🍯 🍞 🧀 🍗 🍖 🍤 🍳 🍔 🍟 🌭 🍕 🍝 🌮 🌯 🍜 🍲 🍥 🍣 🍱 🍛 🍙 🍚 🍘 🍢 🍡 🍧 🍨 🍦 🍰 🎂 🍮 🍬 🍭 🍫 🍿 🍩 🍪 🍺 🍻 🍷 🍸 🍹 🍾 🍶 🍵 ☕️ 🍼 🍴 🍽"
+	actions=<<copyEmojiActions>>
+/>
+</div>

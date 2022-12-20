@@ -1,0 +1,12 @@
+{
+	"title": "$:/xp/buttonorder",
+	"name": "Button Order",
+	"description": "Adjust the display order of the buttons",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210409082621805",
+	"modified": "20220810131842881"
+}

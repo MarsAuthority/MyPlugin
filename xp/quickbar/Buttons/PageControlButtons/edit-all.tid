@@ -1,0 +1,7 @@
+caption: {{$:/core/images/edit-button}} {{$:/language/Buttons/EditAll/Caption}}
+dependents: $:/xp
+description: {{$:/language/Buttons/EditAll/Hint}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/edit-all
+
+{{$:/xp/ui/Buttons/edit-all}}

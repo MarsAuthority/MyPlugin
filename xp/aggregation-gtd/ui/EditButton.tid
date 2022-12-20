@@ -1,0 +1,12 @@
+title: $:/xp/aggregation-gtd/ui/EditButton
+
+<span class="py-todo-actions">
+  <$button
+    actions=<<gtdEditActions>>
+    class="py-btn"
+    tooltip="编辑"
+    aria-label="edit item"
+  >
+    <span style="opacity:0.6;">{{$:/xp/images/edit}}</span>
+  </$button>
+</span>

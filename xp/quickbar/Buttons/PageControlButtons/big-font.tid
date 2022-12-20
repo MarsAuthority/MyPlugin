@@ -1,0 +1,39 @@
+caption: {{$:/xp/images/plus}} big font
+description: Adjust body font size
+list: 40px 34px 30px 24px 20px 18px 17px 16px 15px 14px 13px
+source: http://j.d.tiddlyspot.com/#Font%20Scroller%20(tiddler)
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/big-font
+
+\whitespace trim
+<$wikify name="fontUp" text="""
+<$list filter="[{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}previous[$:/xp/quickbar/Buttons/big-font]]" emptyMessage="40px"/>
+""">
+<$wikify name="fontDown" text="""
+<$list filter="[{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}next[$:/xp/quickbar/Buttons/big-font]]" emptyMessage="13px"/>
+""">
+<$button class="tc-btn-invisible" tooltip="Decrease font size">
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize" text=<<fontDown>>/>
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodylineheight" text="1.466666667"/>
+	<$reveal default="yes" type="match" text={{{[{$:/_sq/Stories/Story2StoryList!!list}length[]match[0]then[no]] ~[{$:/config/_sq/Stories/story2}]}}}>
+	<$action-setfield $tiddler="$:/config/sq/Stories/story2/fontsize-body" text=<<fontDown>>/>
+	</$reveal>
+{{$:/xp/images/minus}}
+</$button>
+<$button class="tc-btn-invisible" style="padding:7px 0;" tooltip="Restore Defaults">
+	<$action-deletetiddler $filter="$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize $:/themes/tiddlywiki/vanilla/metrics/bodylineheight"/>
+	<$reveal default="yes" type="match" text={{{[{$:/_sq/Stories/Story2StoryList!!list}length[]match[0]then[no]] ~[{$:/config/_sq/Stories/story2}]}}}>
+	<$action-setfield $tiddler="$:/config/sq/Stories/story2/fontsize-body" text="15px"/>
+	</$reveal>
+<small><$view tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize" field="text"/></small>
+</$button>
+<$button class="tc-btn-invisible" tooltip="Increase font size">
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize" text=<<fontUp>>/>
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodylineheight" text="1.466666667"/>
+	<$reveal default="yes" type="match" text={{{[{$:/_sq/Stories/Story2StoryList!!list}length[]match[0]then[no]] ~[{$:/config/_sq/Stories/story2}]}}}>
+	<$action-setfield $tiddler="$:/config/sq/Stories/story2/fontsize-body" text=<<fontUp>>/>
+	</$reveal>
+{{$:/xp/images/plus}}
+</$button>
+</$wikify>
+</$wikify>

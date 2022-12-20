@@ -1,0 +1,14 @@
+caption: smile
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/smile
+
+<$button tag="a" tooltip="Smile">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji smile 0.5>>"
+/>
+
+{{$:/css3-emoji-smile}}
+</$button>

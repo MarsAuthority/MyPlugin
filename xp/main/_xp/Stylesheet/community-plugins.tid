@@ -1,0 +1,107 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/community-plugins
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+<pre><$list filter="[[$:/plugins/kookma/todolist]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/kookma/todolist}!match[yes]]" variable="ignore">
+/*
+* Todolist
+* $:/plugins/kookma/todolist/styles/main.css
+* 调小了 kk-todolist-ui 的最小宽度，以适应 XP 的侧边栏宽度
+*/
+
+.kk-todolist-ui {
+  min-width: 270px !important;
+}
+
+</$list>
+
+<$list filter="[[$:/plugins/wikilabs/link-to-tabs]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/wikilabs/link-to-tabs}!match[yes]]" variable="ignore">
+/*
+* link-to-tabs
+* $:/plugins/wikilabs/link-to-tabs/styles
+* 修复了水平标签页选中时出现下划线的问题
+*/
+
+.wltc-link-to-tab {
+  top: -1em !important;
+  left: -1.26em !important;
+  margin-right: -1.4em !important;
+  margin-bottom: -0.9em !important;
+}
+
+.tc-vertical > .wltc-link-to-tab {
+  top: -3.1em !important;
+  left: -0.01em !important;
+}
+
+.xp-popup .wltc-link-to-tab,
+.xp-block-dropup .wltc-link-to-tab {
+  margin-right: -1em !important;
+}
+
+</$list>
+
+<$list filter="[[$:/plugins/souk21/commandpalette]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/souk21/commandpalette}!match[yes]]" variable="ignore">
+/*
+* commandpalette
+* $:/plugins/souk21/commandpalette/Compact.css
+* 增加了搜索框的宽度
+*/
+
+.commandpalette {
+  width: 600px;
+}
+
+/* Compatible with Stories */
+<$reveal default="yes" type="match" text={{{[{$:/_sq/Stories/Story2StoryList!!list}length[]match[0]then[no]] ~[{$:/config/_sq/Stories/story2}]}}}>
+  .tc-story-river { z-index: 198; }
+</$reveal>
+
+</$list>
+
+<$list filter="[[$:/plugins/kookma/pinboard]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/kookma/pinboard}!match[yes]]" variable="ignore">
+/*
+* pinboard
+* $:/plugins/kookma/pinboard/styles/corkboard
+* 去除了 corkboard 的边框
+*/
+
+.cork-board {
+  border: none;
+}
+
+</$list>
+
+<$list filter="[[$:/plugins/tesseract/tekan]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/tesseract/tekan}!match[yes]]" variable="ignore">
+/*
+* Tekan
+* $:/Tekan/NavboardButtons
+* 动态调整按钮颜色
+*/
+
+.xp-tekan-button {
+<$list filter="[[$:/Tekan/Main]tag[$:/tags/PageTemplate]]">
+  fill: #fff;
+</$list>
+}
+
+</$list>
+
+/*
+* Trashbin
+* $:/plugins/kookma/trashbin
+* 有垃圾时，高亮侧栏标签页中的图标
+*/
+
+<$list filter='[tag[$:/tags/trashbin]limit[1]]' variable="ignore">
+
+.tc-tab-buttons .active-recycle {
+	color: #CC3333 !important;
+	fill: #CC3333 !important;
+}
+
+</$list>
+</pre>

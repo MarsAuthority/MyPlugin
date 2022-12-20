@@ -1,0 +1,6 @@
+caption: 教育类
+ctag: Education
+tags: $:/tags/BookCategories
+title: $:/books-category-education
+
+<<list-books "Education">>

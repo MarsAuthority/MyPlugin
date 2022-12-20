@@ -1,0 +1,18 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/details
+
+<$button tag="a" tooltip="Details">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="""<details open>
+  <summary>Details</summary>
+  <p>"""
+	suffix="""</p>
+</details>"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<details>"></span>
+
+</$button>

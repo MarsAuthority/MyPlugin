@@ -1,0 +1,18 @@
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/view-code
+
+\whitespace trim
+\define viewCodeState()
+$:/state/view-code/$(currentTiddler)$
+\end
+\define viewCodeAllState()
+$:/state/view-code-all
+\end
+
+<$set name="currentState" filter="[<viewCodeAllState>get[text]match[show]]" value="show" emptyValue={{{ [<viewCodeState>get[text]] }}}>
+<$reveal default=<<currentState>> type="match" text="show" animate="yes" retain="yes">
+
+{{||$:/core/ui/ViewTemplate/body/code}}
+
+</$reveal>
+</$set>

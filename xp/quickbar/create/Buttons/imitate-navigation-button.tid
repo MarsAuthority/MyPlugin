@@ -1,0 +1,14 @@
+caption: {{$:/core/images/new-button}} imitation
+description: Imitate a button
+title: $:/xp/quickbar/create/Buttons/imitate-navigation-button
+
+\whitespace trim
+<$button aria-label="imitate navigation button">
+Confirm
+<$vars imitationTid={{$:/config/new-navigation-button/From}}>
+<$action-setfield $tiddler="$:/config/new-navigation-button/Title" text={{{ [<imitationTid>split[/]last[1]] +[addprefix[$:/xp/quickbar/Buttons/]] }}}/>
+<$action-setfield $tiddler="$:/config/new-navigation-button/Caption" text={{{ [<imitationTid>get[caption]] }}}/>
+<$action-setfield $tiddler="$:/config/new-navigation-button/Description" text={{{ [<imitationTid>get[description]] }}}/>
+<$action-setfield $tiddler="$:/config/new-navigation-button/Text" text={{{ [<imitationTid>get[text]] }}}/>
+</$vars>
+</$button>

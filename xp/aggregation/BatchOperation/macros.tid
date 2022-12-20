@@ -1,0 +1,121 @@
+title: $:/BatchOperation/macros
+
+\define boLogState() $:/state/batchoperation/log
+
+\define boLogButton()
+\whitespace trim
+<$button class="tc-btn-invisible tc-btn-mini tc-tiny-gap-left fb-btn-invisible">
+<$reveal state=<<boLogState>> type="nomatch" text="show" default="hide">
+<span class="tc-btn-icon">{{$:/core/images/right-arrow}}</span>
+<$action-setfield $tiddler=<<boLogState>> text="show"/>
+</$reveal>
+<$reveal state=<<boLogState>> type="match" text="show">
+<span class="tc-btn-icon">{{$:/core/images/down-arrow}}</span>
+<$action-setfield $tiddler=<<boLogState>> text="hide"/>
+</$reveal>
+<span class="tc-btn-text">log</span>
+</$button>
+\end
+
+\define boLogPanel()
+\whitespace trim
+<$reveal state=<<boLogState>> type="match" text="show">
+
+<hr class="tc-tab-divider" style="margin:1em 0 .5em;"/>
+
+<$transclude tiddler="$:/plugins/kookma/commander/log/ui" mode="block"/>
+
+</$reveal>
+\end
+
+
+<!-- batchcreation-->
+
+\define bcTemplateButton(actions:"")
+\whitespace trim
+<$vars baseTemplate={{{ [[$:/temp/batchcreation/Template]is[tiddler]get[text]] ~[[$:/BatchCreation/Templates/Base]] }}}>
+<$button tooltip="Create a new template" class="tc-btn-invisible fb-btn-invisible tc-big-gap-left">
+{{$:/core/images/new-button}}
+<$action-createtiddler
+  $basetitle=<<baseTemplate>>
+  $template=<<baseTemplate>>
+  $savetitle="$:/temp/batchcreation/newtemplate"
+/>
+<$action-sendmessage
+  $message="tm-edit-tiddler"
+  $param={{$:/temp/batchcreation/newtemplate}}
+/>
+</$button>
+</$vars>
+<$reveal state="$:/temp/batchcreation/Template" type="nomatch" text="">
+<$button message="tm-edit-tiddler" param={{$:/temp/batchcreation/Template}} tooltip="edit template" class="tc-btn-invisible fb-btn-invisible tc-tiny-gap-left">
+{{$:/core/images/edit-button}}
+</$button>
+</$reveal>
+\end
+
+\define bcCreateButton()
+\whitespace trim
+<$vars
+  number={{$:/temp/batchcreation/Number}}
+  template={{$:/temp/batchcreation/Template}}
+  timestamp=<<now "YYYY0MM0DD0hh0mm0ssXXX">>
+  >
+<$wikify name="baseTitle" text={{$:/temp/batchcreation/Basetitle}}>
+<$vars tableTitle={{{ [<baseTitle>addsuffix[quicktable]] }}}>
+<$button class="fb-btn btn-primary"> Create tiddlers
+<$list filter="[<baseTitle>!is[blank]]" variable=ignore>
+<<create-log-tiddler "Batch Creation">>
+<$list filter="[range[9]addprefix[00]] [range[10,99]addprefix[0]] [range[100,999]] +[nsort[]limit<number>]" variable="num">
+<$list filter="[<baseTitle>addsuffix<num>]" variable="newTitle">
+<$list filter="[<newTitle>!has[title]]" emptyMessage=<<log-create>> variable="ignore">
+<$action-createtiddler $basetitle=<<newTitle>> $template=<<template>> />
+<<log-create "Tiddler created">>
+</$list>
+</$list>
+</$list>
+<$action-setfield $tiddler=<<tableTitle>>
+  tags="$:/tags/BatchCreation/Record"
+  text={{{ [[$:/BatchCreation/macrocall/quick-table]get[text]search-replace:g[BASETITLE],<baseTitle>] }}}
+  caption=<<baseTitle>>
+  template=<<template>>
+  type="text/plain"
+/>
+<$action-setfield $tiddler=<<tableTitle>>
+  text={{{ [<tableTitle>get[text]search-replace:g[STATE],<timestamp>] }}}
+  id=<<timestamp>>
+/>
+<$action-sendmessage $message="tm-copy-to-clipboard" $param={{{ [<tableTitle>get[text]] }}}/>
+</$list>
+</$button>
+</$vars>
+</$wikify>
+</$vars>
+\end
+
+\define bcRecordButton()
+\whitespace trim
+<$button to="$:/BatchCreation/Record" tooltip="History record" class="tc-btn-invisible tc-btn-mini tc-tiny-gap-left fb-btn-invisible">
+<span class="tc-btn-icon">{{$:/xp/images/history}}</span>
+</$button>
+\end
+
+
+<!-- batchmodification -->
+
+\define bmResultButton()
+\whitespace trim
+<$reveal state=<<resultTid>> type="nomatch" text="show">
+<$button set=<<resultTid>> setTo="show" tooltip="Show filter results" class="tc-btn-invisible">
+{{$:/core/images/down-arrow}}
+</$button>
+</$reveal>
+<$reveal state=<<resultTid>> type="match" text="show">
+<$button set=<<resultTid>> setTo="hide" tooltip="Hide filter results" class="tc-btn-invisible">
+{{$:/core/images/up-arrow}}
+</$button>
+</$reveal>
+\end
+
+
+<pre><$view field="text"/></pre>

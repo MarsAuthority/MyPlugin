@@ -1,0 +1,8 @@
+title: $:/xp/emoji-button/emoji-dropdown/font
+
+<$macrocall $name="emoji-picker-recent" actions=<<insertEmojiActions>> />
+
+<div style="padding:2px 0 8px;">All emojis:</div>
+<div class="tc-sidebar-lists">
+[[The Font Emoji Characters|$:/The Font Emoji Characters]]
+</div>

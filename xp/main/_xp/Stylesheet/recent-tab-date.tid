@@ -1,0 +1,7 @@
+tags: $:/tags/XP
+title: $:/_xp/Stylesheet/recent-tab-date
+
+.tc-sidebar-lists .tc-timeline {
+  font-weight: {{$:/config/RecentTab/FontWeight}};	
+	color: {{$:/config/RecentTab/Color}};
+}

@@ -1,0 +1,42 @@
+caption: Two Story Layout
+tags: $:/tags/ControlPanel/Appearance
+title: $:/plugins/sq/Stories/settings
+
+\define switchStoryView(storyview,default)
+<$select tiddler='$storyview$' default='$default$'>
+<option value="zoomin"><$text text='one tiddler only'/></option>
+<option value="classic"><$text text='multiple tiddlers'/></option>
+</$select>
+\end
+
+|[[Minimum width to show the second story|$:/_sq/Stories/config/twostorybreakpoint]] |<$edit-text tiddler="$:/_sq/Stories/config/twostorybreakpoint" default="" tag="input"/> |
+|[[Minimum width to show non-overlapping sidebar|$:/_sq/Stories/config/sidebaroverlaybreakpoint]] |<$edit-text tiddler="$:/_sq/Stories/config/sidebaroverlaybreakpoint" default="" tag="input"/> |
+|[[Open tiddlers at top or bottom of story when using divert button|$:/_sq/Stories/config/openLinkDivert]] | <$select tiddler="$:/_sq/Stories/config/openLinkDivert" default="bottom"><option value="top">top</option><option value="bottom">bottom</option></$select>|
+|<$link to="$:/_sq/Stories/config/showRiverDropZones">Show dropzones above each story</$link>|<$checkbox tiddler="$:/_sq/Stories/config/showRiverDropZones" field="text" checked="enable" unchecked="disable" default="disable"></$checkbox>|
+|[[Story view for second story|$:/_sq/Stories/config/Story2-storyview]]:|{{$:/_sq/Stories/config/snippets/viewswitcher}}|
+
+
+
+''Choose how to view tiddlers in each column''
+
+Left column: <<switchStoryView $:/view zoomin>>
+
+Right column: <<switchStoryView $:/_sq/Stories/config/Story2-storyview classic>>
+
+''Left column to right column width ratio:''
+
+{{$:/config/sq/Stories/storyRiverRatio}} : <$text text={{{[[100]subtract{$:/config/sq/Stories/storyRiverRatio}]}}}/>
+
+<$range tiddler="$:/config/sq/Stories/storyRiverRatio" min="20" max="80" default="50" increment="5"/> 
+<!--
+''Right column font-size''
+
+Tiddler: {{$:/config/sq/Stories/story2/fontsize-title}}px
+
+<$range tiddler="$:/config/sq/Stories/story2/fontsize-title" min="6" max="40" default="14" increment="1"/> 
+
+Body: {{$:/config/sq/Stories/story2/fontsize-body}}px
+
+<$range tiddler="$:/config/sq/Stories/story2/fontsize-body" min="6" max="40" default="15" increment="1"/> 
+
+-->

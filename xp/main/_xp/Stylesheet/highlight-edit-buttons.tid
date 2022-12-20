@@ -1,0 +1,41 @@
+tags: $:/tags/XP
+title: $:/_xp/Stylesheet/highlight-edit-buttons
+
+/* Edit buttons as traffic lights */
+
+.tc-tiddler-controls .tc-image-delete-button,
+.tc-tiddler-controls .tc-image-trash-alt {
+  fill: #ff8c8c;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+  fill: #990033;
+</$list>
+}
+
+.tc-tiddler-controls .tc-image-cancel-button {
+  fill: rgba(255,204,0,0.9);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+  fill: rgba(255,204,0,0.57);
+</$list>
+}
+
+.edit-btn-icon.save-open {
+  color: #99cc66;
+  fill: #99cc66;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+  color: rgba(153,204,0,0.7);
+  fill: rgba(153,204,0,0.7);
+</$list>
+}
+
+.edit-btn-icon.save-open:hover {
+  color: #888888;
+  fill: #888888;
+}
+
+.tc-tiddler-controls .tc-image-done-button {
+  color: rgba(0,153,68,0.75);
+  fill: rgba(0,153,68,0.75);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+  fill: rgba(0,153,68,1);
+</$list>
+}

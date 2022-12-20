@@ -1,0 +1,46 @@
+title: $:/plugins/xp/aggregation-gtd/readme
+
+! Getting Things Done
+
+A task management tool that integrates $:/plugins/nico/projectify + $:/plugins/kookma/todolist + $:/plugins/xp/aggregation
+
+! 使用指南
+
+该插件主要功能：
+
+* 在主界面 GettingThingsDone 中管理任务。
+* 在边栏 [[Things|$:/xp/ui/SideBar/Things]] 中查看任务。快捷键 <kbd>alt-T</kbd>。
+* 页面工具栏按钮 {{$:/plugins/nico/projectify/ui/buttons/Scheduled}} 查看今天待办的任务。
+
+GTD 任务条目不会与原有维基内容相冲突，任务名使用 `caption` 字段，而 `title` 使用 `$:/gtd/<timestamp>` 自动命名。
+
+如果你喜欢使用 [[Markdown 插件|$:/plugins/tiddlywiki/markdown]]，可以在 settings 中将默认文本类型设置为 Markdown。
+
+!! 四象限
+
+* 在象限底部的输入框中创建新任务。
+* 拖拽任务条目的链接到另一个象限，快速改变象限。
+* 点击象限标题，查看该象限的全部列表。
+
+编辑任务条目：
+
+* 点击 <<.icon $:/xp/images/edit>> 编辑按钮打开弹窗编辑视图。
+** 编辑内容时，可以使用快捷键格式化内容。比如 <kbd>ctrl-1</kbd> 一级标题、<kbd>ctrl-shift-L</kbd> 项目列表。（编辑工具栏被隐藏了）
+* 也可以打开链接，使用 Easy Edit Button 或者 TiddlyWiki 默认的编辑视图。
+** 注意：使用 Easy Edit 进行编辑时 CodeMirror editor 会出现行号异常。点击两次预览按钮或者编辑按钮，则正常。这个 bug 暂时没时间修复。
+
+!! 搜索
+
+该页面提供搜索、过滤、批量删除的功能。
+
+在过滤面板，当以时间为条件进行过滤时，你可以输入一个日期，比如 `2022` `202206` `20220601`。
+
+!! 清理机
+
+> 原本该页面要做成「即将到来」的任务，但是边栏中含有该功能，且方便随时查看，所以主界面不做重复的功能。
+
+该按钮可清理残留的 todolist 数据。如果使用查看工具栏中的删除按钮删除条目时，该任务的 todolist 数据并未删除。
+
+附加功能：如果在主界面添加了一个错误的任务，将它拖动到「清理机」即可删除。
+
+注意事项：使用 GTD 自带的删除功能，将直接永久删除任务数据。

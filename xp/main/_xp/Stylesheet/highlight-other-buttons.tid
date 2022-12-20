@@ -1,0 +1,22 @@
+tags: $:/tags/XP
+title: $:/_xp/Stylesheet/highlight-other-buttons
+
+/* $:/tags/ViewToolbar */
+
+html body.tc-body .tc-image-edit-button {
+    stroke: white;
+    fill: #555;
+}
+
+html body.tc-body .tc-image-close-button {
+    stroke: white;
+    fill: #555;
+}
+
+
+/* $:/tags/EditorToolbar */
+
+html body.tc-body .tc-image-preview-open {
+    stroke: white;
+    fill: #f29;
+}

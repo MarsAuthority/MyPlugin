@@ -1,0 +1,45 @@
+caption: {{$:/_sq/Stories/icons/divert-right.svg}} divert left/right
+description: Divert left/right
+tags: $:/tags/ViewToolbar
+title: $:/_sq/Stories/divertTiddlerMacro
+
+\whitespace trim
+<span class="only-on-pc">
+<$set name="otherStoryList" filter="[enlist{$:/_sq/Stories/StoriesList!!list}] -[<tv-story-list>]" select="0">
+<$set name="otherHistoryList" filter="[enlist{$:/_sq/Stories/HistoriesList!!list}] -[<tv-history-list>]" select="0">
+<$button class=<<tv-config-toolbar-class>> tooltip="Divert this tiddler to the other story">
+<!-- xp -->
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+<$reveal state="$:/config/_sq/Stories/story2" type="nomatch" text="no" default="no">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fluid-fixed"/>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+</$reveal>
+<$action-setfield $tiddler="$:/temp/sidebarlayout/fixedstory" text="yes"/>
+</$list>
+<!-- /xp -->
+		<$navigator story=<<tv-story-list>> history=<<tv-history-list>> >
+			<$action-sendmessage $message="tm-close-tiddler" $param=<<currentTiddler>> />
+		</$navigator>
+		<$navigator story=<<otherStoryList>> history=<<otherHistoryList>> >
+			<$action-navigate $to=<<currentTiddler>> />
+		</$navigator>
+		<span class="sq-button-divert-right sq-button-divert">{{$:/_sq/Stories/icons/divert-right.svg}}
+			<$list filter="[<tv-config-toolbar-text>match[yes]]">
+				<span class="tc-btn-text">
+					<$text text="divert"/>
+				</span>
+			</$list>
+		</span>
+		<span class="sq-button-divert-left sq-button-divert">{{$:/_sq/Stories/icons/divert-left.svg}}
+			<$list filter="[<tv-config-toolbar-text>match[yes]]">
+				<span class="tc-btn-text">
+					<$text text="divert"/>
+				</span>
+			</$list>
+		</span>
+</$button>
+</$set>
+</$set>
+</span>

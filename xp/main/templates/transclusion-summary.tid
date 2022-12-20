@@ -1,0 +1,17 @@
+title: $:/templates/transclusion-summary
+
+<h2><$link to=<<currentTiddler>>><$view field="title"/></$link></h2>
+
+<$list filter="[tag<currentTiddler>]">
+<$macrocall $name="reveal-example" title=<<currentTiddler>> />
+</$list>
+
+<$list filter="[all[current]has[summary]]">
+
+{{||$:/.tb/ui/ViewTemplate/summary}}
+
+</$list>
+
+<div class="transclusion-text-in-box">
+<$transclude mode="block"/>
+</div>

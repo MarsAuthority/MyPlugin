@@ -1,0 +1,11 @@
+{
+	"title": "$:/plugins/xp/aggregation-checklist",
+	"name": "Checklist",
+	"description": "Manage your checklist",
+	"version": "0.3.0",
+	"plugin-type": "plugin",
+	"parent-plugin": "$:/plugins/xp/aggregation",
+	"dependents": "$:/plugins/kookma/todolist $:/plugins/tgrosinger/tw5-checklist $:/plugins/xp/aggregation",
+	"type": "application/json",
+	"author": "kl"
+}

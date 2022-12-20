@@ -1,0 +1,21 @@
+caption: Plugins
+state: plugin
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/InstalledPlugins
+
+<$reveal state=<<stateTiddler>> type="match" text={{!!state}} animate="yes">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+//<small>Plugin matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[plugin-type[plugin]] [plugin-type[theme]] [plugin-type[language]] +[!has[draft.of]sort[]search:-text,*<userInput>]">
+<$link><$view field="title"/>&emsp;<i><$view field="version"/></i></$link>
+</$list>
+</$list>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$reveal>

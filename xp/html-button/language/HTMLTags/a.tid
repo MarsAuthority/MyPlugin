@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/a
+
+<$button tag="a" tooltip="Anchor - Create a hyperlink">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="""<a href="" target="_blank"> """
+	suffix=""" </a>"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<a>"></span>
+
+</$button>

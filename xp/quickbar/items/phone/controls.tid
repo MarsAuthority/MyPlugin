@@ -1,0 +1,29 @@
+caption: {{$:/xp/images/control}}
+description: Control Buttons
+icon: $:/core/images/up-arrow
+is-dropup: yes
+tags: $:/tags/QuickBar/Phone
+title: $:/xp/quickbar/items/phone/controls
+
+\whitespace trim
+\define controlButtons()
+<$set name="tv-config-toolbar-icons" value="yes">
+
+<$set name="tv-config-toolbar-text" value="yes">
+
+<$set name="tv-config-toolbar-class" value="tc-btn-invisible">
+
+<$list filter="$:/core/ui/Buttons/home $:/core/ui/Buttons/close-all $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/full-screen $:/xp/ui/Buttons/hide-quickbar $:/xp/quickbar/Buttons/toggle-sidebar" variable="listItem">
+<div style="margin-left:16px;">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</div>
+</$list>
+
+</$set>
+
+</$set>
+
+</$set>
+\end
+
+<<controlButtons>>

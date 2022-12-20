@@ -1,0 +1,28 @@
+title: $:/help/TiddlerType
+
+! TiddlyWiki 中条目的类别
+
+@@.list-tree
+三种分类方式：
+
+* ''所有条目'' //构成整个维基的所有条目//<br><br>
+** 根据条目是否被封装在插件中，分为
+*** ''用户条目''（Ordinary Tiddlers） //未封装到插件中的条目。用户可以直接永久删除。//
+**** Ordinary 在这里可以理解为「常见的」条目。
+*** ''默认条目''（Shadow Tiddlers） //被封装在插件中的条目。用户无法直接修改删除。//<br><br>
+** 根据标题的前缀，分为
+*** ''普通条目''（Standard Tiddlers） //标题前缀不为 `$:/`。可作为普通标签//
+*** ''系统条目''（System Tiddlers） //标题前缀为 `$:/`：以浅色文本显示标题前缀；指针悬停于故事河中条目标题的上方时会有提示。可作为系统标签//<br><br>
+** 根据内容类型，即条目的 `type` 字段进行分类。详见 [[ContentType|https://tiddlywiki.com/static/ContentType.html]]。
+
+<br>
+
+''用法举例：''[[高级查找|$:/AdvancedSearch]] 中可以搜索到所有条目。
+
+* 搜索「用户条目」
+** Standard 选项卡：搜索其中的普通条目；
+** System 选项卡：搜索其中的系统条目。<br><br>
+* 搜索「默认条目」
+** Shadows 选项卡。（字体未加粗的链接，表示该条目已被同名的用户条目所改写）
+
+@@

@@ -1,0 +1,17 @@
+{
+    "version": "0.0.2",
+    "type": "application/json",
+    "title": "$:/plugins/nico/shields",
+    "source": "https://github.com/NicolasPetton/Shields",
+    "revision": "0",
+    "plugin-type": "plugin",
+    "name": "Shields",
+    "modified": "20201219120401359",
+    "list": "LICENSE",
+    "description": "Shields for your wikis",
+    "dependents": "",
+    "created": "20201219120401359",
+    "core-version": ">=5.1.22",
+    "bag": "default",
+    "author": "NicolasPetton"
+}

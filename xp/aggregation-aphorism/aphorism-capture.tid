@@ -1,0 +1,224 @@
+caption: 捕获文本
+title: $:/aphorism-capture
+
+\import $:/aggregation/macros/general $:/aphorism-macros
+\define get-tags() $(aggregationTag)$ $(listFieldTags)$
+\define newTagNameTiddler() $:/temp/aphorism-capture/NewTagName
+\define storeTitle() $:/temp/aphorism-capture/NewTagName/input
+\define editTiddler() $:/aphorism-capture/EditTiddler
+
+\define filterState() $:/state/filter/aphorism-capture
+
+\define aggrfilteritem(item:"")
+<$checkbox tiddler=<<qualify """$:/temp/$item$""">> field="status" checked="selected" checkactions=<<checkactions """$item$""">> uncheckactions=<<uncheckactions """$item$""">> default="closed"> <$text text=<<__item__>>/></$checkbox>
+\end
+
+\define checkactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="[[$item$]]"/>
+<$action-listops $tiddler=<<filterState>> $field="checktiddler" $subfilter={{{ [<qualify """$:/temp/$item$""">format:titlelist[]] }}}/>
+\end
+
+\define select-checkbox(item:"")
+<$action-setfield $tiddler=<<qualify """$:/temp/$item$""">> status="selected"/>
+\end
+
+\define uncheckactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="-[[$item$]]"/>
+\end
+
+\define input-accept-actions()
+<$vars tag={{$(newTagNameTiddler)$}}>
+<$action-listops $tiddler=<<filterState>> $subfilter="[<tag>trim[]]"/>
+<$macrocall $name="checkactions" item=<<tag>>/>
+<$macrocall $name="select-checkbox" item=<<tag>>/>
+</$vars>
+<<cancel-input-actions>>
+\end
+
+\define cancel-input-actions()
+<$action-deletetiddler $filter="[<newTagNameTiddler>] [<storeTitle>]"/>
+\end
+
+\define aphorism-new-tag(actions)
+\whitespace trim
+<div class="tc-edit-add-tag">
+<div>
+<span class="tc-add-tag-name tc-small-gap-right">
+<$macrocall $name="keyboard-driven-input" tiddler=<<newTagNameTiddler>> storeTitle=<<storeTitle>> 
+    inputAcceptActions=<<input-accept-actions>>
+    inputCancelActions=<<cancel-input-actions>> tag="input" placeholder={{$:/language/EditTemplate/Tags/Add/Placeholder}}
+    class="tc-edit-texteditor tc-popup-handle" tabindex=<<tabIndex>> focus="false" />
+<span class="tc-add-tag-button tc-small-gap-left">
+<$vars tag={{$(newTagNameTiddler)$}}>
+<$button set=<<newTagNameTiddler>> setTo="">
+<$action-listops $tiddler=<<filterState>> $subfilter="[<tag>trim[]]"/>
+$actions$
+{{$:/language/EditTemplate/Tags/Add/Button}}
+</$button>
+</$vars>
+</span>
+</span>
+</div>
+</div>
+\end
+
+\define resetButton()
+\whitespace trim
+<$list filter="[<filterState>has[list]]">
+&emsp;<$button class="xp-aggrfilter-dynamic-btn">
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]]"/>
+<$action-deletetiddler $filter=<<filterState>>/>
+reset
+</$button>
+</$list>
+\end
+
+\define create-actions()
+<$list filter="[<editTiddler>has[text]]" variable="ignore">
+<$action-createtiddler
+  $basetitle={{{ [[$:/aphorism/]addsuffix<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">] }}}
+  text={{{ [<editTiddler>get[text]] }}}
+  tags=<<get-tags>>
+/>
+<$action-deletefield $tiddler=<<editTiddler>> text/>
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/CreateTiddler"/>
+</$list>
+\end
+
+\define createButton()
+\whitespace trim
+<$vars listFieldTags={{{ [<filterState>get[list]] }}}>
+<$droppable actions=<<drop-actions-create>>>
+&emsp;<$button style="padding:1px 36px;"> Create
+<<create-actions>>
+</$button>
+</$droppable>
+</$vars>
+\end
+
+\define tagPanel(filterState)
+<div class="xp-wrapper-aggrfilter">
+
+选择标签： <<resetButton>>
+
+<$wikify text=<<listPresetCtags>> name="presetCtags">
+<$wikify text=<<listTagsInUse>> name="tagsInUse">
+<div class="xp-aggrfilter-category" style="font-size:1em;">
+<table>
+<$list filter=<<aggr-category>> variable="listItem">
+<$macrocall $name="aggrFilterCategory" title={{{ [<listItem>split[/]last[1]sentencecase[]] }}} configTiddler=<<listItem>>/>
+</$list>
+<$list filter="[enlist<tagsInUse>] [list<filterState>] -[enlist<presetCtags>] +[limit[1]]" variable="ignore">
+<tr align="left">
+<td><span class="xp-aggrfilter-category-title tc-muted">Tags</span></td>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$list filter="[enlist<tagsInUse>] [list<filterState>] -[enlist<presetCtags>] +[sort[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list>
+<tr align="left">
+<td><span class="xp-aggrfilter-category-title tc-muted">Add</span></td>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$fieldmangler tiddler=<<tagTiddler>>>
+<$macrocall $name="aphorism-new-tag" actions=<<input-accept-actions>>/>
+</$fieldmangler>
+</span>
+</td>
+</tr>
+</table>
+</div>
+</$wikify>
+</$wikify>
+
+创建条目： <<createButton>>
+
+</div>
+\end
+
+\define config-visibility-title()
+$:/config/EditorToolbarButtons/Visibility/$(currentTiddler)$
+\end
+
+\define importFileActions()
+<$action-popup $state=<<importState>> $coords="(0,0,0,0)" $floating="yes"/>
+\end
+
+
+<$macrocall $name="tagPanel" filterState=<<filterState>> />
+
+<$set name="edit-preview-state" value={{{ [{$:/config/ShowEditPreview/PerTiddler}!match[yes]then[$:/state/showeditpreview]] :else[<qualify "$:/state/showeditpreview">] }}}>
+<$vars importTitle=<<qualify $:/ImportImage>> importState=<<qualify $:/state/ImportImage>> >
+<$dropzone importTitle=<<importTitle>> autoOpenOnImport="no" contentTypesFilter={{$:/config/Editor/ImportContentTypesFilter}} class="tc-dropzone-editor" enable={{{ [{$:/config/DragAndDrop/Enable}match[no]] :else[subfilter{$:/config/Editor/EnableImportFilter}then[yes]else[no]] }}} filesOnly="yes" actions=<<importFileActions>> ><$reveal stateTitle=<<edit-preview-state>> type="match" text="yes" tag="div"><$tiddler tiddler=<<editTiddler>>>
+<div class="tc-tiddler-preview">
+
+<$transclude tiddler="$:/core/ui/EditTemplate/body/editor" mode="inline"/>
+
+<div class="tc-tiddler-preview-preview">
+
+<$transclude tiddler={{$:/state/editpreviewtype}} mode="inline">
+
+<$transclude tiddler="$:/core/ui/EditTemplate/body/preview/output" mode="inline"/>
+
+</$transclude>
+
+</div>
+
+</div>
+</$tiddler></$reveal>
+
+<$reveal stateTitle=<<edit-preview-state>> type="nomatch" text="yes" tag="div">
+
+<$keyboard key="((input-accept-variant))" actions=<<create-actions>>>
+<span class="tc-editor-toolbar" style="z-index:100 !important;">
+<$edit
+  tiddler=<<editTiddler>>
+  field="text"
+  class="tc-edit-texteditor tc-edit-texteditor-body"
+  placeholder="Type the text"
+  tabindex={{$:/config/EditTabIndex}}
+  focus="true"
+  cancelPopups="yes"
+  fileDrop={{{ [{$:/config/DragAndDrop/Enable}match[no]] :else[subfilter{$:/config/Editor/EnableImportFilter}then[yes]else[no]] }}}
+  default=""
+>
+<$set
+
+  name="targetTiddler"
+  value=<<editTiddler>>
+
+><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorToolbar]!has[draft.of]remove[$:/core/ui/EditorToolbar/editor-height $:/xp/ui/EditorToolbar/annotate]]"
+
+><$reveal
+
+  type="nomatch"
+  state=<<config-visibility-title>>
+  text="hide"
+  class="tc-text-editor-toolbar-item-wrapper"
+
+><$transclude
+
+  tiddler="$:/core/ui/EditTemplate/body/toolbar/button"
+  mode="inline"
+
+/></$reveal></$list><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorTools]!has[draft.of]]"
+
+><$list
+  filter={{!!condition}}
+  variable="list-condition"
+><$transclude/>
+</$list></$list></$set></$edit>
+</span></$keyboard>
+
+</$reveal>
+</$dropzone>
+</$vars>
+</$set>

@@ -1,0 +1,18 @@
+caption: {{$:/xp/images/aphorism}} APHORISM
+color: #bbb
+icon: $:/xp/images/aphorism
+title: APHORISM
+tmap.id: 47b426db-1120-42e3-be79-39e1f545a650
+
+\import $:/aphorism-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/aphorism-help" "Aphorism Help">>
+</div>
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/aphorism-capture $:/aphorism-aggregation-view $:/aphorism-starred-items"
+  default="$:/aphorism-aggregation-view"
+  state="$:/state/tab/aphorism"
+/>

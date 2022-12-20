@@ -1,0 +1,112 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/magicsidebar/Stylesheet
+
+\define sidebarbreakpoint()
+<$list filter="[[$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint]!text[]get[text]]" emptyMessage="960px"/>
+\end
+
+\define sidebarwidth()
+<$list filter="[[$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth]!text[]get[text]]" emptyMessage="300px"/>
+\end
+
+\define fadeInRight()
+        animation-name: fadeInRight;
+        -webkit-animation: fadeInRight;		
+\end
+
+\define toShow()
+        animation: toShow 400ms 100ms;
+        -webkit-animation: toShow 400ms 100ms;
+        animation-fill-mode: both !important;
+        -webkit-animation-fill-mode: both !important;
+\end
+
+<$list filter="[[$:/state/sidebar]get[text]] +[else[yes]match[no]]" variable="ignore">
+/**  SHOW SIDEBAR ON HOVER  **/
+
+@media (min-width: <<sidebarbreakpoint>>) {
+    .xp-magicsidebar {
+        position: fixed;
+        display: {{$:/config/MagicSidebar/display}};
+        opacity: 0;
+        z-index: 800;
+        top: 0;
+        right: 0;
+        width: {{$:/xp/magicsidebar/metrics/width}};
+        height: {{$:/xp/magicsidebar/metrics/height}};
+        padding: 61px 0 28px 22px;
+        background: <<colour page-background>>;
+        /* $:/plugins/tesseract/tekan */
+        <$list filter="[[$:/Tekan/Main]tag[$:/tags/PageTemplate]]">
+            top: 80px;
+            width: 16px;
+        </$list>
+    }
+
+    .xp-magicsidebar:hover {
+        display: {{$:/config/MagicSidebar/display}};
+        visibility: visible;
+        opacity: 1;
+        top: 0;
+        width: calc(<<sidebarwidth>> + {{$:/xp/magicsidebar/metrics/increasewidth}});
+        height: 100%;
+        padding: 61px 0 28px 22px;
+        margin: 0 0 0 10px;
+        overflow: auto;
+        {{$:/config/MagicSidebar/animation}}
+        <<box-shadow "-6px 0 50px 0 rgba(0, 0, 0, 0.2)">>
+    }
+    
+    /**
+     * css3 动画
+     * https://blog.csdn.net/t595981879/article/details/102853450
+     */
+    
+    /* 从右到左进入 */
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            -webkit-transform: translate(1000px, 0);
+            transform: translate(1000px, 0);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate(10px, 0);
+            transform: translate(10px, 0);
+        }
+    }
+    @-webkit-keyframes fadeInRight {
+        from {
+            opacity: 0;
+            -webkit-transform: translate(1000px, 0);
+            transform: translate(1000px, 0);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate(10px, 0);
+            transform: translate(10px, 0);
+        }
+    }
+    
+    /* 逐渐显示 */
+    @keyframes toShow {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @-webkit-keyframes toShow {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+}
+
+/**  HIDE ON PHONE  **/
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+    .xp-magicsidebar,
+    .xp-magicsidebar:hover {
+        display: none;
+    }
+}
+</$list>

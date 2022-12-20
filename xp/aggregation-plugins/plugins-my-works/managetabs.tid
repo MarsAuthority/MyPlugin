@@ -1,0 +1,30 @@
+caption: {{$:/core/images/options-button}}
+list-after: $:/plugins-my-works/newtab
+tags: $:/tags/MyWorks
+title: $:/plugins-my-works/managetabs
+
+\import $:/plugins-macros
+\define selectDefaultTab()
+<$select tiddler='$:/config/plugins-my-works/DefaultTab'>
+<$list filter='[all[shadows+tiddlers]tag<systemCTag>!has[draft.of]remove[$:/plugins-my-works/newtab $:/plugins-my-works/managetabs]] :filter[lookup<config-base>!match[hide]]'>
+<option value=<<currentTiddler>>><$view field='caption'/></option>
+</$list>
+</$select>
+\end
+
+! 默认页面
+
+设置维基启动后默认显示的标签页：<<selectDefaultTab>>
+
+! 管理页面
+
+Select which tabs will be shown. Drag and drop to change the ordering
+
+<div style="padding:0 16px;line-height:27px;">
+<$macrocall
+	$name="list-tagged-draggable"
+	tag=<<systemCTag>>
+	subFilter="!has[draft.of]remove[$:/plugins-my-works/newtab $:/plugins-my-works/managetabs]"
+	itemTemplate="$:/core/ui/ControlPanel/Toolbars/ItemTemplate"
+/>
+</div>

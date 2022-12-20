@@ -1,0 +1,13 @@
+{
+	"title": "$:/plugins/xp/diary",
+	"name": "Diary",
+	"description": "Manage journal tiddlers",
+	"list": "readme",
+	"version": "0.3.1",
+	"plugin-type": "plugin",
+	"dependents": "$:/plugins/danielo515/encryptTiddler",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210511065227948",
+	"modified": "20220810131842881"
+}

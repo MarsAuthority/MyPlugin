@@ -1,0 +1,18 @@
+title: $:/plugins/tesseract/tekan/readme
+
+Tekan is a simple kanban client using ~TiddlyWiki. 
+
+对原插件做了修改，现在可以随便命名面板和卡片，不会与维基内容相冲突。
+
+''Dependents:'' $:/plugins/kookma/todolist<br>
+''Tutorials:'' [[Using Tekan|$:/Using Tekan]]
+
+!! 创建面板
+
+{{$:/Tekan/CreateBoardUsingTemplate}}
+
+!! Issues 问题
+
+使用 Tekan 会导致 [[hotzone|$:/plugins/felixhayashi/hotzone]] 失效。所以 Open 标签页和 ~TiddlyMap 中的高亮也将失效。
+
+刷新维基后才会恢复。

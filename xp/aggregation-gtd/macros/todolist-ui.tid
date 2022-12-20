@@ -1,0 +1,68 @@
+tags: $:/tags/Macro
+title: $:/xp/aggregation-gtd/macros/todolist-ui
+
+\define td-basePath()    $:/todolist/data
+
+\define gtd-add-task-action()
+<$list filter="[{$:/state/gtd/edit}is[tiddler]!tag[Todolist]]">
+<$action-listops $tiddler={{$:/state/gtd/edit}} $tags="Todolist"/>
+</$list>
+<$list filter="[<stateTiddler>getindex[itemtext]!is[blank]]" variable=ignore>
+	<$set name=item value=<<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">> >
+	<$action-setfield 
+	 $tiddler=<<taskTiddler>>
+	 $index=<<item>>
+	 $value={{{ [<stateTiddler>getindex[itemtext]] }}}
+	/>
+	<$action-setfield $tiddler=<<statusTiddler>> $index=<<item>> $value="undone" />
+	<$action-setfield $tiddler=<<priorityTiddler>> $index=<<item>> $value="none" />
+  <$macrocall $name="todolist-add-item-to-list" targetTiddler=<<taskTiddler>> item=<<item>> />
+	</$set>
+	<$action-setfield $tiddler=<<stateTiddler>> $index="itemtext" $value=""/>
+	<$action-setfield $tiddler=<<stateTiddler>> $index="markall"  $value=""/><!--reset markall button-->
+</$list>
+\end
+
+\define gtd-todolist-ui(caption:"A plain todolist", width:"100%")
+\import [all[tiddlers+shadows]tag[$:/tags/Todolist/Macro]!has[draft.of]]
+\whitespace trim
+
+<$vars 
+ nameSpace=      """$(td-baseName)$"""
+ stateTiddler=   """$(td-basePath)$/state/$(td-baseName)$"""
+ taskTiddler=    """$(td-basePath)$/tasks/$(td-baseName)$"""
+ doneTiddler=    """$(td-basePath)$/done/$(td-baseName)$"""
+ statusTiddler=  """$(td-basePath)$/status/$(td-baseName)$"""
+ priorityTiddler="""$(td-basePath)$/priority/$(td-baseName)$"""
+ archiveTiddler= """$(td-basePath)$/archive/$(td-baseName)$"""	
+ displayArchivedTiddler="""Todolist - Archived Items - $(td-baseName)$"""
+>	
+<div class="kk-todolist-ui" style="max-width:$width$;">
+
+<h2>$caption$</h2>
+
+<div class="kk-todolist-header-ui">
+<div class="kk-todolist-header-textbox"><$vars todolist-add-task-action=<<gtd-add-task-action>>><<todolist-input-task>></$vars></div>
+<div><<todolist-add-task>></div>
+<div><<todolist-toggle-edit-button>></div>
+<div><<todolist-options-button>></div>
+</div>
+<<todolist-options-content>>
+<!--
+<$list filter="[<taskTiddler>indexes[]!sort[]]" variable="item">
+<$transclude tiddler="$:/plugins/kookma/todolist/template/undone-task" field="text" />
+</$list>
+-->
+
+<!-- display undone items -->
+<$list filter="[<stateTiddler>getindex[editview]match[edit]]" variable=ignore 
+   emptyMessage="""<$macrocall $name="draggable-list" targetTiddler=<<taskTiddler>> />""">
+	 <<disp-list-in-edit-mode>>
+</$list>
+<!-- display done items -->
+<$list filter="[<doneTiddler>indexes[]!nsort[]]" variable="item">
+<$transclude tiddler="$:/plugins/kookma/todolist/template/done-task" field="text" />
+</$list>
+</div>
+</$vars>
+\end

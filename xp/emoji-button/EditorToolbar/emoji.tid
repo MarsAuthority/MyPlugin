@@ -1,0 +1,9 @@
+caption: {{$:/language/Buttons/emoji/Caption}}
+condition: [<targetTiddler>type[]] [<targetTiddler>get[type]prefix[text/]] +[first[]]
+description: {{$:/language/Buttons/emoji/Hint}}
+dropdown: $:/xp/ui/EditorToolbar/emoji-dropdown
+icon: $:/xp/images/emoji
+shortcuts: ((emoji))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/emoji
+

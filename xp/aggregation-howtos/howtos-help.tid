@@ -1,0 +1,44 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/howtos-help
+
+<div class="blue-box">
+
+HOWTOs 是操作指南条目的索引界面。使用方法与 BOOKSHELF 基本一致，请参阅 [[Bookshelf Help|$:/bookshelf-help]]。
+
+</div>
+
+! 为什么要使用 HOWTOs？
+
+当在维基中记录一些操作指南时，通过 TableOfContents 查找的效率低。通过搜索「关键词」可以快速查找，但如果想不起来关键词呢？所以，HOWTOs 使用聚合视图，提供了一个更加直观的索引界面。
+
+在 HOWTOs 中，使用标签 `Howto` 标记条目，然后使用「[[分类标签|$:/分类标签与分类标签栏]]」进行分类。比如，当用户创建一份指南后，打上分类标签 `生活`，条目就显示在「生活」分类中。
+
+
+! 如何使用？
+
+!!! 点击按钮 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new howto 创建条目。
+
+# 条目归类。<div class="gray-box">
+
+新建条目默认带有 <<tag Uncategorized>> 「未归类」标签。要显示在其他分类中，需要打上「[[分类标签|$:/分类标签与分类标签栏]]」。该主题预设分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-howtos/category/]]" type:"ol">>
+
+</div>
+
+# 星标条目。<div class="gray-box">
+
+重要的条目，可以打上标签 `Star`，这样会显示在 ''Starred'' 标签页。
+
+</div>
+
+# 注意事项。<div class="gray-box">
+
+建议条目标题涵盖较大的范围。比如「如何压缩图片大小？」最好不要使用它的子标题：
+
+* Linux 上如何压缩图片大小？
+* 如何使用 GIMP 压缩图片大小？
+* 在线压缩图片大小
+
+</div>

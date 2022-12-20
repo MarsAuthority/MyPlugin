@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/ensp
+
+<$button tag="a" tooltip="En space">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&ensp;"
+/>
+
+<span class="tc-html-chooser-text">ensp</span>
+
+</$button>

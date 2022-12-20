@@ -1,0 +1,12 @@
+title: $:/software-card-template
+
+\define tw-card-template(bordercolor:"")
+<div class="tc-card" style="border-top: 5px solid $bordercolor$;">
+<$link>
+    <div class="tc-card-title"><$transclude field="caption"><$view field="title"/></$transclude></div>
+    <p><$view field="description"/></p>
+</$link>
+</div>
+\end
+
+<$macrocall $name="tw-card-template" bordercolor={{!!color}}/>

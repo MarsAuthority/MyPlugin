@@ -1,0 +1,10 @@
+caption: {{$:/language/SideBar/Contents/Caption}}
+tags: $:/tags/SideBar
+title: TableOfContents
+tmap.id: 854e4389-8ca2-4027-9f78-ef3677fcfa9f
+
+{{$:/xp/toc-readinglist}}
+
+<div class="tc-table-of-contents">
+<<toc-selective-expandable 'TableOfContents'>>
+</div>

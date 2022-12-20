@@ -1,0 +1,21 @@
+caption: 进度列表
+title: $:/courses-tidgraph-view
+
+\import $:/courses-macros
+\define aggrFilter() [tag[$(aggregationTag)$]!has[draft.of]sort[]]
+
+<$list filter="[tag<aggregationTag>!has[draft.of]count[]!match[0]]" variable="ignore">
+
+<$list filter="[tag<aggregationTag>tag[Planning]!has[draft.of]limit[1]]" variable="ignore">
+<$tidgraph start="Planning" filter=<<aggrFilter>> nodetemplate="IconTemplate" maxdepth="1"/>
+</$list>
+
+<$list filter="[tag<aggregationTag>tag[Ongoing]!has[draft.of]limit[1]]" variable="ignore">
+<$tidgraph start="Ongoing" filter=<<aggrFilter>> nodetemplate="IconTemplate" maxdepth="1"/>
+</$list>
+
+<$list filter="[tag<aggregationTag>tag[Completed]!has[draft.of]limit[1]]" variable="ignore">
+<$tidgraph start="Completed" filter=<<aggrFilter>> nodetemplate="IconTemplate" maxdepth="1"/>
+</$list>
+
+</$list>

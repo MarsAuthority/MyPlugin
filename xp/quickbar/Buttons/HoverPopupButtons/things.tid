@@ -1,0 +1,15 @@
+caption: {{$:/core/images/done-button}} things
+dependents: $:/plugins/xp/aggregation-gtd $:/plugins/xp/aggregation
+description: Getting Things Done
+tags: $:/tags/QuickBar/HoverPopupButtons
+title: $:/xp/quickbar/Buttons/things
+
+\whitespace trim
+<div class="tc-quickbar-tooltip"> 
+<$button class="tc-btn-invisible">
+{{$:/core/images/done-button}}
+</$button>
+<div class="tc-quickbar-tooltiptext" style="padding:4px 24px 0;">
+{{$:/xp/ui/SideBar/Things}}
+</div>
+</div>

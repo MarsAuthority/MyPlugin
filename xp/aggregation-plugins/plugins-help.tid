@@ -1,0 +1,24 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/plugins-help
+
+<div class="blue-box">
+
+''PLUGINS 的用途：''收集和管理自己的 TiddlyWiki 插件。
+
+</div>
+
+! 如何使用？
+
+!!! 点击 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new plugincard 创建一个插件的信息卡片。
+
+常用字段：
+
+|!Field |!Description |
+|`caption` |显示名称，通常是对 `title` 的简化。 |
+|^`moscow` |根据 [[MoSCoW Method|https://en.wikipedia.org/wiki/MoSCoW_method]] 对软件进行需求评级。<br>''M'' -- //Must have//，''S'' -- //Should have//，''C'' -- //Could have//，''W'' -- //Won’t have//。 |
+|`url` |插件的获取地址。 |
+|^`linkcolor` |//(optional)// 用于修改条目的链接颜色。你可以选择一个颜色，或者手动输入 `red` 或者 `<<colour primary>>`。<br>该功能由 $:/LinkStyle/Stylesheet 提供。 |
+
+
+!!! 在已装插件 -> 改写条目，你可以查看哪些默认条目被改写了。

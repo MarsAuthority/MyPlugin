@@ -1,0 +1,70 @@
+tags: $:/Tekan
+title: $:/Tikan/EditCardModal
+
+<div class="window-header" style="padding-top:10px;">
+	<span class="window-header-icon icon-lg icon-card"></span>
+	<div class="window-title">
+	<$edit-text tiddler="$:/state/editcard-caption" class="mod-card-back-title" style="overflow: hidden; overflow-wrap: break-word; height: 36px;" tag="input" size="55" />
+	<div style="padding:10px 0 0;"><small><$text text={{{ [{$:/Tekan/CurrentBoard}get[caption]] }}}/> / <$text text={{{ [<currentList>get[caption]] }}}/>&emsp;<$list filter="[<currentCard>tag[archive]]">{{archive||$:/core/ui/TagTemplate}}</$list></small></div>
+	</div>
+</div>
+
+
+<$set name="currentCard" value={{$:/state/editcard}}>
+<$set name="td-baseName" value={{{ [<currentCard>removeprefix[$:/]] }}}>
+
+<div class="window-main-col">
+<div class="window-module add-comment-section">
+    <div class="new-comment">
+            <div class="comment-frame">
+                <div class="comment-box">
+  				<$edit-text class="comment-box-input" placeholder="Write a comment…" style="overflow: hidden; overflow-wrap: break-word; height: 75px;" tiddler=<<currentCard>>/>
+                 </div>
+            </div>
+    </div>
+</div>
+
+
+	<div class="checklistarea">
+    	<div class="u-gutter">
+			<<kanban-todolist-ui caption:"Todolist">>
+    	</div>
+	</div>
+
+</div>
+<div class="window-sidebar" style="left: 864px; top: 0px;">
+<div class="window-module u-clearfix">
+		<$button tooltip="Delete all information about this card" class="button-link" style="background: #EE6E73;color: #fff;">Delete
+			<$action-deletetiddler $tiddler=<<currentCard>>/>
+			<$action-deletetiddler $filter="[prefix[$:/todolist/data]suffix<td-baseName>]"/>
+			<$action-sendmessage $message="tm-close-tiddler"/>
+            <$action-listops $tiddler=<<currentList>> $subfilter="+[remove<currentCard>]"/>
+		</$button>
+		<$button class="button-link">Archive
+			<$action-listops $tiddler=<<currentCard>> $tags="archive"/>
+            <$action-listops $tiddler=<<currentList>> $subfilter="+[remove<currentCard>]"/>
+			<$list filter="[<currentCard>tag[archive]]">
+            <$action-listops $tiddler=<<currentList>> $subfilter="+[append<currentCard>]"/>
+				<$action-listops $tiddler=<<currentCard>> $tags="+[remove[archive]]"/>
+			</$list>
+		</$button>
+		<$button tooltip="Open this tiddler in tiddlywiki" class="button-link">View tiddler
+			<$action-setfield $tiddler=<<currentCard>> $field="caption" $value={{$:/state/editcard-caption}}/>
+			<$action-sendmessage $message="tm-close-tiddler"/>
+			<$action-navigate $to=<<currentCard>>/>
+			<$list filter="[all[shadows+tiddlers]tag[TwelloMode]!has[draft.of]]">
+			<$action-setfield tags="$:/tags/PageTemplate"/>
+			</$list>
+			<$action-deletetiddler $tiddler="$:/Tekan/Main"/>
+			<$action-deletetiddler $tiddler="$:/Tekan/Substyles"/>
+			<$action-setfield $tiddler="$:/Tekan/Stepping-away-from-TW5-styles" tags=""/>
+		</$button>
+		<$button class="button-link" style="color: #fff;background: -webkit-linear-gradient(top,#5AAC44 0,#519839 100%); background: linear-gradient(to bottom,#5AAC44 0,#519839 100%);">Save & Close
+			<$action-setfield $tiddler=<<currentCard>> $field="caption" $value={{$:/state/editcard-caption}}/>
+			<$action-sendmessage $message="tm-close-tiddler"/>
+		</$button>
+</div>
+</div>
+
+</$set>
+</$set>

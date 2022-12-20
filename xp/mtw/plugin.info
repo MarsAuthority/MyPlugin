@@ -1,0 +1,11 @@
+{
+	"title": "$:/xp/mtw",
+	"name": "MTW",
+	"description": "Modifications to the TiddlyWiki official plugin",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210409015904280",
+	"modified": "20220810131842881"
+}

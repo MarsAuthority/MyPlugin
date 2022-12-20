@@ -1,0 +1,8 @@
+caption: Starred
+ctag: Star
+tags: $:/tags/HowtoCategories
+title: $:/howtos-starred-items
+
+\import $:/howtos-macros
+
+{{$:/aggregation-starred-items}}

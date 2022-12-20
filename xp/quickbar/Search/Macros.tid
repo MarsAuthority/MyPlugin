@@ -1,0 +1,19 @@
+caption: Macros
+state: macro
+tags: $:/tags/QuickBar/SearchScope
+title: $:/xp/quickbar/Search/Macros
+
+<$reveal state=<<stateTiddler>> type="match" text={{!!state}} animate="yes">
+<$reveal default=<<stateCode>> type="match" text="0">
+
+//<small>Macro matches:</small>//
+
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Macro]search<userInput>]" />
+</$list>
+
+</$reveal>
+
+{{$:/xp/quickbar/Search/Filter}}
+
+</$reveal>

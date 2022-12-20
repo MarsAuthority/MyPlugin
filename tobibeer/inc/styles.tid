@@ -1,0 +1,122 @@
+title: $:/plugins/tobibeer/inc/styles
+tags: $:/tags/Stylesheet
+
+\define sidebarbreakpoint-minus-one()
+<$text text={{{ [{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}removesuffix[px]subtract[1]addsuffix[px]] ~[{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}] }}}/>
+\end
+
+.tb-inc-controls{
+margin-top:-2em;
+padding: 12px;
+display:none;
+}
+.tb-inc-tab-content .tb-inc{
+margin:0;
+padding:0;
+position:relative;
+}
+.tb-inc-tab-content .tb-inc-controls{
+position:absolute;
+margin-top:-5px;
+right:0;
+top:0;
+}
+.tb-inc:hover > .tb-inc-controls{
+display:block;
+float:right;
+position: absolute;
+right: calc(42px - 12px);
+}
+
+.xp-inc {
+  display: inline-block;
+  position: absolute;
+  right: 11px;
+  width: 22px;
+  padding: 5px 5px 42px 5px;
+  box-sizing: content-box;
+  background: none;
+  overflow: hidden;
+  margin-top: -1em;
+}
+
+<$reveal state="$:/config/inc-transclusion/ShowControls" type="match" text="hover">
+
+.inc-transclusion {
+  border-radius: .5em;
+  transition: 0.25s all ease;
+}
+
+.inc-transclusion:hover > .xp-inc-tiddler::first-line {
+  text-decoration: underline wavy;
+  text-decoration-thickness: 1px;
+}
+
+.xp-inc {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.inc-transclusion:hover > .xp-inc {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.25s all ease;
+}
+
+</$reveal>
+
+.xp-inc-controls {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 5px;
+  border: 1px solid <<colour code-border>>;
+  border-radius: 16px;
+  background-color: <<colour code-background>>;
+}
+
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="yes" default="no">
+<$reveal stateTitle="$:/_sq/Stories/Story2StoryList" stateField="list" type="nomatch" text="">
+
+.tb-inc:hover > .tb-inc-controls{
+right: calc(14px - 12px);
+}
+
+.xp-inc {
+  right: 0;
+  padding: 5px 0 42px 5px;
+}
+
+</$reveal></$reveal>
+
+@media (max-width: <<sidebarbreakpoint-minus-one>>) {
+
+.tb-inc:hover > .tb-inc-controls{
+right: calc(14px - 12px - 10px);
+}
+
+.xp-inc {
+  right: 0;
+  padding: 5px 0 42px 5px;
+}
+
+}
+
+
+<!-- 
+
+.tb-inc:hover{
+background-color:<<colour code-background>>;
+}
+
+.inc-transclusion:hover {
+  -webkit-box-shadow: 0 .5px <<colour foreground>>;
+    -moz-box-shadow: 0 .5px <<colour foreground>>;
+          box-shadow: 0 .5px <<colour foreground>>;
+        /*box-shadow: 0 .5px #00ff00;*/
+}
+
+-->

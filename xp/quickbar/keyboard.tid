@@ -1,0 +1,12 @@
+title: $:/xp/quickbar/keyboard
+
+!!! Search shortcuts
+
+|Shortcut |Function |h
+|<kbd>ctrl-shift-F</kbd> |搜索框中查找 |
+|<kbd>Home</kbd> |将光标移至文本开头 |
+|<kbd>End</kbd> |将光标移至文本末尾 |
+|<kbd>Escape</kbd> |清空输入框 |
+|<kbd>ctrl-shift-Right</kbd> |切换到下一个页签 |
+|<kbd>ctrl-shift-Left</kbd> |切换到上一个页签 |
+|<kbd>ctrl-shift-D</kbd> |切回默认搜索范围 |

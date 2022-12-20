@@ -1,0 +1,54 @@
+title: $:/plugins/tobibeer/inc/macro
+tags: $:/tags/Macro
+
+\define incButtons()
+\whitespace trim
+{{||$:/plugins/tobibeer/inc/buttons/open}}
+{{||$:/core/ui/Buttons/edit}}
+\end
+
+\define inc-transclusion(tiddler)
+<$tiddler tiddler="""$tiddler$""">
+<div class="inc-transclusion" title="{{$tiddler$}}">
+<div class="xp-inc">
+<span class="xp-inc-controls">
+<<incButtons>>
+</span>
+</div>
+<div class="xp-inc-tiddler">
+<$transclude mode=block/>
+</div>
+</div>
+</$tiddler>
+\end
+
+\define tb-inc(tiddler)
+<div class="tb-inc" title="{{$tiddler$}}">
+<$tiddler tiddler="""$tiddler$""">
+<div class="tc-tiddler-controls tb-inc-controls">
+<<incButtons>>
+</div>
+<div class="tb-inc-tiddler">
+<$transclude mode=block/>
+</div>
+</$tiddler>
+</div>
+\end
+
+\define {(tiddler)
+<$reveal default="" type="match" text="""$tiddler$""">
+<$macrocall $name="inc-transclusion" tiddler=<<currentTiddler>>/>
+</$reveal>
+<$reveal default="" type="nomatch" text="""$tiddler$""">
+<$macrocall $name="inc-transclusion" tiddler="""$tiddler$"""/>
+</$reveal>
+\end
+
+\define {{(tiddler)
+<$reveal default="" type="match" text="""$tiddler$""">
+<$macrocall $name="tb-inc" tiddler=<<currentTiddler>>/>
+</$reveal>
+<$reveal default="" type="nomatch" text="""$tiddler$""">
+<$macrocall $name="tb-inc" tiddler="""$tiddler$"""/>
+</$reveal>
+\end

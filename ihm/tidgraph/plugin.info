@@ -1,0 +1,12 @@
+{
+    "version": "0.9.6",
+    "type": "application/json",
+    "title": "$:/plugins/ihm/tidgraph",
+    "source": "https://ihm4u.github.io/tw5plugs",
+    "plugin-type": "plugin",
+    "list": "readme changelog documentation",
+    "description": "Tidgraph - Easy tiddler graphs for TW5",
+    "dependents": "",
+    "core-version": ">=5.1.9",
+    "author": "ihm4u"
+}

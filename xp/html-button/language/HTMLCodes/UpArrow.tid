@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/UpArrow
+
+<$button tag="a" tooltip="Up Arrow">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&uarr;"
+/>
+
+<span class="tc-html-chooser-text">&uarr;</span>
+
+</$button>

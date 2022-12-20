@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/kbd
+
+<$button tag="a" tooltip="Keyboard">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<kbd>"
+	suffix="</kbd>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<kbd>"></span>
+
+</$button>

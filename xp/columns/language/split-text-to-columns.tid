@@ -1,0 +1,9 @@
+caption: split-text-to-columns
+tags: $:/tags/TextEditor/columns
+title: $:/language/columns/split-text-to-columns
+
+<div class="split-2-columns">
+
+{{$:/xp/columns/Examples/text1}}
+
+</div>

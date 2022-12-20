@@ -1,0 +1,14 @@
+caption: {{$:/xp/images/hide}} hide
+description: Hide quickbar
+tags: $:/tags/QuickBar/SettingButtons
+title: $:/xp/quickbar/Buttons/hide
+
+<$button tooltip="Hide quickbar" class="tc-btn-invisible">
+<$list filter="[[$:/xp/ui/PageTemplate/quickbar]tag[$:/tags/PageTemplate]]">
+<$action-listops $tags="-$:/tags/PageTemplate"/>
+</$list>
+<$list filter="[[$:/xp/ui/PageTemplate/quickbar]!tag[$:/tags/PageTemplate]]">
+<$action-deletetiddler $filter=<<currentTiddler>>/>
+</$list>
+{{$:/xp/images/hide}}
+</$button>

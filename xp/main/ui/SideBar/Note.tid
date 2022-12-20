@@ -1,0 +1,20 @@
+caption: Note
+description: Quick note
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/Note
+
+\define editTiddler() $:/QuickNote
+\define backupTiddler() $:/backup/QuickNote/Text
+
+<!-- Show line numbers, but No backup -->
+<$edit tiddler=<<editTiddler>> class="quicknote-edit" />
+
+
+<!-- Has backup, but No line numbers:
+<$macrocall
+	$name="keyboard-driven-input"
+	tiddler=<<editTiddler>> storeTitle=<<backupTiddler>>
+	tag="textarea" rows="25" class="quicknote-edit-texteditor"
+	focus="false"
+/>
+-->

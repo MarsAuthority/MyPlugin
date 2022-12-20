@@ -1,0 +1,55 @@
+caption: {{$:/xp/images/readinglist-add}} reading list
+description: Add to reading list
+tags: $:/tags/ViewToolbar
+title: $:/xp/ui/Buttons/reading-list
+
+\whitespace trim
+\define readinglistTid() $:/xp/readinglist
+\define recentlyAdded()  $:/xp/readinglist/recent
+
+\define add-this-tiddler() [[$(currentTiddler)$]]+[putfirst[]]
+\define remove-this-tiddler() -[[$(currentTiddler)$]]
+
+\define show-readinglist-button(class)
+\whitespace trim
+<$list filter='[<tv-config-toolbar-icons>match[yes]]'>
+<span class="$class$">{{$:/xp/images/readinglist-add}}</span>
+</$list>
+<$list filter='[<tv-config-toolbar-text>match[yes]]'>
+<span class='tc-btn-text'><$text text="read later"/></span>
+</$list>
+\end
+
+\define add-to-readinglist-button()
+<$button tooltip="Add to reading list" aria-label="reading list" class=<<tv-config-toolbar-class>>>
+  <$action-listops $tiddler=<<readinglistTid>> $subfilter=<<add-this-tiddler>>/>
+  <$action-listops $tiddler=<<recentlyAdded>> $subfilter=<<add-this-tiddler>>/>
+  <$macrocall $name="show-readinglist-button" class="notselected"/>
+
+  <$list filter="[[$:/xp/toc-readinglist]!is[tiddler]]">
+    <$action-setfield $tiddler="$:/xp/toc-readinglist" $value="{{$:/xp/ui/SideBarSegments/toc-readinglist}}"/>
+  </$list>
+  <$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text="TableOfContents"/>
+</$button>
+\end
+
+\define remove-from-readinglist-button()
+<$button tooltip="Remove from reading list" aria-label="reading list" class=<<tv-config-toolbar-class>> >
+  <$action-listops $tiddler=<<readinglistTid>> $subfilter=<<remove-this-tiddler>>/>
+  <$action-listops $tiddler={{{ [subfilter<folders>contains<currentTiddler>limit[1]] }}} $subfilter=<<remove-this-tiddler>>/>
+  <$macrocall $name="show-readinglist-button" class="selected"/>
+
+  <$set name="number-of-tiddlers" value={{{ [list[$:/xp/readinglist]count[]] }}}>
+  <$list filter="[<number-of-tiddlers>compare:number:eq[1]]">
+    <$action-deletetiddler $filter="$:/xp/toc-readinglist"/>
+  </$list>
+  </$set>
+</$button>
+\end
+
+<$list filter="[list<readinglistTid>is[current]]"><!-- tiddler is in reading list, remove it -->
+<<remove-from-readinglist-button>>
+</$list>
+<$list filter="[all[current]!list<readinglistTid>]"><!-- tiddler is not in reading list, add it -->
+<<add-to-readinglist-button>>
+</$list>

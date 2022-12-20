@@ -1,0 +1,39 @@
+module-type: startup
+title: $:/_sq/Stories/LinkKeybindings
+type: application/javascript
+
+$tw.hooks.addHook('th-navigating', function(event) {
+	//override core behaviour when shift key was used (XP: Replace shiftKey with altKey)
+	if( ((event.event && event.event.altKey) || (event.altKey && event)) && event.navigateTo) {
+		var stories = $tw.wiki.getTiddlerList('$:/_sq/Stories/StoriesList');
+		var node = event.navigateFromNode;
+		var thisStory = node.getVariable("tv-story-list");
+		var otherStory = (stories[0] == thisStory)? stories[1] : stories[0];	
+		var storyList = $tw.wiki.getTiddlerList(otherStory);
+		var slot = storyList.indexOf(event.navigateTo);
+		
+		if(slot < 0){
+			if($tw.wiki.getTiddlerText("$:/config/Navigation/openLinkFromOutsideRiver") === "bottom") {
+			
+				storyList.splice(storyList.length, 0, event.navigateTo);
+			} else {
+				storyList.splice(0, 0, event.navigateTo);
+			}
+			var storyTiddler =	$tw.wiki.getTiddler(otherStory);
+			$tw.wiki.addTiddler(new $tw.Tiddler(
+				{title: otherStory},
+				storyTiddler,
+				{list:storyList}
+			));
+		}
+		var histories = $tw.wiki.getTiddlerList('$:/_sq/Stories/HistoriesList');
+		var thisHistory = node.getVariable("tv-history-list");
+		var otherHistory = (histories[0] == thisHistory) ? histories[1] : histories[0];		
+		$tw.wiki.addToHistory(event.navigateTo,event.navigateFromClientRect, otherHistory); 
+		if($tw.wiki.getTiddlerText("$:/config/_sq/Stories/story2") === "no") {
+			$tw.wiki.setText("$:/config/_sq/Stories/story2",undefined,undefined,"yes",undefined);
+		}
+		event.navigateTo = false;
+	}
+	return event;
+});

@@ -1,0 +1,10 @@
+{
+	"title": "$:/plugins/xp/aggregation-knowledge-system",
+	"name": "Knowledge System",
+	"description": "Map of Knowledge System",
+	"version": "0.2.0",
+	"plugin-type": "plugin",
+	"parent-plugin": "$:/plugins/xp/aggregation",
+	"type": "application/json",
+	"author": "kl"
+}

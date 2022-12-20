@@ -1,0 +1,14 @@
+description: Turn on Search Mode
+tags: $:/tags/JournalFilter
+title: $:/xp/diary/Filters/SearchJournals
+
+\whitespace trim
+<i class="tc-small-gap-left"/>
+<$button tooltip={{!!description}} aria-label={{!!description}}>
+Search
+<$action-setfield $tiddler="$:/config/journalsearch/searchmode" text="yes"/>
+<$action-setfield $tiddler="$:/temp/journalsearch" text=""/>
+<$action-setfield $tiddler="$:/temp/journalsearch/input" text=""/>
+<$action-setfield $tiddler="$:/temp/journalsearch/refresh" text="yes"/>
+<$action-sendmessage $message="tm-focus-selector" $param=""".xp-diarycard-search input"""/>
+</$button>

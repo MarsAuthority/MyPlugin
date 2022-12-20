@@ -1,0 +1,135 @@
+tags: $:/tags/Stylesheet $:/tags/XP
+title: $:/_xp/Stylesheet
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+<pre>
+@media (min-width: <<sidebarbreakpoint>>) {
+
+    .tc-tiddler-frame {
+        border-radius: {{$:/xp/themetweaks/metrics/tiddlerborderradius}};
+    }
+
+    html .tc-sidebar-scrollable {
+        padding: {{$:/xp/themetweaks/metrics/sidebarpaddingtop}} 0 28px {{$:/xp/themetweaks/metrics/sidebarpaddingleft}};
+    }
+
+}
+
+.tc-site-title, .tc-titlebar {
+    font-size: 2.35em;
+    font-size: {{$:/xp/themetweaks/metrics/tiddlertitlebarsize}};
+}
+
+.tc-tiddler-controls .tc-drop-down {
+    font-size: 0.6em;
+    font-size: {{$:/xp/themetweaks/metrics/tiddlercontrolsdropdown}};
+}
+
+.tc-tiddler-controls button svg, .tc-tiddler-controls button img {
+    height: 0.75em;
+    height: {{$:/xp/themetweaks/metrics/tiddlerbuttonheight}};
+}
+
+
+/* Line Break */
+
+.br {
+    white-space: pre-wrap;
+}
+
+
+/* Clear Float
+** Resolve issue for floating objects which cross the tiddler frame!
+** The below code should force the tiddler to always wrap around floating elements, so that they are always inside
+** Ref: https://groups.google.com/d/msg/tiddlywiki/5bZwwj6cyac/2LzFeA7AAwAJ
+*/
+
+.tc-tiddler-body:before, .tc-tiddler-body:after {
+    content: "";
+    display: table;
+}
+
+.tc-tiddler-body:after {
+    clear: both;
+}
+
+.tc-tiddler-body {
+    zoom: 1;
+}
+
+
+/* HIDE SECTIONS FOR PRINTING */
+
+@media print {
+    #tc-page-background {
+        display: none !important;
+    }
+}
+
+@media print {
+    .tc-tags-wrapper {
+        display: none !important;
+    }
+}
+
+@media print {
+    body.tc-body {
+        background-color: transparent;
+    }
+}
+
+@media print {
+    .tc-image-chevron-up {
+        display: none !important;
+    }
+}
+
+@media print {
+    .tc-image-chevron-down {
+        display: none !important;
+    }
+}
+
+@media print {
+    button.sidebar-toggle {
+        display: none !important;
+    }
+}
+
+@media print {
+    .hideprint {
+        display: none !important;
+    }
+}
+
+@media print {
+    .tc-btn-invisible {
+        display: none !important;
+    }
+}
+
+@media print {
+    .story-river {
+        margin: 0;
+        padding: 0;
+    }
+
+    html body.tc-body .tc-tiddler-frame {
+        margin: 0;
+        border-bottom: 1px solid #fff;
+        padding: 5px;
+    }
+
+    html body.tc-body a.tc-tiddlylink-external:hover {
+        border: 1px solid <<colour tiddler-border>>;
+    }
+
+    html body.tc-body .tc-tiddler-info {
+        padding: 14px 42px 14px 42px;
+        background-color: <<colour tiddler-info-background>>;
+    }
+}
+</pre>

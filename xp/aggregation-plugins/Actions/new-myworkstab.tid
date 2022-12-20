@@ -1,0 +1,20 @@
+description: create a new tab
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-myworkstab
+
+\import $:/plugins-macros
+
+<$vars newtabTitle={{$:/config/new-myworkstab/Title}}
+  newtabCaption={{$:/config/new-myworkstab/Caption}}
+  newtabText={{$:/config/new-myworkstab/Text}}
+  storeTiddler="$:/config/new-myworkstab/Title/input"
+  listopsTiddler="$:/plugins-my-works/newtab"
+  >
+<$reveal type="nomatch" state=<<newtabTitle>> text="">
+<$action-setfield $tiddler=<<storeTiddler>> text=<<newtabTitle>>/>
+</$reveal>
+<$reveal type="match" state=<<newtabTitle>> text="">
+<$action-createtiddler $basetitle=<<newtabTitle>> caption=<<newtabCaption>> tags=<<systemCTag>> text=<<newtabText>> list-before=<<listopsTiddler>>/>
+<$action-deletetiddler $filter="$:/config/new-myworkstab/Title $:/config/new-myworkstab/Caption $:/config/new-myworkstab/Text [<storeTiddler>]"/>
+</$reveal>
+</$vars>

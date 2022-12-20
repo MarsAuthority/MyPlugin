@@ -1,0 +1,6 @@
+caption: Todo
+description: To do list
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/Todolist
+
+<<todolist-ui caption:"Todolist" base:"Sidebar" width:"90%">>

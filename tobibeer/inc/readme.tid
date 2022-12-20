@@ -1,0 +1,8 @@
+title: $:/plugins/tobibeer/inc/readme
+
+Provides the macro `<<{>>` that allows to transclude tiddlers with an on-hover toolbar for editing.
+
+: <$checkbox tiddler="$:/config/inc-transclusion/ShowControls" field="text" checked="hover" unchecked="" default=""> Show controls on hover?</$checkbox>
+
+; documentation / examples / demos...
+: http://tobibeer.github.io/tw5-plugins#inc

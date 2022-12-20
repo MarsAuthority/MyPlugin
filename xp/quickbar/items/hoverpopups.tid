@@ -1,0 +1,19 @@
+caption: Hover Popups
+custom-menu-content: <$transclude tiddler="$:/xp/quickbar/items/hoverpopups" mode="inline"/>
+description: Hover popups
+tags: $:/tags/QuickBar
+title: $:/xp/quickbar/items/hoverpopups
+
+\whitespace trim
+\define config-title()
+$:/config/xp/quickbar/HoverPopupButtons/Visibility/$(listItem)$
+\end
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/HoverPopupButtons]!has[draft.of]]" variable="listItem">
+<$set name="hidden" value=<<config-title>>>
+<$list filter="[<hidden>!text[hide]]" storyview="pop" variable="ignore">
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</$set>
+</$list>
+</$set>
+</$list>

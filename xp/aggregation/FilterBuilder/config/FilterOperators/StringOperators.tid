@@ -1,0 +1,28 @@
+caption: String Operators
+tags: $:/tags/FilterBuilder/Operators
+title: $:/config/FilterOperators/StringOperators
+
+addprefix
+addsuffix
+compare
+decodehtml
+decodeuri
+decodeuricomponent
+encodehtml
+encodeuri
+encodeuricomponent
+enlist-input
+escapecss
+escaperegexp
+format
+jsonstringify
+pad
+prefix
+removeprefix
+removesuffix
+search-replace
+sha256
+splitbefore
+stringify
+suffix
+trim

@@ -1,0 +1,26 @@
+title: $:/plugins/sq/Stories/changelog
+
+Version 1.03
+
+* Fixed bug in view toolbar position caused by extra blank line in $:/_sq/Stories/divertTiddlerMacro
+
+Version 1.0.2
+
+* Fixed bug where storyRiverRatio was not respected at some resolutions
+
+Version 1.0.1
+
+* Added support for config tiddlers to customize view and edit templates for second story. These tiddlers override the core config tiddlers if they exist.
+** $:/config/sq/Stories/story2/EditTemplate
+** $:/config/sq/Stories/story2/ViewTemplate
+* Relative width of each story river can now be customized in settings tab for plugin
+** introduced $:/config/sq/Stories/storyRiverRatio and updated Stories.css accordingly
+
+Version 1.0.0
+
+* 29/07: updated $:/_sq/Stories/EditTiddlerHook to try and fix https://github.com/felixhayashi/TW5-TiddlyMap/issues/357
+* 23/05 : tweaked Stories.css based on personal theme to allow easier adjustment of story width
+* 23/05 : deprecated action-addtohistory widget
+* 23/05 : updated divertTiddlerEditMacro to use navigator widgets
+* 23/05 : updated divertTiddlerMacro to use navigator widgets
+* 30/04 : updated divertTiddlerEditMacro to also update history and avoid issues with zoomin storyview

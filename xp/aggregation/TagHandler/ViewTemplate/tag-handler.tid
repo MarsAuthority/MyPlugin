@@ -1,0 +1,86 @@
+list-after: $:/core/ui/ViewTemplate/subtitle
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/tag-handler
+
+\whitespace trim
+
+\define tagHandlerState()
+$:/state/tag-handler/$(currentTiddler)$
+\end
+
+\define showTagHandlerFilter()
+[all[current]tag[Book]] [all[current]tag[Consumer]] [all[current]tag[Course]] [all[current]tag[Enterprise]] [all[current]tag[Howto]] [all[current]tag[People]] [all[current]tag[Software]] [all[current]tag[Why]] +[limit[1]]
+\end
+
+\define button-content()
+\whitespace trim
+<$set name="statusTag" filter="[all[current]tag[Planning]] [all[current]tag[Ongoing]] [all[current]tag[Completed]]" value="yes" emptyValue="no">
+<$reveal default=<<statusTag>> type="match" text="no">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+<span class="xp-indicator-muted">{{$:/core/images/new-here-button}}</span>
+</$list>
+</$reveal>
+<$reveal default=<<statusTag>> type="match" text="yes">
+<$list filter="[all[current]tag[Planning]]">
+<span class="xp-indicator-purple">{{$:/xp/images/status-dot}}</span>
+</$list>
+<$list filter="[all[current]tag[Ongoing]]">
+<span class="xp-indicator-orange">{{$:/xp/images/status-dot}}</span>
+</$list>
+<$list filter="[all[current]tag[Completed]]">
+<span class="xp-indicator-green">{{$:/xp/images/status-dot}}</span>
+</$list>
+</$reveal>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/TagHandler/Caption}}/>
+</span>
+</$list>
+</$set>
+\end
+
+<$reveal stateTitle=<<folded-state>> type="nomatch" text="hide" tag="span" retain="yes" animate="yes">
+<!-- tag: Star -->
+<$list filter="[all[current]tag[Star]!class[journal]]">
+<div class="xp-tag-handler-item">
+<$button tooltip="Unstar" class=<<tv-config-toolbar-class>>>
+<$action-confirm $message="Are you sure you wish to unstar this tiddler?">
+<span class="xp-indicator-star">{{$:/core/images/star-filled}}</span>
+<$action-listops $tags="-Star"/>
+</$action-confirm>
+</$button>
+</div>
+</$list>
+<$list filter="[all[current]tag[Star]class[journal]]">
+<div class="xp-tag-handler-item xp-indicator-journal">
+<$button tooltip="Unstar" class=<<tv-config-toolbar-class>>>
+<$action-confirm $message="Are you sure you wish to unstar this tiddler?">
+<span class="xp-indicator-star">{{$:/core/images/star-filled}}</span>
+<$action-listops $tags="-Star"/>
+</$action-confirm>
+</$button>
+</div>
+</$list>
+<!-- ADD CTAG -->
+<$list filter=<<showTagHandlerFilter>> variable="ignore">
+<div class="xp-tag-handler-item">
+<$reveal state="$:/config/TagHandler/Mode" type="match" text="popup">
+<$button popup=<<tagHandlerState>> tooltip={{$:/language/Buttons/TagHandler/Hint}} aria-label={{$:/language/Buttons/TagHandler/Caption}} class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$macrocall $name="button-content" mode="inline"/>
+</$button>
+</$reveal>
+<$reveal state="$:/config/TagHandler/Mode" type="match" text="sticky">
+<$reveal state=<<tagHandlerState>> type="match" text="" default="">
+<$button set=<<tagHandlerState>> setTo="yes" tooltip={{$:/language/Buttons/TagHandler/Hint}} aria-label={{$:/language/Buttons/TagHandler/Caption}} class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$macrocall $name="button-content" mode="inline"/>
+</$button>
+</$reveal>
+<$reveal state=<<tagHandlerState>> type="nomatch" text="" default="">
+<$button set=<<tagHandlerState>> setTo="" tooltip={{$:/language/Buttons/TagHandler/Hint}} aria-label={{$:/language/Buttons/TagHandler/Caption}} class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$macrocall $name="button-content" mode="inline"/>
+</$button>
+</$reveal>
+</$reveal>
+</div>
+</$list>
+</$reveal>

@@ -1,0 +1,14 @@
+{
+	"version": "1.2.22",
+	"type": "application/json",
+	"title": "$:/plugins/TheDiveO/FontAwesome",
+	"source": "https://github.com/TheDiveO/TW5FontAwesome",
+	"plugin-type": "plugin",
+	"modified": "20210814134422823",
+	"list": "readme license history",
+	"fa-version": "5.15.4",
+	"description": "FontAwesome embedded font support for TW5",
+	"created": "20140901105647564",
+	"core-version": ">=5.1.0",
+	"author": "TheDiveO"
+}

@@ -1,0 +1,9 @@
+title: $:/FilterBuilder/ItemTemplate/Search
+
+<$draggable tiddler=<<currentTiddler>>>
+<$button class="fb-btn btn-step">
+<$vars lb="[" rb="]]" nst="{$:/temp/filterbuilder/Search}]">
+<$text text={{{ [{!!filter}removesuffix<nst>addsuffix<lb>addsuffix{!!text}addsuffix<rb>] }}}/>
+</$vars>
+</$button>
+</$draggable>

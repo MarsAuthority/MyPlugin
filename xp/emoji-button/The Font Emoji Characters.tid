@@ -1,0 +1,15 @@
+title: $:/The Font Emoji Characters
+
+//Click an emoji to copy to the clipboard!//
+
+<<tabs "[all[shadows+tiddlers]tag[$:/tags/FontEmojis]]" "$:/font-emojis/smileys-people" "$:/state/tab/font-emojis">>
+
+
+;Emoji meanings:
+* [ext[https://emojipedia.org/]]
+* [ext[https://emojixd.com/]]
+
+;Display of emoji in different OS may be seen here:
+* [ext[http://apps.timwhitlock.info/emoji/tables/unicode]] 
+* [ext[http://www.unicode.org/emoji/charts/emoji-style.html]]
+* [ext[http://getemoji.com/]]

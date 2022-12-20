@@ -1,0 +1,19 @@
+title: $:/templates/checklist
+
+<h1>
+<$link>
+<$list filter="[all[current]!tag[done]]">
+<$transclude field="caption"><$view field="title"/></$transclude>
+</$list><$list filter="[all[current]tag[done]]">
+<s><$transclude field="caption"><$view field="title"/></$transclude></s>
+</$list>
+<$list filter="[<currentTiddler>search:text:literal,casesensitive[<<checklist>>]]" variable="ignore">
+<span style="font-size:0.7em;">{{||$:/xp/images/pie-kara}}</span>
+</$list>
+</$link>
+<i class="tc-small-gap"/><span class="tc-tiddler-controls" style="font-size:0.73em !important;"><$button actions="""<$action-listops $tags="done"/><$action-setfield $tiddler="$:/temp/toc/selectedTiddler/checklist" text={{{ [tag<aggregationTag>!tag[done]!has[draft.of]!sort[created]first[]] }}}/>""" tooltip="Done" class="tc-btn-invisible">{{$:/core/images/done-button}}</$button><$list filter="$:/core/ui/Buttons/new-here $:/xp/ui/Buttons/delete-checklist $:/core/ui/Buttons/edit" variable="listItem"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler=<<listItem>>/></$set></$list></span>
+</h1>
+
+^^<i class="tc-muted"><$view field="modified" format="date" template="DDth MMM YYYY at 0hh:0mm">TBA</$view></i>^^
+
+<$transclude mode="block"/>

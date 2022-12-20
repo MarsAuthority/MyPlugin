@@ -1,0 +1,83 @@
+caption: 星标条目
+title: $:/aphorism-starred-items
+
+\import $:/aggregation/macros/general $:/aphorism-macros
+
+\define starFilter() [tag<aggregationTag>tag[Star]!has[draft.of]!sort[created]]
+
+\define has-starred-item()
+[tag<aggregationTag>tag[Star]!has[draft.of]limit[1]]
+\end
+
+\define starred-item-has-tags()
+[tag<aggregationTag>tag[Star]!has[draft.of]tags[]remove[Star]] -[<aggregationTag>] +[limit[1]]
+\end
+
+\define starred-item-tags()
+[tag<aggregationTag>tag[Star]!has[draft.of]tags[]remove[Star]sort[]] -[<aggregationTag>]
+\end
+
+\define filterState() $:/state/filter/aphorism-starred-items
+
+\define filterPanel(filterState)
+<$list filter=<<starred-item-has-tags>> variable="ignore">
+<div class="xp-wrapper-aggrfilter">
+<div class="xp-aggrfilter-category" style="font-size:1em;padding:10px 0;">
+<span class="xp-aggrfilter-category-item">
+<$list filter=<<starred-item-tags>> variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+<$macrocall $name="deselectButton" filterState=<<filterState>>/>
+</span>
+</div>
+</div>
+</$list>
+\end
+
+\define alltagsfilter()
+<$vars L="tag[" R="]" lb="[" rb={{{ [<starFilter>removeprefix[[]] }}}>
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addsuffix<rb>]" name="alltags" select=0>
+<$text text=<<alltags>>/>
+</$set>
+</$vars>
+\end
+
+<$set name="stateCode" filter=<<has-starred-item>> value="1" emptyValue="0">
+<$reveal default=<<stateCode>> type="match" text="0">
+<div class="tc-muted" style="text-align:center;margin:50px 0 25px;">
+<div class="xp-image-big-muted">{{$:/core/images/star-filled}}</div>
+Starred tiddler will appear here
+</div>
+</$reveal>
+
+<$reveal default=<<stateCode>> type="match" text="1">
+<$wikify name="alltagsfilterwikified" text="""<$macrocall $name="alltagsfilter" filterState=<<filterState>>/>""">
+<$set name="aggrFilter" filter="[<filterState>has[list]]" value=<<alltagsfilterwikified>> emptyValue=<<starFilter>>>
+
+<$macrocall $name="filterPanel" filterState=<<filterState>> />
+
+<p />
+<div class="xp-aphorism">
+<table class="xp-aphorism">
+<tbody>
+<$list filter=<<aggrFilter>>>
+<tr class="xp-aphorism-item">
+<td class="xp-aphorism-content">
+<div class="tc-tiddler-controls xp-aphorism-controls">
+<<openTiddlerButton>>
+{{||$:/core/ui/Buttons/edit}}
+</div>
+<$transclude mode="block" tiddler=<<aphorismTemplate>>>
+<$transclude mode="block"><p>Missing tiddler.</p></$transclude>
+</$transclude>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+
+</$set>
+</$wikify>
+</$reveal>
+</$set>

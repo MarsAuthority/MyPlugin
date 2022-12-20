@@ -1,0 +1,15 @@
+tags: $:/tags/TextEditor/HTMLTags [[Text Formatting]]
+title: $:/language/HTMLTags/i
+
+<$button tag="a" tooltip="Italic">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<i>"
+	suffix="</i>"
+/>
+
+<span class="tc-html-chooser-text"><$text text="<i>"></span>
+
+</$button>

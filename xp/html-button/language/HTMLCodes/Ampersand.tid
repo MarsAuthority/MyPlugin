@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/Ampersand
+
+<$button tag="a" tooltip="Ampersand">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&amp;"
+/>
+
+<span class="tc-html-chooser-text">&amp;</span>
+
+</$button>

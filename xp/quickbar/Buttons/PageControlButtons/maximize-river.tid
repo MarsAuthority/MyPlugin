@@ -1,0 +1,65 @@
+caption: {{$:/xp/ui/Buttons/maximize-river!!caption}}
+dependents: $:/plugins/xp/leftopentab
+description: {{$:/xp/ui/Buttons/maximize-river!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/maximize-river
+
+\import $:/xp/leftopentab/macros
+\whitespace trim
+
+<$vars leftbarStatus={{{ [[$:/config/LeftOpenTab/Status]!is[missing]get[text]] }}}
+	sidebarState={{{ [[$:/state/sidebar]!is[missing]get[text]] ~yes }}}>
+<$list filter="[<leftbarStatus>match[show]] [<sidebarState>match[yes]] +[limit[1]]" variable="ignore">
+<$button tooltip="Maximize the story river" aria-label="maximize river" class="tc-btn-invisible">
+{{$:/xp/images/maximize}}
+
+<$list filter="[<sidebarState>match[yes]]">
+<$action-setfield $tiddler="$:/state/sidebar" text="no"/>
+</$list>
+
+<$list filter="[<leftbarStatus>match[show]]" variable="ignore">
+	<$action-setfield $tiddler="$:/config/LeftOpenTab/RememberStatus" text="show"/>
+	<$action-deletetiddler $filter="$:/core/ui/SideBar/Open"/>
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyleft" text=<<storyleftdefault>>/>
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyright" text=<<storyrightdefault>>/>
+	<$action-setfield $tiddler="$:/config/LeftOpenTab/Status" text="hide"/>
+	<$reveal state="$:/state/tab/sidebar--595412856" type="match" text="">
+	<$set name="focusTab" filter="[[TableOfContents]tag[$:/tags/SideBar]]" value="TableOfContents" emptyValue="$:/core/ui/SideBar/More">
+	<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<focusTab>>/>
+	</$set>
+	</$reveal>
+</$list>
+
+<<toFocussedTiddler>>
+
+</$button>
+</$list>
+
+<$list filter="[<leftbarStatus>!match[show]]" variable="ignore">
+<$list filter="[<sidebarState>match[no]]" variable="ignore">
+<$button tooltip="Unmaximize river" aria-label="unmaximize river" class="tc-btn-invisible quickbar-active-indicator">
+{{$:/xp/images/unmaximize}}
+
+<$list filter="[<sidebarState>match[no]]">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+
+<$reveal state="$:/config/LeftOpenTab/RememberStatus" type="match" text="show">
+	<$action-setfield $tiddler="$:/config/LeftOpenTab/Status" text="show"/>
+	<$action-listops $tiddler="$:/core/ui/SideBar/Open" $tags="-$:/tags/SideBar"/>
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyleft" text=<<storyleftValue>>/>
+	<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyright" text=<<storyrightValue>>/>
+	<$action-deletetiddler $filter="$:/config/LeftOpenTab/RememberStatus"/>
+	<$reveal state="$:/state/tab/sidebar--595412856" type="match" text="$:/core/ui/SideBar/Open">
+	<$set name="focusTab" filter="[[TableOfContents]tag[$:/tags/SideBar]]" value="TableOfContents" emptyValue="$:/core/ui/SideBar/More">
+	<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<focusTab>>/>
+	</$set>
+	</$reveal>
+</$reveal>
+
+<<toFocussedTiddler>>
+
+</$button>
+</$list>
+</$list>
+</$vars>

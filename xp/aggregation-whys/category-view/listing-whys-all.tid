@@ -1,0 +1,12 @@
+caption: 全部
+tags: $:/tags/WhyCategories
+title: $:/listing-whys-all
+
+\import $:/whys-macros
+
+<$macrocall
+  $name="aggregation-list-links"
+  storeTitle="$:/temp/search/whys/links"
+  searchClass="xp-search-whys"
+  promptTiddler="$:/whys-prompt"
+/>

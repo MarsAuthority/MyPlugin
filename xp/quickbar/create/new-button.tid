@@ -1,0 +1,32 @@
+caption: New Button
+description: Create a new button
+title: $:/xp/quickbar/create/new-button
+
+\define et-quickbar-new(size)
+|<$link to="$:/config/new-button/Title">Title</$link> |<$edit-text tiddler="$:/config/new-button/Title" default="" tag="input" size=$size$/> |
+|<$link to="$:/config/new-button/Caption">Caption</$link> |<$edit-text tiddler="$:/config/new-button/Caption" default="" tag="input" size=$size$/> |
+|<$link to="$:/config/new-button/Description">Description</$link> |<$edit-text tiddler="$:/config/new-button/Description" default="" tag="input" size=$size$/> |
+|<$link to="$:/config/new-button/Text">Text</$link> |<$edit tiddler="$:/config/new-button/Text" tag="textarea" class="tc-edit-texteditor" default=""/> |
+|>| {{$:/xp/quickbar/create/Buttons/new-button}} |
+\end
+
+\define select-newbuttons()
+<$select tiddler='$:/config/new-button/From'>
+<$list filter='[all[shadows+tiddlers]prefix[$:/core/ui/Buttons/new]sort[]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+\end
+
+Select a button to start imitating: <<select-newbuttons>> {{$:/xp/quickbar/create/Buttons/imitate-new-button}}
+
+<span class="xp-quickbar-on-pc">
+
+<<et-quickbar-new size:"52">>
+
+</span>
+<span class="xp-quickbar-on-phone">
+
+<<et-quickbar-new>>
+
+</span>

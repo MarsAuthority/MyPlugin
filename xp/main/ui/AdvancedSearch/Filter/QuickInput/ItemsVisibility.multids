@@ -1,0 +1,9 @@
+title: $:/config/xp/quicklist/Items/Visibility/$:/QuickInput/Filters/
+
+has:field: hide
+Image: hide
+PageTemplate: hide
+Templates: hide
+plugintiddlers: hide
+regexp-ignore: hide
+shadow-tags: hide

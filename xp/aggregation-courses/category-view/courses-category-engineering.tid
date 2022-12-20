@@ -1,0 +1,6 @@
+caption: 工学
+ctag: Engineering
+tags: $:/tags/CourseCategories
+title: $:/courses-category-engineering
+
+<<list-courses Engineering>>

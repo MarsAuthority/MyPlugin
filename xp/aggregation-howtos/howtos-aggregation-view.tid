@@ -1,0 +1,17 @@
+caption: 聚合视图
+title: $:/howtos-aggregation-view
+
+\import $:/howtos-macros
+\define config-base() $:/config/xp/aggregation-howtos/TableFields/Visibility/
+
+<$wikify name="dtableFields" text="""<$list filter="[list[$:/config/xp/aggregation-howtos/TableFields]]" variable="listField"><$reveal type="match" state=<<field-config-title>> text="show"> <$text text={{{ [<listField>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall
+  $name="aggregation-filtersearch"
+  fields=<<dtableFields>>
+  state="aggregation-howtos"
+  class=""
+  cardTemplate="$:/aggregation-card-template"
+  searchClass="xp-search-howtos"
+  promptTiddler="$:/howtos-prompt"
+/>
+</$wikify>

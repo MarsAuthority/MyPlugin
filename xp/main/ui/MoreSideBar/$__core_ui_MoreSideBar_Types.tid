@@ -1,0 +1,52 @@
+caption: {{$:/language/SideBar/Types/Caption}}
+rewrite: 5.2.3
+tags: $:/tags/MoreSideBar
+title: $:/core/ui/MoreSideBar/Types
+
+\define lingo-base() $:/language/Search/
+\define storeTitle() $:/temp/search/types/moresidebar
+\define cancel-search-actions() <$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=""".search-types-moresidebar input"""/>
+\whitespace trim
+
+<$wikify name="tiddlerCount" text="""//<small><$count filter="[!is[system]has[type]] -[type[text/vnd.tiddlywiki]]"/> tiddlers</small>//""">
+<span class="search-types-moresidebar">
+<$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus={{$:/config/Search/AutoFocus}}
+    inputCancelActions=<<cancel-search-actions>>
+    placeholder=<<tiddlerCount>>/>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible tc-btn-dropdown tc-small-gap">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+</$wikify>
+<$vars userInput={{{ [<storeTitle>get[text]] }}} 
+    searchFilter="[!is[system]has[type]] -[type[text/vnd.tiddlywiki]] +[search:title,type<userInput>]" 
+    resultCount="<$count filter=<<searchFilter>>/>">
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<span class="tc-search-results"><<lingo System/Matches>></span>
+</$reveal>
+<div style="padding-top:2px;">
+
+<$list filter={{$:/core/Filters/TypedTiddlers!!filter}}>
+<div class="tc-menu-list-item">
+<$reveal state=<<storeTitle>> type="match" text="">
+<$view field="type"/>
+</$reveal>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$reveal default={{{ [type{!!type}!is[system]search:title,type<userInput>] +[count[]] }}} type="nomatch" text="0">
+<$view field="type"/>
+</$reveal>
+</$reveal>
+<$list filter="[type{!!type}!is[system]sort[title]search:title,type<userInput>]">
+<div class="tc-menu-list-subitem">
+<$link to={{!!title}}><$view field="title"/></$link>
+</div>
+</$list>
+</div>
+</$list>
+
+</div>
+</$vars>

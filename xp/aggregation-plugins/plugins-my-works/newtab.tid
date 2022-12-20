@@ -1,0 +1,40 @@
+caption: {{$:/core/images/new-button}}
+tags: $:/tags/MyWorks
+title: $:/plugins-my-works/newtab
+
+\define titleStoreTiddler() $:/config/new-myworkstab/Title
+\define captionStoreTiddler() $:/config/new-myworkstab/Caption
+\define textStoreTiddler() $:/config/new-myworkstab/Text
+\define storeTiddler() $:/config/new-myworkstab/Title/input
+\define newButton() {{$:/xp/ui/Buttons/new-myworkstab}}
+
+\define deleteButton()
+\whitespace trim
+<$vars newtabTitle={{$:/config/new-myworkstab/Title}}>
+<$list filter="[<storeTiddler>get[text]match<newtabTitle>]" variable="ignore">
+<$button tooltip="Delete existing tiddler" class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
+{{$:/core/images/delete-button}}
+<$action-confirm $message="Are you sure you wish to delete this tiddler?">
+<$action-deletetiddler $filter="[<newtabTitle>] [<storeTiddler>]" />
+</$action-confirm>
+</$button>
+</$list>
+</$vars>
+\end
+
+\define promptText()
+<$vars newtabTitle={{$:/config/new-myworkstab/Title}}>
+<$list filter="[<storeTiddler>get[text]match<newtabTitle>]" variable="ignore">
+{{$:/aggregation/ErrorText}}
+</$list>
+</$vars>
+\end
+
+! 新建页签
+
+|<$link to=<<titleStoreTiddler>>>Title</$link> |<$edit-text tiddler=<<titleStoreTiddler>> default="" tag="input"/> <<deleteButton>> |
+|<$link to=<<captionStoreTiddler>>>Caption</$link> |<$edit-text tiddler=<<captionStoreTiddler>> default="" tag="input"/> |
+|<$link to=<<textStoreTiddler>>>Text</$link> |<$edit tiddler=<<textStoreTiddler>> tag="textarea" class="tc-edit-texteditor" default=""/> |
+|>| <<newButton>> |
+
+<<promptText>>

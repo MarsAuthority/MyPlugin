@@ -1,0 +1,16 @@
+title: $:/xp/aggregation-gtd/ui/TodoQuadrant
+
+<div class="py-priorities">
+  <$list filter="$:/q1 $:/q2 $:/q3 $:/q4" variable="qTag">
+    <$button class={{{ [<qTag>removeprefix[$:/]addprefix[tc-btn-invisible xp-gtd-filter xp-gtd-]] }}}>
+      <$transclude tiddler={{{ [<qTag>removeprefix[$:/]addprefix[$:/xp/images/]] }}} mode="inline"/>
+      <$action-listops $tags="-[tag[GettingThingsDone]]"/>
+      <$action-listops $tags=<<qTag>>/>
+      <$list filter="$:/q1 $:/q2 $:/q3 $:/q4" variable="qList">
+        <$action-listops $tiddler=<<qList>> $subfilter="-[<currentTiddler>]"/>
+      </$list>
+      <$action-listops $tiddler=<<qTag>> $subfilter=<<currentTiddler>>/>
+      <$action-sendmessage $message="tm-auto-save-wiki"/>
+    </$button>
+  </$list>
+</div>

@@ -1,0 +1,92 @@
+tags: $:/tags/Stylesheet
+title: $:/themes/xp-k/base
+
+{{$:/themes/tiddlywiki/vanilla/base}}
+
+@media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+    .tc-tiddler-frame { <<box-shadow "0 0.07px 5px rgba(0, 0, 0, 0.07)">> }
+}
+
+.tc-drop-down { border-radius: 6px; }
+
+canvas.tc-edit-bitmapeditor  {
+    border: 1px solid <<colour tiddler-editor-border>>;
+}
+
+
+/* INPUTS */
+
+input:not([type]), input[type=search], input[type=text] {
+    border: 2px solid <<colour tiddler-editor-border>>;
+}
+
+input[type=search] {
+    border-radius: 2px;
+}
+
+.kk-todolist-header-textbox input {
+    line-height: 1.25;
+}
+
+.kk-todolist-header-textbox input,
+.kk-kara-header-textbox input,
+.xp-gtd-addtodo-textbox input {
+    border: none;
+    border-bottom: 1px dotted <<colour tiddler-controls-foreground>>;
+    background: transparent;
+}
+
+
+/* BUTTONS */
+
+button { outline: none; }
+
+select {
+    border-color: <<colour table-border>>;
+    background-color: transparent;
+    color: <<colour tab-foreground>>;
+}
+
+.tc-page-controls button svg, .tc-tiddler-controls button svg, .tc-topbar button svg {
+    <<transition "fill 150ms ease-in-out">>
+}
+
+/* Sidebar tab buttons */
+
+@media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]!match[fixed-fluid]]" variable="ignore">
+    .tc-sidebar-lists .tc-tab-buttons button {
+        background-color: transparent;
+        border: none;
+    }
+
+    .tc-sidebar-lists .tc-tab-buttons button:hover {
+        color: rgba(0, 150, 136, 1);
+        fill: rgba(0, 150, 136, 1);
+    }
+
+    .tc-sidebar-lists .tc-tab-buttons button.tc-tab-selected {
+        color: rgba(0, 150, 136, 1);
+        fill: rgba(0, 150, 136, 1);
+    }
+</$list>
+
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fixed-fluid]!match[fluid-fixed]]" variable="ignore">
+    .tc-sidebar-lists .tc-tab-buttons button.tc-tab-selected {
+        color: rgba(0, 150, 136, 1);
+        fill: rgba(0, 150, 136, 1);
+    }
+</$list>
+}
+
+@media (max-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+    .tc-sidebar-lists .tc-tab-buttons button.tc-tab-selected {
+        color: rgba(0, 150, 136, 1);
+        fill: rgba(0, 150, 136, 1);
+    }
+}
+
+.tc-sidebar-lists .tc-tab-buttons.tc-vertical button.tc-tab-selected {
+    border: 1px solid <<colour tab-border-selected>>;
+    border-right: 1px solid <<colour page-background>>;
+}

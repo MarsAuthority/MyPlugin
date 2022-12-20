@@ -1,0 +1,6 @@
+tags: $:/tags/XP
+title: $:/_xp/Stylesheet/tiddlymap
+
+.hzone-focus {
+  border-color: firebrick !important;
+}

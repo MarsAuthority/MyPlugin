@@ -1,0 +1,58 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/aphorism-help
+
+<div class="blue-box">
+
+''Aphorism 的用途：''收集文本片段。
+
+</div>
+
+
+! 为什么要使用 Aphorism？
+
+聚合主题 [[SNIPPETS]] 用于收集代码片段，而 [[APHORISM]] 用于收集文本片段。Aphorism 的适用性更广泛。比如收集：
+
+* 名人名言、格言警句、谚语等
+* 书籍、影视剧、网文中自己喜欢的语录
+* 甚至仿 flomo 记录每日感想
+* ……
+
+要管理这么多主题，关键点在于使用标签对内容进行分类。
+
+! 如何使用？
+
+# ''捕获文本''
+#* 该页面可以轻松地捕获文本。将文本粘贴或者拖拽到文本框 > 选择标签或者添加新标签 > 创建条目。<br><br>
+
+# ''聚合视图''
+#* 查阅或者管理条目。<div class="gray-box" style="line-height:1.75;">
+
+|Item |Description |h
+|!<<.icon $:/xp/images/filter>> 过滤按钮 |打开过滤面板，添加过滤条件：标签、时间/日期。 |
+|!<<.icon $:/xp/images/switch>> 切换视图按钮 |在「阅读视图」（默认）和「管理视图」之间切换。 |
+|!<<.icon $:/xp/images/all>> 所有按钮 |显示所有结果。默认只会显示 50 条最新创建的条目。 |
+
+</div>
+
+# ''分类标签''
+#* <div class="gray-box">
+
+该主题预设分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-aphorism/category/]]" type:"ol">>
+
+你可以修改配置文件中的分类标签，或者新建配置文件 `$:/config/xp/aggregation-aphorism/category/<你的新分类>`，添加一个新类别。删除配置文件的内容，则取消显示。
+
+</div>
+
+# 星标条目
+#* <div class="gray-box">
+
+打上标签 `Star`，条目会显示于该页面。
+
+</div>
+
+! 了解更多
+
+请查看 $:/plugins/xp/aggregation。

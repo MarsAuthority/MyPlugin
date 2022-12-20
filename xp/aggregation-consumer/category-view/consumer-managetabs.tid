@@ -1,0 +1,30 @@
+caption: {{$:/core/images/options-button}}
+tags: $:/tags/ConsumerCategories
+title: $:/consumer-managetabs
+
+\import $:/consumer-macros
+\define selectDefaultTab()
+<$select tiddler='$:/config/xp/aggregation-consumer/category-view/DefaultTab'>
+<$list filter='[all[shadows+tiddlers]tag<systemCTag>!has[draft.of]remove[$:/consumer-newcategory $:/consumer-managetabs]] :filter[lookup<config-base>!match[hide]]'>
+<option value=<<currentTiddler>>><$view field='caption'/></option>
+</$list>
+</$select>
+\end
+
+! 默认分类
+
+设置维基启动后默认显示的标签页：<<selectDefaultTab>>
+
+! 管理分类
+
+Select which tabs will be shown. Drag and drop to change the ordering
+
+<div style="padding:0 16px;line-height:27px;">
+<span class="tc-muted">''Caption'' -- //Ctag//</span>
+<$macrocall
+	$name="list-tagged-draggable"
+	tag=<<systemCTag>>
+	subFilter="!has[draft.of]remove[$:/listing-consumer-all $:/consumer-newcategory $:/consumer-managetabs]"
+	itemTemplate="$:/templates/aggregation-categories-item"
+/>
+</div>

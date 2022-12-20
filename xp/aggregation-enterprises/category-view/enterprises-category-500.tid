@@ -1,0 +1,8 @@
+caption: 500
+ctag: 500
+tags: $:/tags/EnterpriseCategories
+title: $:/enterprises-category-500
+
+//<small>世界 500 强。</small>//
+
+<<list-enterprises 500>>

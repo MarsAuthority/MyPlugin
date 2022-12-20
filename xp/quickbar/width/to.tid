@@ -1,0 +1,6 @@
+tags: $:/tags/QuickBar/Width
+title: $:/xp/quickbar/width/to
+
+<$reveal state="$:/config/xp/quickbar/Items/Visibility/$:/xp/quickbar/items/to" type="nomatch" text="hide">
+ + 4px + 40.97px
+</$reveal>

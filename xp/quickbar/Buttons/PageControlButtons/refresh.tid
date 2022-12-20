@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/refresh!!caption}}
+description: {{$:/core/ui/Buttons/refresh!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/refresh
+
+{{$:/core/ui/Buttons/refresh}}

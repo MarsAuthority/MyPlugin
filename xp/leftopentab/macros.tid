@@ -1,0 +1,120 @@
+title: $:/xp/leftopentab/macros
+
+\define storyleftValue()
+calc({{$:/xp/leftopentab/metrics/width}} + {{$:/xp/leftopentab/metrics/storyleft}} - {{$:/xp/leftopentab/metrics/storyriverpaddingleft}})
+\end
+
+\define storyrightValue()
+calc({{$:/xp/leftopentab/metrics/storyright}} + {{$:/themes/tiddlywiki/vanilla/metrics/storyleft}})
+\end
+
+\define storyleftdefault()
+<$text text={{$:/xp/leftopentab/metrics/storyleft}}/>
+\end
+
+\define storyrightdefault()
+<$text text={{$:/xp/leftopentab/metrics/storyright}}/>
+\end
+
+\define leftsidebar-open-item(class,btnclass)
+<div class="leftopentab-overflow"><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini $btnclass$">{{$:/core/images/close-button}}</$button>&nbsp;<$link to={{!!title}} tooltip=<<currentTiddler>> class="$class$"><$view field="title"/></$link></div>
+\end
+
+\define leftsidebar-open-item-editing(class)
+<div class="leftopentab-overflow"><$button message="tm-cancel-tiddler" tooltip={{$:/language/Buttons/Cancel/Hint}} aria-label={{$:/language/Buttons/Cancel/Caption}} class="tc-btn-invisible tc-btn-mini leftopentab-highlight">{{$:/core/images/edit-button}}</$button>&nbsp;<$link to={{!!title}} tooltip=<<currentTiddler>> class="$class$"><$view field="title"/></$link></div>
+\end
+
+\define open-tiddler-list-button()
+<$list filter="[{!!title}match{$:/temp/tmap/currentTiddler}!is[draft]]" variable="ignore">
+<<leftsidebar-open-item "leftopentab-highlight">>
+</$list>
+<$list filter="[{!!title}match{$:/temp/tmap/currentTiddler}is[draft]]" variable="ignore">
+<<leftsidebar-open-item-editing "leftopentab-highlight">>
+</$list>
+<$list filter="[{!!title}!match{$:/temp/tmap/currentTiddler}!is[draft]]" variable="ignore">
+<<leftsidebar-open-item>>
+</$list>
+<$list filter="[{!!title}!match{$:/temp/tmap/currentTiddler}is[draft]]" variable="ignore">
+<<leftsidebar-open-item-editing>>
+</$list>
+\end
+
+\define maximize-river-button(navigate:"<<toFocussedTiddler>>")
+\whitespace trim
+<span class="only-on-pc">
+<$vars sidebarState={{{ [[$:/state/sidebar]!is[missing]get[text]] ~yes }}}>
+<$list filter="[[$:/config/LeftOpenTab/Status]is[tiddler]]" variable="ignore">
+<$reveal state="$:/config/LeftOpenTab/RememberStatus" type="nomatch" text="show">
+<$button tooltip="Maximize the story river" aria-label="maximize river" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/maximize}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="maximize river"/>
+</span>
+</$list>
+
+<$list filter="[<sidebarState>match[yes]]">
+<$action-setfield $tiddler="$:/state/sidebar" text="no"/>
+</$list>
+
+<$action-setfield $tiddler="$:/config/LeftOpenTab/RememberStatus" text="show"/>
+<$action-deletetiddler $filter="$:/core/ui/SideBar/Open"/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyleft" text=<<storyleftdefault>>/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyright" text=<<storyrightdefault>>/>
+<$action-setfield $tiddler="$:/config/LeftOpenTab/Status" text="hide"/>
+<$reveal state="$:/state/tab/sidebar--595412856" type="match" text="">
+<$set name="focusTab" filter="[[TableOfContents]tag[$:/tags/SideBar]]" value="TableOfContents" emptyValue="$:/core/ui/SideBar/More">
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<focusTab>>/>
+</$set>
+</$reveal>
+
+$navigate$
+
+</$button>
+</$reveal>
+
+<$reveal state="$:/config/LeftOpenTab/RememberStatus" type="match" text="show">
+<$button tooltip="Unmaximize river" aria-label="unmaximize river" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/unmaximize}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="unmaximize river"/>
+</span>
+</$list>
+
+<$list filter="[<sidebarState>match[no]]">
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+</$list>
+
+<$action-setfield $tiddler="$:/config/LeftOpenTab/Status" text="show"/>
+<$action-listops $tiddler="$:/core/ui/SideBar/Open" $tags="-$:/tags/SideBar"/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyleft" text=<<storyleftValue>>/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/storyright" text=<<storyrightValue>>/>
+<$action-deletetiddler $filter="$:/config/LeftOpenTab/RememberStatus"/>
+<$reveal state="$:/state/tab/sidebar--595412856" type="match" text="$:/core/ui/SideBar/Open">
+<$set name="focusTab" filter="[[TableOfContents]tag[$:/tags/SideBar]]" value="TableOfContents" emptyValue="$:/core/ui/SideBar/More">
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<focusTab>>/>
+</$set>
+</$reveal>
+
+$navigate$
+
+</$button>
+</$reveal>
+</$list>
+</$vars>
+</span>
+\end
+
+\define toFocussedTiddler()
+<$reveal state="$:/temp/tmap/currentTiddler" type="nomatch" text="">
+<$action-navigate $to={{$:/temp/tmap/currentTiddler}}/>
+</$reveal>
+\end
+
+
+<pre><$view field="text"/></pre>

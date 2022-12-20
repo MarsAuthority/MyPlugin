@@ -1,0 +1,12 @@
+title: $:/xp/quickbar/ItemTemplate
+
+\define config-title()
+$(config-base)$$(currentTiddler)$
+\end
+
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="show"/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <i class="tc-muted">-- <$transclude field="description"/></i></span>
+<$list filter="[<currentTiddler>has[dependents]]">
+&emsp;<$transclude field="dependents"/>
+</$list>
+</$draggable>

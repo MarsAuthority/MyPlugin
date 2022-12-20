@@ -1,0 +1,35 @@
+caption: Creation
+color: #bbb
+description: Batch creation
+icon: $:/xp/images/batch-creation
+tags: $:/tags/BatchOperation
+title: $:/BatchCreation
+
+\import [all[shadows+tiddlers]tag[$:/tags/Commander/Macro]] $:/BatchOperation/macros
+\whitespace trim
+
+<span class="batch-items">
+<table class="batch-items">
+<tbody>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/BatchCreation]!has[draft.of]]" variable="listItem">
+<$vars getCaption={{{ [<listItem>get[caption]] }}}
+  editTid={{{ [<listItem>get[caption]addprefix[$:/temp/batchcreation/]] }}}
+  configTid={{{ [<listItem>get[caption]addprefix[$:/config/BatchCreation/]] }}}>
+<tr class="batch-item">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</tr>
+</$vars>
+</$list>
+</tbody>
+</table>
+</span>
+<p>
+<<bcCreateButton>>
+<span class="tc-big-gap-left tc-sidebar-lists">
+<<help-button-to "$:/BatchCreation/Help">>
+<<bcRecordButton>>
+<<boLogButton>>
+</span>
+</p>
+
+<<boLogPanel>>

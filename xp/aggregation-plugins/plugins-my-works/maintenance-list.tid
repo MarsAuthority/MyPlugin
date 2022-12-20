@@ -1,0 +1,36 @@
+caption: Maintenance List
+tags: $:/tags/MyWorks
+title: $:/plugins-my-works/maintenance-list
+
+\import $:/plugins-macros
+\whitespace trim
+\define storeTitle() $:/temp/search/plugins-maintenance-list
+\define cancel-search-actions() <$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=""".xp-search-maintained-plugins input"""/>
+
+\define maintainedPlugins()
+在这里列出你的插件列表
+\end
+
+<div class="xp-search xp-search-maintained-plugins">
+Search all fields except text &ensp; <$macrocall $name="keyboard-driven-input" tiddler=<<storeTitle>>
+    type="search" tag="input" focus="false"
+    inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+<<versionButton>>
+</div>
+
+<$vars userInput={{{ [<storeTitle>get[text]] }}} aggrFilter="[enlist<maintainedPlugins>sort[]search:-text,*<userInput>]">
+
+<div style="margin:15px 0;padding:0 0 0 24px;">
+<ol class="tc-toc tc-muted">
+<$list filter=<<aggrFilter>> template="$:/templates/list-plugins"/>
+</ol>
+</div>
+
+</$vars>

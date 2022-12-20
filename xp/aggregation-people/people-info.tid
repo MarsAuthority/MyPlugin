@@ -1,0 +1,9 @@
+title: $:/people-info
+
+<table class="xp-people-info-table">
+<tbody>
+<$list filter="[enlist{$:/config/xp/aggregation-people/InfoFields}] -text" variable="listItem">
+<$list filter="[all[current]has<listItem>]" template="$:/xp/ui/TiddlerFieldTemplate/people" storyview="pop"/>
+</$list>
+</tbody>
+</table>

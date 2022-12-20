@@ -1,0 +1,17 @@
+tags: $:/tags/TextEditor/HTMLTags [[Miscellaneous Tags]]
+title: $:/language/HTMLTags/ruby
+
+<$button tag="a" tooltip="The Ruby Annotation element">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="""<ruby>
+  汉 <rp>(</rp><rt>han</rt><rp>)</rp>
+  字 <rp>(</rp><rt>zi</rt><rp>)</rp>
+</ruby>"""
+/>
+
+<span class="tc-html-chooser-text"><$text text="<ruby>"></span>
+
+</$button>

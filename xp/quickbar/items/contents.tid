@@ -1,0 +1,11 @@
+title: $:/xp/quickbar/items/contents
+caption: Contents
+description: Table of Contents
+is-dropup: yes
+tags: $:/tags/QuickBar
+
+<div class="tc-table-of-contents">
+
+<$macrocall $name="toc-selective-expandable" tag={{$:/config/xp/quickbar/TableOfContents/Tag}}/>
+
+</div>

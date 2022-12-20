@@ -1,0 +1,22 @@
+title: $:/config/PageControlButtons/from-community-plugins
+
+$:/_sq/Stories/Templates/StoryTogglePageControl
+$:/plugins/kookma/commander/buttons/pagecontrol
+$:/plugins/kookma/utility/ui/Buttons/ViewFields
+$:/plugins/nico/projectify/ui/buttons/Scheduled
+$:/plugins/test/getplugins/button
+$:/Tekan/Switch
+$:/xp/ui/Buttons/batch-operation
+$:/xp/ui/Buttons/code-viewer
+$:/xp/ui/Buttons/edit-all
+$:/xp/ui/Buttons/filter-builder
+$:/xp/ui/Buttons/filter-search
+$:/xp/ui/Buttons/leftopentab
+$:/xp/ui/Buttons/manage-tags
+$:/xp/ui/Buttons/maximize-river
+$:/xp/ui/Buttons/sidebar-tab-manager
+$:/xp/ui/Buttons/switchlayout
+$:/xp/ui/Buttons/theme-changer
+$:/xp/ui/Buttons/things
+$:/xp/ui/Buttons/toggle-quickbar
+$:/xp/ui/Buttons/view-code-all

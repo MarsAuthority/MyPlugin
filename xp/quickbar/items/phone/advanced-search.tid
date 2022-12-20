@@ -1,0 +1,14 @@
+caption: {{$:/core/images/advanced-search-button}}
+custom-menu-content: <$transclude tiddler="$:/xp/quickbar/items/phone/advanced-search" mode="inline"/>
+description: Advanced Search
+tags: $:/tags/QuickBar/Phone
+title: $:/xp/quickbar/items/phone/advanced-search
+
+\whitespace trim
+<$button to="$:/AdvancedSearch" tooltip={{$:/language/Buttons/AdvancedSearch/Hint}} aria-label={{$:/language/Buttons/AdvancedSearch/Caption}} class="tc-btn-invisible tc-show-sidebar-btn">
+{{$:/core/images/advanced-search-button}}
+<$list filter="[<tv-story-list>!contains[$:/AdvancedSearch]]">
+<$action-setfield $tiddler="$:/state/tab--1498284803" text="$:/core/ui/AdvancedSearch/Standard"/>
+<$action-setfield $tiddler="$:/state/advancedsearch/currentTab" text="$:/core/ui/AdvancedSearch/Standard"/>
+</$list>
+</$button>

@@ -1,0 +1,86 @@
+caption: Things
+color: #bbb
+description: Getting Things Done
+icon: $:/xp/images/done
+tags: $:/tags/SideBar
+title: $:/xp/ui/SideBar/Things
+
+\import $:/xp/aggregation-gtd/macros
+\define lingo-base() $:/language/projectify/
+\define stateTiddler() $:/config/xp/aggregation-gtd/SideBar/QuadrantView
+
+\define gtdQuadrant(n)
+<$vars currentList="$:/q$n$" qTag="$:/q$n$">
+<$reveal state=<<stateTiddler>> type="match" text=<<currentList>> animate="yes">
+  <h3>
+    <$button class="tc-btn-invisible xp-gtd-list-header-btn">
+    <span class="xp-gtd-q$n$">
+    <$transclude tiddler=<<currentList>> field="caption"><$view tiddler=<<currentList>> field="title"/></$transclude>
+    </span>
+    <$action-setfield $tiddler=<<stateTiddler>> text="4"/>
+    </$button>
+  </h3>
+
+  <div class="py-todos">
+    <$list 
+      filter="[tag<qTag>!tag[done]!sort[created]] [tag<qTag>tag[done]!sort[modified]] +[!has[draft.of]limit[250]]"
+      template="$:/xp/aggregation-gtd/SideBar/ItemTemplate"
+      emptyMessage="<p>没有任务</p>"
+    />
+  </div>
+</$reveal>
+</$vars>
+\end
+
+
+<div class="xp-gtd-sidebar">
+
+<h3>
+<$button to="GettingThingsDone" class="tc-btn-invisible xp-gtd-list-header-btn">
+<span class="tc-sidebar-header">~GettingThingsDone</span>
+</$button>
+</h3>
+
+<div class="xp-gtd-sidebar-addtodo">
+{{$:/xp/aggregation-gtd/ui/SideBar/AddTodo}}
+</div>
+
+<!-- 四象限 -->
+<$reveal state=<<stateTiddler>> type="match" text="4" animate="yes">
+
+<<scheduleTodoList>>
+
+<$list filter=<<gtd-quadrant>> variable="currentList" storyview="pop">
+
+  <h3>
+    <$button class="tc-btn-invisible xp-gtd-list-header-btn">
+      <span class={{{ [<currentList>removeprefix[$:/]addprefix[xp-gtd-]] }}}>
+      <$transclude tiddler=<<currentList>> field="caption"><$view tiddler=<<currentList>> field="title"/></$transclude>
+      </span>
+      <$action-setfield $tiddler=<<stateTiddler>> text=<<currentList>>/>
+    </$button>
+  </h3>
+
+  <div class="py-todos">
+    <$list
+      filter="[tag<currentList>!tag[done]!sort[created]!has[draft.of]]"
+      template="$:/xp/aggregation-gtd/SideBar/ItemTemplate"
+      emptyMessage="<p>没有任务</p>"
+    />
+  </div>
+
+</$list>
+
+</$reveal>
+
+<!-- 单列表视图 -->
+<$reveal state=<<stateTiddler>> type="nomatch" text="4" animate="yes">
+
+<<gtdQuadrant 1>>
+<<gtdQuadrant 2>>
+<<gtdQuadrant 3>>
+<<gtdQuadrant 4>>
+
+</$reveal>
+
+</div>

@@ -1,0 +1,11 @@
+title: $:/xp/aggregation-gtd/ui/DeleteButton
+
+\whitespace trim
+<$button
+  actions=<<gtdDeleteActions>>
+  class="py-btn tc-tiny-gap-left"
+  tooltip="删除"
+  aria-label="delete item"
+>
+  <span style="font-size:0.85em;opacity:0.55;">{{$:/core/images/delete-button}}</span>
+</$button>

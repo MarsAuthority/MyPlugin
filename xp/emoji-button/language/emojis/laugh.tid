@@ -1,0 +1,14 @@
+caption: laugh
+tags: $:/tags/TextEditor/Emojis
+title: $:/language/emojis/laugh
+
+<$button tag="a" tooltip="Laugh">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="<<emoji laugh 0.5>>"
+/>
+
+{{$:/css3-emoji-laugh}}
+</$button>

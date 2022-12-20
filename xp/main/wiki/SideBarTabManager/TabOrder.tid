@@ -1,0 +1,10 @@
+caption: Order
+title: $:/SideBarTabManager/TabOrder
+
+\whitespace trim
+
+{{$:/xp/ui/Buttons/reorder-tabs}} <$button actions="<$action-deletetiddler $tiddler='$:/tags/SideBar'/>" tooltip="Reset to default order" aria-label="reset to default order" class="tc-tiny-gap-left"> Reset </$button>
+
+Drag and drop to change the ordering
+
+<$macrocall $name="list-tagged-draggable" tag="$:/tags/SideBar" />

@@ -1,0 +1,16 @@
+{
+	"version": "0.0.16",
+	"type": "application/json",
+	"title": "$:/plugins/tg/timestamp-button",
+	"source": "http://www.tongerner.nl/TW5/TW5_index.html",
+	"plugin-type": "plugin",
+	"name": "Timestamp button",
+	"modifier": "TonGerner",
+	"modified": "20210104201946411",
+	"list": "readme license",
+	"description": "Timestamp button",
+	"creator": "TonGerner",
+	"created": "20170511203457093",
+	"core-version": ">=5.1.13",
+	"author": "TonGerner"
+}

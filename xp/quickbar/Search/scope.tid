@@ -1,0 +1,62 @@
+caption: {{$:/xp/images/scope}} search scope
+custom-menu-content: {{$:/xp/quickbar/Search/scope}}
+description: Select Search Scope
+title: $:/xp/quickbar/Search/scope
+
+\import $:/xp/quickbar/SearchResults
+\whitespace trim
+
+\define selectScopeButton()
+\whitespace trim
+<div class="tc-muted" style="padding:0 0 4px;">
+Custom
+</div>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/SearchScope]remove[$:/xp/quickbar/Search/Default]!has[draft.of]sort[]]">
+<$wikify name="currentState" text={{{ [<currentTiddler>get[state]] }}}>
+<$button set=<<stateTiddler>> setTo={{!!state}} class="tc-btn-invisible">
+<$action-sendmessage $message="tm-focus-selector" $param=""".xp-quickbar-search input""" preventScroll="true"/>
+<$action-setfield $tiddler="$:/config/xp/quickbar/SearchPrompt" text={{{ [<currentTiddler>get[caption]addprefix[Search ]] }}}/>
+<$action-deletetiddler $filter=<<dropup-state>>/>
+<$transclude field="caption"/>
+<$list filter="[<stateTiddler>get[text]match<currentState>]">
+&ensp;&#10003;
+</$list>
+</$button>
+</$wikify>
+</$list>
+<div class="tc-muted" style="padding:12px 0 4px;">
+Default
+</div>
+<$list filter="$:/xp/quickbar/Search/Default">
+<$wikify name="currentState" text={{{ [<currentTiddler>get[state]] }}}>
+<$button set=<<stateTiddler>> setTo={{!!state}} class="tc-btn-invisible">
+<$action-sendmessage $message="tm-focus-selector" $param=""".xp-quickbar-search input""" preventScroll="true"/>
+<$action-setfield $tiddler="$:/config/xp/quickbar/SearchPrompt" text="Type your search terms"/>
+<$action-deletetiddler $filter=<<dropup-state>>/>
+<$transclude field="caption"/>
+<$list filter="[<stateTiddler>get[text]match<currentState>]">
+&ensp;&#10003;
+</$list>
+</$button>
+</$wikify>
+</$list>
+\end
+
+<$set name="dropup-state" value=<<qualify "$:/state/popup/quickbar/dropup/">>>
+<$set name="dropup-state" value={{{ [<dropup-state>addsuffix<currentTiddler>] }}}>
+<$button popup=<<dropup-state>> tooltip="Select Search Scope" aria-label="Select Search Scope" class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/scope}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text="search scope"/></span>
+</$list>
+</$button><$reveal type="popup" state=<<dropup-state>> position={{{ [<currentTiddler>get[dropup-position]else[aboveleft]] }}} class={{{ [<currentTiddler>get[dropup]get[class]] }}} tag="span" animate="yes">
+<div class="xp-drop-up-scope" style="margin-left:-36px;">
+
+<<selectScopeButton>>
+
+</div>
+</$reveal>
+</$set>
+</$set>

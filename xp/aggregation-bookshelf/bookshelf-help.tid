@@ -1,0 +1,90 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/bookshelf-help
+
+<div class="blue-box">
+
+''书架（Bookshelf）的用途：''通过「聚合视图」可以快速查找书目。
+
+</div>
+
+
+! 为什么要使用书架？
+
+当图书越来越多时，通过 TableOfContents 一层一层往下找的效率很低，大脑的运算速度也慢。虽然可以在默认搜索框中查找条目，但前提是我们的大脑能准确而快速地想到「搜索关键词」。受够了一层一层翻目录，也受够了忘记书名而无法搜索，我悟了！我们需要一个更直观更人性化的索引界面，它就是「聚合视图」。
+
+
+! 如何使用？
+
+# ''创建图书''
+#* 点击 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new book 创建图书的目录。参考《睡眠革命》这本书的[[目录|$:/bookshelf-examples-sleep]]。<div class="gray-box" style="line-height:1.75;">
+
+|!Field |!Description |
+|`caption` |显示名称，通常是对 `title` 的简化或者别称。（可以重名） |
+|`image` |书籍封面图（宽高比 139:200 px），不支持 SVG。建议标题使用小写和下划线。为了管理，添加标签 <<tag BookCover>>。 |
+|`link` |填入一个 `title`，使得点击封面图时打开该条目。 |
+|^`linkcolor` |//(optional)// 用于修改条目的链接颜色。你可以选择一个颜色，或者手动输入 `red` 或者 `<<colour primary>>`。<br>该功能由 $:/LinkStyle/Stylesheet 提供。 |
+
+</div>
+
+# ''聚合视图''
+#* 搜索框和控制按钮<div class="gray-box" style="line-height:1.75;">
+
+|Item |Description |h
+|!<<.icon $:/core/images/advanced-search-button>> 搜索框 |根据需要，在前面的下拉框中选择搜索范围。 |
+|!<<.icon $:/xp/images/filter>> 过滤按钮 |打开过滤面板，添加过滤条件：标签、时间、字段/字段值。预设分类标签，点击标题查看配置文件。 |
+|!<<.icon $:/xp/images/switch>> 切换视图按钮 |在「动态表格视图」和「卡片视图」（缩略图）之间切换。 |
+|!<<.icon $:/xp/images/sorting>> 排序按钮 |下拉菜单中选择要排序的字段。右侧会出现动态按钮，点击 `字段按钮` 可反向排序，点击 `unsort` 取消排序。 |
+|!<<.icon $:/xp/images/readingmode>> 阅读模式 |开启阅读模式。 |
+
+</div>
+#* 「动态表格」使用说明，参阅 [[聚合视图使用说明|$:/aggregation/instructions]] 中的「结果列表」。<br><br>
+
+# ''分类视图''
+#* 「分类视图」以选项卡呈现分类，每个分类有一个「[[分类标签栏|$:/分类标签与分类标签栏]]」，负责罗列出这个类别的条目的标签。当你用标签继续划分此分类时，标签栏可作导航菜单使用。<div class="gray-box">
+
+要显示在「分类视图」中，新建条目时需要使用预设的「[[分类标签|$:/分类标签与分类标签栏]]」进行条目归类。分类标签栏中的第一个标签，就是分类标签。该主题预设分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-bookshelf/category/]]" type:"ol">>
+
+> 在「聚合视图」过滤面板，点击分类标题就可以查看配置文件。
+
+你可以修改配置文件中的分类标签，或者新建配置文件 `$:/config/xp/aggregation-bookshelf/category/<你的新分类>`，添加一个新类别。删除配置文件的内容，则取消显示。
+
+</div>
+
+# ''管理''
+#* 通过 [[Tag handler|$:/xp/ui/ViewTemplate/tag-handler]] 管理[[分类标签|$:/分类标签与分类标签栏]]。<div class="gray-box">
+
+当一个条目含有聚合标签或者状态标签时，其标签栏前方会显示 Tag handler。点击它可以更改图书状态，或者增删预设置的分类标签。
+
+图书的状态标签为 <span class="xp-indicator-purple"><<.icon $:/xp/images/status-dot>></span> Planning、<span class="xp-indicator-orange"><<.icon $:/xp/images/status-dot>></span> Ongoing、<span class="xp-indicator-green"><<.icon $:/xp/images/status-dot>></span> Completed（计划中、阅读中、已完成）。默认创建的条目，其状态为 Planning。
+
+</div>
+
+#* 如何命名图书内容条目。<div class="gray-box">
+
+''命名格式：'' `<bookname>/<chapter>/<section>`
+
+通过此格式对图书内容条目进行命名，只要保证 `<bookname>` 不一样，就能避免标题重名。
+
+参考《睡眠革命》的[[目录|$:/bookshelf-examples-sleep]]。
+
+</div>
+
+
+! 自定义
+
+根据需要，您可以自定义 <span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new book 的创建动作。
+
+@@.list-tree
+* $:/xp/ui/Buttons/new-book
+** $:/xp/ui/Actions/new-book <i class="tc-muted"> 新条目含有的字段 </i>
+*** $:/config/new-book/Tags <i class="tc-muted"> 新条目含有的标签，比如 `[[My Tag]]` </i>
+*** $:/config/new-book/Text <i class="tc-muted"> 新条目的文本内容 </i>
+@@
+
+
+! 了解更多
+
+请查看 $:/plugins/xp/aggregation。

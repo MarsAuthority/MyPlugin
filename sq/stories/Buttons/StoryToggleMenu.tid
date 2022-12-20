@@ -1,0 +1,31 @@
+title: $:/_sq/Stories/Templates/StoryToggleMenu
+
+<div class="sq-twostoriesonly">
+<$reveal state="$:/config/_sq/Stories/story2" type="nomatch" text="no" default="no">
+<$button set="$:/config/_sq/Stories/story2" setTo="no" class="tc-btn-invisible tc-btn-mini">
+hide right column
+<!-- xp -->
+<$list filter="[[$:/temp/sidebarlayout/fixedstory]is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fixed-fluid"/>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="42px"/>
+</$list>
+</$list>
+<!-- /xp -->
+</$button>
+</$reveal>
+</div>
+
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="no" default="no">
+<$button set="$:/config/_sq/Stories/story2" setTo="yes" class="tc-btn-invisible tc-btn-mini tc-btn-storytwotoggle">
+show right column
+<!-- xp -->
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fluid-fixed"/>
+</$list>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+<!-- /xp -->
+</$button>
+</$reveal>

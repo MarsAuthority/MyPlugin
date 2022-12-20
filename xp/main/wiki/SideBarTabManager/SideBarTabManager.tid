@@ -1,0 +1,11 @@
+color: #bbb
+icon: $:/xp/images/tabs
+title: $:/SideBarTabManager
+
+<$macrocall
+  $name="tabs"
+  tabsList="$:/SideBarTabManager/TabOrder $:/SideBarTabManager/AllTabs $:/SideBarTabManager/Config"
+  default="$:/SideBarTabManager/AllTabs"
+  state="$:/state/tab/sidebar-tab-manager"
+  class="tc-vertical"
+/>

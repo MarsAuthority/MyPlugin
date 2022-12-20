@@ -1,0 +1,19 @@
+caption: Shadows
+state: shadow
+tags: $:/tags/QuickBar/SearchResults
+title: $:/xp/quickbar/Search/Shadows
+
+\define searchResultList()
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[all[shadows]search<userInput>sort[title]limit[250]]">
+<span class={{{[<currentTiddler>addsuffix[-secondaryList]] -[<searchListState>get[text]] +[then[]else[tc-list-item-selected]] }}}>
+<$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+</span>
+</$list>
+</$list>
+\end
+<$reveal state="$:/state/quicksearch/currentTab" type="match" text="$:/xp/quickbar/Search/Shadows">
+
+<<searchResultList>>
+
+</$reveal>

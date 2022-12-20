@@ -1,0 +1,15 @@
+title: $:/xp/aggregation-gtd/ui/buttons/DueDate
+
+\define lingo-base() $:/language/projectify/
+
+<$vars popupTiddler=<<qualify "$:/state/projectify/due-date-dropdown">>>
+  <$button class="tc-btn-invisible py-due-date" popup=<<popupTiddler>> tooltip={{$:/language/projectify/Schedule/Caption}}>
+    {{$:/plugins/nico/projectify/images/calendar}}
+  </$button>
+
+  <$reveal state=<<popupTiddler>> type="popup" position="belowleft" animate="no">
+    <div class="tc-drop-down py-drop-down py-date-picker">
+      {{||$:/plugins/nico/projectify/ui/forms/TodoDueDate}}
+    </div>
+  </$reveal>
+</$vars>

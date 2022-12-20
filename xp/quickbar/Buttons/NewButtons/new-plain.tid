@@ -1,0 +1,17 @@
+caption: {{$:/core/images/new-button}} new plain tiddler
+description: Create a plain tiddler
+tags: $:/tags/QuickBar/NewButtons
+title: $:/xp/quickbar/Buttons/new-plain
+
+\whitespace trim
+<$button tooltip="Create a plain tiddler" aria-label="new plain tiddler" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/new-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+new plain tiddler
+</span>
+</$list>
+<$action-sendmessage $message="tm-new-tiddler" type="text/plain"/>
+</$button>

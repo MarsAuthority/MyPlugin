@@ -1,0 +1,18 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/courses-help
+
+<div class="blue-box">
+
+COURSES 是视频课程的索引界面。使用方法与 BOOKSHELF 基本一致，请参阅 [[Bookshelf Help|$:/bookshelf-help]]。
+
+</div>
+
+该主题预设分类标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式存储于：
+
+<<list-links filter:"[all[shadows+tiddlers]prefix[$:/config/xp/aggregation-courses/category/]]" type:"ol">>
+
+其他说明：
+
+* 分类使用「[[学堂在线|https://www.xuetangx.com/search?query=&channel=navigation_bar]]」的学科分类；
+* 课程封面图（宽高比 220:123 px），不支持 SVG。建议标题使用小写和下划线。为了管理，添加标签 <<tag CourseCover>>。

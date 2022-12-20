@@ -1,0 +1,11 @@
+caption: Standard
+first-search-filter: [!is[system]search:title<userInput>sort[title]limit[250]]
+second-search-filter: [!is[system]search<userInput>sort[title]limit[250]]
+tags: $:/tags/QuickBar/SearchResults
+title: $:/xp/quickbar/Search/Standard
+
+<$reveal state="$:/state/quicksearch/currentTab" default="$:/xp/quickbar/Search/Standard" type="match" text="$:/xp/quickbar/Search/Standard">
+
+{{$:/core/ui/DefaultSearchResultList}}
+
+</$reveal>

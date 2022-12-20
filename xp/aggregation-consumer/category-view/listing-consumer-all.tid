@@ -1,0 +1,12 @@
+caption: 全部
+tags: $:/tags/ConsumerCategories
+title: $:/listing-consumer-all
+
+\import $:/consumer-macros
+
+<$macrocall
+  $name="aggregation-list-links"
+  storeTitle="$:/temp/search/consumer/links"
+  searchClass="xp-search-consumer"
+  promptTiddler="$:/consumer-prompt"
+/>

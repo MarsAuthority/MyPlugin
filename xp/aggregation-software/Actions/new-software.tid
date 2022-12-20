@@ -1,0 +1,20 @@
+description: create a new software
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-software
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-software/Tags}} textField={{$:/config/new-software/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "software/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	caption="a software"
+	color=""
+	description=""
+	moscow="S"
+	purpose=""
+	url=""
+/>
+</$vars>

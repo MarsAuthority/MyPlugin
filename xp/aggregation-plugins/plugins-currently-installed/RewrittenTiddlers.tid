@@ -1,0 +1,43 @@
+title: $:/plugins-currently-installed/RewrittenTiddlers
+
+\define deleteOTButton()
+\whitespace trim
+<span class="tc-sidebar-tab-open">
+<$button class="tc-btn-invisible tc-btn-mini tc-small-gap-right" tooltip="Delete these rewritten tiddlers">
+<$action-confirm $message="Are you sure you wish to delete these rewritten tiddlers?">
+<$action-deletetiddler $filter="[<listPlugin>plugintiddlers[]is[tiddler]]"/>
+{{$:/core/images/delete-button}}
+</$action-confirm>
+</$button>
+</span>
+\end
+
+<$list filter="[all[shadows+tiddlers]!has[draft.of]is[system]has[plugin-type]each[plugin-type]sort[plugin-type]]">
+<div class="tc-menu-list-item">
+<$reveal default={{{ [all[shadows+tiddlers]!has[draft.of]is[system]plugin-type{!!plugin-type}search:title,plugin-type<userInput>plugintiddlers[]is[tiddler]count[]] }}} type="nomatch" text="0">
+<$text text={{{ [{!!plugin-type}sentencecase[]addsuffix[s]] }}}/>
+<hr>
+</$reveal>
+<div class="tc-menu-list-subitem">
+  <ol>
+  <$list filter="[all[shadows+tiddlers]!has[draft.of]is[system]plugin-type{!!plugin-type}sort[]search:title,plugin-type<userInput>]" variable="listPlugin">
+  <$reveal default={{{ [<listPlugin>plugintiddlers[]is[tiddler]count[]] }}} type="nomatch" text="0">
+    <li>
+      <h3><$link to=<<listPlugin>>><$view tiddler=<<listPlugin>> field="title"/></$link>&emsp;<<deleteOTButton>></h3><div class="gray-box">
+
+      <ul>
+      <$list filter="[<listPlugin>plugintiddlers[]is[tiddler]sort[]]">
+        <li>
+        <$link><$view field="title"/></$link>
+        </li>
+      </$list>
+      </ul>
+
+      </div>
+    </li>
+  </$reveal>
+  </$list>
+  </ol>
+</div>
+</div>
+</$list>

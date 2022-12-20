@@ -1,0 +1,48 @@
+caption: {{$:/xp/images/2column}} Show right column
+description: Show right column for second story
+tags: $:/tags/PageControls
+title: $:/_sq/Stories/Templates/StoryTogglePageControl
+
+\whitespace trim
+<$reveal stateTitle="$:/_sq/Stories/Story2StoryList" stateField="list" type="nomatch" text="">
+<$reveal state="$:/config/_sq/Stories/story2" type="nomatch" text="no" default="no">
+<$button set="$:/config/_sq/Stories/story2" setTo="no" tooltip="Hide right column" aria-label="" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/1column}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="hide right column"/>
+</span>
+</$list>
+<!-- xp -->
+<$list filter="[[$:/temp/sidebarlayout/fixedstory]is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fixed-fluid"/>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="42px"/>
+</$list>
+</$list>
+<!-- /xp -->
+</$button>
+</$reveal>
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="no" default="no">
+<$button set="$:/config/_sq/Stories/story2" setTo="yes" tooltip="Show right column" aria-label="" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/2column}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="show right column"/>
+</span>
+</$list>
+<!-- xp -->
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" text="fluid-fixed"/>
+</$list>
+<$list filter="[[$:/xp/themetweaks/metrics/sidebarpaddingleft]is[shadow]]">
+<$action-setfield $tiddler="$:/xp/themetweaks/metrics/sidebarpaddingleft" text="{{$:/xp/themetweaks/metrics/sidebarpaddingleft/text}}"/>
+</$list>
+<!-- /xp -->
+</$button>
+</$reveal>
+</$reveal>

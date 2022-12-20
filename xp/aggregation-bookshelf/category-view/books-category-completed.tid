@@ -1,0 +1,6 @@
+caption: 已完成
+ctag: Completed
+tags: $:/tags/BookCategories
+title: $:/books-category-completed
+
+<<list-books "Completed">>

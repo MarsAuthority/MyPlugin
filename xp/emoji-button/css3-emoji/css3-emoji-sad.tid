@@ -1,0 +1,12 @@
+title: $:/css3-emoji-sad
+
+<div class="emoji sad">
+    <figure class="face">
+        <span class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+        </span>
+        <span class="mouth tounge">
+        </span>
+    </figure>
+</div>

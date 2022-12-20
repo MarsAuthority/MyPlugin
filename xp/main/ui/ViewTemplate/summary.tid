@@ -1,0 +1,12 @@
+created: 20141119004109928
+creator: Tobias Beer
+list-after: $:/plugins/kookma/utility/viewtemplates/view-fields
+modified: 20150109180132992
+modifier: Tobias Beer
+summary: shows summary for all system tiddlers
+tags: $:/tags/ViewTemplate
+title: $:/.tb/ui/ViewTemplate/summary
+
+<$list filter="[all[current]has[summary]]">
+@@color:grey; //<$transclude field="summary" mode="block"/> //@@
+</$list>

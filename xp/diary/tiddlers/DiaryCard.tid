@@ -1,0 +1,89 @@
+color: #bbb
+icon: $:/xp/images/diarycard
+title: $:/DiaryCard
+
+\import $:/xp/diary/macros
+\whitespace trim
+
+\define lingo-base() $:/language/Search/
+
+\define cancel-search-actions() <$list filter="[{$:/temp/journalsearch/input}!match{$:/temp/journalsearch}]" emptyMessage="""<$action-deletetiddler $filter="[[$:/temp/journalsearch]] [[$:/temp/journalsearch/input]] [[$:/temp/journalsearch/selected-item]]" />"""><$action-setfield $tiddler="$:/temp/journalsearch/input" text={{$:/temp/journalsearch}}/><$action-setfield $tiddler="$:/temp/journalsearch/refresh" text="yes"/></$list>
+
+\define input-accept-actions() <$list filter="[{$:/config/Search/NavigateOnEnter/enable}match[yes]]" emptyMessage="""<$list filter="[<__tiddler__>get[text]!is[missing]] ~[<__tiddler__>get[text]is[shadow]]"><$action-navigate $to={{{ [<__tiddler__>get[text]] }}}/></$list>"""><$action-navigate $to={{{ [<__tiddler__>get[text]] }}}/></$list>
+
+\define input-accept-variant-actions() <$list filter="[{$:/config/Search/NavigateOnEnter/enable}match[yes]]" emptyMessage="""<$list filter="[<__tiddler__>get[text]!is[missing]] ~[<__tiddler__>get[text]is[shadow]]"><$list filter="[<__tiddler__>get[text]minlength[1]]"><$action-sendmessage $message="tm-edit-tiddler" $param={{{  [<__tiddler__>get[text]] }}}/></$list></$list>"""><$list filter="[<__tiddler__>get[text]minlength[1]]"><$action-sendmessage $message="tm-edit-tiddler" $param={{{  [<__tiddler__>get[text]] }}}/></$list></$list>
+
+<style>
+html body.tc-body .diarycard-search-box {
+    display: block;
+    margin: 0 auto;
+    padding: 4px 8px 14px 36px;
+    margin-bottom: 1em;
+    border: 1px solid <<colour tiddler-editor-border>>;
+    border-radius: 12px;
+    background: <<colour page-background>>
+}
+
+.diarycard-journal-filter button {
+    vertical-align: middle;
+    margin-left: 3px;
+}
+</style>
+
+<div class="diarycard-search-box">
+
+<<lingo Filter/Hint>>. &#32; [[Filtering journals|$:/help/FilteringJournals]]
+
+<div class="diarycard-journal-filter">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/JournalFilter]!has[draft.of]]">
+<$transclude mode="inline"/>
+</$list>
+</div>
+
+<div class="tc-search tc-advanced-search xp-diarycard-search">
+<$macrocall $name="keyboard-driven-input" tiddler="$:/temp/journalsearch/input" storeTitle="$:/temp/journalsearch" 
+    refreshTitle="$:/temp/journalsearch/refresh" selectionStateTitle="$:/temp/journalsearch/selected-item" type="search" 
+    tag="input" configTiddlerFilter="[[$:/temp/journalsearch]]" firstSearchFilterField="text" 
+    inputAcceptActions=<<input-accept-actions>> inputAcceptVariantActions=<<input-accept-variant-actions>> 
+    inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/DiaryCard/FilterButton]!has[draft.of]]"><$transclude/></$list>
+</div>
+
+</div>
+
+<$vars journalTag={{{ [enlist{$:/config/NewJournal/Tags}first[]] }}}>
+<$reveal state="$:/temp/journalsearch" type="nomatch" text="">
+
+<$reveal state="$:/config/journalsearch/searchmode" type="nomatch" text="yes">
+<$set name="resultCount" value="<$count filter={{$:/temp/journalsearch}}/>">
+<div class="tc-search-results">
+<<lingo Filter/Matches>>
+<div class="content">
+<$list filter={{$:/temp/journalsearch}}>
+<span class={{{[<currentTiddler>addsuffix[-primaryList]] -[[$:/temp/journalsearch/selected-item]get[text]] +[then[]else[tc-list-item-selected]] }}}>
+{{||$:/xp/diary/card-template}}
+</span>
+</$list>
+</div>
+</div>
+</$set>
+</$reveal>
+
+<$reveal state="$:/config/journalsearch/searchmode" type="match" text="yes">
+<$set name="resultCount" value="<$count filter=<<journalSearchFilter>>/>">
+<div class="tc-search-results">
+<<lingo Filter/Matches>>
+<div class="content">
+<$list filter=<<journalSearchFilter>>>
+<span class={{{[<currentTiddler>addsuffix[-primaryList]] -[[$:/temp/journalsearch/selected-item]get[text]] +[then[]else[tc-list-item-selected]] }}}>
+{{||$:/xp/diary/card-template}}
+</span>
+</$list>
+</div>
+</div>
+</$set>
+</$reveal>
+
+</$reveal>
+</$vars>

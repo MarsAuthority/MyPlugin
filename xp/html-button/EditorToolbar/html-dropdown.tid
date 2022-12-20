@@ -1,0 +1,20 @@
+title: $:/xp/ui/EditorToolbar/html-dropdown
+
+\define statusTid() $:/config/html-button/status
+
+<$tiddler tiddler=<<statusTid>>>
+<$radio value="tag"> Tags </$radio>&ensp;
+<$radio value="code"> Codes </$radio>
+</$tiddler>
+
+<$reveal state=<<statusTid>> type="match" text="tag" default="tag" animate="yes">
+
+{{$:/xp/html-button/html-dropdown/tags}}
+
+</$reveal>
+
+<$reveal state=<<statusTid>> type="match" text="code" animate="yes">
+
+{{$:/xp/html-button/html-dropdown/codes}}
+
+</$reveal>

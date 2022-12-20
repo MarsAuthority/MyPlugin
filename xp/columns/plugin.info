@@ -1,0 +1,13 @@
+{
+	"title": "$:/plugins/xp/columns",
+	"name": "Columns",
+	"description": "Display content in multiple columns using CSS",
+	"list": "readme",
+	"version": "0.2.1",
+	"plugin-type": "plugin",
+	"dependents": "",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210706074123255",
+	"modified": "20220810131842881"
+}

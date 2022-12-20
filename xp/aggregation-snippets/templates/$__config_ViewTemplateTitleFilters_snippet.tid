@@ -1,0 +1,4 @@
+tags: $:/tags/ViewTemplateTitleFilter
+title: $:/config/ViewTemplateTitleFilters/snippet
+
+[prefix[snippet/]then[$:/xp/ui/ViewTemplate/title/caption]]

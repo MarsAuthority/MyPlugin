@@ -1,0 +1,69 @@
+title: $:/CodeViewer
+
+\whitespace trim
+\define lingo-base() $:/language/Search/
+
+\define cvDropdownButton()
+<span class="tc-popup-keep">
+<$button popup=<<qualify "$:/state/dropdown/codeviewer">> class="tc-btn-invisible">
+{{$:/core/images/down-arrow}}
+</$button>
+</span>
+
+<$reveal state=<<qualify "$:/state/dropdown/codeviewer">> type="popup" position="below" animate="yes">
+<$linkcatcher actions="""<$action-setfield $tiddler="$:/config/CodeViewer/Filter" text=<<navigateTo>>/>""">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Filter/QuickInput]!tag[hide]!has[draft.of]]">
+<$link to={{!!filter}} tooltip={{!!description}}><$view field="caption" format="plainwikified"/></$link>
+</$list>
+</div>
+</div>
+</$linkcatcher>
+</$reveal>
+\end
+
+\define select-tiddler-toshow()
+<$select tiddler='$:/config/CodeViewer/Title'>
+<$list filter={{$:/config/CodeViewer/Filter}}>
+<option><$view field='title'/></option>
+</$list>
+</$select>
+\end
+
+
+<div style="line-height: 1.75;margin-bottom: 1rem;padding: 10px 28px;border-radius: 5px;box-shadow: 0.5px 1px 17px -8px #A3A5AE;">
+<ol>
+<li>
+Filter Expression:&ensp;<$macrocall $name="keyboard-driven-input" tiddler="$:/config/CodeViewer/Filter" type="search" default="" tag="input" size="50"/>
+<span class="tc-search">
+<<cvDropdownButton>>
+<$reveal state="$:/config/CodeViewer/Filter" type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<$action-deletetiddler $tiddler="$:/config/CodeViewer/Filter"/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+</li>
+<$reveal state="$:/config/CodeViewer/Filter" type="nomatch" text="">
+<li>
+<$vars resultCount="""<$count filter="[subfilter{$:/config/CodeViewer/Filter}has[title]]"/>""">
+<$list filter="[subfilter{$:/config/CodeViewer/Filter}has[title]limit[1]]" emptyMessage="""<<lingo System/Matches>>""" variable="ignore">
+Select the tiddler:&ensp;<<select-tiddler-toshow>>
+</$list>
+</$vars>
+</li>
+</$reveal>
+</ol>
+</div>
+
+
+<$list filter="[subfilter{$:/config/CodeViewer/Filter}has[title]limit[1]]" variable="ignore">
+<$reveal state="$:/config/CodeViewer/Title" type="nomatch" text="" animate="yes">
+
+<h2 class="tc-sidebar-lists">{{$:/config/CodeViewer/Title}}</h2>
+<$codeblock code={{{ [{$:/config/CodeViewer/Title}get[text]] }}} />
+
+</$reveal>
+</$list>

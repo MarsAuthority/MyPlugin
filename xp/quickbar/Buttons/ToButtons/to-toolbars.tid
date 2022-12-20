@@ -1,0 +1,21 @@
+caption: {{$:/core/images/options-button}} to toolbars
+description: {{$:/language/ControlPanel/Toolbars/Hint}}
+tags: $:/tags/QuickBar/ToButtons
+title: $:/xp/quickbar/Buttons/to-toolbars
+
+\whitespace trim
+\define openCpToolbars()
+<$action-setfield $tiddler="$:/state/tab-1749438307" $value="$:/core/ui/ControlPanel/Appearance"/>
+<$action-setfield $tiddler="$:/state/tab--1963855381" $value="$:/core/ui/ControlPanel/Toolbars"/>
+<$action-navigate $to="$:/ControlPanel"/>
+\end
+<$button actions=<<openCpToolbars>> tooltip="Open Control Panel Toolbars" aria-label="open toolbars" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/options-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="openCpToolbars"/>
+</span>
+</$list>
+</$button>

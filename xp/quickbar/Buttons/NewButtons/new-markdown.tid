@@ -1,0 +1,9 @@
+caption: {{$:/plugins/tiddlywiki/markdown/new-markdown-button!!caption}}
+dependents: $:/plugins/tiddlywiki/markdown
+description: {{$:/plugins/tiddlywiki/markdown/new-markdown-button!!description}}
+tags: $:/tags/QuickBar/NewButtons
+title: $:/xp/quickbar/Buttons/new-markdown
+
+<$list filter="[[$:/plugins/tiddlywiki/markdown]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/tiddlywiki/markdown}!match[yes]]" variable="ignore">
+{{$:/plugins/tiddlywiki/markdown/new-markdown-button}}
+</$list>

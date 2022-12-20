@@ -1,0 +1,74 @@
+title: $:/xp/leftopentab/content
+
+\import $:/xp/leftopentab/macros
+\whitespace trim
+\define lingo-base() $:/language/CloseAll/
+
+\define drop-actions()
+<$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+<$action-listops $tiddler=<<_otherStory>> $subfilter="-[<actionTiddler>]"/>
+\end
+
+\define placeholder()
+<div class="tc-droppable-placeholder"/>
+\end
+
+\define droppable-item(button)
+\whitespace trim
+<$droppable actions=<<drop-actions>>>
+<<placeholder>>
+<div>
+$button$
+</div>
+</$droppable>
+\end
+
+\define open-tiddler-list()
+<div class="tc-sidebar-tab-open sq-sidebar-open tc-sidebar-lists" style="margin-top:-7px;">
+<span class={{{[<currentTiddler>addsuffix[-primaryList]] -[[$:/temp/advancedsearch/selected-item]get[text]] +[then[]else[tc-list-item-selected]] }}}>
+<$list filter="[list<tv-story-list>]" history=<<tv-history-list>> storyview="pop">
+<div class="tc-sidebar-tab-open-item">
+<$macrocall $name="droppable-item" button=<<open-tiddler-list-button>>/>
+</div>
+</$list>
+<$tiddler tiddler="">
+<$macrocall $name="droppable-item" button="""<$button message="tm-close-all-tiddlers" class="tc-btn-invisible tc-btn-mini" style="padding:3px 0 0 0;margin-left:0.6em;"><<lingo Button>></$button>"""/>
+</$tiddler>
+</span>
+</div>
+\end
+
+
+<div class={{$:/config/LeftOpenTab/Titlebar}}>
+{{$:/language/SideBar/Open/Caption}} &ensp; {{$:/xp/ui/Buttons/leftopentab}}
+</div>
+
+<$set name="_otherStory" filter="[enlist{$:/_sq/Stories/StoriesList!!list}] -[<tv-story-list>]" select="0">
+<<open-tiddler-list>>
+</$set>
+
+<$list filter="[[$:/plugins/sq/Stories]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/sq/Stories}!match[yes]]" variable="ignore">
+<div class="sq-twostoriesonly tc-sidebar-lists">
+
+<$reveal state="$:/config/LeftOpenTab/Titlebar" type="match" text="leftopentab-titlebar-word">
+<div class="leftopentab-hr-style"> </div>
+</$reveal>
+
+<div class={{$:/config/LeftOpenTab/Titlebar}}>Right Column</div>
+
+<$set name="_otherStory" value=<<tv-story-list>> >
+<$set name="tv-story-list"  filter="[enlist{$:/_sq/Stories/StoriesList!!list}] -[<tv-story-list>]" select="0">
+<$set name="tv-history-list"  filter="[enlist{$:/_sq/Stories/HistoriesList!!list}] -[<tv-history-list>]" select="0">
+<$navigator story=<<tv-story-list>>  history=<<tv-history-list>> >
+<<open-tiddler-list>>
+</$navigator>
+</$set>
+</$set>
+</$set>
+<div style="margin-left:0.6em;">{{$:/xp/ui/Buttons/fold-all-story2}}</div>
+</div>
+
+<div class="tc-sidebar-lists" style="margin-left:0.6em;margin-top:-12px;">
+<$transclude tiddler="$:/_sq/Stories/Templates/StoryToggleMenu"/>
+</div>
+</$list>

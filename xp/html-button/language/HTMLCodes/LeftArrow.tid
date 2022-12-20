@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/LeftArrow
+
+<$button tag="a" tooltip="Left Arrow">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&larr;"
+/>
+
+<span class="tc-html-chooser-text">&larr;</span>
+
+</$button>

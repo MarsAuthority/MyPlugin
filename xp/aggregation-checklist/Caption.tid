@@ -1,0 +1,7 @@
+title: $:/xp/aggregation-checklist/Caption
+
+<span class="xp-gtd-caption">
+<$list filter="[all[current]regexp:caption[^{{]]" emptyMessage="<$view field='caption'><$view field='title'/></$view>">
+<$transclude field="caption"><$view field="title"/></$transclude>
+</$list>
+</span>

@@ -1,0 +1,33 @@
+caption: New
+description: New buttons
+icon: $:/core/images/new-button
+is-dropup: yes
+tags: $:/tags/QuickBar
+title: $:/xp/quickbar/items/new
+
+\whitespace trim
+\define config-title() $:/config/xp/quickbar/NewButtons/Visibility/$(listItem)$
+
+<$set name="tv-config-toolbar-icons" value="yes">
+<$set name="tv-config-toolbar-text" value="yes">
+<$set name="tv-config-toolbar-class" value="tc-btn-invisible">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/QuickBar/NewButtons]!has[draft.of]] -[[$:/tags/QuickBar/NewButtons]]" variable="listItem">
+
+<$set name="hidden" value=<<config-title>>>
+
+<$list filter="[<hidden>!text[hide]]" storyview="pop" variable="ignore">
+
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$set>
+
+</$list>
+
+</$set>
+
+</$list>
+</$set>
+</$set>
+</$set>

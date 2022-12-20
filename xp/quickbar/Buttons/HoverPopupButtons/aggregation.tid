@@ -1,0 +1,32 @@
+caption: {{$:/xp/images/aggregation}} content aggregation
+dependents: $:/plugins/xp/aggregation
+description: Content aggregation
+tags: $:/tags/QuickBar/HoverPopupButtons
+title: $:/xp/quickbar/Buttons/aggregation
+
+\whitespace trim
+\define aggregationButtons()
+\whitespace trim
+<$list filter="[all[shadows+tiddlers]prefix[$:/config/xp/aggregation/ui/]get[text]has[title]!sort[]]" variable="listItem" emptyMessage="<p>None</p>">
+<div>
+<$button to=<<listItem>> class="tc-btn-invisible">
+<$transclude tiddler={{{ [<listItem>get[icon]] }}}/>
+<span class="tc-btn-text">
+<$text text=<<listItem>>/>
+</span>
+<$list filter="[all[shadows+tiddlers]prefix[$:/config/xp/aggregation/ui/]get[text]!has[title]]" variable="missingItem">
+<$action-deletetiddler $tiddler={{{ [<missingItem>lowercase[]addprefix[$:/config/xp/aggregation/ui/]] }}}/>
+</$list>
+</$button>
+</div>
+</$list>
+\end
+
+<div class="tc-quickbar-tooltip"> 
+<$button class="tc-btn-invisible" style="padding:7px;">
+{{$:/xp/images/aggregation}}
+</$button>
+<div class="tc-quickbar-tooltiptext quickbar-tooltiptext-button" style="padding:14px 14px;">
+<<aggregationButtons>>
+</div>
+</div>

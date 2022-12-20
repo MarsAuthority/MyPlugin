@@ -1,0 +1,12 @@
+tags: $:/tags/XP
+title: $:/_xp/Stylesheet/dropdown-color
+
+.tc-block-dropdown a:hover {
+	background-color: {{$:/_xp/Settings/dropdown-color}};
+}
+
+.tc-drop-down a:hover,
+.tc-drop-down button:hover,
+.tc-drop-down .tc-file-input-wrapper:hover button {
+	background-color: {{$:/_xp/Settings/dropdown-color}};
+}

@@ -1,0 +1,35 @@
+caption: {{$:/xp/images/tag}} manage tags
+description: Manage tags in view mode
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/manage-tags
+
+\whitespace trim
+<$list filter="[[$:/xp/managetags/tagging]!tag[$:/tags/ViewTemplate]]">
+<$button tooltip="Manage tags in view mode" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/tag}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="manage tags"/>
+</span>
+</$list>
+<$action-listops $tags="$:/tags/ViewTemplate" />
+</$button>
+</$list>
+
+<$list filter="[[$:/xp/managetags/tagging]tag[$:/tags/ViewTemplate]]">
+<$button tooltip="Exit manage tags" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+<span class="mt-active-indicator">
+{{$:/xp/images/tag}}
+</span>
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text="manage tags"/>
+</span>
+</$list>
+<$action-deletetiddler $filter=<<currentTiddler>> />
+</$button>
+</$list>

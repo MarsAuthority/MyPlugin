@@ -1,0 +1,22 @@
+title: $:/xp/mcp/readme
+
+These plugins are included:
+
+* [[CodeMirror|$:/plugins/tiddlywiki/codemirror]]
+* [[Command palette|$:/plugins/souk21/commandpalette]]
+* [[EditButtons|$:/plugins/telmiger/EditButtons]]
+* [[encryptTiddler|$:/plugins/danielo515/encryptTiddler]]
+* [[Favorites|$:/plugins/kookma/favorites]]
+* [[FontAwesome|$:/plugins/TheDiveO/FontAwesome]]
+* [[Help|$:/plugins/tiddlywiki/help]]
+* [[Kara|$:/plugins/kookma/kara]]
+* [[Markdown|$:/plugins/tiddlywiki/markdown]]
+* [[Pretty link button|$:/plugins/tg/prettylink-button]]
+* [[Preview|$:/plugins/tobibeer/preview]]
+* [[Shiraz|$:/plugins/kookma/shiraz]]
+* [[Tiddler Commander|$:/plugins/kookma/commander]]
+* [[TiddlyMap|$:/plugins/felixhayashi/tiddlymap]]
+* [[Trashbin|$:/plugins/kookma/trashbin]]
+* [[Utility|$:/plugins/kookma/utility]]
+
+> Caution: Make sure the tiddlers are deactivated, when disabling or removing plugins.

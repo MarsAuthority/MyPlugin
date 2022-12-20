@@ -1,0 +1,9 @@
+caption: {{$:/xp/images/maximize}} maximize river
+description: Maximize the story river
+tags: $:/tags/EditToolbar
+title: $:/xp/ui/Buttons/maximize-river_EditToolbar
+
+\import $:/xp/leftopentab/macros
+\whitespace trim
+
+<<maximize-river-button "<$action-navigate $to=<<currentTiddler>>/>">>

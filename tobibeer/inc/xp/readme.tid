@@ -1,0 +1,29 @@
+created: 20220731093523023
+modified: 20220731113107169
+title: $:/xp/custom-plugins/tobibeer/inc/readme
+
+!! 修改文件
+
+* $:/plugins/tobibeer/inc/macro
+* $:/plugins/tobibeer/inc/buttons/open
+* $:/plugins/tobibeer/inc/styles
+** $:/config/inc-transclusion/ShowControls
+* $:/plugins/tobibeer/inc/readme
+
+!! 新增文件
+
+编辑器工具栏按钮：
+
+* $:/xp/ui/EditorToolbar/inc
+* $:/xp/ui/EditorToolbar/inc-dropdown
+* $:/xp/images/inc
+* $:/language/Buttons/Inc/Caption
+* $:/language/Buttons/Inc/Hint
+* $:/config/shortcuts/inc
+* $:/config/ShortcutInfo/inc
+
+图章：
+
+* $:/language/Snippets/inc
+* $:/language/Snippets/inc/prefix
+* $:/language/Snippets/inc/suffix

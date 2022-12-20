@@ -1,0 +1,45 @@
+caption: {{$:/xp/images/code-viewer}} {{$:/language/Buttons/ViewCodeAll/Caption}}
+description: {{$:/language/Buttons/ViewCodeAll/Hint}}
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/view-code-all
+
+\whitespace trim
+\define viewCodeAllState() $:/state/view-code-all
+
+\define toFirstTiddler()
+<$list filter="[list<tv-story-list>first[]]">
+<$action-navigate $scroll="yes"/>
+</$list>
+\end
+
+\define icon-text()
+\whitespace trim
+<$list filter="[<tv-config-toolbar-icons>match[yes]]" variable="listItem">
+{{$:/xp/images/code-viewer}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/ViewCodeAll/Caption}}/>
+</span>
+</$list>
+\end
+
+\define view-code-all-button()
+\whitespace trim
+<$vars currentState={{{ [<viewCodeAllState>!is[missing]get[text]] ~hide }}}>
+<$list filter="[<currentState>match[hide]]" variable="ignore">
+<$button set=<<viewCodeAllState>> setTo="show" tooltip={{$:/language/Buttons/ViewCodeAll/Hint}} aria-label={{$:/language/Buttons/ViewCodeAll/Caption}} class=<<tv-config-toolbar-class>>>
+<$action-sendmessage $message="tm-fold-all-tiddlers" $param=<<currentTiddler>> foldedStatePrefix="$:/state/folded/"/>
+<<toFirstTiddler>><<icon-text>>
+</$button>
+</$list>
+<$list filter="[<currentState>match[show]]" variable="ignore">
+<$button set=<<viewCodeAllState>> setTo="hide" tooltip="Exit" aria-label={{$:/language/Buttons/ViewCodeAll/Caption}} class="""$(tv-config-toolbar-class)$ tc-selected""">
+<$action-sendmessage $message="tm-unfold-all-tiddlers" $param=<<currentTiddler>> foldedStatePrefix="$:/state/folded/"/>
+<<toFirstTiddler>><<icon-text>>
+</$button>
+</$list>
+</$vars>
+\end
+
+<<view-code-all-button>>

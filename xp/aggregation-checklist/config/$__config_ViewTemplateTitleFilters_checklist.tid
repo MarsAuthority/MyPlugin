@@ -1,0 +1,4 @@
+tags: $:/tags/ViewTemplateTitleFilter
+title: $:/config/ViewTemplateTitleFilters/checklist
+
+[prefix[$:/checklist/]then[$:/xp/ui/ViewTemplate/title/caption]]

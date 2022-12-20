@@ -1,0 +1,15 @@
+title: $:/xp/columns/Examples/2column-2tiddler
+
+! 显示两个条目的链接
+
+<div class="left-column">
+
+{{$:/xp/columns/Examples/text2||$:/templates/transclusion-caption}}
+
+</div>
+
+<div class="right-column">
+
+{{$:/xp/columns/Examples/text1||$:/templates/transclusion-caption}}
+
+</div>

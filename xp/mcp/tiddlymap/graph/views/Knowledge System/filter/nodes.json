@@ -1,0 +1,6 @@
+[
+    {
+        "title": "$:/plugins/felixhayashi/tiddlymap/graph/views/Knowledge System/filter/nodes",
+        "filter": " [all[shadows+tiddlers]field:tmap.id[12286e9b-e01c-4838-bf4a-a76696d47ea1]]"
+    }
+]

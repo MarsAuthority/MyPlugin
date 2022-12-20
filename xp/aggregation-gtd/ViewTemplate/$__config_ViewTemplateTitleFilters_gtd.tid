@@ -1,0 +1,4 @@
+tags: $:/tags/ViewTemplateTitleFilter
+title: $:/config/ViewTemplateTitleFilters/gtd
+
+[prefix[$:/gtd/]then[$:/xp/ui/ViewTemplate/title/caption]]

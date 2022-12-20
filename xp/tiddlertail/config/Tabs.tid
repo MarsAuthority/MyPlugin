@@ -1,0 +1,61 @@
+title: $:/config/TiddlerTail/Tabs
+
+\whitespace trim
+<$list filter=<<show-tiddlertail-filter>> variable="ignore">
+
+<!-- Things -->
+<$vars journalTag={{{ [enlist{$:/config/NewJournal/Tags}first[]] }}} today=<<now YYYY0MM0DD>>>
+<$wikify name="createdDate" text="<$view field=created format=date template='YYYY0MM0DD'/>">
+<$reveal default=<<createdDate>> type="match" text=<<today>>>
+<$list filter="[all[current]tag<journalTag>] [all[current]tag[GTD]] [all[current]tag[todo]] [all[current]tag[task]] +[limit[1]then[$:/xp/tiddlertail/items/things]]" />
+</$reveal>
+<$reveal default=<<createdDate>> type="nomatch" text=<<today>>>
+<$list filter="[tag[GTD]tag[done]sameday{!!created}limit[1]]" variable="ignore">
+<$list filter="[all[current]tag<journalTag>] [all[current]tag[GTD]] [all[current]tag[todo]] [all[current]tag[task]] +[limit[1]then[$:/xp/tiddlertail/items/things]]" />
+</$list>
+</$reveal>
+</$wikify>
+</$vars>
+&nbsp;
+
+<!-- Activities -->
+<$list filter="[sameday{!!created}] -[<currentTiddler>] +[limit[1]then[$:/xp/tiddlertail/items/activities]]" />
+&nbsp;
+
+<!-- Annotation -->
+<$list filter="[prefix[$:/annotation/]annotate-tiddler<currentTiddler>limit[1]then[$:/xp/tiddlertail/items/annotation]]" />
+&nbsp;
+
+<!-- Refnotes -->
+<$list filter="[all[current]search:text:literal,casesensitive<fnoteDelimiter>] [all[current]search:text:literal,casesensitive<abbrDelimiter>] +[limit[1]then[$:/xp/tiddlertail/items/refnotes]]" />
+&nbsp;
+
+<!-- Backlinks -->
+<$list filter="[all[current]backlinks[]!prefix[$:/temp/]!prefix[$:/state/]limit[1]then[$:/xp/tiddlertail/items/backlinks]]" />
+&nbsp;
+
+<!-- Links -->
+<$list filter="[all[current]links[]limit[1]then[$:/xp/tiddlertail/items/links]]" />
+&nbsp;
+
+<!-- Transclusion -->
+<$list filter="[all[current]search:text:literal,casesensitive<incDelimiter>limit[1]then[$:/xp/tiddlertail/items/transclusion]]" />
+&nbsp;
+
+<!-- Graph -->
+<$list filter="[all[current]links[]limit[1]then[$:/xp/tiddlertail/items/graph]]" />
+&nbsp;
+
+<!-- Map -->
+<$list filter="[all[current]has[tmap.id]backlinks[]] [all[current]has[tmap.id]links[]]  [all[current]has[tmap.id]tagging[]] [all[current]has[tmap.edges]] +[limit[1]then[$:/xp/tiddlertail/items/map]]" />
+&nbsp;
+
+<!-- Subtiddlers -->
+<$list filter="[tag<currentTiddler>limit[1]then[$:/xp/tiddlertail/items/subtiddlers]]" />
+&nbsp;
+
+<!-- People -->
+<$list filter="[all[current]tag[People]then[$:/xp/tiddlertail/items/people]]" />
+&nbsp;
+
+</$list>

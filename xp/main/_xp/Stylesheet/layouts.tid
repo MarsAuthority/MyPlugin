@@ -1,0 +1,36 @@
+tags: $:/tags/XP $:/tags/Stylesheet
+title: $:/_xp/Stylesheet/layouts
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+<pre>@media (min-width: <<sidebarbreakpoint>>) {
+
+    /* HIDE ON PC */
+    .only-on-phone {
+        display: none;
+    }
+
+    /* FLOAT RIGHT */
+    .xp-float-right {
+        float: right !important;
+    }
+
+    /* ALIGN RIGHT */
+    .xp-text-align-right {
+        text-align: right !important;
+        margin-bottom: -25px;
+    }
+
+}
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+    /* HIDE ON PHONE */
+    .only-on-pc {
+        display: none;
+    }
+
+}
+</pre>

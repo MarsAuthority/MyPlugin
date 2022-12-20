@@ -1,0 +1,4 @@
+list: tbl-expand title description importance
+title: $:/config/xp/aggregation-courses/TableFields
+
+tbl-expand title description importance

@@ -1,0 +1,23 @@
+description: create a new book
+tags: $:/tags/Actions
+title: $:/xp/ui/Actions/new-book
+
+\define get-tags() $(textFieldTags)$
+\define get-text() $(textField)$
+<$vars textFieldTags={{$:/config/new-book/Tags}} textField={{$:/config/new-book/Text}}>
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title=<<now "book/YYYY0MM0DD0hh0mm0ssXXX">>
+	tags=<<get-tags>>
+	text=<<get-text>>
+	caption="a book"
+	image="$:/book.png"
+	importance=""
+	link=""
+	linkcolor=""
+/>
+<!-- tidgraph view requires 3 tiddlers -->
+<$list filter="[enlist[Planning Ongoing Completed]!has[title]]">
+<$action-createtiddler $basetitle=<<currentTiddler>>/>
+</$list>
+</$vars>

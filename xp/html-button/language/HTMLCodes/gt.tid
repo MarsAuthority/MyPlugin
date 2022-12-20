@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/gt
+
+<$button tag="a" tooltip="Greater Than">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&gt;"
+/>
+
+<span class="tc-html-chooser-text">&gt;</span>
+
+</$button>

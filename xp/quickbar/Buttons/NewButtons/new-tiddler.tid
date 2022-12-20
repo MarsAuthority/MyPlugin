@@ -1,0 +1,6 @@
+caption: {{$:/core/ui/Buttons/new-tiddler!!caption}}
+description: {{$:/core/ui/Buttons/new-tiddler!!description}}
+tags: $:/tags/QuickBar/NewButtons
+title: $:/xp/quickbar/Buttons/new-tiddler
+
+{{$:/core/ui/Buttons/new-tiddler}}

@@ -1,0 +1,9 @@
+caption: {{$:/core/images/advanced-search-button}}
+custom-menu-content: {{$:/xp/quickbar/Search/advanced-search}}
+description: Advanced Search
+title: $:/xp/quickbar/Search/advanced-search
+
+\whitespace trim
+<$button to="$:/AdvancedSearch" tooltip={{$:/language/Buttons/AdvancedSearch/Hint}} aria-label={{$:/language/Buttons/AdvancedSearch/Caption}} class="tc-btn-invisible quickbar-advanced-search">
+{{$:/core/images/advanced-search-button}}
+</$button>
